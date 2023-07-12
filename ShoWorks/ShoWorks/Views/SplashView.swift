@@ -21,7 +21,7 @@ struct SplashView: View {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                         self.pushToNext = true
                     }
-            } .navigationTitle("Navigation")
+            }
             .navigationDestination(isPresented: $pushToNext) {
                 InputSerial()
            }.transition(navigationTransition)
