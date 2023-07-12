@@ -7,18 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF6BEDE72A5F026900CE209A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDE62A5F026900CE209A /* SplashView.swift */; };
+		CF6BEDE92A5F02C400CE209A /* InputSerial.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDE82A5F02C400CE209A /* InputSerial.swift */; };
+		CF6BEDEC2A5F02F800CE209A /* ShoWorksBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDEB2A5F02F800CE209A /* ShoWorksBackground.swift */; };
 		CFE6ED132A5EB57100F6867E /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = CFE6ED122A5EB57100F6867E /* RealityKitContent */; };
 		CFE6ED152A5EB57100F6867E /* ShoWorksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE6ED142A5EB57100F6867E /* ShoWorksApp.swift */; };
-		CFE6ED172A5EB57100F6867E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE6ED162A5EB57100F6867E /* ContentView.swift */; };
 		CFE6ED192A5EB57200F6867E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFE6ED182A5EB57200F6867E /* Assets.xcassets */; };
 		CFE6ED1C2A5EB57200F6867E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFE6ED1B2A5EB57200F6867E /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF6BEDE62A5F026900CE209A /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		CF6BEDE82A5F02C400CE209A /* InputSerial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSerial.swift; sourceTree = "<group>"; };
+		CF6BEDEB2A5F02F800CE209A /* ShoWorksBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksBackground.swift; sourceTree = "<group>"; };
 		CFE6ED0D2A5EB57100F6867E /* ShoWorks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoWorks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFE6ED112A5EB57100F6867E /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		CFE6ED142A5EB57100F6867E /* ShoWorksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksApp.swift; sourceTree = "<group>"; };
-		CFE6ED162A5EB57100F6867E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CFE6ED182A5EB57200F6867E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFE6ED1B2A5EB57200F6867E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -35,6 +39,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF6BEDE52A5F026900CE209A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CF6BEDE62A5F026900CE209A /* SplashView.swift */,
+				CF6BEDE82A5F02C400CE209A /* InputSerial.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CF6BEDEA2A5F02E300CE209A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CF6BEDEB2A5F02F800CE209A /* ShoWorksBackground.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		CFE6ED042A5EB57100F6867E = {
 			isa = PBXGroup;
 			children = (
@@ -55,8 +76,9 @@
 		CFE6ED0F2A5EB57100F6867E /* ShoWorks */ = {
 			isa = PBXGroup;
 			children = (
+				CF6BEDEA2A5F02E300CE209A /* Extensions */,
+				CF6BEDE52A5F026900CE209A /* Views */,
 				CFE6ED142A5EB57100F6867E /* ShoWorksApp.swift */,
-				CFE6ED162A5EB57100F6867E /* ContentView.swift */,
 				CFE6ED182A5EB57200F6867E /* Assets.xcassets */,
 				CFE6ED1A2A5EB57200F6867E /* Preview Content */,
 			);
@@ -126,6 +148,8 @@
 				Base,
 			);
 			mainGroup = CFE6ED042A5EB57100F6867E;
+			packageReferences = (
+			);
 			productRefGroup = CFE6ED0E2A5EB57100F6867E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -152,8 +176,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFE6ED172A5EB57100F6867E /* ContentView.swift in Sources */,
 				CFE6ED152A5EB57100F6867E /* ShoWorksApp.swift in Sources */,
+				CF6BEDE92A5F02C400CE209A /* InputSerial.swift in Sources */,
+				CF6BEDE72A5F026900CE209A /* SplashView.swift in Sources */,
+				CF6BEDEC2A5F02F800CE209A /* ShoWorksBackground.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
