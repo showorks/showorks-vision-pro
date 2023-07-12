@@ -13,18 +13,22 @@ struct SplashView: View {
     let navigationTransition = AnyTransition.opacity.animation(.easeOut(duration: 2))
 
     @State var pushToNext: Bool = false
+    
     var body: some View {
         NavigationStack {
-            ShoWorksBackground()
-                .navigationBarHidden(true)
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                        self.pushToNext = true
+            ZStack {
+                ShoWorksBackground()
+                    .navigationBarHidden(true)
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                            self.pushToNext = true
+                        }
                     }
+                    .navigationDestination(isPresented: $pushToNext) {
+                        InputSerial()
+                    }.transition(navigationTransition)
+                ShoWorksLogo()
             }
-            .navigationDestination(isPresented: $pushToNext) {
-                InputSerial()
-           }.transition(navigationTransition)
         }
         .navigationViewStyle(.automatic)
         

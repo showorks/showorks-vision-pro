@@ -13,9 +13,7 @@ struct ShoWorksBackground: View {
             Image("Background")
                 .resizable(resizingMode: .stretch)
                 .scaledToFill()
-                .edgesIgnoringSafeArea(.all)
-            Image("SplashLogo")
-                .frame(width: 227, height: 248, alignment: .center)
+                .edgesIgnoringSafeArea(.all)            
         }.edgesIgnoringSafeArea(.all)
     }
 }
