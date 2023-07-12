@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct InputSerial: View {
+    
     @State private var moveLogoBy = 0.0
+    @State private var isHidden = true
 
     var body: some View {
         ZStack(){
@@ -18,6 +20,14 @@ struct InputSerial: View {
             ShoWorksLogo()
                 .onAppear { }
                 .offset(x: CGFloat(self.moveLogoBy))
+            InputLayout().isHidden(self.isHidden)
+                .onAppear(){
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        self.isHidden = false
+                    }
+                    
+                }
+            
             
         }.navigationBarHidden(true)
             .onAppear(){
@@ -33,4 +43,16 @@ struct InputSerial: View {
 
 #Preview {
     InputSerial()
+}
+
+
+struct InputLayout: View {
+    @State private var userInputtedSerialKey: String = ""
+    var body: some View {
+        ZStack{
+            TextField("Serial Number or Cancel for DEMO MODE", text: $userInputtedSerialKey)
+                .frame(alignment: .center)
+        }
+        
+    }
 }
