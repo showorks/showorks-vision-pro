@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		CF09E6322A655B5200C947A3 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09E6312A655B5200C947A3 /* Fonts.swift */; };
+		CF09E6342A65601100C947A3 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09E6332A65601100C947A3 /* Colors.swift */; };
+		CF09E6362A6564FD00C947A3 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09E6352A6564FD00C947A3 /* Placeholder.swift */; };
+		CF09E63A2A65699F00C947A3 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09E6392A65699F00C947A3 /* String+Localized.swift */; };
+		CF09E6402A656A8800C947A3 /* Bundle+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09E63F2A656A8800C947A3 /* Bundle+Localized.swift */; };
+		CF09E6422A656B2700C947A3 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CF09E6412A656B2700C947A3 /* Localizable.xcstrings */; };
+		CF09E6442A656FC200C947A3 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09E6432A656FC200C947A3 /* Alerts.swift */; };
 		CF19158A2A5F3BB300D53DA5 /* ShoWorksLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1915892A5F3BB300D53DA5 /* ShoWorksLogo.swift */; };
 		CF6BEDE72A5F026900CE209A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDE62A5F026900CE209A /* SplashView.swift */; };
 		CF6BEDE92A5F02C400CE209A /* InputSerial.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDE82A5F02C400CE209A /* InputSerial.swift */; };
@@ -20,6 +26,12 @@
 
 /* Begin PBXFileReference section */
 		CF09E6312A655B5200C947A3 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		CF09E6332A65601100C947A3 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		CF09E6352A6564FD00C947A3 /* Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Placeholder.swift; sourceTree = "<group>"; };
+		CF09E6392A65699F00C947A3 /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
+		CF09E63F2A656A8800C947A3 /* Bundle+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Localized.swift"; sourceTree = "<group>"; };
+		CF09E6412A656B2700C947A3 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		CF09E6432A656FC200C947A3 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		CF1915892A5F3BB300D53DA5 /* ShoWorksLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksLogo.swift; sourceTree = "<group>"; };
 		CF6BEDE62A5F026900CE209A /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		CF6BEDE82A5F02C400CE209A /* InputSerial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSerial.swift; sourceTree = "<group>"; };
@@ -58,6 +70,11 @@
 				CF6BEDEB2A5F02F800CE209A /* ShoWorksBackground.swift */,
 				CF1915892A5F3BB300D53DA5 /* ShoWorksLogo.swift */,
 				CF09E6312A655B5200C947A3 /* Fonts.swift */,
+				CF09E6332A65601100C947A3 /* Colors.swift */,
+				CF09E6352A6564FD00C947A3 /* Placeholder.swift */,
+				CF09E6392A65699F00C947A3 /* String+Localized.swift */,
+				CF09E63F2A656A8800C947A3 /* Bundle+Localized.swift */,
+				CF09E6432A656FC200C947A3 /* Alerts.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -87,6 +104,7 @@
 				CFE6ED142A5EB57100F6867E /* ShoWorksApp.swift */,
 				CFE6ED182A5EB57200F6867E /* Assets.xcassets */,
 				CFE6ED1A2A5EB57200F6867E /* Preview Content */,
+				CF09E6412A656B2700C947A3 /* Localizable.xcstrings */,
 			);
 			path = ShoWorks;
 			sourceTree = "<group>";
@@ -172,6 +190,7 @@
 			files = (
 				CFE6ED1C2A5EB57200F6867E /* Preview Assets.xcassets in Resources */,
 				CFE6ED192A5EB57200F6867E /* Assets.xcassets in Resources */,
+				CF09E6422A656B2700C947A3 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,12 +201,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF09E63A2A65699F00C947A3 /* String+Localized.swift in Sources */,
 				CFE6ED152A5EB57100F6867E /* ShoWorksApp.swift in Sources */,
 				CF6BEDE92A5F02C400CE209A /* InputSerial.swift in Sources */,
 				CF6BEDE72A5F026900CE209A /* SplashView.swift in Sources */,
+				CF09E6342A65601100C947A3 /* Colors.swift in Sources */,
+				CF09E6402A656A8800C947A3 /* Bundle+Localized.swift in Sources */,
 				CF6BEDEC2A5F02F800CE209A /* ShoWorksBackground.swift in Sources */,
 				CF09E6322A655B5200C947A3 /* Fonts.swift in Sources */,
 				CF19158A2A5F3BB300D53DA5 /* ShoWorksLogo.swift in Sources */,
+				CF09E6442A656FC200C947A3 /* Alerts.swift in Sources */,
+				CF09E6362A6564FD00C947A3 /* Placeholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
