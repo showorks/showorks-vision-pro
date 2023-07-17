@@ -10,7 +10,8 @@ import SwiftUI
 struct ShoWorksLogo: View {
     var body: some View {
         Image("SplashLogo")
-            .frame(width: 227, height: 248, alignment: .center)
+            .resizable()
+            .frame(width: 180, height: 196, alignment: .center)
     }
 }
 
