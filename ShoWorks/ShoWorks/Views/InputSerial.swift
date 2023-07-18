@@ -14,11 +14,12 @@ struct InputSerial: View {
     @State private var moveLogoBy = 0.0
     @State private var isCompleteLayoutHidden = true
     @State private var isSerialNumberTextFieldHidden = true
-    @State private var isLoading = false
     @State private var aSerialNumberButtonTitle = "enter_a_num".localized()
     @State private var aContinueButtonTitle = "continue_in_demo_mode".localized()
     @State var aSerialNumberString: String = ""
     @State var alertItem: AlertItem?
+    @ObservedObject var authenticationViewModel: ShoWorksAuthenticationModel = ShoWorksAuthenticationModel()
+    
     
     var body: some View {
         ZStack(){
@@ -45,7 +46,7 @@ struct InputSerial: View {
                             .foregroundColor(Color.aTextGrayColor)
                             .cornerRadius(5)
                             .onTapGesture {
-                                if(self.isLoading){
+                                if(self.authenticationViewModel.isLoading){
                                     return
                                 }
                                 self.isSerialNumberTextFieldHidden = !self.isSerialNumberTextFieldHidden
@@ -65,7 +66,7 @@ struct InputSerial: View {
                             .cornerRadius(5)
                             .onTapGesture {
 
-                                if(self.isLoading){
+                                if(self.authenticationViewModel.isLoading){
                                     return
                                 }
 
@@ -80,19 +81,18 @@ struct InputSerial: View {
                                 }
                                 else{
                                     // Validate the serial number through an API first
-                                    self.isLoading = true
+                                    aSerialNumberString = "395605390285163174"
+                                    authenticationViewModel.authenticateWithSerialNumber(serialNumber: aSerialNumberString)
                                 }
                             }
                         
-                        if isLoading {
-                            ActivityIndicatorView(isVisible: $isLoading, type: .flickeringDots(count: 10))
+                        ActivityIndicatorView(isVisible: $authenticationViewModel.isLoading, type: .flickeringDots(count: 10))
                                  .frame(width: 50.0, height: 50.0)
                                  .foregroundColor(.white)
-                        }
 
                     }.padding(.top,10)
                     
-                    InputLayout(userInputtedSerialKey: $aSerialNumberString,isLoaderSpinning: $isLoading)
+                    InputLayout(userInputtedSerialKey: $aSerialNumberString,isLoaderSpinning: $authenticationViewModel.isLoading)
                         .onAppear(){
                             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                                 self.isCompleteLayoutHidden = false
@@ -111,7 +111,7 @@ struct InputSerial: View {
             })
             .padding(.leading,200)
             .isHidden(self.isCompleteLayoutHidden)
-            
+                        
         }.navigationBarHidden(true)
             .onAppear(){
             
@@ -119,7 +119,6 @@ struct InputSerial: View {
                    withAnimation(.easeInOut(duration: 2.0)) { self.moveLogoBy = -350.0
                    }
                 }
-                
         }
         .alert(item: self.$alertItem, content: { a in
             a.asAlert()
