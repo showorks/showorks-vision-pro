@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import ActivityIndicatorView
+
 
 struct InputSerial: View {
     
     @State private var moveLogoBy = 0.0
     @State private var isCompleteLayoutHidden = true
     @State private var isSerialNumberTextFieldHidden = true
+    @State private var isLoading = false
     @State private var aSerialNumberButtonTitle = "enter_a_num".localized()
     @State private var aContinueButtonTitle = "continue_in_demo_mode".localized()
     @State var aSerialNumberString: String = ""
@@ -25,7 +28,7 @@ struct InputSerial: View {
             ShoWorksLogo()
                 .onAppear { }
                 .offset(x: CGFloat(self.moveLogoBy))
-            
+         
             VStack(alignment: .center, content: {
                TopLayout()
                 Text("enter_serial_text".localized()).font(.heleveticNeueThin(size: 18))
@@ -42,6 +45,9 @@ struct InputSerial: View {
                             .foregroundColor(Color.aTextGrayColor)
                             .cornerRadius(5)
                             .onTapGesture {
+                                if(self.isLoading){
+                                    return
+                                }
                                 self.isSerialNumberTextFieldHidden = !self.isSerialNumberTextFieldHidden
                                 self.aSerialNumberButtonTitle = self.isSerialNumberTextFieldHidden ? "enter_a_num".localized() :
                                 "cancel_btn".localized()
@@ -58,18 +64,35 @@ struct InputSerial: View {
                             .foregroundColor(Color.white)
                             .cornerRadius(5)
                             .onTapGesture {
+
+                                if(self.isLoading){
+                                    return
+                                }
+
                                 if (aSerialNumberString.isEmpty && !self.isSerialNumberTextFieldHidden){
                                     self.alertItem = AlertItem(type: .dismiss(title: "showorks".localized(), message: "enter_serial_to_continue".localized(), dismissText: "ok".localized(), dismissAction: {
                                         // Do something here
                                     }))
-                                }else{
-                                    // Proceed for validation either in Demo or in full mode
+                                }
+                                if(!self.isSerialNumberTextFieldHidden && aSerialNumberString.isEmpty){
+                                    // This means user is trying to go for a demo mode
+                                    // Lets load up everything in the demo mode
+                                }
+                                else{
+                                    // Validate the serial number through an API first
+                                    self.isLoading = true
                                 }
                             }
+                        
+                        if isLoading {
+                            ActivityIndicatorView(isVisible: $isLoading, type: .flickeringDots(count: 10))
+                                 .frame(width: 50.0, height: 50.0)
+                                 .foregroundColor(.white)
+                        }
 
                     }.padding(.top,10)
                     
-                    InputLayout(userInputtedSerialKey: $aSerialNumberString)
+                    InputLayout(userInputtedSerialKey: $aSerialNumberString,isLoaderSpinning: $isLoading)
                         .onAppear(){
                             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                                 self.isCompleteLayoutHidden = false
@@ -88,7 +111,6 @@ struct InputSerial: View {
             })
             .padding(.leading,200)
             .isHidden(self.isCompleteLayoutHidden)
-
             
         }.navigationBarHidden(true)
             .onAppear(){
@@ -112,6 +134,7 @@ struct InputSerial: View {
 
 struct InputLayout: View {
     @Binding var userInputtedSerialKey: String
+    @Binding var isLoaderSpinning: Bool
     var body: some View {
             
             TextField("", text: $userInputtedSerialKey)
@@ -119,7 +142,7 @@ struct InputLayout: View {
                     Text("serial_num_or_cancel_demo".localized()).foregroundColor(.gray)
                         .multilineTextAlignment(.center)
                         .padding(.leading,50)
-            }
+                }.disabled(isLoaderSpinning)
                 .font(.system(size: 14))
                 .padding(10)
                 .padding(.leading,20)

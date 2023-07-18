@@ -15,6 +15,7 @@
 		CF09E6422A656B2700C947A3 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CF09E6412A656B2700C947A3 /* Localizable.xcstrings */; };
 		CF09E6442A656FC200C947A3 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09E6432A656FC200C947A3 /* Alerts.swift */; };
 		CF19158A2A5F3BB300D53DA5 /* ShoWorksLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1915892A5F3BB300D53DA5 /* ShoWorksLogo.swift */; };
+		CF4384452A66A205000A7022 /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = CF4384442A66A205000A7022 /* ActivityIndicatorView */; };
 		CF6BEDE72A5F026900CE209A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDE62A5F026900CE209A /* SplashView.swift */; };
 		CF6BEDE92A5F02C400CE209A /* InputSerial.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDE82A5F02C400CE209A /* InputSerial.swift */; };
 		CF6BEDEC2A5F02F800CE209A /* ShoWorksBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDEB2A5F02F800CE209A /* ShoWorksBackground.swift */; };
@@ -48,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF4384452A66A205000A7022 /* ActivityIndicatorView in Frameworks */,
 				CFE6ED132A5EB57100F6867E /* RealityKitContent in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +145,7 @@
 			name = ShoWorks;
 			packageProductDependencies = (
 				CFE6ED122A5EB57100F6867E /* RealityKitContent */,
+				CF4384442A66A205000A7022 /* ActivityIndicatorView */,
 			);
 			productName = ShoWorks;
 			productReference = CFE6ED0D2A5EB57100F6867E /* ShoWorks.app */;
@@ -173,6 +176,7 @@
 			);
 			mainGroup = CFE6ED042A5EB57100F6867E;
 			packageReferences = (
+				CF4384432A66A205000A7022 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
 			);
 			productRefGroup = CFE6ED0E2A5EB57100F6867E /* Products */;
 			projectDirPath = "";
@@ -412,7 +416,23 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		CF4384432A66A205000A7022 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/ActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		CF4384442A66A205000A7022 /* ActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF4384432A66A205000A7022 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
+			productName = ActivityIndicatorView;
+		};
 		CFE6ED122A5EB57100F6867E /* RealityKitContent */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RealityKitContent;
