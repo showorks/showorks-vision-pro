@@ -23,6 +23,7 @@
 		CF4384502A66B853000A7022 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF43844F2A66B853000A7022 /* APIConstants.swift */; };
 		CF4384532A66B918000A7022 /* ShoWorksAuthenticationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4384522A66B918000A7022 /* ShoWorksAuthenticationModel.swift */; };
 		CF4384552A66B988000A7022 /* ShoWorksAuthenticationAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4384542A66B988000A7022 /* ShoWorksAuthenticationAPIResponse.swift */; };
+		CF4384582A672CA6000A7022 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4384572A672CA6000A7022 /* UserSettings.swift */; };
 		CF6BEDE72A5F026900CE209A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDE62A5F026900CE209A /* SplashView.swift */; };
 		CF6BEDE92A5F02C400CE209A /* InputSerial.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDE82A5F02C400CE209A /* InputSerial.swift */; };
 		CF6BEDEC2A5F02F800CE209A /* ShoWorksBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDEB2A5F02F800CE209A /* ShoWorksBackground.swift */; };
@@ -48,6 +49,7 @@
 		CF43844F2A66B853000A7022 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		CF4384522A66B918000A7022 /* ShoWorksAuthenticationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksAuthenticationModel.swift; sourceTree = "<group>"; };
 		CF4384542A66B988000A7022 /* ShoWorksAuthenticationAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksAuthenticationAPIResponse.swift; sourceTree = "<group>"; };
+		CF4384572A672CA6000A7022 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		CF6BEDE62A5F026900CE209A /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		CF6BEDE82A5F02C400CE209A /* InputSerial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSerial.swift; sourceTree = "<group>"; };
 		CF6BEDEB2A5F02F800CE209A /* ShoWorksBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksBackground.swift; sourceTree = "<group>"; };
@@ -90,6 +92,14 @@
 				CF4384542A66B988000A7022 /* ShoWorksAuthenticationAPIResponse.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CF4384562A672C96000A7022 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CF4384572A672CA6000A7022 /* UserSettings.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		CF6BEDE52A5F026900CE209A /* Views */ = {
@@ -136,6 +146,7 @@
 		CFE6ED0F2A5EB57100F6867E /* ShoWorks */ = {
 			isa = PBXGroup;
 			children = (
+				CF4384562A672C96000A7022 /* Utils */,
 				CF4384512A66B907000A7022 /* Models */,
 				CF4384462A66B750000A7022 /* Network */,
 				CF6BEDEA2A5F02E300CE209A /* Extensions */,
@@ -251,6 +262,7 @@
 				CF6BEDE72A5F026900CE209A /* SplashView.swift in Sources */,
 				CF43844E2A66B835000A7022 /* ShoWorksEndpoint.swift in Sources */,
 				CF09E6342A65601100C947A3 /* Colors.swift in Sources */,
+				CF4384582A672CA6000A7022 /* UserSettings.swift in Sources */,
 				CF09E6402A656A8800C947A3 /* Bundle+Localized.swift in Sources */,
 				CF43844C2A66B7EA000A7022 /* ShoWorksService.swift in Sources */,
 				CF4384482A66B765000A7022 /* ShoWorksAPIService.swift in Sources */,

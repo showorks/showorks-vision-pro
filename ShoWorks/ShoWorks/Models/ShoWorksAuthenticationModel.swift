@@ -36,6 +36,16 @@ class ShoWorksAuthenticationModel: ObservableObject, ShoWorksService {
             }) { (response) in
                 self.isLoading = false
                 self.authenticationResponse = response
+                
+                if let authenticationResponseObj = self.authenticationResponse {
+                    var accessKey = authenticationResponseObj.AKID
+                    var secretKey = authenticationResponseObj.SAK
+                        
+                    UserSettings.shared.accessKey = accessKey
+                    UserSettings.shared.secretKey = secretKey
+                    UserSettings.shared.serialKey = serialNumber
+                    
+                }
         }
         cancellables.insert(cancellable)
     }
