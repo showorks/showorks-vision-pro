@@ -81,7 +81,7 @@ struct InputSerial: View {
                                 }
                                 else{
                                     // Validate the serial number through an API first
-                                    aSerialNumberString = "395605390285163174"
+                                    aSerialNumberString = "395605390285163174" // hardcoded for testing
                                     authenticationViewModel.authenticateWithSerialNumber(serialNumber: aSerialNumberString)
                                 }
                             }
