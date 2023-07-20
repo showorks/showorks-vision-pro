@@ -16,6 +16,7 @@ class UserSettings {
         static let serialKey = "serialKey"
         static let accessKey = "accessKey"
         static let secretKey = "secretKey"
+        static let recentlyCreated = "recentlyCreated"
     }
     
     var serialKey: String? {
@@ -42,6 +43,15 @@ class UserSettings {
         }
         set {
             UserDefaults.standard.setValue(newValue, forKey: Keys.secretKey)
+        }
+    }
+    
+    var recentlyCreated: Bool? {
+        get {
+            UserDefaults.standard.bool(forKey: Keys.recentlyCreated)
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: Keys.recentlyCreated)
         }
     }
     
