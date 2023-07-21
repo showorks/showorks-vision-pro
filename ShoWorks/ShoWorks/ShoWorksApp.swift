@@ -9,6 +9,10 @@ import SwiftUI
 
 @main
 struct ShoWorksApp: App {
+    
+    init(){
+//        navigationBarTweaks()
+    }
     var body: some Scene {
         WindowGroup {
             SplashView()

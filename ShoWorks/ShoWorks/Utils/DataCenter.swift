@@ -70,7 +70,7 @@ class DataCenter {
         self.getListOfKeysFromServer(awsS3ObjectsFetchingCallback: { (objects:NSMutableArray!) in
 
             DispatchQueue.main.async {
-                hideLoader()
+                self.hideLoader()
             }
             
             self.downloadFreshFilesFromServerWithAccessKey(_accessKey: _accessKey, andSecretKey:_secretKey, withShowAlert:true, withListOfObjects:objects, withDownloadCompletionCallBack:{ (downloadCompleted:Bool) in

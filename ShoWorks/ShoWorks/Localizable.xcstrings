@@ -18,6 +18,9 @@
         }
       }
     },
+    "Close" : {
+
+    },
     "continue" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -95,6 +98,9 @@
         }
       }
     },
+    "OkButtonText" : {
+
+    },
     "serial_num_or_cancel_demo" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -105,6 +111,12 @@
           }
         }
       }
+    },
+    "ServerNotResponding" : {
+
+    },
+    "ServerNotRespondingTitle" : {
+
     },
     "showorks" : {
       "extractionState" : "manual",
