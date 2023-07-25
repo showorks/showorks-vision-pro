@@ -179,19 +179,20 @@ class DataCenter {
 //           })
        }
     
+    
     func downloadFreshFilesFromServerWithAccessKey(_accessKey:String!, andSecretKey _secretKey:String!, withShowAlert showAlert:Bool, withListOfObjects listedObjects:NSMutableArray!, withDownloadCompletionCallBack downloadCompletionCallback:AWSS3DownloadCompletionCallback) {
-//        Utility.createFolderInDocumentDirectoryWithPath(PlistManager.getPlistFilePathForCurrentSettings().stringByDeletingLastPathComponent())
-//
-//        tempCurrentFreshSheetCount = 0
-//
-//        if !self.sheetsData
-//            {self.sheetsData = NSMutableArray()}
-//
-//
+//        Utilities.sharedInstance.createFolderInDocumentDirectoryWithPath(PlistManager.getPlistFilePathForCurrentSettings().stringByDeletingLastPathComponent())
+
+        tempCurrentFreshSheetCount = 0
+
+        if (self.sheetsData == nil)
+            {self.sheetsData = NSMutableArray()}
+
+
 //        let getListObjectsRequest:AWSS3ListObjectsRequest! = AWSS3ListObjectsRequest()
 //
-//        getListObjectsRequest.bucket = BUCKET_NAME
-//
+//        getListObjectsRequest.bucket = APIConstants.bucketName
+////
 //        var summaries:[AnyObject]! = nil
 //
 //        if listedObjects==nil {

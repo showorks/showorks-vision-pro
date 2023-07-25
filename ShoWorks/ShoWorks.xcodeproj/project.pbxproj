@@ -28,6 +28,9 @@
 		CF1700372A6A93D0006A7415 /* PasteboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1700362A6A93D0006A7415 /* PasteboardHelper.swift */; };
 		CF1700392A6A945A006A7415 /* VibrationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1700382A6A945A006A7415 /* VibrationHelper.swift */; };
 		CF17003B2A6A9544006A7415 /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF17003A2A6A9544006A7415 /* LazyView.swift */; };
+		CF17003D2A705BD4006A7415 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF17003C2A705BD4006A7415 /* Utilities.swift */; };
+		CF17003F2A705D7F006A7415 /* PlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF17003E2A705D7F006A7415 /* PlistManager.swift */; };
+		CF1700412A705EE5006A7415 /* S3Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1700402A705EE5006A7415 /* S3Handler.swift */; };
 		CF19158A2A5F3BB300D53DA5 /* ShoWorksLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1915892A5F3BB300D53DA5 /* ShoWorksLogo.swift */; };
 		CF4384452A66A205000A7022 /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = CF4384442A66A205000A7022 /* ActivityIndicatorView */; };
 		CF4384482A66B765000A7022 /* ShoWorksAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4384472A66B765000A7022 /* ShoWorksAPIService.swift */; };
@@ -62,6 +65,9 @@
 		CF1700362A6A93D0006A7415 /* PasteboardHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardHelper.swift; sourceTree = "<group>"; };
 		CF1700382A6A945A006A7415 /* VibrationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationHelper.swift; sourceTree = "<group>"; };
 		CF17003A2A6A9544006A7415 /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
+		CF17003C2A705BD4006A7415 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		CF17003E2A705D7F006A7415 /* PlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistManager.swift; sourceTree = "<group>"; };
+		CF1700402A705EE5006A7415 /* S3Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S3Handler.swift; sourceTree = "<group>"; };
 		CF1915892A5F3BB300D53DA5 /* ShoWorksLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksLogo.swift; sourceTree = "<group>"; };
 		CF4384472A66B765000A7022 /* ShoWorksAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksAPIService.swift; sourceTree = "<group>"; };
 		CF4384492A66B7C4000A7022 /* ShoWorksAPISession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksAPISession.swift; sourceTree = "<group>"; };
@@ -134,6 +140,9 @@
 				CF4384572A672CA6000A7022 /* UserSettings.swift */,
 				CF08F3622A69BACD000933B1 /* LoaderView.swift */,
 				CF1700382A6A945A006A7415 /* VibrationHelper.swift */,
+				CF17003C2A705BD4006A7415 /* Utilities.swift */,
+				CF17003E2A705D7F006A7415 /* PlistManager.swift */,
+				CF1700402A705EE5006A7415 /* S3Handler.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -307,6 +316,7 @@
 				CFE6ED152A5EB57100F6867E /* ShoWorksApp.swift in Sources */,
 				CF17003B2A6A9544006A7415 /* LazyView.swift in Sources */,
 				CF6BEDE92A5F02C400CE209A /* InputSerial.swift in Sources */,
+				CF17003F2A705D7F006A7415 /* PlistManager.swift in Sources */,
 				CF4384502A66B853000A7022 /* APIConstants.swift in Sources */,
 				CF6BEDE72A5F026900CE209A /* SplashView.swift in Sources */,
 				CF43844E2A66B835000A7022 /* ShoWorksEndpoint.swift in Sources */,
@@ -314,6 +324,7 @@
 				CF4384582A672CA6000A7022 /* UserSettings.swift in Sources */,
 				CF09E6402A656A8800C947A3 /* Bundle+Localized.swift in Sources */,
 				CF43844C2A66B7EA000A7022 /* ShoWorksService.swift in Sources */,
+				CF17003D2A705BD4006A7415 /* Utilities.swift in Sources */,
 				CF4384482A66B765000A7022 /* ShoWorksAPIService.swift in Sources */,
 				CF6BEDEC2A5F02F800CE209A /* ShoWorksBackground.swift in Sources */,
 				CF4384552A66B988000A7022 /* ShoWorksAuthenticationAPIResponse.swift in Sources */,
@@ -324,6 +335,7 @@
 				CF19158A2A5F3BB300D53DA5 /* ShoWorksLogo.swift in Sources */,
 				CF09E6442A656FC200C947A3 /* Alerts.swift in Sources */,
 				CF1700372A6A93D0006A7415 /* PasteboardHelper.swift in Sources */,
+				CF1700412A705EE5006A7415 /* S3Handler.swift in Sources */,
 				CF09E6362A6564FD00C947A3 /* Placeholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
