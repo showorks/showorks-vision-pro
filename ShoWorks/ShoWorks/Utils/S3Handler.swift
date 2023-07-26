@@ -30,17 +30,12 @@ class S3Handler {
 //                config.region = AppConstant.AWSRegionUSEast1
                 
                 let credentials = AWSCredentials(accessKey: UserSettings.shared.accessKey!, secret: UserSettings.shared.secretKey!)
-                
-                let s3Config = try await S3Client.S3ClientConfiguration(region: AppConstant.AWSRegionUSEast1,
-                                                                  credentialsProvider: credentials as? CredentialsProviding)
-                client = S3Client(config: s3Config)
+                   
+                let s3Config = try S3Client.S3ClientConfiguration(region: AppConstant.AWSRegionUSEast1,
+                                                                  credentialsProvider: AWSClientRuntime.StaticCredentialsProvider(credentials))
 
-
-                print("Initialized")
-
-                try await listBucketFiles(bucket: AppConstant.bucketName)
-                        
-                
+                self.client = try await S3Client(config: s3Config)
+                try await self.listBucketFiles(bucket: AppConstant.bucketName)
             } catch {
                 print("ERROR: ", dump(error, name: "Initializing S3 client"))
                 exit(1)

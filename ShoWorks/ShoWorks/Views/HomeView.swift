@@ -36,8 +36,9 @@ struct HomeView: View {
 //                    // Fetch sheets
 //                }))
             }
-            
-            homeViewModel.loadPlistArrayWithSheetsDetailData()
+            Task {
+                await homeViewModel.loadPlistArrayWithSheetsDetailData()
+            }
             
         }
         .navigationBarHidden(true)
