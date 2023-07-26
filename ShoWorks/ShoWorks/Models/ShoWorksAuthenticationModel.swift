@@ -12,6 +12,7 @@ import Foundation
 class ShoWorksAuthenticationModel: ObservableObject, ShoWorksService {
     var apiService: ShoWorksAPIService
     @Published var isLoading :  Bool
+    @Published var isUserAuthenticated :  Bool
     @Published var authenticationResponse :  ShoWorksAuthenticationAPIResponse?
     
     var cancellables = Set<AnyCancellable>()
@@ -20,6 +21,7 @@ class ShoWorksAuthenticationModel: ObservableObject, ShoWorksService {
         authenticationResponse = nil
         self.apiService = apiSession
         self.isLoading = false
+        self.isUserAuthenticated = false
     }
     
     func authenticateWithSerialNumber(serialNumber: String) {
@@ -50,6 +52,10 @@ class ShoWorksAuthenticationModel: ObservableObject, ShoWorksService {
                     UserSettings.shared.serialKey = serialNumber
                     
                     UserSettings.shared.recentlyCreated = true
+                    
+                    if accessKey.count > 0 {
+                        self.isUserAuthenticated = true
+                    }
                     
                 }
         }

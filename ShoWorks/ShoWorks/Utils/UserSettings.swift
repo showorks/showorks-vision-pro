@@ -16,7 +16,10 @@ class UserSettings {
         static let serialKey = "serialKey"
         static let accessKey = "accessKey"
         static let secretKey = "secretKey"
+        static let previousSecretKey = "previousSecretKey"
         static let recentlyCreated = "recentlyCreated"
+        static let selectedChannel = "selectedChannel"
+        static let isDemoUserEnabled = "demoUserEnabled"
     }
     
     var serialKey: String? {
@@ -45,6 +48,24 @@ class UserSettings {
             UserDefaults.standard.setValue(newValue, forKey: Keys.secretKey)
         }
     }
+        
+    var previousSecretKey: String? {
+        get {
+            UserDefaults.standard.string(forKey: Keys.previousSecretKey)
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: Keys.previousSecretKey)
+        }
+    }
+            
+    var selectedChannel: String? {
+        get {
+            UserDefaults.standard.string(forKey: Keys.selectedChannel)
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: Keys.selectedChannel)
+        }
+    }
     
     var recentlyCreated: Bool? {
         get {
@@ -52,6 +73,15 @@ class UserSettings {
         }
         set {
             UserDefaults.standard.setValue(newValue, forKey: Keys.recentlyCreated)
+        }
+    }
+    
+    var isDemoUserEnabled: Bool? {
+        get {
+            UserDefaults.standard.bool(forKey: Keys.isDemoUserEnabled)
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: Keys.isDemoUserEnabled)
         }
     }
     

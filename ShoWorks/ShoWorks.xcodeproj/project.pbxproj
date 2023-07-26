@@ -28,9 +28,11 @@
 		CF1700372A6A93D0006A7415 /* PasteboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1700362A6A93D0006A7415 /* PasteboardHelper.swift */; };
 		CF1700392A6A945A006A7415 /* VibrationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1700382A6A945A006A7415 /* VibrationHelper.swift */; };
 		CF17003B2A6A9544006A7415 /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF17003A2A6A9544006A7415 /* LazyView.swift */; };
-		CF17003D2A705BD4006A7415 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF17003C2A705BD4006A7415 /* Utilities.swift */; };
-		CF17003F2A705D7F006A7415 /* PlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF17003E2A705D7F006A7415 /* PlistManager.swift */; };
-		CF1700412A705EE5006A7415 /* S3Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1700402A705EE5006A7415 /* S3Handler.swift */; };
+		CF17008E2A710F98006A7415 /* PlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF17008B2A710F98006A7415 /* PlistManager.swift */; };
+		CF17008F2A710F98006A7415 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF17008C2A710F98006A7415 /* Utilities.swift */; };
+		CF1700902A710F98006A7415 /* S3Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF17008D2A710F98006A7415 /* S3Handler.swift */; };
+		CF1700922A7110A4006A7415 /* SharedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1700912A7110A4006A7415 /* SharedDelegate.swift */; };
+		CF1700962A7112F8006A7415 /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1700952A7112F8006A7415 /* AppConstant.swift */; };
 		CF19158A2A5F3BB300D53DA5 /* ShoWorksLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1915892A5F3BB300D53DA5 /* ShoWorksLogo.swift */; };
 		CF4384452A66A205000A7022 /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = CF4384442A66A205000A7022 /* ActivityIndicatorView */; };
 		CF4384482A66B765000A7022 /* ShoWorksAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4384472A66B765000A7022 /* ShoWorksAPIService.swift */; };
@@ -45,6 +47,9 @@
 		CF6BEDE72A5F026900CE209A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDE62A5F026900CE209A /* SplashView.swift */; };
 		CF6BEDE92A5F02C400CE209A /* InputSerial.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDE82A5F02C400CE209A /* InputSerial.swift */; };
 		CF6BEDEC2A5F02F800CE209A /* ShoWorksBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDEB2A5F02F800CE209A /* ShoWorksBackground.swift */; };
+		CFA093052A711C670013E6B3 /* SheetsData.plist in Resources */ = {isa = PBXBuildFile; fileRef = CFA093042A711C670013E6B3 /* SheetsData.plist */; };
+		CFA093072A712A510013E6B3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA093062A712A510013E6B3 /* HomeView.swift */; };
+		CFA0930C2A7131460013E6B3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA0930B2A7131460013E6B3 /* HomeViewModel.swift */; };
 		CFE6ED132A5EB57100F6867E /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = CFE6ED122A5EB57100F6867E /* RealityKitContent */; };
 		CFE6ED152A5EB57100F6867E /* ShoWorksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE6ED142A5EB57100F6867E /* ShoWorksApp.swift */; };
 		CFE6ED192A5EB57200F6867E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFE6ED182A5EB57200F6867E /* Assets.xcassets */; };
@@ -65,9 +70,11 @@
 		CF1700362A6A93D0006A7415 /* PasteboardHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasteboardHelper.swift; sourceTree = "<group>"; };
 		CF1700382A6A945A006A7415 /* VibrationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationHelper.swift; sourceTree = "<group>"; };
 		CF17003A2A6A9544006A7415 /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
-		CF17003C2A705BD4006A7415 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		CF17003E2A705D7F006A7415 /* PlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlistManager.swift; sourceTree = "<group>"; };
-		CF1700402A705EE5006A7415 /* S3Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S3Handler.swift; sourceTree = "<group>"; };
+		CF17008B2A710F98006A7415 /* PlistManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlistManager.swift; sourceTree = "<group>"; };
+		CF17008C2A710F98006A7415 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		CF17008D2A710F98006A7415 /* S3Handler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S3Handler.swift; sourceTree = "<group>"; };
+		CF1700912A7110A4006A7415 /* SharedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDelegate.swift; sourceTree = "<group>"; };
+		CF1700952A7112F8006A7415 /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
 		CF1915892A5F3BB300D53DA5 /* ShoWorksLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksLogo.swift; sourceTree = "<group>"; };
 		CF4384472A66B765000A7022 /* ShoWorksAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksAPIService.swift; sourceTree = "<group>"; };
 		CF4384492A66B7C4000A7022 /* ShoWorksAPISession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksAPISession.swift; sourceTree = "<group>"; };
@@ -81,6 +88,9 @@
 		CF6BEDE62A5F026900CE209A /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		CF6BEDE82A5F02C400CE209A /* InputSerial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSerial.swift; sourceTree = "<group>"; };
 		CF6BEDEB2A5F02F800CE209A /* ShoWorksBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksBackground.swift; sourceTree = "<group>"; };
+		CFA093042A711C670013E6B3 /* SheetsData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SheetsData.plist; sourceTree = "<group>"; };
+		CFA093062A712A510013E6B3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		CFA0930B2A7131460013E6B3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CFE6ED0D2A5EB57100F6867E /* ShoWorks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoWorks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFE6ED112A5EB57100F6867E /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		CFE6ED142A5EB57100F6867E /* ShoWorksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksApp.swift; sourceTree = "<group>"; };
@@ -126,6 +136,7 @@
 			children = (
 				CF4384522A66B918000A7022 /* ShoWorksAuthenticationModel.swift */,
 				CF4384542A66B988000A7022 /* ShoWorksAuthenticationAPIResponse.swift */,
+				CFA0930B2A7131460013E6B3 /* HomeViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -140,9 +151,11 @@
 				CF4384572A672CA6000A7022 /* UserSettings.swift */,
 				CF08F3622A69BACD000933B1 /* LoaderView.swift */,
 				CF1700382A6A945A006A7415 /* VibrationHelper.swift */,
-				CF17003C2A705BD4006A7415 /* Utilities.swift */,
-				CF17003E2A705D7F006A7415 /* PlistManager.swift */,
-				CF1700402A705EE5006A7415 /* S3Handler.swift */,
+				CF17008B2A710F98006A7415 /* PlistManager.swift */,
+				CF17008D2A710F98006A7415 /* S3Handler.swift */,
+				CF17008C2A710F98006A7415 /* Utilities.swift */,
+				CF1700912A7110A4006A7415 /* SharedDelegate.swift */,
+				CF1700952A7112F8006A7415 /* AppConstant.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -152,6 +165,7 @@
 			children = (
 				CF6BEDE62A5F026900CE209A /* SplashView.swift */,
 				CF6BEDE82A5F02C400CE209A /* InputSerial.swift */,
+				CFA093062A712A510013E6B3 /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -201,6 +215,7 @@
 				CFE6ED182A5EB57200F6867E /* Assets.xcassets */,
 				CFE6ED1A2A5EB57200F6867E /* Preview Content */,
 				CF09E6412A656B2700C947A3 /* Localizable.xcstrings */,
+				CFA093042A711C670013E6B3 /* SheetsData.plist */,
 			);
 			path = ShoWorks;
 			sourceTree = "<group>";
@@ -295,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFA093052A711C670013E6B3 /* SheetsData.plist in Resources */,
 				CFE6ED1C2A5EB57200F6867E /* Preview Assets.xcassets in Resources */,
 				CFE6ED192A5EB57200F6867E /* Assets.xcassets in Resources */,
 				CF09E6422A656B2700C947A3 /* Localizable.xcstrings in Resources */,
@@ -309,22 +325,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF1700392A6A945A006A7415 /* VibrationHelper.swift in Sources */,
+				CFA0930C2A7131460013E6B3 /* HomeViewModel.swift in Sources */,
 				CF43844A2A66B7C4000A7022 /* ShoWorksAPISession.swift in Sources */,
 				CF09E63A2A65699F00C947A3 /* String+Localized.swift in Sources */,
 				CF5BC6B62A69423100114C32 /* DataCenter.swift in Sources */,
 				CF4384532A66B918000A7022 /* ShoWorksAuthenticationModel.swift in Sources */,
 				CFE6ED152A5EB57100F6867E /* ShoWorksApp.swift in Sources */,
 				CF17003B2A6A9544006A7415 /* LazyView.swift in Sources */,
+				CF17008E2A710F98006A7415 /* PlistManager.swift in Sources */,
 				CF6BEDE92A5F02C400CE209A /* InputSerial.swift in Sources */,
-				CF17003F2A705D7F006A7415 /* PlistManager.swift in Sources */,
 				CF4384502A66B853000A7022 /* APIConstants.swift in Sources */,
 				CF6BEDE72A5F026900CE209A /* SplashView.swift in Sources */,
 				CF43844E2A66B835000A7022 /* ShoWorksEndpoint.swift in Sources */,
+				CF17008F2A710F98006A7415 /* Utilities.swift in Sources */,
+				CFA093072A712A510013E6B3 /* HomeView.swift in Sources */,
 				CF09E6342A65601100C947A3 /* Colors.swift in Sources */,
 				CF4384582A672CA6000A7022 /* UserSettings.swift in Sources */,
+				CF1700902A710F98006A7415 /* S3Handler.swift in Sources */,
 				CF09E6402A656A8800C947A3 /* Bundle+Localized.swift in Sources */,
 				CF43844C2A66B7EA000A7022 /* ShoWorksService.swift in Sources */,
-				CF17003D2A705BD4006A7415 /* Utilities.swift in Sources */,
 				CF4384482A66B765000A7022 /* ShoWorksAPIService.swift in Sources */,
 				CF6BEDEC2A5F02F800CE209A /* ShoWorksBackground.swift in Sources */,
 				CF4384552A66B988000A7022 /* ShoWorksAuthenticationAPIResponse.swift in Sources */,
@@ -334,9 +353,10 @@
 				CF1700332A6A898F006A7415 /* UIKit+Extensions.swift in Sources */,
 				CF19158A2A5F3BB300D53DA5 /* ShoWorksLogo.swift in Sources */,
 				CF09E6442A656FC200C947A3 /* Alerts.swift in Sources */,
+				CF1700922A7110A4006A7415 /* SharedDelegate.swift in Sources */,
 				CF1700372A6A93D0006A7415 /* PasteboardHelper.swift in Sources */,
-				CF1700412A705EE5006A7415 /* S3Handler.swift in Sources */,
 				CF09E6362A6564FD00C947A3 /* Placeholder.swift in Sources */,
+				CF1700962A7112F8006A7415 /* AppConstant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,6 +492,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ShoWorks/Preview Content\"";
 				DEVELOPMENT_TEAM = 34P54SA2XE;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ShoWorks/Amazon/AWS",
+					"$(PROJECT_DIR)/ShoWorks/Amazon/AWS/third-party",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -498,6 +523,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ShoWorks/Preview Content\"";
 				DEVELOPMENT_TEAM = 34P54SA2XE;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ShoWorks/Amazon/AWS",
+					"$(PROJECT_DIR)/ShoWorks/Amazon/AWS/third-party",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (

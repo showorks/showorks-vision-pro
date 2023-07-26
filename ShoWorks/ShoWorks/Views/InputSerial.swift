@@ -7,16 +7,17 @@
 
 import SwiftUI
 import ActivityIndicatorView
-
+import AlertToast
 
 struct InputSerial: View {
     
     @State private var moveLogoBy = 0.0
     @State private var isCompleteLayoutHidden = true
+    @State private var moveToNextScreen = false
     @State private var isSerialNumberTextFieldHidden = true
     @State private var aSerialNumberButtonTitle = "enter_a_num".localized()
     @State private var aContinueButtonTitle = "continue_in_demo_mode".localized()
-    @State var aSerialNumberString: String = ""
+    @State var aSerialNumberString: String = "" // testing 395605390285163174
     @State var alertItem: AlertItem?
     @ObservedObject var authenticationViewModel: ShoWorksAuthenticationModel = ShoWorksAuthenticationModel()
     
@@ -75,13 +76,16 @@ struct InputSerial: View {
                                         // Do something here
                                     }))
                                 }
-                                if(!self.isSerialNumberTextFieldHidden && aSerialNumberString.isEmpty){
+                                if(self.isSerialNumberTextFieldHidden && aSerialNumberString.isEmpty){
                                     // This means user is trying to go for a demo mode
                                     // Lets load up everything in the demo mode
+                                    UserSettings.shared.isDemoUserEnabled = true
+                                    authenticationViewModel.isUserAuthenticated = true // But authentication is in demo mode
                                 }
-                                else{
+                                else if(!aSerialNumberString.isEmpty){
                                     // Validate the serial number through an API first
-                                    aSerialNumberString = "395605390285163174" // hardcoded for testing
+//                                    aSerialNumberString = "395605390285163174" // hardcoded for testing
+                                    UserSettings.shared.isDemoUserEnabled = false
                                     authenticationViewModel.authenticateWithSerialNumber(serialNumber: aSerialNumberString)
                                 }
                             }
@@ -97,7 +101,6 @@ struct InputSerial: View {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                                 self.isCompleteLayoutHidden = false
                             }
-                            
                     }
                     .isHidden(self.isSerialNumberTextFieldHidden)
                     .frame(alignment: .center)
@@ -105,6 +108,13 @@ struct InputSerial: View {
                     .padding(.leading,300)
                     .padding(.trailing,300)
                     
+                    
+                    .navigationDestination(
+                         isPresented: $authenticationViewModel.isUserAuthenticated) {
+                             HomeView().environmentObject(authenticationViewModel)
+                              Text("")
+                                  .hidden()
+                         }
                 }
 
                 
@@ -112,7 +122,8 @@ struct InputSerial: View {
             .padding(.leading,200)
             .isHidden(self.isCompleteLayoutHidden)
                         
-        }.navigationBarHidden(true)
+        }
+        .navigationBarHidden(true)
             .onAppear(){
             
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

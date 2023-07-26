@@ -181,7 +181,8 @@ class DataCenter {
     
     
     func downloadFreshFilesFromServerWithAccessKey(_accessKey:String!, andSecretKey _secretKey:String!, withShowAlert showAlert:Bool, withListOfObjects listedObjects:NSMutableArray!, withDownloadCompletionCallBack downloadCompletionCallback:AWSS3DownloadCompletionCallback) {
-//        Utilities.sharedInstance.createFolderInDocumentDirectoryWithPath(PlistManager.getPlistFilePathForCurrentSettings().stringByDeletingLastPathComponent())
+
+        Utilities.sharedInstance.createFolderInDocumentDirectoryWithPath(folderPath: PlistManager.sharedInstance.getPlistFilePathForCurrentSettings().stringByDeletingLastPathComponent)
 
         tempCurrentFreshSheetCount = 0
 
