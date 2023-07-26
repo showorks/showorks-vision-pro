@@ -8,14 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CF08F3632A69BACD000933B1 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF08F3622A69BACD000933B1 /* LoaderView.swift */; };
-		CF08F3662A69CBE5000933B1 /* AWSCognitoIdentity in Frameworks */ = {isa = PBXBuildFile; productRef = CF08F3652A69CBE5000933B1 /* AWSCognitoIdentity */; };
-		CF08F3682A69CBE5000933B1 /* AWSCognitoSync in Frameworks */ = {isa = PBXBuildFile; productRef = CF08F3672A69CBE5000933B1 /* AWSCognitoSync */; };
-		CF08F36A2A69CBE5000933B1 /* AWSConnect in Frameworks */ = {isa = PBXBuildFile; productRef = CF08F3692A69CBE5000933B1 /* AWSConnect */; };
-		CF08F36C2A69CBE5000933B1 /* AWSMobile in Frameworks */ = {isa = PBXBuildFile; productRef = CF08F36B2A69CBE5000933B1 /* AWSMobile */; };
-		CF08F36E2A69CBE5000933B1 /* AWSOutposts in Frameworks */ = {isa = PBXBuildFile; productRef = CF08F36D2A69CBE5000933B1 /* AWSOutposts */; };
-		CF08F3702A69CBE5000933B1 /* AWSS3 in Frameworks */ = {isa = PBXBuildFile; productRef = CF08F36F2A69CBE5000933B1 /* AWSS3 */; };
-		CF08F3722A69CBE5000933B1 /* AWSS3Control in Frameworks */ = {isa = PBXBuildFile; productRef = CF08F3712A69CBE5000933B1 /* AWSS3Control */; };
-		CF08F3742A69CBE5000933B1 /* AWSS3Outposts in Frameworks */ = {isa = PBXBuildFile; productRef = CF08F3732A69CBE5000933B1 /* AWSS3Outposts */; };
 		CF09E6322A655B5200C947A3 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09E6312A655B5200C947A3 /* Fonts.swift */; };
 		CF09E6342A65601100C947A3 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09E6332A65601100C947A3 /* Colors.swift */; };
 		CF09E6362A6564FD00C947A3 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF09E6352A6564FD00C947A3 /* Placeholder.swift */; };
@@ -50,6 +42,15 @@
 		CFA093052A711C670013E6B3 /* SheetsData.plist in Resources */ = {isa = PBXBuildFile; fileRef = CFA093042A711C670013E6B3 /* SheetsData.plist */; };
 		CFA093072A712A510013E6B3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA093062A712A510013E6B3 /* HomeView.swift */; };
 		CFA0930C2A7131460013E6B3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA0930B2A7131460013E6B3 /* HomeViewModel.swift */; };
+		CFA0931C2A7144520013E6B3 /* AWSAppConfig in Frameworks */ = {isa = PBXBuildFile; productRef = CFA0931B2A7144520013E6B3 /* AWSAppConfig */; };
+		CFA0931E2A7144520013E6B3 /* AWSAppConfigData in Frameworks */ = {isa = PBXBuildFile; productRef = CFA0931D2A7144520013E6B3 /* AWSAppConfigData */; };
+		CFA093202A7144520013E6B3 /* AWSConnect in Frameworks */ = {isa = PBXBuildFile; productRef = CFA0931F2A7144520013E6B3 /* AWSConnect */; };
+		CFA093222A7144520013E6B3 /* AWSMobile in Frameworks */ = {isa = PBXBuildFile; productRef = CFA093212A7144520013E6B3 /* AWSMobile */; };
+		CFA093242A7144520013E6B3 /* AWSPinpoint in Frameworks */ = {isa = PBXBuildFile; productRef = CFA093232A7144520013E6B3 /* AWSPinpoint */; };
+		CFA093262A7144520013E6B3 /* AWSS3 in Frameworks */ = {isa = PBXBuildFile; productRef = CFA093252A7144520013E6B3 /* AWSS3 */; };
+		CFA093282A7144520013E6B3 /* AWSS3Control in Frameworks */ = {isa = PBXBuildFile; productRef = CFA093272A7144520013E6B3 /* AWSS3Control */; };
+		CFA0932A2A7144520013E6B3 /* AWSS3Outposts in Frameworks */ = {isa = PBXBuildFile; productRef = CFA093292A7144520013E6B3 /* AWSS3Outposts */; };
+		CFA0932C2A7144520013E6B3 /* AWSTransfer in Frameworks */ = {isa = PBXBuildFile; productRef = CFA0932B2A7144520013E6B3 /* AWSTransfer */; };
 		CFE6ED132A5EB57100F6867E /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = CFE6ED122A5EB57100F6867E /* RealityKitContent */; };
 		CFE6ED152A5EB57100F6867E /* ShoWorksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE6ED142A5EB57100F6867E /* ShoWorksApp.swift */; };
 		CFE6ED192A5EB57200F6867E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFE6ED182A5EB57200F6867E /* Assets.xcassets */; };
@@ -103,16 +104,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF08F36C2A69CBE5000933B1 /* AWSMobile in Frameworks */,
-				CF08F3662A69CBE5000933B1 /* AWSCognitoIdentity in Frameworks */,
-				CF08F36E2A69CBE5000933B1 /* AWSOutposts in Frameworks */,
-				CF08F3742A69CBE5000933B1 /* AWSS3Outposts in Frameworks */,
-				CF08F3682A69CBE5000933B1 /* AWSCognitoSync in Frameworks */,
+				CFA093222A7144520013E6B3 /* AWSMobile in Frameworks */,
+				CFA0931E2A7144520013E6B3 /* AWSAppConfigData in Frameworks */,
+				CFA093242A7144520013E6B3 /* AWSPinpoint in Frameworks */,
+				CFA0932A2A7144520013E6B3 /* AWSS3Outposts in Frameworks */,
 				CF4384452A66A205000A7022 /* ActivityIndicatorView in Frameworks */,
-				CF08F36A2A69CBE5000933B1 /* AWSConnect in Frameworks */,
-				CF08F3722A69CBE5000933B1 /* AWSS3Control in Frameworks */,
-				CF08F3702A69CBE5000933B1 /* AWSS3 in Frameworks */,
 				CFE6ED132A5EB57100F6867E /* RealityKitContent in Frameworks */,
+				CFA093202A7144520013E6B3 /* AWSConnect in Frameworks */,
+				CFA0932C2A7144520013E6B3 /* AWSTransfer in Frameworks */,
+				CFA093282A7144520013E6B3 /* AWSS3Control in Frameworks */,
+				CFA093262A7144520013E6B3 /* AWSS3 in Frameworks */,
+				CFA0931C2A7144520013E6B3 /* AWSAppConfig in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,14 +257,15 @@
 			packageProductDependencies = (
 				CFE6ED122A5EB57100F6867E /* RealityKitContent */,
 				CF4384442A66A205000A7022 /* ActivityIndicatorView */,
-				CF08F3652A69CBE5000933B1 /* AWSCognitoIdentity */,
-				CF08F3672A69CBE5000933B1 /* AWSCognitoSync */,
-				CF08F3692A69CBE5000933B1 /* AWSConnect */,
-				CF08F36B2A69CBE5000933B1 /* AWSMobile */,
-				CF08F36D2A69CBE5000933B1 /* AWSOutposts */,
-				CF08F36F2A69CBE5000933B1 /* AWSS3 */,
-				CF08F3712A69CBE5000933B1 /* AWSS3Control */,
-				CF08F3732A69CBE5000933B1 /* AWSS3Outposts */,
+				CFA0931B2A7144520013E6B3 /* AWSAppConfig */,
+				CFA0931D2A7144520013E6B3 /* AWSAppConfigData */,
+				CFA0931F2A7144520013E6B3 /* AWSConnect */,
+				CFA093212A7144520013E6B3 /* AWSMobile */,
+				CFA093232A7144520013E6B3 /* AWSPinpoint */,
+				CFA093252A7144520013E6B3 /* AWSS3 */,
+				CFA093272A7144520013E6B3 /* AWSS3Control */,
+				CFA093292A7144520013E6B3 /* AWSS3Outposts */,
+				CFA0932B2A7144520013E6B3 /* AWSTransfer */,
 			);
 			productName = ShoWorks;
 			productReference = CFE6ED0D2A5EB57100F6867E /* ShoWorks.app */;
@@ -294,7 +297,7 @@
 			mainGroup = CFE6ED042A5EB57100F6867E;
 			packageReferences = (
 				CF4384432A66A205000A7022 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
-				CF08F3642A69CBE5000933B1 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */,
+				CFA0931A2A7144520013E6B3 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */,
 			);
 			productRefGroup = CFE6ED0E2A5EB57100F6867E /* Products */;
 			projectDirPath = "";
@@ -507,9 +510,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gladstone.vision.ShoWorks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,7";
 			};
 			name = Debug;
 		};
@@ -538,9 +544,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gladstone.vision.ShoWorks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,7";
 			};
 			name = Release;
 		};
@@ -568,14 +577,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CF08F3642A69CBE5000933B1 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/awslabs/aws-sdk-swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.21.0;
-			};
-		};
 		CF4384432A66A205000A7022 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/exyte/ActivityIndicatorView.git";
@@ -584,53 +585,66 @@
 				minimumVersion = 1.1.1;
 			};
 		};
+		CFA0931A2A7144520013E6B3 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/awslabs/aws-sdk-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.21.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CF08F3652A69CBE5000933B1 /* AWSCognitoIdentity */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CF08F3642A69CBE5000933B1 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
-			productName = AWSCognitoIdentity;
-		};
-		CF08F3672A69CBE5000933B1 /* AWSCognitoSync */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CF08F3642A69CBE5000933B1 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
-			productName = AWSCognitoSync;
-		};
-		CF08F3692A69CBE5000933B1 /* AWSConnect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CF08F3642A69CBE5000933B1 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
-			productName = AWSConnect;
-		};
-		CF08F36B2A69CBE5000933B1 /* AWSMobile */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CF08F3642A69CBE5000933B1 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
-			productName = AWSMobile;
-		};
-		CF08F36D2A69CBE5000933B1 /* AWSOutposts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CF08F3642A69CBE5000933B1 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
-			productName = AWSOutposts;
-		};
-		CF08F36F2A69CBE5000933B1 /* AWSS3 */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CF08F3642A69CBE5000933B1 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
-			productName = AWSS3;
-		};
-		CF08F3712A69CBE5000933B1 /* AWSS3Control */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CF08F3642A69CBE5000933B1 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
-			productName = AWSS3Control;
-		};
-		CF08F3732A69CBE5000933B1 /* AWSS3Outposts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CF08F3642A69CBE5000933B1 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
-			productName = AWSS3Outposts;
-		};
 		CF4384442A66A205000A7022 /* ActivityIndicatorView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CF4384432A66A205000A7022 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
 			productName = ActivityIndicatorView;
+		};
+		CFA0931B2A7144520013E6B3 /* AWSAppConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFA0931A2A7144520013E6B3 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
+			productName = AWSAppConfig;
+		};
+		CFA0931D2A7144520013E6B3 /* AWSAppConfigData */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFA0931A2A7144520013E6B3 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
+			productName = AWSAppConfigData;
+		};
+		CFA0931F2A7144520013E6B3 /* AWSConnect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFA0931A2A7144520013E6B3 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
+			productName = AWSConnect;
+		};
+		CFA093212A7144520013E6B3 /* AWSMobile */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFA0931A2A7144520013E6B3 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
+			productName = AWSMobile;
+		};
+		CFA093232A7144520013E6B3 /* AWSPinpoint */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFA0931A2A7144520013E6B3 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
+			productName = AWSPinpoint;
+		};
+		CFA093252A7144520013E6B3 /* AWSS3 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFA0931A2A7144520013E6B3 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
+			productName = AWSS3;
+		};
+		CFA093272A7144520013E6B3 /* AWSS3Control */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFA0931A2A7144520013E6B3 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
+			productName = AWSS3Control;
+		};
+		CFA093292A7144520013E6B3 /* AWSS3Outposts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFA0931A2A7144520013E6B3 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
+			productName = AWSS3Outposts;
+		};
+		CFA0932B2A7144520013E6B3 /* AWSTransfer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFA0931A2A7144520013E6B3 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
+			productName = AWSTransfer;
 		};
 		CFE6ED122A5EB57100F6867E /* RealityKitContent */ = {
 			isa = XCSwiftPackageProductDependency;

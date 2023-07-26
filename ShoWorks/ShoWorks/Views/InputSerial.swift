@@ -7,7 +7,6 @@
 
 import SwiftUI
 import ActivityIndicatorView
-import AlertToast
 
 struct InputSerial: View {
     
@@ -17,7 +16,7 @@ struct InputSerial: View {
     @State private var isSerialNumberTextFieldHidden = true
     @State private var aSerialNumberButtonTitle = "enter_a_num".localized()
     @State private var aContinueButtonTitle = "continue_in_demo_mode".localized()
-    @State var aSerialNumberString: String = "" // testing 395605390285163174
+    @State var aSerialNumberString: String = "395605390285163174" // testing 395605390285163174
     @State var alertItem: AlertItem?
     @ObservedObject var authenticationViewModel: ShoWorksAuthenticationModel = ShoWorksAuthenticationModel()
     

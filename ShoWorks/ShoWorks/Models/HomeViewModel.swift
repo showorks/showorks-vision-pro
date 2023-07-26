@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import AlertToast
 
 final class HomeViewModel: ObservableObject {
     
@@ -31,6 +30,10 @@ final class HomeViewModel: ObservableObject {
         {
             SharedDelegate.sharedInstance.plistSheetDetailArray = PlistManager.sharedInstance.getPlistData()
         }
+        Task {
+            var handler = await S3Handler()
+        }
+        
 //        let v = SharedDelegate.sharedInstance.plistSheetDetailArray
 //        print(SharedDelegate.sharedInstance.plistSheetDetailArray)
     }

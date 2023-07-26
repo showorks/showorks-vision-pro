@@ -3,4 +3,273 @@
    uuid = "37BC9C75-0867-4941-9795-BFDE3FCDA9F1"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8F105B4F-53EE-4576-861F-ED518AC22F3B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShoWorks/Utils/S3Handler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "init()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8F105B4F-53EE-4576-861F-ED518AC22F3B - 6cd22a3f094f2e6f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ShoWorks.S3Handler.init() async -&gt; ShoWorks.S3Handler"
+                  moduleName = "ShoWorks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lokesh/Documents/GitHub/showorks-vision-pro/ShoWorks/ShoWorks/Utils/S3Handler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "1432">
+               </Location>
+               <Location
+                  uuid = "8F105B4F-53EE-4576-861F-ED518AC22F3B - 91a79070f84be772"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for ShoWorks.S3Handler.init() async -&gt; ShoWorks.S3Handler"
+                  moduleName = "ShoWorks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lokesh/Documents/GitHub/showorks-vision-pro/ShoWorks/ShoWorks/Utils/S3Handler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "240">
+               </Location>
+               <Location
+                  uuid = "8F105B4F-53EE-4576-861F-ED518AC22F3B - a64e4a8fbb4b4c71"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for ShoWorks.S3Handler.init() async -&gt; ShoWorks.S3Handler"
+                  moduleName = "ShoWorks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lokesh/Documents/GitHub/showorks-vision-pro/ShoWorks/ShoWorks/Utils/S3Handler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "216">
+               </Location>
+               <Location
+                  uuid = "8F105B4F-53EE-4576-861F-ED518AC22F3B - 6cd22a3f094f2e88"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ShoWorks.S3Handler.init() async -&gt; ShoWorks.S3Handler"
+                  moduleName = "ShoWorks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lokesh/Documents/GitHub/showorks-vision-pro/ShoWorks/ShoWorks/Utils/S3Handler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "1508">
+               </Location>
+               <Location
+                  uuid = "8F105B4F-53EE-4576-861F-ED518AC22F3B - 83941af7424d3d8b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for ShoWorks.S3Handler.init() async -&gt; ShoWorks.S3Handler"
+                  moduleName = "ShoWorks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lokesh/Documents/GitHub/showorks-vision-pro/ShoWorks/ShoWorks/Utils/S3Handler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "216">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FA6CD453-64C6-43CE-9314-C05B541E376E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShoWorks/Utils/S3Handler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "listBucketFiles(bucket:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FA6CD453-64C6-43CE-9314-C05B541E376E - 4ee75ccf0afe27ed"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ShoWorks.S3Handler.listBucketFiles(bucket: Swift.String) async throws -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "ShoWorks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lokesh/Documents/GitHub/showorks-vision-pro/ShoWorks/ShoWorks/Utils/S3Handler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "201"
+                  endingLineNumber = "201"
+                  offsetFromSymbolStart = "224">
+               </Location>
+               <Location
+                  uuid = "FA6CD453-64C6-43CE-9314-C05B541E376E - bd597bf2de246150"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ShoWorks.S3Handler.listBucketFiles(bucket: Swift.String) async throws -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "ShoWorks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lokesh/Documents/GitHub/showorks-vision-pro/ShoWorks/ShoWorks/Utils/S3Handler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "201"
+                  endingLineNumber = "201"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  uuid = "FA6CD453-64C6-43CE-9314-C05B541E376E - bd597bf2de246112"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ShoWorks.S3Handler.listBucketFiles(bucket: Swift.String) async throws -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "ShoWorks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lokesh/Documents/GitHub/showorks-vision-pro/ShoWorks/ShoWorks/Utils/S3Handler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "203"
+                  endingLineNumber = "203"
+                  offsetFromSymbolStart = "116">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AAB4FEE5-1AD9-4654-93E2-40893A191DE8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShoWorks/Utils/S3Handler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "init()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AAB4FEE5-1AD9-4654-93E2-40893A191DE8 - 6cd22a3f094f2167"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ShoWorks.S3Handler.init() async -&gt; ShoWorks.S3Handler"
+                  moduleName = "ShoWorks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lokesh/Documents/GitHub/showorks-vision-pro/ShoWorks/ShoWorks/Utils/S3Handler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "1020">
+               </Location>
+               <Location
+                  uuid = "AAB4FEE5-1AD9-4654-93E2-40893A191DE8 - 6cd22a3f094f2167"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ShoWorks.S3Handler.init() async -&gt; ShoWorks.S3Handler"
+                  moduleName = "ShoWorks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lokesh/Documents/GitHub/showorks-vision-pro/ShoWorks/ShoWorks/Utils/S3Handler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "1036">
+               </Location>
+               <Location
+                  uuid = "AAB4FEE5-1AD9-4654-93E2-40893A191DE8 - 91a79070f84be87a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for ShoWorks.S3Handler.init() async -&gt; ShoWorks.S3Handler"
+                  moduleName = "ShoWorks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lokesh/Documents/GitHub/showorks-vision-pro/ShoWorks/ShoWorks/Utils/S3Handler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "72">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7486F5E2-8B8B-4A9B-B50D-BDC163C76C01"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShoWorks/Utils/S3Handler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "init()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7486F5E2-8B8B-4A9B-B50D-BDC163C76C01 - 6cd22a3f094f20db"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ShoWorks.S3Handler.init() async -&gt; ShoWorks.S3Handler"
+                  moduleName = "ShoWorks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lokesh/Documents/GitHub/showorks-vision-pro/ShoWorks/ShoWorks/Utils/S3Handler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "172">
+               </Location>
+               <Location
+                  uuid = "7486F5E2-8B8B-4A9B-B50D-BDC163C76C01 - 6cd22a3f094f20db"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ShoWorks.S3Handler.init() async -&gt; ShoWorks.S3Handler"
+                  moduleName = "ShoWorks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lokesh/Documents/GitHub/showorks-vision-pro/ShoWorks/ShoWorks/Utils/S3Handler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "180">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

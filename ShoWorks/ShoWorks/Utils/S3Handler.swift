@@ -9,10 +9,13 @@ import Foundation
 import AWSS3
 import ClientRuntime
 import AWSClientRuntime
+import AWSConnect
+
+//import AWSMobile
 
 class S3Handler {
     
-        let client: S3Client
+    var client: S3Client
     
         /// Initialize and return a new ``S3Handler`` object, which is used to drive the AWS calls
         /// used for the example.
@@ -21,7 +24,23 @@ class S3Handler {
         ///            execute AWS operations.
         public init() async {
             do {
-                client = try await S3Client()
+                
+//                let config = try await S3Client.S3ClientConfiguration()
+//                
+//                config.region = AppConstant.AWSRegionUSEast1
+                
+                let credentials = AWSCredentials(accessKey: UserSettings.shared.accessKey!, secret: UserSettings.shared.secretKey!)
+                
+                let s3Config = try await S3Client.S3ClientConfiguration(region: AppConstant.AWSRegionUSEast1,
+                                                                  credentialsProvider: credentials as? CredentialsProviding)
+                client = S3Client(config: s3Config)
+
+
+                print("Initialized")
+
+                try await listBucketFiles(bucket: AppConstant.bucketName)
+                        
+                
             } catch {
                 print("ERROR: ", dump(error, name: "Initializing S3 client"))
                 exit(1)

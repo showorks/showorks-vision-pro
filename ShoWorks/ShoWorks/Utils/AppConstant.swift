@@ -22,6 +22,8 @@ struct AppConstant {
 
     
     static let plistManagerDemoFileName = "SheetsData.plist";
+    static let AWSRegionUSEast1 = "us-east-1";
+    static let bucketName = "sw2012tablet"
 
     
     // File paths
