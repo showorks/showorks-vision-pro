@@ -36,11 +36,11 @@ class PlistManager {
     /// - Returns: returns a path
     func getPlistFilePathForCurrentSettings() -> String! {
 
-          let secretKey:String! = UserSettings.shared.secretKey?.count ?? 0 > 0 ? UserSettings.shared.secretKey : UserSettings.shared.previousSecretKey
+          let serialKey:String! = UserSettings.shared.serialKey?.count ?? 0 > 0 ? UserSettings.shared.serialKey : UserSettings.shared.previousSerialKey
 
           let channel:String! = UserSettings.shared.selectedChannel
 
-          if !Utilities.sharedInstance.checkStringContainsText(text: secretKey)
+          if !Utilities.sharedInstance.checkStringContainsText(text: serialKey)
               {return ""}
 
           let applicationDirectoryPath:String! = Utilities.sharedInstance.documentsDirectoryPath().stringByDeletingLastPathComponent
@@ -49,11 +49,11 @@ class PlistManager {
 
           if Utilities.sharedInstance.checkStringContainsText(text: channel)
           {
-              plistFilePath = applicationDirectoryPath.stringByAppendingPathComponent(path: String(format:AppConstant.append_cache_path_with_plist_file,String(format:"%@_%@",secretKey,channel)))
+              plistFilePath = applicationDirectoryPath.stringByAppendingPathComponent(path: String(format:AppConstant.append_cache_path_with_plist_file,String(format:"%@_%@",serialKey,channel)))
           }
           else
           {
-              plistFilePath = applicationDirectoryPath.stringByAppendingPathComponent(path: String(format:AppConstant.append_cache_path_with_plist_file,secretKey))
+              plistFilePath = applicationDirectoryPath.stringByAppendingPathComponent(path: String(format:AppConstant.append_cache_path_with_plist_file,serialKey))
               
           }
 
@@ -256,10 +256,10 @@ class PlistManager {
     
 //    +(NSString *)getPlistFilePathForArchivedSheet
 //    {
-//        NSString *secretKey = [SettingsManager getSecretKey];
+//        NSString *serialKey = [SettingsManager getserialKey];
 //        NSString *channel = [SettingsManager getSelectedChannel];
 //        
-//        if(![Utility checkStringContainsText:secretKey])
+//        if(![Utility checkStringContainsText:serialKey])
 //            return @"";
 //        
 //        NSString *applicationDirectoryPath = [[Utility documentsDirectoryPath] stringByDeletingLastPathComponent];
@@ -267,11 +267,11 @@ class PlistManager {
 //        
 //        if([Utility checkStringContainsText:channel])
 //        {
-//            plistFilePath = [applicationDirectoryPath stringByAppendingPathComponent:[NSString stringWithFormat:APPEND_CACHE_PATH_WITH_ARCHIVED_PLIST_FILE,[NSString stringWithFormat:@"%@_%@",secretKey,channel]]];
+//            plistFilePath = [applicationDirectoryPath stringByAppendingPathComponent:[NSString stringWithFormat:APPEND_CACHE_PATH_WITH_ARCHIVED_PLIST_FILE,[NSString stringWithFormat:@"%@_%@",serialKey,channel]]];
 //        }
 //        else
 //        {
-//            plistFilePath = [applicationDirectoryPath stringByAppendingPathComponent:[NSString stringWithFormat:APPEND_CACHE_PATH_WITH_ARCHIVED_PLIST_FILE,secretKey]];
+//            plistFilePath = [applicationDirectoryPath stringByAppendingPathComponent:[NSString stringWithFormat:APPEND_CACHE_PATH_WITH_ARCHIVED_PLIST_FILE,serialKey]];
 //        }
 //        
 //        if(![[NSFileManager defaultManager] fileExistsAtPath:plistFilePath])

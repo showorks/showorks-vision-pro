@@ -16,7 +16,7 @@ class UserSettings {
         static let serialKey = "serialKey"
         static let accessKey = "accessKey"
         static let secretKey = "secretKey"
-        static let previousSecretKey = "previousSecretKey"
+        static let previousSerialKey = "previousSecretKey"
         static let recentlyCreated = "recentlyCreated"
         static let selectedChannel = "selectedChannel"
         static let isDemoUserEnabled = "demoUserEnabled"
@@ -49,12 +49,12 @@ class UserSettings {
         }
     }
         
-    var previousSecretKey: String? {
+    var previousSerialKey: String? {
         get {
-            UserDefaults.standard.string(forKey: Keys.previousSecretKey)
+            UserDefaults.standard.string(forKey: Keys.previousSerialKey)
         }
         set {
-            UserDefaults.standard.setValue(newValue, forKey: Keys.previousSecretKey)
+            UserDefaults.standard.setValue(newValue, forKey: Keys.previousSerialKey)
         }
     }
             

@@ -35,7 +35,10 @@ class S3Handler {
                                                                   credentialsProvider: AWSClientRuntime.StaticCredentialsProvider(credentials))
 
                 self.client = try await S3Client(config: s3Config)
-                try await self.listBucketFiles(bucket: AppConstant.bucketName)
+                var filesList = try await self.listBucketFiles(bucket: AppConstant.bucketName)
+                var count = self.getTotalCountOfFreshSheetsFromSummaryArray(summaries: filesList)
+                print("COUNT")
+                print(count)
             } catch {
                 print("ERROR: ", dump(error, name: "Initializing S3 client"))
                 exit(1)
@@ -213,4 +216,52 @@ class S3Handler {
 
             return names
         }
+    
+    /**    @function    :getTotalCountOfFreshSheetsFromSummaryArray:
+     @discussion    :It will check for total fresh sheets from summaries array
+     @param            :summaries: Contains S3ObjectSummary objects
+     @return        :int: total count of fresh sheets.
+     */
+    func getTotalCountOfFreshSheetsFromSummaryArray(summaries: [String]) -> NSMutableArray! {
+        let freshSheets:NSMutableArray! = NSMutableArray()
+
+        let selectedChannel:String! = UserSettings.shared.selectedChannel
+
+        for key in summaries {
+
+            let componentArray:[String]! = key.components(separatedBy: "_")
+
+            if Utilities.sharedInstance.checkStringContainsText(text: selectedChannel)
+            {
+                if componentArray.count < 3
+                    {continue}
+
+                let serialNumber:String! = componentArray.first
+                let channel:String! = componentArray[1].replace(target: "-", withString: "")
+
+                if !(serialNumber == UserSettings.shared.serialKey)
+                    {continue}
+
+                if !(channel == selectedChannel)
+                    {continue}
+            }
+            else
+            {
+                if componentArray.count > 0
+                {
+                    if !(componentArray.first == UserSettings.shared.serialKey)
+                        {continue}
+                }
+            }
+
+            let status = key.lastLetter()
+
+            if (status == AppConstant.status_fresh)
+            {
+                freshSheets.add(key)
+            }
+         }
+
+        return freshSheets
+    }
 }

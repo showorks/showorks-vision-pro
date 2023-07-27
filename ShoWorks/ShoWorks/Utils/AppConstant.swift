@@ -25,6 +25,10 @@ struct AppConstant {
     static let AWSRegionUSEast1 = "us-east-1";
     static let bucketName = "sw2012tablet"
 
+    static let status_void = "v"
+    static let status_fresh = "l"
+    static let status_complete = "c"
+    static let status_draft = "d"
     
     // File paths
     

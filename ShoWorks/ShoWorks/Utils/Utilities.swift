@@ -120,4 +120,16 @@ extension String {
          
         return nsSt.appendingPathExtension(ext)
     }
+    
+    func replace(target: String, withString: String) -> String
+    {
+       return self.replacingOccurrences(of: target, with: withString, options: NSString.CompareOptions.literal, range: nil)
+    }
+    
+    func lastLetter() -> String {
+        guard let lastChar = self.last else {
+            return ""
+        }
+        return String(lastChar)
+    }
 }
