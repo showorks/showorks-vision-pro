@@ -39,6 +39,7 @@
 		CF6BEDE72A5F026900CE209A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDE62A5F026900CE209A /* SplashView.swift */; };
 		CF6BEDE92A5F02C400CE209A /* InputSerial.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDE82A5F02C400CE209A /* InputSerial.swift */; };
 		CF6BEDEC2A5F02F800CE209A /* ShoWorksBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDEB2A5F02F800CE209A /* ShoWorksBackground.swift */; };
+		CF6C42172A73CCF8005F7D53 /* SheetSyncNotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C42162A73CCF8005F7D53 /* SheetSyncNotificationModel.swift */; };
 		CFA093052A711C670013E6B3 /* SheetsData.plist in Resources */ = {isa = PBXBuildFile; fileRef = CFA093042A711C670013E6B3 /* SheetsData.plist */; };
 		CFA093072A712A510013E6B3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA093062A712A510013E6B3 /* HomeView.swift */; };
 		CFA0930C2A7131460013E6B3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA0930B2A7131460013E6B3 /* HomeViewModel.swift */; };
@@ -90,6 +91,7 @@
 		CF6BEDE62A5F026900CE209A /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		CF6BEDE82A5F02C400CE209A /* InputSerial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSerial.swift; sourceTree = "<group>"; };
 		CF6BEDEB2A5F02F800CE209A /* ShoWorksBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksBackground.swift; sourceTree = "<group>"; };
+		CF6C42162A73CCF8005F7D53 /* SheetSyncNotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetSyncNotificationModel.swift; sourceTree = "<group>"; };
 		CFA093042A711C670013E6B3 /* SheetsData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SheetsData.plist; sourceTree = "<group>"; };
 		CFA093062A712A510013E6B3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CFA0930B2A7131460013E6B3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				CF4384522A66B918000A7022 /* ShoWorksAuthenticationModel.swift */,
 				CF4384542A66B988000A7022 /* ShoWorksAuthenticationAPIResponse.swift */,
 				CFA0930B2A7131460013E6B3 /* HomeViewModel.swift */,
+				CF6C42162A73CCF8005F7D53 /* SheetSyncNotificationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				CF43844C2A66B7EA000A7022 /* ShoWorksService.swift in Sources */,
 				CF4384482A66B765000A7022 /* ShoWorksAPIService.swift in Sources */,
 				CF6BEDEC2A5F02F800CE209A /* ShoWorksBackground.swift in Sources */,
+				CF6C42172A73CCF8005F7D53 /* SheetSyncNotificationModel.swift in Sources */,
 				CF4384552A66B988000A7022 /* ShoWorksAuthenticationAPIResponse.swift in Sources */,
 				CF09E6322A655B5200C947A3 /* Fonts.swift in Sources */,
 				CF08F3632A69BACD000933B1 /* LoaderView.swift in Sources */,

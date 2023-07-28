@@ -38,4 +38,18 @@ struct AppConstant {
     
     static let append_cache_path_with_archived_plist = "Library/Caches/%@/ArchivedData.plist" // previously called as APPEND_CACHE_PATH_WITH_ARCHIVED_PLIST_FILE
 
+    
+    enum SyncType {
+      case DOWNLOAD, UPLOAD
+    }
+
+    static let HomeScreenSyncInProcessNotification = "HomeScreenSyncInProcessNotification"
+    static let ChangeRibbonColorOrderNotification = "ChangeRibbonColorOrderNotification"
+    static let ShowSerialPromptNotification = "ShowSerialPromptNotification"
+    static let SettingsSlaveDoneNotification = "SettingsSlaveDoneNotification"
+    static let SettingsSlaveHTMLNotification = "SettingsSlaveHTMLNotification"
+    static let SettingsSlaveQRCodeHTMLNotification = "SettingsSlaveQRCodeHTMLNotification"
+    static let SettingsSlaveLoadUserModeNotification = "SettingsSlaveLoadUserModeNotification"
+    static let SettingsSlaveLoadDemoModeNotification = "SettingsSlaveLoadDemoModeNotification"
+
 }
