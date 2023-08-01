@@ -138,23 +138,6 @@ class DataCenter : NSObject,SheetParserDelegate {
 
      }
     
-    func setPlistSheetDetailArrayWithNewData(newPlistSheetDetailArray:NSMutableArray!) {
-//        dispatch_async(dispatch_get_main_queue(), {
-//            let appDelegate:AppDelegate! = UIApplication.sharedApplication().delegate()
-//            if appDelegate.plistSheetDetailArray()
-//            {
-//                if appDelegate.plistSheetDetailArray().count() > 0
-//                {
-//                    appDelegate.plistSheetDetailArray().removeAllObjects()
-//                    appDelegate.plistSheetDetailArray = nil
-//                }
-//            }
-//
-//            appDelegate.plistSheetDetailArray = newPlistSheetDetailArray
-//
-//        })
-    }
-    
     func getListOfKeysFromServer(awsS3ObjectsFetchingCallback:AWSS3ObjectsFetchingCallback) {
         
         awsS3ObjectsFetchingCallback(NSMutableArray())
@@ -582,54 +565,99 @@ class DataCenter : NSObject,SheetParserDelegate {
     }
     
     func downloadFilesFromServerAndInsertInPlistDetailArray(listOfKeysAtServer:NSMutableArray!) {
-//        let appDelegate:AppDelegate! = UIApplication.sharedApplication().delegate()
-//
-//        self.downloadFreshFilesFromServerWithAccessKey(self.accessKey, andSecretKey:self.secretKey, withShowAlert:false, withListOfObjects:listOfKeysAtServer, withDownloadCompletionCallBack:{ (downloadCompleted:Bool) in
-//
-//    //        if(hasComeFromAFlowWhenFoundSomethingAtleast){
-//
-//                var plistSheetDetailArray:NSMutableArray! = NSMutableArray(array:appDelegate.plistSheetDetailArray())
-//
-//                if (plistSheetDetailArray != nil) && plistSheetDetailArray.count()>0 && self.sheetsData && self.sheetsData.count() {
-//                    let temporaryArray:NSMutableArray! = NSMutableArray()
-//                    for downloadedSheet:NSDictionary! in self.sheetsData {
-//                        var hasEntryFound:Bool = FALSE
-//                        for plistSheet:NSDictionary! in plistSheetDetailArray {
-//                            let downloadedSheetName:String! = downloadedSheet.objectForKey(SHEET).objectForKey(SHEET_NAME)
-//                            let plistSheetName:String! = plistSheet.objectForKey(SHEET).objectForKey(SHEET_NAME)
-//                            if (downloadedSheetName != nil) && plistSheetName && (plistSheetName == downloadedSheetName) {
-//                                hasEntryFound = TRUE
-//                            }
-//                         }
-//                        if !hasEntryFound {
-//                            temporaryArray.addObject(downloadedSheet)
-//                        }
-//                     }
-//
-//                    plistSheetDetailArray.addObjectsFromArray(temporaryArray)
-//
-//                }else if (plistSheetDetailArray != nil) && plistSheetDetailArray.count()==0 {
-//                    plistSheetDetailArray.addObjectsFromArray(self.sheetsData)
-//                }
-//
-//                if Utility.isNetworkStatusAvailable() {
-//                    plistSheetDetailArray.writeToFile(PlistManager.getPlistFilePathForCurrentSettings(), atomically:true)
-//
-//                    self.plistSheetDetailArrayWithNewData = plistSheetDetailArray
-//                }
-//
-//                plistSheetDetailArray.release(),plistSheetDetailArray = nil
-//    //        }
-//
-//            hasComeFromAFlowWhenNoNewFilesAreThere = FALSE
-//            hasComeFromAFlowWhenFoundSomethingAtleast = FALSE
-//
-//            dispatch_async(dispatch_get_main_queue(), {
-//                appDelegate.hideLoader()
-//                NSNotificationCenter.defaultCenter().postNotificationName("PlistSyncedWithServer", object:nil)
-//            })
-//
-//        })
+        //        let appDelegate:AppDelegate! = UIApplication.sharedApplication().delegate()
+        
+        Task {
+            await self.downloadFreshFilesFromServerWithAccessKey(_accessKey: self.accessKey, andSecretKey:self.secretKey, withShowAlert:false, withListOfObjects:listOfKeysAtServer, withDownloadCompletionCallBack:{ (downloadCompleted:Bool) in
+            
+            //        if(hasComeFromAFlowWhenFoundSomethingAtleast){
+            
+            let plistSheetDetailArray:NSMutableArray! =  SharedDelegate.sharedInstance.plistSheetDetailArray
+            
+            guard let plistArray = plistSheetDetailArray else {
+                return
+            }
+            
+            var aPlistSheetsArray = NSMutableArray(array: plistArray)
+            
+            if (aPlistSheetsArray != nil) && aPlistSheetsArray.count>0 && (self.sheetsData != nil) && self.sheetsData!.count > 0 {
+                
+                let temporaryArray:NSMutableArray! = NSMutableArray()
+                
+                for downloadedSheet in self.sheetsData! {
+                    
+                    var hasEntryFound:Bool = false
+                    
+                    for sheetDic in aPlistSheetsArray {
+                        
+                        let sheetObj = sheetDic as! NSDictionary
+                        
+                        let downloadedSheetName:String! = (sheetObj.object(forKey: AppConstant.sheet) as! NSDictionary).value(forKey: AppConstant.sheet_name) as! String
+                        
+                        let plistSheet = downloadedSheet as! NSDictionary
+                        
+                        let plistSheetName:String! = (plistSheet.object(forKey: AppConstant.sheet) as! NSDictionary).value(forKey: AppConstant.sheet_name) as! String
+                        
+                        if (downloadedSheetName != nil) && (plistSheetName != nil) && (plistSheetName == downloadedSheetName) {
+                            hasEntryFound = true
+                        }
+                    }
+                    
+                    if !hasEntryFound {
+                        temporaryArray.add(downloadedSheet)
+                    }
+                }
+                
+                for tempArr in temporaryArray {
+                    plistSheetDetailArray.add(tempArr)
+                }
+                
+            }else if (plistSheetDetailArray != nil) && plistSheetDetailArray.count==0 {
+                for tempArr in self.sheetsData! {
+                    plistSheetDetailArray.add(tempArr)
+                }
+            }
+            
+            if Utilities.sharedInstance.isNetworkStatusAvailable() {
+                plistSheetDetailArray.write(toFile: PlistManager.sharedInstance.getPlistFilePathForCurrentSettings(), atomically: true)
+                
+                self.setPlistSheetDetailArrayWithNewData(newPlistSheetDetailArray: plistSheetDetailArray)
+                
+            }
+            
+            //        }
+            
+            self.hasComeFromAFlowWhenNoNewFilesAreThere = false
+            self.hasComeFromAFlowWhenFoundSomethingAtleast = false
+            
+            DispatchQueue.main.async {
+                self.hideLoader()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PlistSyncedWithServer"), object: nil)
+            }
+            
+        })
+        
+    }
+    }
+    
+    func setPlistSheetDetailArrayWithNewData(newPlistSheetDetailArray:NSMutableArray!) {
+        
+        DispatchQueue.main.async {
+            
+            var plistSheetDetailArray:NSMutableArray! =  SharedDelegate.sharedInstance.plistSheetDetailArray
+            
+            guard plistSheetDetailArray != nil else {
+                return
+            }
+            
+            plistSheetDetailArray.removeAllObjects()
+          
+            plistSheetDetailArray = nil
+            
+            SharedDelegate.sharedInstance.plistSheetDetailArray = newPlistSheetDetailArray
+          
+        }
+        
     }
     
     
