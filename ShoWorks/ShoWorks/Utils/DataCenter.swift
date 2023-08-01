@@ -304,7 +304,7 @@ class DataCenter : NSObject,SheetParserDelegate {
         
         Task {
                         
-                    var totalFreshSheets:Int = totalFreshSheetsToBeDownloaded.count
+                    let totalFreshSheets:Int = totalFreshSheetsToBeDownloaded.count
 
                     var totalNumberOfObjects:Int = totalFreshSheetsToBeDownloaded.count
 
@@ -461,7 +461,7 @@ class DataCenter : NSObject,SheetParserDelegate {
         if !Utilities.sharedInstance.checkStringContainsText(text: fileName)
             {return}
 
-        var plistSheetDetailArray:NSMutableArray! =  SharedDelegate.sharedInstance.plistSheetDetailArray
+        let plistSheetDetailArray:NSMutableArray! =  SharedDelegate.sharedInstance.plistSheetDetailArray
         
         guard let plistArray = plistSheetDetailArray else {
             return
@@ -479,4 +479,248 @@ class DataCenter : NSObject,SheetParserDelegate {
             }
          }
     }
+    
+    func uploadFilesAccordingToStatus() async{
+        
+        let totalCompleteSheets = self.getTotalCountOfCompleteSheets()
+        
+        if(totalCompleteSheets > 0) {
+
+            let sheetsNotificationModel = self.getSheetSyncModelWithSyncType(syncType: AppConstant.SyncType.UPLOAD, currentCount:0, totalCount:totalCompleteSheets)
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.HomeScreenSyncInProcessNotification), object: sheetsNotificationModel)
+        }
+                
+        DispatchQueue.main.async {
+            self.showLoader()
+        }
+        
+        var handler = await S3Handler()
+        
+        self.getListOfKeysFromServer { objects in
+            
+            var plistSheetDetailArray:NSMutableArray! =  SharedDelegate.sharedInstance.plistSheetDetailArray
+            
+            if let plistArray = plistSheetDetailArray {
+                                                
+                var currentCompleteSheet:Int = 0
+                var iIndex = 0
+
+                for sheetDic in plistSheetDetailArray {
+                   
+                    let sheetData = sheetDic as! NSDictionary
+
+                    if let fileName = sheetData[AppConstant.sheet_file_name] as? String {
+                        
+                        let status = fileName.lastLetter()
+                        
+                        if (status == AppConstant.status_draft || status == AppConstant.status_fresh){
+                            continue
+                        }
+                        
+                        let fileNameWithoutExtension:String! = fileName.stringByDeletingPathExtension
+                        
+                        for object in objects {
+                            
+                            let fileName:String = object as! String
+                            
+                            let fileNameAtServerWithoutExtension = fileName.stringByDeletingPathExtension
+                            
+                            if (fileNameAtServerWithoutExtension == fileNameWithoutExtension){
+                                
+                                if (status == AppConstant.status_void){
+                                    
+                                    self.deleteFileWithKey(handler: handler, fileName: fileName)
+                                    
+                                }else if (status == AppConstant.status_complete){
+                                    
+                                    let statusOnServer = fileName.lastLetter()
+                                    
+                                    if (statusOnServer == AppConstant.status_fresh) {
+                                        self.deleteFileWithKey(handler: handler, fileName: fileName)
+                                    }
+                                    
+                                }
+                                
+                            }
+                            
+                        } // End of inner loop
+                        
+                        if(status == AppConstant.status_void){
+                            plistSheetDetailArray.removeObject(at: iIndex)
+                            // TODO: LOKESH SEHGAL - MOVE TO ARCHIVE
+                            iIndex = -1
+                        }
+                        else if(status == AppConstant.status_complete){
+                            
+                            
+                            let hasPutFileOnServer:Bool = self.putFileOnServerWithKey(handler: handler, key: fileName, andDataDic:plistSheetDetailArray.object(at: iIndex) as! NSMutableDictionary)
+
+//                             if hasPutFileOnServer {
+                            // TODO: LOKESH SEHGAL - MOVE TO ARCHIVE
+//                                 self.moveDataToArchiveSheetWithIndex(i)
+//                             }
+                            
+                            plistSheetDetailArray.removeObject(at: iIndex)
+
+                            iIndex -= 1
+
+                            currentCompleteSheet += 1
+                            
+                            let sheetsNotificationModel = self.getSheetSyncModelWithSyncType(syncType: AppConstant.SyncType.UPLOAD, currentCount:currentCompleteSheet, totalCount:totalCompleteSheets)
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.HomeScreenSyncInProcessNotification), object: sheetsNotificationModel)
+                        }
+                    }
+                    
+                    iIndex += 1
+                 }
+                
+                self.downloadFilesFromServerAndInsertInPlistDetailArray(listOfKeysAtServer: objects)
+            }
+            
+        }
+    }
+    
+    func downloadFilesFromServerAndInsertInPlistDetailArray(listOfKeysAtServer:NSMutableArray!) {
+//        let appDelegate:AppDelegate! = UIApplication.sharedApplication().delegate()
+//
+//        self.downloadFreshFilesFromServerWithAccessKey(self.accessKey, andSecretKey:self.secretKey, withShowAlert:false, withListOfObjects:listOfKeysAtServer, withDownloadCompletionCallBack:{ (downloadCompleted:Bool) in
+//
+//    //        if(hasComeFromAFlowWhenFoundSomethingAtleast){
+//
+//                var plistSheetDetailArray:NSMutableArray! = NSMutableArray(array:appDelegate.plistSheetDetailArray())
+//
+//                if (plistSheetDetailArray != nil) && plistSheetDetailArray.count()>0 && self.sheetsData && self.sheetsData.count() {
+//                    let temporaryArray:NSMutableArray! = NSMutableArray()
+//                    for downloadedSheet:NSDictionary! in self.sheetsData {
+//                        var hasEntryFound:Bool = FALSE
+//                        for plistSheet:NSDictionary! in plistSheetDetailArray {
+//                            let downloadedSheetName:String! = downloadedSheet.objectForKey(SHEET).objectForKey(SHEET_NAME)
+//                            let plistSheetName:String! = plistSheet.objectForKey(SHEET).objectForKey(SHEET_NAME)
+//                            if (downloadedSheetName != nil) && plistSheetName && (plistSheetName == downloadedSheetName) {
+//                                hasEntryFound = TRUE
+//                            }
+//                         }
+//                        if !hasEntryFound {
+//                            temporaryArray.addObject(downloadedSheet)
+//                        }
+//                     }
+//
+//                    plistSheetDetailArray.addObjectsFromArray(temporaryArray)
+//
+//                }else if (plistSheetDetailArray != nil) && plistSheetDetailArray.count()==0 {
+//                    plistSheetDetailArray.addObjectsFromArray(self.sheetsData)
+//                }
+//
+//                if Utility.isNetworkStatusAvailable() {
+//                    plistSheetDetailArray.writeToFile(PlistManager.getPlistFilePathForCurrentSettings(), atomically:true)
+//
+//                    self.plistSheetDetailArrayWithNewData = plistSheetDetailArray
+//                }
+//
+//                plistSheetDetailArray.release(),plistSheetDetailArray = nil
+//    //        }
+//
+//            hasComeFromAFlowWhenNoNewFilesAreThere = FALSE
+//            hasComeFromAFlowWhenFoundSomethingAtleast = FALSE
+//
+//            dispatch_async(dispatch_get_main_queue(), {
+//                appDelegate.hideLoader()
+//                NSNotificationCenter.defaultCenter().postNotificationName("PlistSyncedWithServer", object:nil)
+//            })
+//
+//        })
+    }
+    
+    
+    func putFileOnServerWithKey(handler:S3Handler, key:String!, andDataDic sheetDataDic:NSMutableDictionary!) -> Bool {
+          // Put the file as an object in the bucket.
+
+          let gen:XMLGenerator! = XMLGenerator()
+
+          var hasPutFileOnServer:Bool = false
+
+          gen.sheet = sheetDataDic as? [AnyHashable : Any]
+
+          let xml:String! = gen.getXMLString()
+
+          let xmlData:Data! = xml.data(using: .utf8)
+
+          let cacheDirectoryPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).last
+        
+          let filePathUrl:String! = cacheDirectoryPath?.stringByAppendingPathComponent(path: key)
+
+            do {
+                try xmlData.write(to: URL(fileURLWithPath: filePathUrl))
+                
+            }catch{
+                print("FILE not SAVED")
+                return false
+            }
+        
+          if FileManager.default.fileExists(atPath: filePathUrl) == false{
+              print("FILE not SAVED")
+              return false
+          }
+        
+          
+        do {
+            
+            Task {
+                try await handler.uploadFile(bucket: AppConstant.bucketName, key: key, file: filePathUrl)
+            }
+
+            NSLog("uploaded succeesfully")
+            
+            hasPutFileOnServer = true
+            
+            try FileManager.default.removeItem(atPath: filePathUrl)
+            
+        } catch {
+            
+            print("Show some alert here")
+            
+            hasPutFileOnServer = false
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.PlistSyncedWithServerFailure), object: nil)
+            
+        }
+        
+         
+
+          return hasPutFileOnServer
+      }
+    
+    /**    @function    :getTotalCountOfCompleteSheets
+     @discussion    :It will check for total complete sheets
+     @param            :-
+     @return        :int: total count of complete sheets.
+     */
+        func getTotalCountOfCompleteSheets() -> Int {
+            
+            var completeSheets:Int = 0
+            
+            let plistSheetDetailArray:NSMutableArray! =  SharedDelegate.sharedInstance.plistSheetDetailArray
+            
+            guard let plistArray = plistSheetDetailArray else {
+                return completeSheets
+            }
+
+            for sheetDic in plistArray {
+               
+                let sheetObj = sheetDic as! NSDictionary
+
+                if let fileName = sheetObj[AppConstant.sheet_file_name] as? String {
+                   
+                    let status = fileName.lastLetter()
+                    
+                    if status == AppConstant.status_complete {
+                        completeSheets += 1
+                    }
+                    
+                }
+             }
+
+            return completeSheets
+        }
 }

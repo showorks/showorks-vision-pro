@@ -48,8 +48,8 @@ class Utilities {
     /// - Returns: cache directory path
     func cacheDirectoryPath() -> String! {
         
-        if let documentsDirectoryPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first {
-            return documentsDirectoryPath
+        if let cacheDirectoryPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first {
+            return cacheDirectoryPath
         }
         
         return ""

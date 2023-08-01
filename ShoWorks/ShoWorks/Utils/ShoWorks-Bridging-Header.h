@@ -4,3 +4,5 @@
 
 #import "SheetParser.h"
 #import "Reachability.h"
+#import "XMLGenerator.h"
+#import "Additions.h"
