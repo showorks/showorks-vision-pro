@@ -26,6 +26,7 @@
 		CF1700922A7110A4006A7415 /* SharedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1700912A7110A4006A7415 /* SharedDelegate.swift */; };
 		CF1700962A7112F8006A7415 /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1700952A7112F8006A7415 /* AppConstant.swift */; };
 		CF19158A2A5F3BB300D53DA5 /* ShoWorksLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1915892A5F3BB300D53DA5 /* ShoWorksLogo.swift */; };
+		CF28947B2A7924AD004AE980 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2894792A7924AD004AE980 /* Reachability.m */; };
 		CF4384452A66A205000A7022 /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = CF4384442A66A205000A7022 /* ActivityIndicatorView */; };
 		CF4384482A66B765000A7022 /* ShoWorksAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4384472A66B765000A7022 /* ShoWorksAPIService.swift */; };
 		CF43844A2A66B7C4000A7022 /* ShoWorksAPISession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4384492A66B7C4000A7022 /* ShoWorksAPISession.swift */; };
@@ -80,6 +81,8 @@
 		CF1700912A7110A4006A7415 /* SharedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDelegate.swift; sourceTree = "<group>"; };
 		CF1700952A7112F8006A7415 /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
 		CF1915892A5F3BB300D53DA5 /* ShoWorksLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksLogo.swift; sourceTree = "<group>"; };
+		CF2894792A7924AD004AE980 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		CF28947A2A7924AD004AE980 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		CF4384472A66B765000A7022 /* ShoWorksAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksAPIService.swift; sourceTree = "<group>"; };
 		CF4384492A66B7C4000A7022 /* ShoWorksAPISession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksAPISession.swift; sourceTree = "<group>"; };
 		CF43844B2A66B7EA000A7022 /* ShoWorksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksService.swift; sourceTree = "<group>"; };
@@ -129,6 +132,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF2894782A7924AD004AE980 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				CF2894792A7924AD004AE980 /* Reachability.m */,
+				CF28947A2A7924AD004AE980 /* Reachability.h */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		CF4384462A66B750000A7022 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +167,7 @@
 		CF4384562A672C96000A7022 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CF2894782A7924AD004AE980 /* Reachability */,
 				CFFE1B192A7903B5009F6426 /* SheetParser.h */,
 				CFFE1B1A2A7903B5009F6426 /* SheetParser.m */,
 				CF1700322A6A898F006A7415 /* UIKit+Extensions.swift */,
@@ -375,6 +388,7 @@
 				CF1700372A6A93D0006A7415 /* PasteboardHelper.swift in Sources */,
 				CFFE1B1B2A7903B5009F6426 /* SheetParser.m in Sources */,
 				CF09E6362A6564FD00C947A3 /* Placeholder.swift in Sources */,
+				CF28947B2A7924AD004AE980 /* Reachability.m in Sources */,
 				CF1700962A7112F8006A7415 /* AppConstant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

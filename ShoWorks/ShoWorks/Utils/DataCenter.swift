@@ -19,11 +19,6 @@ typealias AWSS3DownloadCompletionCallback = (_ downloadCompleted: Bool) -> Void
 
 class DataCenter : NSObject,SheetParserDelegate {
     
-    func didFinishParsing(with dictionary: NSMutableDictionary!) {
-        self.sheetsData?.add(dictionary)
-    }
-    
-
     static let sharedInstance = DataCenter()
         
     var tempCurrentFreshSheetCount:Int?
@@ -57,15 +52,16 @@ class DataCenter : NSObject,SheetParserDelegate {
         
     }
     
-    func isNetworkStatusAvailable()->Bool{
-        return true
-    }
-    
     func checkIfThereIsAnyFileThatExistsOnDeviceAndReturnArrayOfSheets()->NSMutableArray{
         return NSMutableArray()
     }
     
     
+    func didFinishParsing(with dictionary: NSMutableDictionary!) {
+        self.sheetsData?.add(dictionary)
+    }
+    
+
     func setupWithAccessKey(_accessKey:String!, andSecretKey _secretKey:String!, withDownloadCompletionCallBack downloadCompletionCallback: @escaping AWSS3DownloadCompletionCallback) {
         
          self.sheetsData = NSMutableArray()
@@ -95,10 +91,14 @@ class DataCenter : NSObject,SheetParserDelegate {
                                  if (storedSheetsArray != nil) && storedSheetsArray.count>0 {
 
                                      // Check if Any sheet is not Completed or Voided then sync it back to the server
-    //                                 self.sheetsData.addObjectsFromArray(storedSheetsArray)
+                                     
+                                     for obj in storedSheetsArray {
+                                         self.sheetsData?.add(obj)
+                                     }
+                                     
                                  }
 
-                                 if self.isNetworkStatusAvailable() {
+                                 if Utilities.sharedInstance.isNetworkStatusAvailable() {
                                      self.sheetsData?.write(toFile: PlistManager.sharedInstance.getPlistFilePathForCurrentSettings(), atomically:true)
                                  }
                              }

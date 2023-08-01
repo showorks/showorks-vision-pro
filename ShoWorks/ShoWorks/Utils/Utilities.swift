@@ -65,6 +65,16 @@ class Utilities {
     }
     
     
+    
+    func isNetworkStatusAvailable() -> Bool {
+        let reachability:Reachability! = Reachability.forInternetConnection()
+        let internetStatus:NetworkStatus = reachability.currentReachabilityStatus()
+        if internetStatus != NotReachable {
+            return true
+        }
+        return false
+    }
+    
 }
 
 
