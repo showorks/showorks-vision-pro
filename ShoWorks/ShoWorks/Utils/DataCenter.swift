@@ -17,7 +17,12 @@ import AWSS3Control
 typealias AWSS3ObjectsFetchingCallback = (_ objects: NSMutableArray) -> Void
 typealias AWSS3DownloadCompletionCallback = (_ downloadCompleted: Bool) -> Void
 
-class DataCenter {
+class DataCenter : NSObject,SheetParserDelegate {
+    
+    func didFinishParsing(with dictionary: NSMutableDictionary!) {
+        self.sheetsData?.add(dictionary)
+    }
+    
 
     static let sharedInstance = DataCenter()
         
@@ -36,7 +41,7 @@ class DataCenter {
     var sheetsData: NSMutableArray?
     
     /// Default initializer
-    private init() {
+    private override init() {
         
         self.hasComeFromAFlowWhenNoNewFilesAreThere = false
         self.hasComeFromAFlowWhenFoundSomethingAtleast = false
@@ -61,7 +66,7 @@ class DataCenter {
     }
     
     
-    func setupWithAccessKey(_accessKey:String!, andSecretKey _secretKey:String!, withDownloadCompletionCallBack downloadCompletionCallback:AWSS3DownloadCompletionCallback) {
+    func setupWithAccessKey(_accessKey:String!, andSecretKey _secretKey:String!, withDownloadCompletionCallBack downloadCompletionCallback: @escaping AWSS3DownloadCompletionCallback) {
         
          self.sheetsData = NSMutableArray()
 
@@ -73,56 +78,60 @@ class DataCenter {
                 self.hideLoader()
             }
             
-            self.downloadFreshFilesFromServerWithAccessKey(_accessKey: _accessKey, andSecretKey:_secretKey, withShowAlert:true, withListOfObjects:objects, withDownloadCompletionCallBack:{ (downloadCompleted:Bool) in
+            Task {
+                
+                await self.downloadFreshFilesFromServerWithAccessKey(_accessKey: _accessKey, andSecretKey:_secretKey, withShowAlert:true, withListOfObjects:objects, withDownloadCompletionCallBack:{ (downloadCompleted:Bool) in
 
-                 if downloadCompleted {
+                     if downloadCompleted {
 
-                     if !hasComeFromAFlowWhenNoNewFilesAreThere {
+                         if !self.hasComeFromAFlowWhenNoNewFilesAreThere {
 
-                         hasComeFromAFlowWhenFoundSomethingAtleast = true
+                             self.hasComeFromAFlowWhenFoundSomethingAtleast = true
 
-                         if UserSettings.shared.recentlyCreated! {
-
-                             let storedSheetsArray:NSMutableArray! = checkIfThereIsAnyFileThatExistsOnDeviceAndReturnArrayOfSheets()
-
-                             if (storedSheetsArray != nil) && storedSheetsArray.count>0 {
-
-                                 // Check if Any sheet is not Completed or Voided then sync it back to the server
-//                                 self.sheetsData.addObjectsFromArray(storedSheetsArray)
-                             }
-
-                             if self.isNetworkStatusAvailable() {
-//                                 self.sheetsData.writeToFile(PlistManager.getPlistFilePathForCurrentSettings(), atomically:true)
-                             }
-                         }
-
-                         DispatchQueue.main.async {
-                             
                              if UserSettings.shared.recentlyCreated! {
+
+                                 let storedSheetsArray:NSMutableArray! = self.checkIfThereIsAnyFileThatExistsOnDeviceAndReturnArrayOfSheets()
+
+                                 if (storedSheetsArray != nil) && storedSheetsArray.count>0 {
+
+                                     // Check if Any sheet is not Completed or Voided then sync it back to the server
+    //                                 self.sheetsData.addObjectsFromArray(storedSheetsArray)
+                                 }
+
+                                 if self.isNetworkStatusAvailable() {
+                                     self.sheetsData?.write(toFile: PlistManager.sharedInstance.getPlistFilePathForCurrentSettings(), atomically:true)
+                                 }
+                             }
+
+                             DispatchQueue.main.async {
                                  
-                                 UserSettings.shared.recentlyCreated = false
-                                 
-                                 self.setPlistSheetDetailArrayWithNewData(newPlistSheetDetailArray: self.sheetsData)
-                                 
+                                 if UserSettings.shared.recentlyCreated! {
+                                     
+                                     UserSettings.shared.recentlyCreated = false
+                                     
+                                     self.setPlistSheetDetailArrayWithNewData(newPlistSheetDetailArray: self.sheetsData)
+                                     
+                                     self.hideLoader()
+
+    //                                 NSNotificationCenter.defaultCenter().postNotificationName("PlistSyncedWithServer", object:nil)
+
+                                 }
+                             }
+                         }else{
+
+                             DispatchQueue.main.async {
+
                                  self.hideLoader()
 
-//                                 NSNotificationCenter.defaultCenter().postNotificationName("PlistSyncedWithServer", object:nil)
+    //                             NSNotificationCenter.defaultCenter().postNotificationName("PlistSyncedWithServer", object:nil)
 
                              }
                          }
-                     }else{
-
-                         DispatchQueue.main.async {
-
-                             self.hideLoader()
-
-//                             NSNotificationCenter.defaultCenter().postNotificationName("PlistSyncedWithServer", object:nil)
-
-                         }
+                         downloadCompletionCallback(true)
                      }
-                     downloadCompletionCallback(true)
-                 }
-             })
+                 })
+            }
+            
 
          })
 
@@ -147,6 +156,8 @@ class DataCenter {
     }
     
     func getListOfKeysFromServer(awsS3ObjectsFetchingCallback:AWSS3ObjectsFetchingCallback) {
+        
+        awsS3ObjectsFetchingCallback(NSMutableArray())
         
 //           let getListObjectsRequest:AWSS3ListObjectsRequest! = AWSS3ListObjectsRequest()
 //        
@@ -180,7 +191,7 @@ class DataCenter {
        }
     
     
-    func downloadFreshFilesFromServerWithAccessKey(_accessKey:String!, andSecretKey _secretKey:String!, withShowAlert showAlert:Bool, withListOfObjects listedObjects:NSMutableArray!, withDownloadCompletionCallBack downloadCompletionCallback:AWSS3DownloadCompletionCallback) async {
+    func downloadFreshFilesFromServerWithAccessKey(_accessKey:String!, andSecretKey _secretKey:String!, withShowAlert showAlert:Bool, withListOfObjects listedObjects:NSMutableArray!, withDownloadCompletionCallBack downloadCompletionCallback: @escaping AWSS3DownloadCompletionCallback) async {
 
         Utilities.sharedInstance.createFolderInDocumentDirectoryWithPath(folderPath: PlistManager.sharedInstance.getPlistFilePathForCurrentSettings().stringByDeletingLastPathComponent)
 
@@ -247,8 +258,8 @@ class DataCenter {
 
         if (totalFreshSheetsToBeDownloaded != nil) && totalFreshSheetsToBeDownloaded.count > 0
         {
-            let sheetsNotificationModel = self.getSheetSyncModelWithSyncType(AppConstant.SyncType.DOWNLOAD, currentCount:tempCurrentFreshSheetCount, totalCount:totalFreshSheetsToBeDownloaded.count)
-            NotificationCenter.default.post(name: AppConstant.HomeScreenSyncInProcessNotification, object: sheetsNotificationModel)
+            let sheetsNotificationModel = self.getSheetSyncModelWithSyncType(syncType: AppConstant.SyncType.DOWNLOAD, currentCount:self.tempCurrentFreshSheetCount!, totalCount:totalFreshSheetsToBeDownloaded.count)
+//            NotificationCenter.default.post(name: AppConstant.HomeScreenSyncInProcessNotification, object: sheetsNotificationModel)
 //            NSNotificationCenter.defaultCenter().postNotificationName(HomeScreenSyncInProcessNotification, object:))
         }
 
@@ -258,7 +269,14 @@ class DataCenter {
                 self.hideLoader()
             }
 
-            self.downloadedContentWithShowAlert(showAlert, withObjectsArray:totalFreshSheetsToBeDownloaded,  withDownloadCompletionCallBack:downloadCompletionCallback)
+            
+            let dispatchQueue = DispatchQueue(label: "BackgroundQueueToDownloadFiles", qos: .background)
+
+            dispatchQueue.async {
+                
+                self.downloadedContentWithShowAlert(showAlert: showAlert, withObjectsArray:totalFreshSheetsToBeDownloaded,  withDownloadCompletionCallBack:downloadCompletionCallback)
+            }
+            
         }
     }
     
@@ -316,121 +334,143 @@ class DataCenter {
         return SheetSyncNotificationModel(syncType: syncType, currentCount: currentCount, totalCount: totalCount)
     }
     
-    func downloadedContentWithShowAlert(showAlert:Bool, withObjectsArray totalFreshSheetsToBeDownloaded:NSMutableArray!, withDownloadCompletionCallBack downloadCompletionCallback:AWSS3DownloadCompletionCallback) {
+    func downloadedContentWithShowAlert(showAlert:Bool, withObjectsArray totalFreshSheetsToBeDownloaded:NSMutableArray!, withDownloadCompletionCallBack downloadCompletionCallback: @escaping AWSS3DownloadCompletionCallback) {
         
-        let dispatchQueue = DispatchQueue(label: "BackgroundQueueToDownloadFiles", qos: .background)
+        Task {
+                        
+                    var handler = await S3Handler()
+                    
+                    var fileNamesList:[String] = []
+                          
+                    var totalFreshSheets:Int = totalFreshSheetsToBeDownloaded.count
+
+                    var totalNumberOfObjects:Int = totalFreshSheetsToBeDownloaded.count
+
+                     for sheetName in totalFreshSheetsToBeDownloaded {
+
+                         totalNumberOfObjects -= 1
+                         
+                           var fileData:Data
+                           var fileName = ""
+                         
+                           do {
+                               fileName = sheetName as! String
+                               
+                               fileData = try await handler.readFile(bucket: AppConstant.bucketName, key: fileName)
+                               
+                           } catch {
+                               print("ERROR: ", dump(error, name: "Initializing S3 client"))
+                               exit(1)
+                           }
+                         
+                         
+                         if !fileData.isEmpty && fileData.count > 0 {
+
+                             let parser:SheetParser! = SheetParser(delegate:self, data:fileData)
         
-        dispatchQueue.async{
-       
-            var handler = await S3Handler()
-            
-            var fileNamesList:[String] = []
-                  
-            var totalFreshSheets:Int = totalFreshSheetsToBeDownloaded.count
+                             parser.filename = fileName
+                             
+                             parser.parse()
+        
+                             self.tempCurrentFreshSheetCount! += 1
+        
+                             DispatchQueue.main.async {
+//                                 NSNotificationCenter.defaultCenter().postNotificationName(HomeScreenSyncInProcessNotification, object:self.getSheetSyncModelWithSyncType(DOWNLOAD, currentCount:tempCurrentFreshSheetCount, totalCount:totalFreshSheets))
+                             }
+                             
+//                             DispatchQueue.main.sync
+//                             {
+//                                 if self.isSheetAlreadyPresent(fileName: fileName)
+//                                 {
+//                                     self.removeSheetFromCurrentPlistWithFileName(fileName: fileName)
+//                                 }
+//                             }
 
-            var totalNumberOfObjects:Int = totalFreshSheetsToBeDownloaded.count
-
-             for sheetName in totalFreshSheetsToBeDownloaded {
-
-                 totalNumberOfObjects -= 1
-                 
-                   var fileData:Data
-                 
-                   do {
-                       let fileName: String = sheetName as! String
-                       
-                       fileData = try await handler.readFile(bucket: AppConstant.bucketName, key: fileName)
-                       
-                   } catch {
-                       print("ERROR: ", dump(error, name: "Initializing S3 client"))
-                       exit(1)
-                   }
-                 
-                 
-                 if !fileData.isEmpty && fileData.count > 0 {
-
-//                     let parser:SheetParser! = SheetParser(delegate:self, data:data)
-//
-//                     parser.filename = key
-//                     parser.parse()
-//
-//                     tempCurrentFreshSheetCount++
-//
-//                     dispatch_async(dispatch_get_main_queue(), {
-//                         NSNotificationCenter.defaultCenter().postNotificationName(HomeScreenSyncInProcessNotification, object:self.getSheetSyncModelWithSyncType(DOWNLOAD, currentCount:tempCurrentFreshSheetCount, totalCount:totalFreshSheets))
-//                     })
-//
-//                     dispatch_sync(dispatch_get_main_queue(), {
-//
-//                         if self.isSheetAlreadyPresent(key)
-//                         {
-//                             self.removeSheetFromCurrentPlistWithFileName(key)
-//                         }
-//                     })
-//
 //
 //                     self.deleteFileWithKey(key)   // Delete fresh file from server after downloading.
 //
-//                     if totalNumberOfObjects==0 {
-//                         self.allFilesCompletelyDownloadedWithDownloadCompletionCallBack(downloadCompletionCallback)
-//                     }
-                 }
-
-                   
-//                     
-//
-//                     if singleObjectTask.error
-//                     {
-//                         dispatch_async(dispatch_get_main_queue(), {
-//
-//                             NSLog("singleObjectTask Error: %@",singleObjectTask.error)
-//
-//                             if showAlert
-//                             {
-//                                 var rootViewController:AnyObject! = UIApplication.sharedApplication().delegate.window.rootViewController
-//
-//                                 if (rootViewController is UINavigationController)
-//                                 {
-//                                     if (rootViewController is UINavigationController)
-//                                     {
-//                                         for viewController:UIViewController! in (rootViewController as! UINavigationController).viewControllers {
-//                                             if (viewController.dynamicType is HomeScreenViewController) {
-//                                                 rootViewController = viewController
-//                                                 break
-//                                             }
-//                                          }
-//
-//                                         if rootViewController==nil
-//                                             {rootViewController = (rootViewController as! UINavigationController).viewControllers.firstObject}
-//                                     }
-//                                 }
-//                             }
-//
-//                             NSNotificationCenter.defaultCenter().postNotificationName(PlistSyncedWithServerFailure, object:nil)
-//                             downloadCompletionCallback(true)
-//                             // TODO: This is the case when we try to download file but fails due to some error and it eventually deletes our existing file as well.. so handle it
-//                             // Make use of allFilesCompletelyDownloadedWithDownloadCompletionCallBack
-//                             self.allFilesCompletelyDownloadedWithDownloadCompletionCallBack(downloadCompletionCallback)
-//
-//                         })
-//
-//                     }
-//                     else
-//                     {
-//                         let outPut:AWSS3GetObjectOutput! = singleObjectTask.result
-//                         data =  outPut.body()
-//                     }
+                             if totalNumberOfObjects==0 {
+                                 self.allFilesCompletelyDownloadedWithDownloadCompletionCallBack(downloadCompletionCallback: downloadCompletionCallback)
+                             }
+                         }
 
 
-              }
+                      }
 
-                 if (totalFreshSheetsToBeDownloaded != nil) && totalFreshSheetsToBeDownloaded.count==0 {
-                         self.hasComeFromAFlowWhenNoNewFilesAreThere = true
-                         downloadCompletionCallback(true)
-                 }
+                         if (totalFreshSheetsToBeDownloaded != nil) && totalFreshSheetsToBeDownloaded.count==0 {
+                                 self.hasComeFromAFlowWhenNoNewFilesAreThere = true
+                                 downloadCompletionCallback(true)
+                         }
 
-            
         }
-
       }
+    
+    
+    func allFilesCompletelyDownloadedWithDownloadCompletionCallBack(downloadCompletionCallback: @escaping AWSS3DownloadCompletionCallback) {
+
+        if (self.sheetsData != nil) {
+//            let tempMutableData:NSMutableArray! = CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (self.sheetsData as! CFArrayRef), kCFPropertyListMutableContainersAndLeaves)
+//
+//            if self.sheetsData
+//                {self.sheetsData = nil}
+//
+//            self.sheetsData = tempMutableData
+//
+//            CFRelease(tempMutableData)
+//
+             tempCurrentFreshSheetCount = 0
+//
+//            dispatch_async(dispatch_get_main_queue(), {
+//                let appDelegate:AppDelegate! = UIApplication.sharedApplication().delegate()
+//                appDelegate.hideLoader()
+//            })
+
+            downloadCompletionCallback(true)
+        }
+    }
+    
+    func isSheetAlreadyPresent(fileName:String!) -> Bool {
+        if !Utilities.sharedInstance.checkStringContainsText(text: fileName)
+            {return false}
+
+        let plistSheetDetailArray:NSMutableArray! =  SharedDelegate.sharedInstance.plistSheetDetailArray
+
+        for sheetDic in plistSheetDetailArray {
+           
+            let sheetObj = sheetDic as! NSDictionary
+
+            if let afileName = sheetObj[AppConstant.sheet_file_name] as? String {
+                if (afileName == fileName){
+                    return true
+                }
+            }
+         }
+
+        return false
+    }
+    
+    
+    /**    @function    :removeSheetFromCurrentPlistWithFileName:
+     @discussion    :It will remove the dic from sheets array with the filename.
+     @param            :fileName: contains the filename of the sheet.
+     @return        :-
+     */
+    func removeSheetFromCurrentPlistWithFileName(fileName:String!) {
+        if !Utilities.sharedInstance.checkStringContainsText(text: fileName)
+            {return}
+
+        var plistSheetDetailArray:NSMutableArray! =  SharedDelegate.sharedInstance.plistSheetDetailArray
+        
+        for sheetDic in plistSheetDetailArray {
+           
+            let sheetObj = sheetDic as! NSDictionary
+
+            if let afileName = sheetObj[AppConstant.sheet_file_name] as? String {
+                if (afileName == fileName){
+                    plistSheetDetailArray.remove(sheetObj)
+                    break
+                }
+            }
+         }
+    }
 }

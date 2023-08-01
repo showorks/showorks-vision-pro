@@ -37,7 +37,10 @@ struct HomeView: View {
 //                }))
             }
             Task {
-                await homeViewModel.loadPlistArrayWithSheetsDetailData()
+//                await homeViewModel.loadPlistArrayWithSheetsDetailData()
+                DataCenter.sharedInstance.setupWithAccessKey(_accessKey: UserSettings.shared.accessKey, andSecretKey: UserSettings.shared.secretKey) { downloadCompleted in
+                    print(downloadCompleted)
+                }
             }
             
         }

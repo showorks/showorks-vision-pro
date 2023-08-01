@@ -36,7 +36,7 @@ class S3Handler {
 
                 self.client = try await S3Client(config: s3Config)
 
-                var filesList = try await self.listBucketFiles(bucket: AppConstant.bucketName)
+//                var filesList = try await self.listBucketFiles(bucket: AppConstant.bucketName)
 
             } catch {
                 print("ERROR: ", dump(error, name: "Initializing S3 client"))

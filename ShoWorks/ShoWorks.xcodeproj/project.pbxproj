@@ -57,6 +57,7 @@
 		CFE6ED152A5EB57100F6867E /* ShoWorksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE6ED142A5EB57100F6867E /* ShoWorksApp.swift */; };
 		CFE6ED192A5EB57200F6867E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFE6ED182A5EB57200F6867E /* Assets.xcassets */; };
 		CFE6ED1C2A5EB57200F6867E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFE6ED1B2A5EB57200F6867E /* Preview Assets.xcassets */; };
+		CFFE1B1B2A7903B5009F6426 /* SheetParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFE1B1A2A7903B5009F6426 /* SheetParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,9 @@
 		CFE6ED142A5EB57100F6867E /* ShoWorksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksApp.swift; sourceTree = "<group>"; };
 		CFE6ED182A5EB57200F6867E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFE6ED1B2A5EB57200F6867E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CFFE1B182A7903B4009F6426 /* ShoWorks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShoWorks-Bridging-Header.h"; sourceTree = "<group>"; };
+		CFFE1B192A7903B5009F6426 /* SheetParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SheetParser.h; sourceTree = "<group>"; };
+		CFFE1B1A2A7903B5009F6426 /* SheetParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SheetParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +155,8 @@
 		CF4384562A672C96000A7022 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CFFE1B192A7903B5009F6426 /* SheetParser.h */,
+				CFFE1B1A2A7903B5009F6426 /* SheetParser.m */,
 				CF1700322A6A898F006A7415 /* UIKit+Extensions.swift */,
 				CF5BC6B52A69423100114C32 /* DataCenter.swift */,
 				CF1700362A6A93D0006A7415 /* PasteboardHelper.swift */,
@@ -163,6 +169,7 @@
 				CF17008C2A710F98006A7415 /* Utilities.swift */,
 				CF1700912A7110A4006A7415 /* SharedDelegate.swift */,
 				CF1700952A7112F8006A7415 /* AppConstant.swift */,
+				CFFE1B182A7903B4009F6426 /* ShoWorks-Bridging-Header.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -289,6 +296,7 @@
 				TargetAttributes = {
 					CFE6ED0C2A5EB57100F6867E = {
 						CreatedOnToolsVersion = 15.0;
+						LastSwiftMigration = 1500;
 					};
 				};
 			};
@@ -365,6 +373,7 @@
 				CF09E6442A656FC200C947A3 /* Alerts.swift in Sources */,
 				CF1700922A7110A4006A7415 /* SharedDelegate.swift in Sources */,
 				CF1700372A6A93D0006A7415 /* PasteboardHelper.swift in Sources */,
+				CFFE1B1B2A7903B5009F6426 /* SheetParser.m in Sources */,
 				CF09E6362A6564FD00C947A3 /* Placeholder.swift in Sources */,
 				CF1700962A7112F8006A7415 /* AppConstant.swift in Sources */,
 			);
@@ -497,6 +506,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ShoWorks/Preview Content\"";
@@ -521,6 +531,8 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ShoWorks/Utils/ShoWorks-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,7";
 			};
@@ -531,6 +543,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ShoWorks/Preview Content\"";
@@ -555,6 +568,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ShoWorks/Utils/ShoWorks-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,7";
 			};
