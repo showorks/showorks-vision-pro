@@ -25,10 +25,6 @@ class S3Handler {
         public init() async {
             do {
                 
-//                let config = try await S3Client.S3ClientConfiguration()
-//                
-//                config.region = AppConstant.AWSRegionUSEast1
-                
                 let credentials = AWSCredentials(accessKey: UserSettings.shared.accessKey!, secret: UserSettings.shared.secretKey!)
                    
                 let s3Config = try S3Client.S3ClientConfiguration(region: AppConstant.AWSRegionUSEast1,
@@ -36,11 +32,10 @@ class S3Handler {
 
                 self.client = try await S3Client(config: s3Config)
 
-//                var filesList = try await self.listBucketFiles(bucket: AppConstant.bucketName)
-
             } catch {
-                print("ERROR: ", dump(error, name: "Initializing S3 client"))
-                exit(1)
+                print("ERROR: ", dump(error, name: "Something wrong with S3 client"))
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.PlistSyncedWithServerFailure), object: nil)
+                exit(1) // TODO: FIX REQUIRED _ LOKESH SEHGAL
             }
         }
 

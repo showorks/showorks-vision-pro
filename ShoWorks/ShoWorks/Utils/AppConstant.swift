@@ -51,5 +51,5 @@ struct AppConstant {
     static let SettingsSlaveQRCodeHTMLNotification = "SettingsSlaveQRCodeHTMLNotification"
     static let SettingsSlaveLoadUserModeNotification = "SettingsSlaveLoadUserModeNotification"
     static let SettingsSlaveLoadDemoModeNotification = "SettingsSlaveLoadDemoModeNotification"
-
+    static let PlistSyncedWithServerFailure = "PlistSyncedWithServerFailure"
 }

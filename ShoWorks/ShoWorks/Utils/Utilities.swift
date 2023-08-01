@@ -22,7 +22,7 @@ class Utilities {
                print(error.localizedDescription)
            }
         }
-        print(folderPath)
+//        print(folderPath)
    }
     
     func isDataPresentForCurrentSerialNumber() -> Bool {
