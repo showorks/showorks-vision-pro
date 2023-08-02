@@ -15,6 +15,8 @@ import AWSS3Outposts
 import AWSS3Control
 
 typealias AWSS3ObjectsFetchingCallback = (_ objects: NSMutableArray) -> Void
+typealias AWSS3ListObjectsFetchingCallback = (_ objects: [String]) -> Void
+typealias AWSS3ListFileNamesFetchingCallback = (_ handler: S3Handler, _ objects: [String]) -> Void
 typealias AWSS3DownloadCompletionCallback = (_ downloadCompleted: Bool) -> Void
 
 class DataCenter : NSObject,SheetParserDelegate {
@@ -68,15 +70,16 @@ class DataCenter : NSObject,SheetParserDelegate {
 
          showLoader()
         
-        self.getListOfKeysFromServer(awsS3ObjectsFetchingCallback: { (objects:NSMutableArray!) in
-
+        self.listAllKeysFromServer { handler, objects in
+            
+            
             DispatchQueue.main.async {
                 self.hideLoader()
             }
             
             Task {
                 
-                await self.downloadFreshFilesFromServerWithAccessKey(_accessKey: _accessKey, andSecretKey:_secretKey, withShowAlert:true, withListOfObjects:objects, withDownloadCompletionCallBack:{ (downloadCompleted:Bool) in
+                await self.downloadFreshFilesFromServerWithAccessKey(handler: handler, _accessKey: _accessKey, andSecretKey:_secretKey, withShowAlert:true, withListOfObjects:objects, withDownloadCompletionCallBack:{ (downloadCompleted:Bool) in
 
                      if downloadCompleted {
 
@@ -132,49 +135,42 @@ class DataCenter : NSObject,SheetParserDelegate {
                  })
             }
             
-
-         })
-
-
+            
+        }
+        
      }
     
-    func getListOfKeysFromServer(awsS3ObjectsFetchingCallback:AWSS3ObjectsFetchingCallback) {
+    func listAllKeysFromServer(awsListAllFilesHandler: @escaping AWSS3ListFileNamesFetchingCallback){
         
-        awsS3ObjectsFetchingCallback(NSMutableArray())
+        Task {
         
-//           let getListObjectsRequest:AWSS3ListObjectsRequest! = AWSS3ListObjectsRequest()
-//        
-//        
-//
-//           getListObjectsRequest.bucket = BUCKET_NAME
-//
-//           AWSS3.defaultS3().listObjects(getListObjectsRequest).continueWithBlock({ (listAllObjects:BFTask!) in
-//
-//               if listAllObjects.error
-//               {
-//                   NSLog("listAllObjects Error: %@",listAllObjects.error)
-//                   dispatch_async(dispatch_get_main_queue(), {
-//                       self.showAlertOnInvalidAccessKeyAndSecretKey()
-//                       let appDelegate:AppDelegate! = UIApplication.sharedApplication().delegate()
-//                       appDelegate.hideLoader()
-//
-//                       NSNotificationCenter.defaultCenter().postNotificationName(PlistSyncedWithServerFailure, object:nil)
-//                       awsS3ObjectsFetchingCallback(nil)
-//                   })
-//               }
-//               else
-//               {
-//                   dispatch_async(dispatch_get_main_queue(), {
-//                       awsS3ObjectsFetchingCallback(listAllObjects.result.contents().mutableCopy())
-//                   })
-//               }
-//
-//               return nil
-//           })
-       }
+            let handler = await S3Handler()
+            
+            var fileNamesList:[String] = []
+      
+            do {
+                
+                fileNamesList = try await handler.listBucketFiles(bucket: AppConstant.bucketName)
+
+                awsListAllFilesHandler(handler,fileNamesList) // List of files
+                
+            } catch {
+                
+                print("Show some alert here")
+                
+                awsListAllFilesHandler(handler,[]) // Empty list
+                    
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.PlistSyncedWithServerFailure), object: nil)
+                
+                return
+        
+                
+            }
+        }
+    }
     
     
-    func downloadFreshFilesFromServerWithAccessKey(_accessKey:String!, andSecretKey _secretKey:String!, withShowAlert showAlert:Bool, withListOfObjects listedObjects:NSMutableArray!, withDownloadCompletionCallBack downloadCompletionCallback: @escaping AWSS3DownloadCompletionCallback) async {
+    func downloadFreshFilesFromServerWithAccessKey(handler:S3Handler, _accessKey:String!, andSecretKey _secretKey:String!, withShowAlert showAlert:Bool, withListOfObjects fileNamesList:[String], withDownloadCompletionCallBack downloadCompletionCallback: @escaping AWSS3DownloadCompletionCallback) async {
 
         Utilities.sharedInstance.createFolderInDocumentDirectoryWithPath(folderPath: PlistManager.sharedInstance.getPlistFilePathForCurrentSettings().stringByDeletingLastPathComponent)
 
@@ -182,27 +178,6 @@ class DataCenter : NSObject,SheetParserDelegate {
 
         if (self.sheetsData == nil)
             {self.sheetsData = NSMutableArray()}
-
-
-        var handler = await S3Handler()
-        
-        var fileNamesList:[String] = []
-  
-        do {
-            
-            fileNamesList = try await handler.listBucketFiles(bucket: AppConstant.bucketName)
-
-        } catch {
-            
-            print("Show some alert here")
-                
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.PlistSyncedWithServerFailure), object: nil)
-            
-            return
-    
-            
-        }
-        
 
         let totalFreshSheetsToBeDownloaded:NSMutableArray! = self.getTotalCountOfFreshSheetsFromSummaryArray(summaries: fileNamesList)
 
@@ -375,7 +350,7 @@ class DataCenter : NSObject,SheetParserDelegate {
                 
                 print("Failed to delete from s3")
                     
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.PlistSyncedWithServerFailure), object: nil)
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.PlistSyncedWithServerFailure), object: nil)
                 
                 return
         
@@ -477,98 +452,95 @@ class DataCenter : NSObject,SheetParserDelegate {
         DispatchQueue.main.async {
             self.showLoader()
         }
-        
-        var handler = await S3Handler()
-        
-        self.getListOfKeysFromServer { objects in
+                
+        self.listAllKeysFromServer { handler, objects in
             
-            var plistSheetDetailArray:NSMutableArray! =  SharedDelegate.sharedInstance.plistSheetDetailArray
-            
-            if let plistArray = plistSheetDetailArray {
-                                                
-                var currentCompleteSheet:Int = 0
-                var iIndex = 0
+                var plistSheetDetailArray:NSMutableArray! =  SharedDelegate.sharedInstance.plistSheetDetailArray
+                
+                if let plistArray = plistSheetDetailArray {
+                                                    
+                    var currentCompleteSheet:Int = 0
+                    var iIndex = 0
 
-                for sheetDic in plistSheetDetailArray {
-                   
-                    let sheetData = sheetDic as! NSDictionary
+                    for sheetDic in plistSheetDetailArray {
+                       
+                        let sheetData = sheetDic as! NSDictionary
 
-                    if let fileName = sheetData[AppConstant.sheet_file_name] as? String {
-                        
-                        let status = fileName.lastLetter()
-                        
-                        if (status == AppConstant.status_draft || status == AppConstant.status_fresh){
-                            continue
-                        }
-                        
-                        let fileNameWithoutExtension:String! = fileName.stringByDeletingPathExtension
-                        
-                        for object in objects {
+                        if let fileName = sheetData[AppConstant.sheet_file_name] as? String {
                             
-                            let fileName:String = object as! String
+                            let status = fileName.lastLetter()
                             
-                            let fileNameAtServerWithoutExtension = fileName.stringByDeletingPathExtension
+                            if (status == AppConstant.status_draft || status == AppConstant.status_fresh){
+                                continue
+                            }
                             
-                            if (fileNameAtServerWithoutExtension == fileNameWithoutExtension){
+                            let fileNameWithoutExtension:String! = fileName.stringByDeletingPathExtension
+                            
+                            for fileName in objects {
                                 
-                                if (status == AppConstant.status_void){
+                                let fileNameAtServerWithoutExtension = fileName.stringByDeletingPathExtension
+                                
+                                if (fileNameAtServerWithoutExtension == fileNameWithoutExtension){
                                     
-                                    self.deleteFileWithKey(handler: handler, fileName: fileName)
-                                    
-                                }else if (status == AppConstant.status_complete){
-                                    
-                                    let statusOnServer = fileName.lastLetter()
-                                    
-                                    if (statusOnServer == AppConstant.status_fresh) {
+                                    if (status == AppConstant.status_void){
+                                        
                                         self.deleteFileWithKey(handler: handler, fileName: fileName)
+                                        
+                                    }else if (status == AppConstant.status_complete){
+                                        
+                                        let statusOnServer = fileName.lastLetter()
+                                        
+                                        if (statusOnServer == AppConstant.status_fresh) {
+                                            self.deleteFileWithKey(handler: handler, fileName: fileName)
+                                        }
+                                        
                                     }
                                     
                                 }
                                 
+                            } // End of inner loop
+                            
+                            if(status == AppConstant.status_void){
+                                plistSheetDetailArray.removeObject(at: iIndex)
+                                // TODO: LOKESH SEHGAL - MOVE TO ARCHIVE
+                                iIndex = -1
                             }
-                            
-                        } // End of inner loop
+                            else if(status == AppConstant.status_complete){
+                                
+                                
+                                let hasPutFileOnServer:Bool = self.putFileOnServerWithKey(handler: handler, key: fileName, andDataDic:plistSheetDetailArray.object(at: iIndex) as! NSMutableDictionary)
+
+    //                             if hasPutFileOnServer {
+                                // TODO: LOKESH SEHGAL - MOVE TO ARCHIVE
+    //                                 self.moveDataToArchiveSheetWithIndex(i)
+    //                             }
+                                
+                                plistSheetDetailArray.removeObject(at: iIndex)
+
+                                iIndex -= 1
+
+                                currentCompleteSheet += 1
+                                
+                                let sheetsNotificationModel = self.getSheetSyncModelWithSyncType(syncType: AppConstant.SyncType.UPLOAD, currentCount:currentCompleteSheet, totalCount:totalCompleteSheets)
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.HomeScreenSyncInProcessNotification), object: sheetsNotificationModel)
+                            }
+                        }
                         
-                        if(status == AppConstant.status_void){
-                            plistSheetDetailArray.removeObject(at: iIndex)
-                            // TODO: LOKESH SEHGAL - MOVE TO ARCHIVE
-                            iIndex = -1
-                        }
-                        else if(status == AppConstant.status_complete){
-                            
-                            
-                            let hasPutFileOnServer:Bool = self.putFileOnServerWithKey(handler: handler, key: fileName, andDataDic:plistSheetDetailArray.object(at: iIndex) as! NSMutableDictionary)
-
-//                             if hasPutFileOnServer {
-                            // TODO: LOKESH SEHGAL - MOVE TO ARCHIVE
-//                                 self.moveDataToArchiveSheetWithIndex(i)
-//                             }
-                            
-                            plistSheetDetailArray.removeObject(at: iIndex)
-
-                            iIndex -= 1
-
-                            currentCompleteSheet += 1
-                            
-                            let sheetsNotificationModel = self.getSheetSyncModelWithSyncType(syncType: AppConstant.SyncType.UPLOAD, currentCount:currentCompleteSheet, totalCount:totalCompleteSheets)
-                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.HomeScreenSyncInProcessNotification), object: sheetsNotificationModel)
-                        }
-                    }
+                        iIndex += 1
+                     }
                     
-                    iIndex += 1
-                 }
+                    self.downloadFilesFromServerAndInsertInPlistDetailArray(handler: handler, listOfKeysAtServer: objects)
+                }
                 
-                self.downloadFilesFromServerAndInsertInPlistDetailArray(listOfKeysAtServer: objects)
-            }
-            
+                
         }
+        
     }
     
-    func downloadFilesFromServerAndInsertInPlistDetailArray(listOfKeysAtServer:NSMutableArray!) {
-        //        let appDelegate:AppDelegate! = UIApplication.sharedApplication().delegate()
+    func downloadFilesFromServerAndInsertInPlistDetailArray(handler: S3Handler, listOfKeysAtServer:[String]!) {
         
         Task {
-            await self.downloadFreshFilesFromServerWithAccessKey(_accessKey: self.accessKey, andSecretKey:self.secretKey, withShowAlert:false, withListOfObjects:listOfKeysAtServer, withDownloadCompletionCallBack:{ (downloadCompleted:Bool) in
+            await self.downloadFreshFilesFromServerWithAccessKey(handler: handler, _accessKey: self.accessKey, andSecretKey:self.secretKey, withShowAlert:false, withListOfObjects:listOfKeysAtServer, withDownloadCompletionCallBack:{ (downloadCompleted:Bool) in
             
             //        if(hasComeFromAFlowWhenFoundSomethingAtleast){
             
@@ -578,9 +550,9 @@ class DataCenter : NSObject,SheetParserDelegate {
                 return
             }
             
-            var aPlistSheetsArray = NSMutableArray(array: plistArray)
+                let aPlistSheetsArray = NSMutableArray(array: plistArray)
             
-            if (aPlistSheetsArray != nil) && aPlistSheetsArray.count>0 && (self.sheetsData != nil) && self.sheetsData!.count > 0 {
+                if (aPlistSheetsArray != nil) && aPlistSheetsArray.count>0 && (self.sheetsData != nil) && self.sheetsData!.count > 0 {
                 
                 let temporaryArray:NSMutableArray! = NSMutableArray()
                 
@@ -592,11 +564,11 @@ class DataCenter : NSObject,SheetParserDelegate {
                         
                         let sheetObj = sheetDic as! NSDictionary
                         
-                        let downloadedSheetName:String! = (sheetObj.object(forKey: AppConstant.sheet) as! NSDictionary).value(forKey: AppConstant.sheet_name) as! String
+                        let downloadedSheetName:String! = (sheetObj.object(forKey: AppConstant.sheet) as! NSDictionary).value(forKey: AppConstant.sheet_name) as? String
                         
                         let plistSheet = downloadedSheet as! NSDictionary
                         
-                        let plistSheetName:String! = (plistSheet.object(forKey: AppConstant.sheet) as! NSDictionary).value(forKey: AppConstant.sheet_name) as! String
+                        let plistSheetName:String! = (plistSheet.object(forKey: AppConstant.sheet) as! NSDictionary).value(forKey: AppConstant.sheet_name) as? String
                         
                         if (downloadedSheetName != nil) && (plistSheetName != nil) && (plistSheetName == downloadedSheetName) {
                             hasEntryFound = true
