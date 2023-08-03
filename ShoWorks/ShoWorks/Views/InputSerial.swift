@@ -19,7 +19,7 @@ struct InputSerial: View {
     @State private var aSerialNumberString: String = "" // testing 395605390285163174
     @State private var alertItem: AlertItem?
     @ObservedObject var authenticationViewModel: ShoWorksAuthenticationModel = ShoWorksAuthenticationModel()
-    
+    @State var mScreenState: AppConstant.AppStartupStatus = AppConstant.AppStartupStatus.demoMode
     
     var body: some View {
         ZStack(){
@@ -89,7 +89,7 @@ struct InputSerial: View {
                     
                     .navigationDestination(
                          isPresented: $authenticationViewModel.isUserAuthenticated) {
-                             HomeView().environmentObject(authenticationViewModel)
+                             HomeView(mScreenState: mScreenState).environmentObject(authenticationViewModel)
                               Text("")
                                   .hidden()
                          }
@@ -128,10 +128,12 @@ struct InputSerial: View {
             // Lets load up everything in the demo mode
             UserSettings.shared.isDemoUserEnabled = true
             authenticationViewModel.isUserAuthenticated = true // But authentication is in demo mode
+            mScreenState = AppConstant.AppStartupStatus.demoMode
         }
         else if self.aSerialNumberString.count>0 {
             // Validate the serial number through an API first
             self.validateSerialNumber(serialKey: self.aSerialNumberString)
+            mScreenState = AppConstant.AppStartupStatus.fetchSheetFromServer
         }
 
     }
@@ -146,11 +148,13 @@ struct InputSerial: View {
                 
                 if self.isDataPresentForCurrentSerialNumber(){
                     // PUSH TO HOME SCREEN WITH STATUS fetchSheetFromLocal
+                    mScreenState = AppConstant.AppStartupStatus.fetchSheetFromLocal
                 }else{
                     if Utilities.sharedInstance.isNetworkStatusAvailable() {
                         self.showNoNetworkAlertMessage()
                     }else{
                         UserSettings.shared.isDemoUserEnabled = false
+                        mScreenState = AppConstant.AppStartupStatus.fetchSheetFromServer
                         authenticationViewModel.authenticateWithSerialNumber(serialNumber: aSerialNumberString)
                     }
                 }
