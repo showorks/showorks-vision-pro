@@ -118,6 +118,14 @@ class PlistManager {
         return nil
     }
     
+    func fetchDataOfSheetByIndex(index:Int) -> NSMutableDictionary! {
+            let plistArray:NSMutableArray! = self.getPlistData()
+            if plistArray.count > 0
+            {return plistArray.object(at: index) as! NSMutableDictionary}
+
+            return nil
+    }
+    
     
     /// Fetch dictionaires..
     /// - Returns: returns an array consists of data of dictionaries

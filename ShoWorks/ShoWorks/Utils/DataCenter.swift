@@ -159,6 +159,8 @@ class DataCenter : NSObject,SheetParserDelegate {
                 print("Show some alert here")
                 
                 awsListAllFilesHandler(handler,[]) // Empty list
+                
+//                TODO: LOKESH SEHGAL showAlertOnInvalidAccessKeyAndSecretKey
                     
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.PlistSyncedWithServerFailure), object: nil)
                 
@@ -421,7 +423,7 @@ class DataCenter : NSObject,SheetParserDelegate {
 
         let plistSheetDetailArray:NSMutableArray! =  SharedDelegate.sharedInstance.plistSheetDetailArray
         
-        guard let plistArray = plistSheetDetailArray else {
+        guard plistSheetDetailArray != nil else {
             return
         }
         
@@ -723,4 +725,28 @@ class DataCenter : NSObject,SheetParserDelegate {
 
             return completeSheets
         }
+    
+    func allFilesCompletelyDownloadedWithFailureDownloadCompletionCallBack(downloadCompletionCallback:AWSS3DownloadCompletionCallback) {
+
+        if let array = self.sheetsData {
+
+            tempCurrentFreshSheetCount = 0
+
+            downloadCompletionCallback(true)
+        }
+    }
+    
+    // TODO: LOKESH SEHGAL
+    // I NEED TO WORK ON IMPLEMENTING THE BELOW METHODS FOR ARCHIVING FEATURE AND FIX THE USAGE
+    // 1. moveDataToArchiveSheetWithIndex
+    
+    func showAlertOnInvalidAccessKeyAndSecretKey(){
+//        let alertController = UIAlertController(title: "ShoWorks", message: "some error message", preferredStyle: .alert)
+//        let okAction = UIAlertAction(title: "OK", style: .default)
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+//        alertController.addAction(okAction)
+//        alertController.addAction(cancelAction)
+//        self.present(alertController, animated: true)
+    }
+    
 }
