@@ -87,6 +87,17 @@
         }
       }
     },
+    "InvalidSerialKeyAlertMessage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is not a valid ShoWorks serial number. You may find this number by opening ShoWorks on your Windows machine and selecting Help, then About ShoWorks."
+          }
+        }
+      }
+    },
     "ok" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -105,6 +116,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Serial Number or Cancel for DEMO MODE"
+          }
+        }
+      }
+    },
+    "ServerNotResponding" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You are not connected to the Internet which is required to sync."
+          }
+        }
+      }
+    },
+    "ServerNotRespondingTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amazon S3 Authentication Failed"
           }
         }
       }

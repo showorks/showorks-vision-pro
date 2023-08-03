@@ -30,6 +30,9 @@ struct AppConstant {
     static let status_complete = "c"
     static let status_draft = "d"
     
+    static let SerialNumberMinLength = 18
+    static let SerialNumberMaxLength = 22
+    
     // File paths
     
     static let append_cache_path_with_plist_file = "Library/Caches/%@/SheetsData.plist" // previously called as APPEND_CACHE_PATH_WITH_PLIST_FILE
@@ -52,4 +55,8 @@ struct AppConstant {
     static let SettingsSlaveLoadUserModeNotification = "SettingsSlaveLoadUserModeNotification"
     static let SettingsSlaveLoadDemoModeNotification = "SettingsSlaveLoadDemoModeNotification"
     static let PlistSyncedWithServerFailure = "PlistSyncedWithServerFailure"
+    
+    enum AppStartupStatus {
+      case demoMode, fetchSheetFromLocal, fetchSheetFromServer
+    }
 }

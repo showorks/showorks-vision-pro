@@ -16,8 +16,8 @@ struct InputSerial: View {
     @State private var isSerialNumberTextFieldHidden = true
     @State private var aSerialNumberButtonTitle = "enter_a_num".localized()
     @State private var aContinueButtonTitle = "continue_in_demo_mode".localized()
-    @State var aSerialNumberString: String = "395605390285163174" // testing 395605390285163174
-    @State var alertItem: AlertItem?
+    @State private var aSerialNumberString: String = "" // testing 395605390285163174
+    @State private var alertItem: AlertItem?
     @ObservedObject var authenticationViewModel: ShoWorksAuthenticationModel = ShoWorksAuthenticationModel()
     
     
@@ -65,28 +65,7 @@ struct InputSerial: View {
                             .foregroundColor(Color.white)
                             .cornerRadius(5)
                             .onTapGesture {
-
-                                if(self.authenticationViewModel.isLoading){
-                                    return
-                                }
-
-                                if (aSerialNumberString.isEmpty && !self.isSerialNumberTextFieldHidden){
-                                    self.alertItem = AlertItem(type: .dismiss(title: "showorks".localized(), message: "enter_serial_to_continue".localized(), dismissText: "ok".localized(), dismissAction: {
-                                        // Do something here
-                                    }))
-                                }
-                                if(self.isSerialNumberTextFieldHidden && aSerialNumberString.isEmpty){
-                                    // This means user is trying to go for a demo mode
-                                    // Lets load up everything in the demo mode
-                                    UserSettings.shared.isDemoUserEnabled = true
-                                    authenticationViewModel.isUserAuthenticated = true // But authentication is in demo mode
-                                }
-                                else if(!aSerialNumberString.isEmpty){
-                                    // Validate the serial number through an API first
-//                                    aSerialNumberString = "395605390285163174" // hardcoded for testing
-                                    UserSettings.shared.isDemoUserEnabled = false
-                                    authenticationViewModel.authenticateWithSerialNumber(serialNumber: aSerialNumberString)
-                                }
+                                continueButtonTapped()
                             }
                         
                         ActivityIndicatorView(isVisible: $authenticationViewModel.isLoading, type: .flickeringDots(count: 10))
@@ -133,6 +112,80 @@ struct InputSerial: View {
         .alert(item: self.$alertItem, content: { a in
             a.asAlert()
         })
+    }
+    
+    func continueButtonTapped(){
+        
+        if(self.authenticationViewModel.isLoading){
+            return
+        }
+
+        if self.aSerialNumberString.isEmpty && !self.isSerialNumberTextFieldHidden{
+            self.showAlertForEnteringSerialNumberToContinue()
+        }
+        else if self.isSerialNumberTextFieldHidden && self.aSerialNumberString.isEmpty {
+            // This means user is trying to go for a demo mode
+            // Lets load up everything in the demo mode
+            UserSettings.shared.isDemoUserEnabled = true
+            authenticationViewModel.isUserAuthenticated = true // But authentication is in demo mode
+        }
+        else if self.aSerialNumberString.count>0 {
+            // Validate the serial number through an API first
+            self.validateSerialNumber(serialKey: self.aSerialNumberString)
+        }
+
+    }
+    
+    func validateSerialNumber(serialKey:String){
+
+        if Utilities.sharedInstance.checkStringContainsText(text: serialKey){
+            
+            if(serialKey.count >= AppConstant.SerialNumberMinLength && serialKey.count <= AppConstant.SerialNumberMaxLength) {
+                
+                UserSettings.shared.serialKey = serialKey
+                
+                if self.isDataPresentForCurrentSerialNumber(){
+                    // PUSH TO HOME SCREEN WITH STATUS fetchSheetFromLocal
+                }else{
+                    if Utilities.sharedInstance.isNetworkStatusAvailable() {
+                        self.showNoNetworkAlertMessage()
+                    }else{
+                        UserSettings.shared.isDemoUserEnabled = false
+                        authenticationViewModel.authenticateWithSerialNumber(serialNumber: aSerialNumberString)
+                    }
+                }
+            }else{
+                self.showInvalidAlertMessage()
+            }
+        }else{
+            self.showAlertForEnteringSerialNumberToContinue()
+        }
+    }
+    
+    func showInvalidAlertMessage(){
+        self.alertItem = AlertItem(type: .dismiss(title: "showorks".localized(), message: "InvalidSerialKeyAlertMessage".localized(), dismissText: "ok".localized(), dismissAction: {
+            // Do something here
+        }))
+    }
+    
+    func showNoNetworkAlertMessage(){
+        self.alertItem = AlertItem(type: .dismiss(title: "ServerNotRespondingTitle".localized(), message: "ServerNotResponding".localized(), dismissText: "ok".localized(), dismissAction: {
+            // Do something here
+        }))
+    }
+    
+    func showAlertForEnteringSerialNumberToContinue(){
+        self.alertItem = AlertItem(type: .dismiss(title: "showorks".localized(), message: "enter_serial_to_continue".localized(), dismissText: "ok".localized(), dismissAction: {
+            // Do something here
+        }))
+    }
+    
+    func isDataPresentForCurrentSerialNumber() -> Bool {
+        var dataPath:String! = PlistManager.sharedInstance.getPlistFilePathForCurrentSettings()
+
+        dataPath = dataPath.stringByDeletingLastPathComponent
+
+        return FileManager.default.fileExists(atPath: dataPath)
     }
 }
 

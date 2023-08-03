@@ -18,6 +18,38 @@
             endingLineNumber = "179"
             landmarkName = "downloadFreshFilesFromServerWithAccessKey(handler:_accessKey:andSecretKey:withShowAlert:withListOfObjects:withDownloadCompletionCallBack:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5647372C-68F3-4F13-B602-D2270F03561A - 5d095b5260ce80ea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ShoWorks.DataCenter.downloadFreshFilesFromServerWithAccessKey(handler: ShoWorks.S3Handler, _accessKey: Swift.Optional&lt;Swift.String&gt;, andSecretKey: Swift.Optional&lt;Swift.String&gt;, withShowAlert: Swift.Bool, withListOfObjects: Swift.Array&lt;Swift.String&gt;, withDownloadCompletionCallBack: (Swift.Bool) -&gt; ()) async -&gt; ()"
+                  moduleName = "ShoWorks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lokesh/Documents/GitHub/showorks-vision-pro/ShoWorks/ShoWorks/Utils/DataCenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "177"
+                  endingLineNumber = "177"
+                  offsetFromSymbolStart = "448">
+               </Location>
+               <Location
+                  uuid = "5647372C-68F3-4F13-B602-D2270F03561A - 5d095b5260ce80a8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for ShoWorks.DataCenter.downloadFreshFilesFromServerWithAccessKey(handler: ShoWorks.S3Handler, _accessKey: Swift.Optional&lt;Swift.String&gt;, andSecretKey: Swift.Optional&lt;Swift.String&gt;, withShowAlert: Swift.Bool, withListOfObjects: Swift.Array&lt;Swift.String&gt;, withDownloadCompletionCallBack: (Swift.Bool) -&gt; ()) async -&gt; ()"
+                  moduleName = "ShoWorks"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lokesh/Documents/GitHub/showorks-vision-pro/ShoWorks/ShoWorks/Utils/DataCenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "179"
+                  endingLineNumber = "179"
+                  offsetFromSymbolStart = "448">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
