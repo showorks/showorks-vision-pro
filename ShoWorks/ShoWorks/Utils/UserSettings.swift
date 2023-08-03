@@ -20,6 +20,7 @@ class UserSettings {
         static let recentlyCreated = "recentlyCreated"
         static let selectedChannel = "selectedChannel"
         static let isDemoUserEnabled = "demoUserEnabled"
+        static let firstName = "firstName"
     }
     
     var serialKey: String? {
@@ -85,6 +86,15 @@ class UserSettings {
         }
     }
     
+    var firstName: String? {
+        get {
+            UserDefaults.standard.string(forKey: Keys.firstName)
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: Keys.firstName)
+        }
+    }
+
     func removeAllUserSettings() {
         let defaults = UserDefaults.standard
         let dictionary = defaults.dictionaryRepresentation()

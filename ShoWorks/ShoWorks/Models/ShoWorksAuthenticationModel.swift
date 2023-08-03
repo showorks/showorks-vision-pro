@@ -44,12 +44,16 @@ class ShoWorksAuthenticationModel: ObservableObject, ShoWorksService {
                     let accessKey = authenticationResponseObj.AKID
 
                     let secretKey = authenticationResponseObj.SAK
+                    
+                    let firstName = authenticationResponseObj.FN
 
                     UserSettings.shared.accessKey = accessKey
 
                     UserSettings.shared.secretKey = secretKey
 
                     UserSettings.shared.serialKey = serialNumber
+                    
+                    UserSettings.shared.firstName = firstName
                     
                     UserSettings.shared.recentlyCreated = true
                     

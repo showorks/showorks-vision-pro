@@ -43,6 +43,17 @@
         }
       }
     },
+    "demo_mode" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Demo Mode"
+          }
+        }
+      }
+    },
     "enter_a_num" : {
       "extractionState" : "manual",
       "localizations" : {

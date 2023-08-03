@@ -24,6 +24,8 @@ struct HomeView: View {
 
     @State var alertItem: AlertItem?
     
+    @State var aUserName: String = ""
+    
     @State var mScreenState: AppConstant.AppStartupStatus?
 
     @ObservedObject var homeViewModel = HomeViewModel()
@@ -34,20 +36,32 @@ struct HomeView: View {
             ShoWorksBackground()
                 .edgesIgnoringSafeArea(.all)
             
-            NavigationSplitView {
-                List(ListOptions.allCases, id: \.self, selection: $mListOption) { listoption in
-                    NavigationLink(listoption.rawValue, value: listoption)
-                }.navigationTitle("showorks".localized())
-            } detail: {
-                Text(mListOption?.rawValue ?? "")
-                    .font(.largeTitle)
-            }.navigationBarHidden(true)
-            .navigationViewStyle(.automatic)
-            .alert(item: self.$alertItem, content: { a in
-                a.asAlert()
-            }).padding(.top,90)
-            
-        }.edgesIgnoringSafeArea(.all)
+            VStack {
+                HomeTitleLayout(aUserName: $aUserName)
+                NavigationSplitView {
+                    List(ListOptions.allCases, id: \.self, selection: $mListOption) { listoption in
+                        NavigationLink(listoption.rawValue, value: listoption)
+                    }.navigationTitle("showorks".localized())
+                } detail: {
+                    Text(mListOption?.rawValue ?? "")
+                        .font(.largeTitle)
+                }.navigationBarHidden(true)
+//                .background(Color.white)
+                .navigationSplitViewStyle(.automatic)
+                .alert(item: self.$alertItem, content: { a in
+                    a.asAlert()
+                })
+                
+            }
+                .padding(.top,150)
+        }
+        .onAppear {
+            if viewModel.authenticationResponse == nil {
+                aUserName = "demo_mode".localized()
+            }else{
+                aUserName = UserSettings.shared.firstName ?? "demo_mode".localized()
+            }
+        }
         
     }
     
@@ -78,4 +92,27 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
+}
+
+
+
+struct HomeTitleLayout: View {
+    @Binding var aUserName: String
+    var body: some View {
+            
+        HStack(){
+            Text("welcome".localized() + " " + aUserName).font(.heleveticNeueThin(size: 42))
+                .foregroundColor(.white)
+            Image("showorksLogo")
+            
+        }
+        
+    }
+}
+
+
+extension Binding {
+     func toUnwrapped<T>(defaultValue: T) -> Binding<T> where Value == Optional<T>  {
+        Binding<T>(get: { self.wrappedValue ?? defaultValue }, set: { self.wrappedValue = $0 })
+    }
 }
