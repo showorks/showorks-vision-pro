@@ -43,6 +43,9 @@
         }
       }
     },
+    "Created on Mon 1 Jul at 2:33 PM" : {
+
+    },
     "demo_mode" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -97,6 +100,9 @@
           }
         }
       }
+    },
+    "Home and Hobby Judging" : {
+
     },
     "InvalidSerialKeyAlertMessage" : {
       "extractionState" : "manual",
@@ -153,6 +159,9 @@
         }
       }
     },
+    "SHEET PROPERTIES" : {
+
+    },
     "showorks" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -163,6 +172,9 @@
           }
         }
       }
+    },
+    "Updated on Mon 30 Sept at 3.52 PM" : {
+
     },
     "welcome" : {
       "extractionState" : "manual",

@@ -20,4 +20,7 @@ extension Color {
 //    #179CE1
     static let aBlueTextColor = Color(red: 23.0/255.0, green: 156.0/255.0, blue: 225.0/255.0)
     
+    // #b6b6b6
+    static let aDarkGreyBackgroundColor = Color(red: 182.0/255.0, green: 182.0/255.0, blue: 182.0/255.0)
+    
 }

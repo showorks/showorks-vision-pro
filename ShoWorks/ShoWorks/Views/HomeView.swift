@@ -41,10 +41,12 @@ struct HomeView: View {
                 NavigationSplitView {
                     List(ListOptions.allCases, id: \.self, selection: $mListOption) { listoption in
                         NavigationLink(listoption.rawValue, value: listoption)
-                    }.navigationTitle("showorks".localized())
+                    }.navigationBarHidden(true)
                 } detail: {
-                    Text(mListOption?.rawValue ?? "")
-                        .font(.largeTitle)
+//                    Text(mListOption?.rawValue ?? "")
+//                        .font(.largeTitle)
+                    MasterLayout()
+                        .navigationBarHidden(true)
                 }.navigationBarHidden(true)
 //                .background(Color.white)
                 .navigationSplitViewStyle(.automatic)
@@ -119,5 +121,68 @@ struct HomeTitleLayout: View {
 extension Binding {
      func toUnwrapped<T>(defaultValue: T) -> Binding<T> where Value == Optional<T>  {
         Binding<T>(get: { self.wrappedValue ?? defaultValue }, set: { self.wrappedValue = $0 })
+    }
+}
+
+struct MasterLayout: View {
+
+    var body: some View {
+            
+        VStack {
+
+                MasterTopLayout()
+                MasterCenterLayout()
+                Spacer()
+               }
+                   .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                   .background(Color.aDarkGreyBackgroundColor)
+                   .edgesIgnoringSafeArea(.all)
+    }
+}
+
+struct MasterTopLayout: View {
+    
+    var body: some View {
+        VStack(){
+            Text("Home and Hobby Judging").foregroundColor(.black)
+            .padding(.top,10)
+        
+            Rectangle()
+            .stroke(Color.black, lineWidth: 1).frame(maxHeight: 1)
+
+            HStack(){
+                Text("SHEET PROPERTIES").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
+                Spacer()
+            }
+            .padding(.top,30)
+            .padding(.leading,30)
+            HStack(){
+                Text("Created on Mon 1 Jul at 2:33 PM").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
+                Spacer()
+                Text("Updated on Mon 30 Sept at 3.52 PM").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
+            }
+            .padding(.leading,30)
+            .padding(.trailing,30)
+        }
+        
+    }
+}
+
+struct MasterCenterLayout: View {
+    
+    var body: some View {
+        VStack(){
+            
+        }
+            .frame(minWidth: 0, maxWidth: .infinity)
+            .padding(50)
+            .background(.white)
+            .cornerRadius(10) /// make the background rounded
+            .overlay( /// apply a rounded border
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(.black, lineWidth: 1)
+            )
+            .padding(.leading,30)
+            .padding(.trailing,30)
     }
 }
