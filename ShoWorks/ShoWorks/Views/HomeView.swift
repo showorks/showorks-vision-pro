@@ -101,9 +101,14 @@ struct HomeTitleLayout: View {
     var body: some View {
             
         HStack(){
-            Text("welcome".localized() + " " + aUserName).font(.heleveticNeueThin(size: 42))
+            Text("welcome_new".localized()).font(.title)
                 .foregroundColor(.white)
+                .padding(.leading,50)
+            Text(aUserName).font(.title)
+                .foregroundColor(.white)
+            Spacer()
             Image("showorksLogo")
+                .padding(.trailing,50)
             
         }
         
