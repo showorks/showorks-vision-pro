@@ -132,6 +132,16 @@ struct MasterLayout: View {
 
                 MasterTopLayout()
                 MasterCenterLayout()
+                HStack(){
+                    
+                    Text("Go to Sheet")
+                        .font(.system(size: 20))
+                        .padding(.init(top: 40, leading: 70, bottom: 40, trailing: 70))
+                        .background(Color.aBlueBackgroundColor)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(5)
+                    
+                }.padding(50)
                 Spacer()
                }
                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
@@ -172,17 +182,80 @@ struct MasterCenterLayout: View {
     
     var body: some View {
         VStack(){
-            
+            MasterCenterDepartmentLayout()
+            Rectangle()
+            .stroke(Color.black, lineWidth: 1).frame(maxHeight: 1)
+
+            MasterCenterDivisionsLayout()
+            Rectangle()
+            .stroke(Color.black, lineWidth: 1).frame(maxHeight: 1)
+
+            MasterCenterClassesLayout()
+            Rectangle()
+            .stroke(Color.black, lineWidth: 1).frame(maxHeight: 1)
+
+            MasterCenterEntriesLayout()
+
         }
             .frame(minWidth: 0, maxWidth: .infinity)
-            .padding(50)
+            .padding(20)
             .background(.white)
-            .cornerRadius(10) /// make the background rounded
+            .cornerRadius(5) /// make the background rounded
             .overlay( /// apply a rounded border
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(.black, lineWidth: 1)
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(.gray, lineWidth: 1)
             )
             .padding(.leading,30)
             .padding(.trailing,30)
+    }
+}
+
+struct MasterCenterDepartmentLayout: View {
+    
+    var body: some View {
+     
+        HStack(){
+            Text("Number of Departments in this sheet").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
+            Spacer()
+            Text("1").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
+        }
+        .frame(minWidth: 0, maxWidth: .infinity)
+    }
+}
+
+struct MasterCenterDivisionsLayout: View {
+    
+    var body: some View {
+     
+        HStack(){
+            Text("Number of Divisions in this sheet").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
+            Spacer()
+            Text("15").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
+        }
+        .frame(minWidth: 0, maxWidth: .infinity)
+    }
+}
+
+struct MasterCenterClassesLayout: View {
+    
+    var body: some View {
+     
+        HStack(){
+            Text("Number of Classes in this sheet").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
+            Spacer()
+            Text("258").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
+        }
+    }
+}
+
+struct MasterCenterEntriesLayout: View {
+    
+    var body: some View {
+     
+        HStack(){
+            Text("Number of Entries in this sheet").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
+            Spacer()
+            Text("3,496").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
+        }
     }
 }

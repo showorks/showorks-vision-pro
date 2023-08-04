@@ -23,4 +23,7 @@ extension Color {
     // #b6b6b6
     static let aDarkGreyBackgroundColor = Color(red: 182.0/255.0, green: 182.0/255.0, blue: 182.0/255.0)
     
+    // #4262b2
+    static let aBlueBackgroundColor = Color(red: 66.0/255.0, green: 98.0/255.0, blue: 178.0/255.0)
+    
 }

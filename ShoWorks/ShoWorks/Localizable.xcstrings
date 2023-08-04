@@ -4,6 +4,18 @@
     "" : {
 
     },
+    "1" : {
+
+    },
+    "3,496" : {
+
+    },
+    "15" : {
+
+    },
+    "258" : {
+
+    },
     "An error occured %@" : {
 
     },
@@ -101,6 +113,9 @@
         }
       }
     },
+    "Go to Sheet" : {
+
+    },
     "Home and Hobby Judging" : {
 
     },
@@ -114,6 +129,18 @@
           }
         }
       }
+    },
+    "Number of Classes in this sheet" : {
+
+    },
+    "Number of Departments in this sheet" : {
+
+    },
+    "Number of Divisions in this sheet" : {
+
+    },
+    "Number of Entries in this sheet" : {
+
     },
     "ok" : {
       "extractionState" : "manual",
