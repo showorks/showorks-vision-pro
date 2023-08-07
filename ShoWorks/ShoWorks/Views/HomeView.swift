@@ -103,11 +103,9 @@ struct HomeTitleLayout: View {
     var body: some View {
             
         HStack(){
-            Text("welcome_new".localized()).font(.title)
+            Text("welcome_new".localized() + " " + aUserName).font(.title)
                 .foregroundColor(.white)
                 .padding(.leading,50)
-            Text(aUserName).font(.title)
-                .foregroundColor(.white)
             Spacer()
             Image("showorksLogo")
                 .padding(.trailing,50)
@@ -142,6 +140,9 @@ struct MasterLayout: View {
                         .cornerRadius(5)
                     
                 }.padding(50)
+            
+                MasterBottomLayout()
+            
                 Spacer()
                }
                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
@@ -257,5 +258,18 @@ struct MasterCenterEntriesLayout: View {
             Spacer()
             Text("3,496").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
         }
+    }
+}
+
+struct MasterBottomLayout: View {
+    
+    var body: some View {
+     
+        VStack(alignment: .center, content: {
+            Text("Tip: Print sample entry tags and receipts for scanning").foregroundColor(.black).bold()
+            Text("Visit www.fairsoftware.com/samples to print out sample entry tags and receipts which have QR Codes (barcodes) on them, allowing you to see how the scanner works which makes locating entries even faster.").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
+        })
+        .padding(.leading,100)
+        .padding(.trailing,100)
     }
 }
