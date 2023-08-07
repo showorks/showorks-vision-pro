@@ -9,17 +9,15 @@ import Foundation
 import SwiftUI
 import UIKit
 
-enum ListOptions: String, Hashable, CaseIterable {
-    case aoption = "A option"
-    case boption = "B option"
-    case coption = "C option"
-    case doption = "D option"
+
+struct HomeViewData: Identifiable {
+    let id = UUID()
+    var fileName: String
+    var createdTime: String
 }
 
 struct HomeView: View {
-    
-    @State private var mListOption: ListOptions?
-     
+         
     @EnvironmentObject var viewModel: ShoWorksAuthenticationModel
 
     @State var alertItem: AlertItem?
@@ -39,9 +37,9 @@ struct HomeView: View {
             VStack {
                 HomeTitleLayout(aUserName: $aUserName)
                 NavigationSplitView {
-                    List(ListOptions.allCases, id: \.self, selection: $mListOption) { listoption in
-                        NavigationLink(listoption.rawValue, value: listoption)
-                    }.navigationBarHidden(true)
+                    
+                    SlaveLayout()
+                    
                 } detail: {
 //                    Text(mListOption?.rawValue ?? "")
 //                        .font(.largeTitle)
@@ -119,6 +117,64 @@ struct HomeTitleLayout: View {
 extension Binding {
      func toUnwrapped<T>(defaultValue: T) -> Binding<T> where Value == Optional<T>  {
         Binding<T>(get: { self.wrappedValue ?? defaultValue }, set: { self.wrappedValue = $0 })
+    }
+}
+
+struct SlaveLayout : View {
+    
+    private let slaveValues: [HomeViewData] = [
+        HomeViewData(fileName:"Home and Hobby Judging",createdTime: "Created on Mon 1 Jul at 2:33PM"),
+        HomeViewData(fileName:"Kiosk Check-in",createdTime: "Created on Mon 1 Jul at 2:33PM")
+       ]
+    
+    @State private var mListOption: HomeViewData?
+
+    var body: some View
+    {
+        VStack {
+            SlaveTopLayout()
+            
+            Rectangle()
+                .stroke(Color.black, lineWidth: 1).frame(maxHeight: 1)
+            
+            List {
+                
+                ForEach(slaveValues){ item in
+                    SlaveCellView(fileName: item.fileName, createdTime: item.createdTime)
+                }
+                
+            }.navigationBarHidden(true)
+            
+            Spacer()
+            
+        }
+        .background(Color.aDarkGreyBackgroundColor)
+        .edgesIgnoringSafeArea(.all)
+    }
+}
+
+struct SlaveCellView: View {
+    
+    @State var fileName: String
+    @State var createdTime: String
+    
+    var body: some View {
+        ZStack(alignment: .leading){
+            RoundedRectangle(cornerRadius: 5.0)
+                .fill(Color.white)
+                .frame(height: 80)
+            VStack(alignment: .leading){
+                Text(fileName)
+                    .foregroundColor(.black)
+                    .font(.heleveticNeueLight(size: 17))
+                Text(createdTime)
+                    .foregroundColor(.black)
+                    .font(.heleveticNeueLight(size: 13))
+            }
+            .padding(.leading,10)
+            .padding(.trailing,10)
+        }.frame(minWidth: 0, maxWidth: .infinity)
+       
     }
 }
 
@@ -271,5 +327,37 @@ struct MasterBottomLayout: View {
         })
         .padding(.leading,100)
         .padding(.trailing,100)
+    }
+}
+
+struct SlaveTopLayout: View {
+    
+    var body: some View {
+     
+        HStack{
+            Button(action: {
+                   print("Settings")
+               }, label: {
+                   Text("Settings")
+                   .font(.heleveticNeueLight(size: 15))
+                   .foregroundColor(Color.blue)
+            })
+            .buttonStyle(PlainButtonStyle())
+            Spacer()
+            Text("Sheets (10)").foregroundColor(.black).bold()
+            Spacer()
+            Button(action: {
+                   print("Sort")
+               }, label: {
+                   Text("Sort")
+                       .font(.heleveticNeueLight(size: 15))
+                       .foregroundColor(Color.blue)
+                       .background(Color.aDarkGreyBackgroundColor)
+            })
+            .buttonStyle(PlainButtonStyle())
+        }
+        .padding(.top,10)
+        .padding(.leading,10)
+        .padding(.trailing,10)
     }
 }
