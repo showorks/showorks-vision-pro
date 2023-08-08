@@ -142,9 +142,13 @@ struct SlaveLayout : View {
                 ForEach(slaveValues){ item in
                     SlaveCellView(fileName: item.fileName, createdTime: item.createdTime)
                 }
-                
+                .listRowSeparatorTint(.red)
+                .listRowBackground( RoundedRectangle(cornerRadius: 2.0)
+                    .fill(Color.white)
+                    .frame(height: 80))
             }.navigationBarHidden(true)
-            
+                .listRowSeparator(.hidden)
+            .onAppear { UITableView.appearance().separatorStyle = .none }
             Spacer()
             
         }
@@ -159,21 +163,22 @@ struct SlaveCellView: View {
     @State var createdTime: String
     
     var body: some View {
-        ZStack(alignment: .leading){
-            RoundedRectangle(cornerRadius: 5.0)
-                .fill(Color.white)
-                .frame(height: 80)
-            VStack(alignment: .leading){
+
+        VStack(alignment: .leading){
                 Text(fileName)
-                    .foregroundColor(.black)
-                    .font(.heleveticNeueLight(size: 17))
+                    .foregroundColor(.black).bold()
                 Text(createdTime)
                     .foregroundColor(.black)
                     .font(.heleveticNeueLight(size: 13))
+            
+                Rectangle()
+                .stroke(Color.clear, lineWidth: .infinity).frame(height: 1)
+
             }
             .padding(.leading,10)
+            .padding(.top,4)
             .padding(.trailing,10)
-        }.frame(minWidth: 0, maxWidth: .infinity)
+            .frame(minWidth: 0, maxWidth: .infinity,maxHeight: 70)
        
     }
 }
