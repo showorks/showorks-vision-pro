@@ -193,7 +193,7 @@ struct MasterLayout: View {
                 MasterCenterLayout()
                 HStack(){
                     
-                    Text("Go to Sheet")
+                    Text("go_to_sheet".localized())
                         .font(.system(size: 20))
                         .padding(.init(top: 40, leading: 70, bottom: 40, trailing: 70))
                         .background(Color.aBlueBackgroundColor)
@@ -223,7 +223,7 @@ struct MasterTopLayout: View {
             .stroke(Color.black, lineWidth: 1).frame(maxHeight: 1)
 
             HStack(){
-                Text("SHEET PROPERTIES").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
+                Text("sheet_properties".localized()).foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
                 Spacer()
             }
             .padding(.top,30)
@@ -244,19 +244,19 @@ struct MasterCenterLayout: View {
     
     var body: some View {
         VStack(){
-            MasterCenterDepartmentLayout()
+            MasterCenterRowLayout(aTextTitle: "num_departments".localized(), aTextValue: "1")
             Rectangle()
             .stroke(Color.black, lineWidth: 1).frame(maxHeight: 1)
 
-            MasterCenterDivisionsLayout()
+            MasterCenterRowLayout(aTextTitle: "num_divisions".localized(), aTextValue: "15")
             Rectangle()
             .stroke(Color.black, lineWidth: 1).frame(maxHeight: 1)
 
-            MasterCenterClassesLayout()
+            MasterCenterRowLayout(aTextTitle: "num_classes".localized(), aTextValue: "258")
             Rectangle()
             .stroke(Color.black, lineWidth: 1).frame(maxHeight: 1)
 
-            MasterCenterEntriesLayout()
+            MasterCenterRowLayout(aTextTitle: "num_entries".localized(), aTextValue: "3,496")
 
         }
             .frame(minWidth: 0, maxWidth: .infinity)
@@ -272,53 +272,20 @@ struct MasterCenterLayout: View {
     }
 }
 
-struct MasterCenterDepartmentLayout: View {
+struct MasterCenterRowLayout: View {
+    
+    @State var aTextTitle: String
+    @State var aTextValue: String
     
     var body: some View {
      
         HStack(){
-            Text("Number of Departments in this sheet").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
+            //
+            Text(aTextTitle).foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
             Spacer()
-            Text("1").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
+            Text(aTextValue).foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
         }
         .frame(minWidth: 0, maxWidth: .infinity)
-    }
-}
-
-struct MasterCenterDivisionsLayout: View {
-    
-    var body: some View {
-     
-        HStack(){
-            Text("Number of Divisions in this sheet").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
-            Spacer()
-            Text("15").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
-        }
-        .frame(minWidth: 0, maxWidth: .infinity)
-    }
-}
-
-struct MasterCenterClassesLayout: View {
-    
-    var body: some View {
-     
-        HStack(){
-            Text("Number of Classes in this sheet").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
-            Spacer()
-            Text("258").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
-        }
-    }
-}
-
-struct MasterCenterEntriesLayout: View {
-    
-    var body: some View {
-     
-        HStack(){
-            Text("Number of Entries in this sheet").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
-            Spacer()
-            Text("3,496").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
-        }
     }
 }
 
@@ -327,7 +294,7 @@ struct MasterBottomLayout: View {
     var body: some View {
      
         VStack(alignment: .center, content: {
-            Text("Tip: Print sample entry tags and receipts for scanning").foregroundColor(.black).bold()
+            Text("tip_message".localized()).foregroundColor(.black).bold()
             Text("Visit www.fairsoftware.com/samples to print out sample entry tags and receipts which have QR Codes (barcodes) on them, allowing you to see how the scanner works which makes locating entries even faster.").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
         })
         .padding(.leading,100)
@@ -341,9 +308,9 @@ struct SlaveTopLayout: View {
      
         HStack{
             Button(action: {
-                   print("Settings")
+                   print("settings pressed")
                }, label: {
-                   Text("Settings")
+                   Text("settings_btn".localized())
                    .font(.heleveticNeueLight(size: 15))
                    .foregroundColor(Color.blue)
             })
@@ -352,9 +319,9 @@ struct SlaveTopLayout: View {
             Text("Sheets (10)").foregroundColor(.black).bold()
             Spacer()
             Button(action: {
-                   print("Sort")
+                   print("Sort pressed")
                }, label: {
-                   Text("Sort")
+                   Text("sort_btn".localized())
                        .font(.heleveticNeueLight(size: 15))
                        .foregroundColor(Color.blue)
                        .background(Color.aDarkGreyBackgroundColor)

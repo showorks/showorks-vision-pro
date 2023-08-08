@@ -4,18 +4,6 @@
     "" : {
 
     },
-    "1" : {
-
-    },
-    "3,496" : {
-
-    },
-    "15" : {
-
-    },
-    "258" : {
-
-    },
     "An error occured %@" : {
 
     },
@@ -30,8 +18,16 @@
         }
       }
     },
-    "Close" : {
-
+    "close_btn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        }
+      }
     },
     "continue" : {
       "extractionState" : "manual",
@@ -113,8 +109,16 @@
         }
       }
     },
-    "Go to Sheet" : {
-
+    "go_to_sheet" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to Sheet"
+          }
+        }
+      }
     },
     "Home and Hobby Judging" : {
 
@@ -130,17 +134,49 @@
         }
       }
     },
-    "Number of Classes in this sheet" : {
-
+    "num_classes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Number of Classes in this sheet"
+          }
+        }
+      }
     },
-    "Number of Departments in this sheet" : {
-
+    "num_departments" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Number of Departments in this sheet"
+          }
+        }
+      }
     },
-    "Number of Divisions in this sheet" : {
-
+    "num_divisions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Number of Divisions in this sheet"
+          }
+        }
+      }
     },
-    "Number of Entries in this sheet" : {
-
+    "num_entries" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Number of Entries in this sheet"
+          }
+        }
+      }
     },
     "ok" : {
       "extractionState" : "manual",
@@ -186,11 +222,27 @@
         }
       }
     },
-    "Settings" : {
-
+    "settings_btn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        }
+      }
     },
-    "SHEET PROPERTIES" : {
-
+    "sheet_properties" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SHEET PROPERTIES"
+          }
+        }
+      }
     },
     "Sheets (10)" : {
 
@@ -206,11 +258,27 @@
         }
       }
     },
-    "Sort" : {
-
+    "sort_btn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort"
+          }
+        }
+      }
     },
-    "Tip: Print sample entry tags and receipts for scanning" : {
-
+    "tip_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tip: Print sample entry tags and receipts for scanning"
+          }
+        }
+      }
     },
     "Updated on Mon 30 Sept at 3.52 PM" : {
 

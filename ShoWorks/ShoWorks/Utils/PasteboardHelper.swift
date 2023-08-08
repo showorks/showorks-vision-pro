@@ -35,6 +35,6 @@ class PasteboardAlertHelper {
     static func alert(for item: PasteboardItemModel) -> Alert {
         Alert(title: Text(""),
               message: Text(item.localizedStringKey),
-              dismissButton: .default(Text("Close")))
+              dismissButton: .default(Text("close_btn".localized())))
     }
 }
