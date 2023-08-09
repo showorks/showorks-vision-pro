@@ -104,7 +104,7 @@ struct HomeTitleLayout: View {
     var body: some View {
             
         HStack(){
-            Text("welcome_new".localized() + " " + aUserName).font(.title)
+            Text("welcome_new".localized() + " " + aUserName).font(.heleveticNeueBold(size: 25))
                 .foregroundColor(.white)
                 .padding(.leading,50)
             Spacer()
@@ -138,8 +138,7 @@ struct SlaveLayout : View {
         VStack {
             SlaveTopLayout()
             
-            Rectangle()
-                .stroke(Color.aSeperatorColor, lineWidth: 1).frame(maxHeight: 1)
+            Divider()
             
             SearchBar(text: $searchText)
             
@@ -168,7 +167,7 @@ struct SlaveCellView: View {
 
         VStack(alignment: .leading){
                 Text(fileName)
-                    .foregroundColor(.black).bold()
+                    .foregroundColor(.black).font(.heleveticNeueBold(size: 16))
                 Text(createdTime)
                     .foregroundColor(.black)
                     .font(.heleveticNeueLight(size: 13))
@@ -219,21 +218,22 @@ struct MasterTopLayout: View {
     var body: some View {
         VStack(){
             Text("Home and Hobby Judging").foregroundColor(.black)
+                .font(.heleveticNeueBold(size: 17))
             .padding(.top,10)
         
             Rectangle()
             .stroke(Color.aSeperatorColor, lineWidth: 1).frame(maxHeight: 1)
 
             HStack(){
-                Text("sheet_properties".localized()).foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
+                Text("sheet_properties".localized()).foregroundColor(.aTextGrayColorSheetProperties).font(.heleveticNeueMedium(size: 15))
                 Spacer()
             }
             .padding(.top,30)
             .padding(.leading,30)
             HStack(){
-                Text("Created on Mon 1 Jul at 2:33 PM").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
+                Text("Created on Mon 1 Jul at 2:33 PM").foregroundColor(.aTextGrayColorSheetProperties).font(.heleveticNeueMedium(size: 15))
                 Spacer()
-                Text("Updated on Mon 30 Sept at 3.52 PM").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
+                Text("Updated on Mon 30 Sept at 3.52 PM").foregroundColor(.aTextGrayColorSheetProperties).font(.heleveticNeueMedium(size: 15))
             }
             .padding(.leading,30)
             .padding(.trailing,30)
@@ -247,18 +247,24 @@ struct MasterCenterLayout: View {
     var body: some View {
         VStack(){
             MasterCenterRowLayout(aTextTitle: "num_departments".localized(), aTextValue: "1")
-            Rectangle()
-            .stroke(Color.aSeperatorColor, lineWidth: 1).frame(maxHeight: 1)
-
+                .padding(.top,5)
+                .padding(.bottom,5)
+            
+            Divider().background(Color.aSeperatorColor)
+            
             MasterCenterRowLayout(aTextTitle: "num_divisions".localized(), aTextValue: "15")
-            Rectangle()
-            .stroke(Color.aSeperatorColor, lineWidth: 1).frame(maxHeight: 1)
+                .padding(.top,5)
+                .padding(.bottom,5)
+            
+            Divider().background(Color.aSeperatorColor)
+            
+            MasterCenterRowLayout(aTextTitle: "num_classes".localized(), aTextValue: "258").padding(.top,5)
+                .padding(.bottom,5)
+            
+            Divider().background(Color.aSeperatorColor)
 
-            MasterCenterRowLayout(aTextTitle: "num_classes".localized(), aTextValue: "258")
-            Rectangle()
-            .stroke(Color.aSeperatorColor, lineWidth: 1).frame(maxHeight: 1)
-
-            MasterCenterRowLayout(aTextTitle: "num_entries".localized(), aTextValue: "3,496")
+            MasterCenterRowLayout(aTextTitle: "num_entries".localized(), aTextValue: "3,496").padding(.top,5)
+                .padding(.bottom,5)
 
         }
             .frame(minWidth: 0, maxWidth: .infinity)
@@ -283,9 +289,9 @@ struct MasterCenterRowLayout: View {
      
         HStack(){
             //
-            Text(aTextTitle).foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
+            Text(aTextTitle).foregroundColor(.black).font(.heleveticNeueMedium(size: 18))
             Spacer()
-            Text(aTextValue).foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
+            Text(aTextValue).foregroundColor(.aTextGrayColor).font(.heleveticNeueMedium(size: 18))
         }
         .frame(minWidth: 0, maxWidth: .infinity)
     }
@@ -296,7 +302,7 @@ struct MasterBottomLayout: View {
     var body: some View {
      
         VStack(alignment: .center, content: {
-            Text("tip_message".localized()).foregroundColor(.black).bold()
+            Text("tip_message".localized()).foregroundColor(.black).font(.heleveticNeueBold(size: 16))
             Text("Visit www.fairsoftware.com/samples to print out sample entry tags and receipts which have QR Codes (barcodes) on them, allowing you to see how the scanner works which makes locating entries even faster.").foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
         })
         .padding(.leading,100)
@@ -313,8 +319,7 @@ struct SlaveTopLayout: View {
                    print("settings pressed")
                }, label: {
                    Text("settings_btn".localized())
-                   .font(.heleveticNeueLight(size: 15))
-                   .bold()
+                       .font(.heleveticNeueBold(size: 16))
                    .foregroundColor(Color.blue)
             })
             .buttonStyle(PlainButtonStyle())
@@ -325,9 +330,8 @@ struct SlaveTopLayout: View {
                    print("Sort pressed")
                }, label: {
                    Text("sort_btn".localized())
-                       .font(.heleveticNeueLight(size: 15))
+                       .font(.heleveticNeueBold(size: 16))
                        .foregroundColor(Color.blue)
-                       .bold()
                        .background(Color.aHomeBackgroundColor)
             })
             .buttonStyle(PlainButtonStyle())
@@ -382,7 +386,7 @@ struct SearchBar: View {
                 Button(action: {
                     self.isEditing = false
                     self.text = ""
- 
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }) {
                     Text("Cancel")
                         .foregroundColor(.gray)

@@ -16,6 +16,9 @@ extension Color {
     
 //    #5F5F5F
     static let aTextGrayColor = Color(red: 95.0/255.0, green: 95.0/255.0, blue: 95.0/255.0)
+        
+//    #7B7B7B
+    static let aTextGrayColorSheetProperties = Color(red: 123.0/255.0, green: 123.0/255.0, blue: 123.0/255.0)
     
 //    #179CE1
     static let aBlueTextColor = Color(red: 23.0/255.0, green: 156.0/255.0, blue: 225.0/255.0)

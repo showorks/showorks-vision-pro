@@ -16,4 +16,16 @@ extension Font {
     static func heleveticNeueThin(size: CGFloat) -> Font {
         Font.custom("HelveticaNeue-Thin", size: size)
     }
+
+    static func heleveticNeueBold(size: CGFloat) -> Font {
+        Font.custom("HelveticaNeue-Bold", size: size)
+    }
+
+    static func heleveticNeueCondensedBold(size: CGFloat) -> Font {
+        Font.custom("HelveticaNeue-CondensedBold", size: size)
+    }
+    
+    static func heleveticNeueMedium(size: CGFloat) -> Font {
+        Font.custom("HelveticaNeue-Medium", size: size)
+    }
 }
