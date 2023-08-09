@@ -152,7 +152,7 @@ struct SlaveLayout : View {
             Spacer()
             
         }
-        .background(Color.aDarkGreyBackgroundColor)
+        .background(Color.aHomeBackgroundColor)
         .edgesIgnoringSafeArea(.all)
     }
 }
@@ -207,7 +207,7 @@ struct MasterLayout: View {
                 Spacer()
                }
                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                   .background(Color.aDarkGreyBackgroundColor)
+                   .background(Color.aHomeBackgroundColor)
                    .edgesIgnoringSafeArea(.all)
     }
 }
@@ -324,7 +324,7 @@ struct SlaveTopLayout: View {
                    Text("sort_btn".localized())
                        .font(.heleveticNeueLight(size: 15))
                        .foregroundColor(Color.blue)
-                       .background(Color.aDarkGreyBackgroundColor)
+                       .background(Color.aHomeBackgroundColor)
             })
             .buttonStyle(PlainButtonStyle())
         }
