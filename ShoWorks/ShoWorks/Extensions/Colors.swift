@@ -24,9 +24,12 @@ extension Color {
     static let aDarkGreyBackgroundColor = Color(red: 182.0/255.0, green: 182.0/255.0, blue: 182.0/255.0)
     
     // #4262b2
-    static let aBlueBackgroundColor = Color(red: 66.0/255.0, green: 98.0/255.0, blue: 178.0/255.0)
+    static let aBlueBackgroundColor = Color(red: 42.0/255.0, green: 119.0/255.0, blue: 224.0/255.0)
     
     // #EFEFF4
     static let aHomeBackgroundColor = Color(red: 239.0/255.0, green: 239.0/255.0, blue: 244.0/255.0)
+    
+    // #BABABD
+    static let aSeperatorColor = Color(red: 186.0/255.0, green: 186.0/255.0, blue: 189.0/255.0)
     
 }

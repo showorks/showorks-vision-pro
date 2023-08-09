@@ -10,7 +10,7 @@ import SwiftUI
 import UIKit
 
 
-struct HomeViewData: Identifiable {
+struct HomeViewData: Identifiable,Hashable {
     let id = UUID()
     var fileName: String
     var createdTime: String
@@ -39,12 +39,15 @@ struct HomeView: View {
                 NavigationSplitView {
                     
                     SlaveLayout()
+                        .border(Color.aSeperatorColor)
                     
-                } detail: {
+                }
+                detail: {
 //                    Text(mListOption?.rawValue ?? "")
 //                        .font(.largeTitle)
                     MasterLayout()
                         .navigationBarHidden(true)
+                        .border(Color.aSeperatorColor)
                 }.navigationBarHidden(true)
 //                .background(Color.white)
                 .navigationSplitViewStyle(.automatic)
@@ -128,6 +131,7 @@ struct SlaveLayout : View {
        ]
     
     @State private var mListOption: HomeViewData?
+    @State private var searchText: String = ""
 
     var body: some View
     {
@@ -135,19 +139,17 @@ struct SlaveLayout : View {
             SlaveTopLayout()
             
             Rectangle()
-                .stroke(Color.black, lineWidth: 1).frame(maxHeight: 1)
+                .stroke(Color.aSeperatorColor, lineWidth: 1).frame(maxHeight: 1)
             
-            List {
-                
-                ForEach(slaveValues){ item in
-                    SlaveCellView(fileName: item.fileName, createdTime: item.createdTime)
-                }
-                .listRowSeparatorTint(.red)
-                .listRowBackground( RoundedRectangle(cornerRadius: 2.0)
-                    .fill(Color.white)
-                    .frame(height: 80))
+            SearchBar(text: $searchText)
+            
+            List(slaveValues, id: \.self, selection: $mListOption) { item in
+                SlaveCellView(fileName: item.fileName, createdTime: item.createdTime)
+                    .listRowSeparatorTint(.gray)
+                    .listRowBackground(item == mListOption ? Color.aLightGrayColor : Color.white)
+
             }.navigationBarHidden(true)
-                .listRowSeparator(.hidden)
+            .listRowSeparator(.hidden)
             .onAppear { UITableView.appearance().separatorStyle = .none }
             Spacer()
             
@@ -196,8 +198,8 @@ struct MasterLayout: View {
                     Text("go_to_sheet".localized())
                         .font(.system(size: 20))
                         .padding(.init(top: 40, leading: 70, bottom: 40, trailing: 70))
-                        .background(Color.aBlueBackgroundColor)
                         .foregroundColor(Color.white)
+                        .background(Color.aBlueBackgroundColor)
                         .cornerRadius(5)
                     
                 }.padding(50)
@@ -220,7 +222,7 @@ struct MasterTopLayout: View {
             .padding(.top,10)
         
             Rectangle()
-            .stroke(Color.black, lineWidth: 1).frame(maxHeight: 1)
+            .stroke(Color.aSeperatorColor, lineWidth: 1).frame(maxHeight: 1)
 
             HStack(){
                 Text("sheet_properties".localized()).foregroundColor(.aTextGrayColor).font(.heleveticNeueLight(size: 15))
@@ -246,15 +248,15 @@ struct MasterCenterLayout: View {
         VStack(){
             MasterCenterRowLayout(aTextTitle: "num_departments".localized(), aTextValue: "1")
             Rectangle()
-            .stroke(Color.black, lineWidth: 1).frame(maxHeight: 1)
+            .stroke(Color.aSeperatorColor, lineWidth: 1).frame(maxHeight: 1)
 
             MasterCenterRowLayout(aTextTitle: "num_divisions".localized(), aTextValue: "15")
             Rectangle()
-            .stroke(Color.black, lineWidth: 1).frame(maxHeight: 1)
+            .stroke(Color.aSeperatorColor, lineWidth: 1).frame(maxHeight: 1)
 
             MasterCenterRowLayout(aTextTitle: "num_classes".localized(), aTextValue: "258")
             Rectangle()
-            .stroke(Color.black, lineWidth: 1).frame(maxHeight: 1)
+            .stroke(Color.aSeperatorColor, lineWidth: 1).frame(maxHeight: 1)
 
             MasterCenterRowLayout(aTextTitle: "num_entries".localized(), aTextValue: "3,496")
 
@@ -312,6 +314,7 @@ struct SlaveTopLayout: View {
                }, label: {
                    Text("settings_btn".localized())
                    .font(.heleveticNeueLight(size: 15))
+                   .bold()
                    .foregroundColor(Color.blue)
             })
             .buttonStyle(PlainButtonStyle())
@@ -324,6 +327,7 @@ struct SlaveTopLayout: View {
                    Text("sort_btn".localized())
                        .font(.heleveticNeueLight(size: 15))
                        .foregroundColor(Color.blue)
+                       .bold()
                        .background(Color.aHomeBackgroundColor)
             })
             .buttonStyle(PlainButtonStyle())
@@ -331,5 +335,62 @@ struct SlaveTopLayout: View {
         .padding(.top,10)
         .padding(.leading,10)
         .padding(.trailing,10)
+    }
+}
+
+
+
+struct SearchBar: View {
+    @Binding var text: String
+ 
+    @State private var isEditing = false
+ 
+    var body: some View {
+        HStack {
+ 
+            TextField("Search ...", text: $text)
+                .padding(7)
+                .padding(.horizontal, 25)
+                .background(Color.white)
+                .foregroundColor(Color.black)
+                .cornerRadius(8)
+                .overlay(
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.gray)
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading, 8)
+             
+                    if isEditing {
+                        Button(action: {
+                            self.text = ""
+                        }) {
+                            Image(systemName: "multiply.circle.fill")
+                                .foregroundColor(.gray)
+                                .padding(.trailing, 8)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                }
+            )
+                .padding(.horizontal, 10)
+                .onTapGesture {
+                    self.isEditing = true
+                }
+ 
+            if isEditing {
+                Button(action: {
+                    self.isEditing = false
+                    self.text = ""
+ 
+                }) {
+                    Text("Cancel")
+                        .foregroundColor(.gray)
+                }
+                .padding(.trailing, 10)
+                .transition(.move(edge: .trailing))
+                
+            }
+        }
     }
 }

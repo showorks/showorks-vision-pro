@@ -61,7 +61,7 @@ struct InputSerial: View {
                             .padding(10)
                             .padding(.leading,20)
                             .padding(.trailing,20)
-                            .background(Color.aBlueTextColor)
+                            .background(Color.aBlueBackgroundColor)
                             .foregroundColor(Color.white)
                             .cornerRadius(5)
                             .onTapGesture {

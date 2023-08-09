@@ -7,6 +7,9 @@
     "An error occured %@" : {
 
     },
+    "Cancel" : {
+
+    },
     "cancel_btn" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -188,6 +191,9 @@
           }
         }
       }
+    },
+    "Search ..." : {
+
     },
     "serial_num_or_cancel_demo" : {
       "extractionState" : "manual",
