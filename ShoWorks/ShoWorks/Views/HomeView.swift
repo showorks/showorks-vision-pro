@@ -38,9 +38,10 @@ struct HomeView: View {
                 HomeTitleLayout(aUserName: $aUserName)
                 NavigationSplitView {
                     
-                    SlaveLayout()
-                        .border(Color.aSeperatorColor)
                     
+                        SlaveLayout()
+                            .border(Color.aSeperatorColor)
+                                                
                 }
                 detail: {
 //                    Text(mListOption?.rawValue ?? "")
@@ -138,7 +139,8 @@ struct SlaveLayout : View {
         VStack {
             SlaveTopLayout()
             
-            Divider()
+            Divider().frame(maxWidth: .infinity,maxHeight: 2)
+                .background(Color.aSeperatorColor)
             
             SearchBar(text: $searchText)
             
@@ -147,12 +149,19 @@ struct SlaveLayout : View {
                     .listRowSeparatorTint(.gray)
                     .listRowBackground(item == mListOption ? Color.aLightGrayColor : Color.white)
 
-            }.navigationBarHidden(true)
+            
+            }
+//            .listStyle(.plain)
+            .padding(.bottom,100)
+            .navigationBarHidden(true)
             .listRowSeparator(.hidden)
             .onAppear { UITableView.appearance().separatorStyle = .none }
-            Spacer()
-            
+//            Spacer()
+            SlaveBottomLayout()
+                .padding(30)
+                .offset(y:-120)
         }
+
         .background(Color.aHomeBackgroundColor)
         .edgesIgnoringSafeArea(.all)
     }
@@ -196,12 +205,12 @@ struct MasterLayout: View {
                     
                     Text("go_to_sheet".localized())
                         .font(.system(size: 20))
-                        .padding(.init(top: 40, leading: 70, bottom: 40, trailing: 70))
+                        .padding(.init(top: 30, leading: 50, bottom: 30, trailing: 50))
                         .foregroundColor(Color.white)
                         .background(Color.aBlueBackgroundColor)
                         .cornerRadius(5)
                     
-                }.padding(50)
+                }.padding(40)
             
                 MasterBottomLayout()
             
@@ -247,24 +256,22 @@ struct MasterCenterLayout: View {
     var body: some View {
         VStack(){
             MasterCenterRowLayout(aTextTitle: "num_departments".localized(), aTextValue: "1")
-                .padding(.top,5)
-                .padding(.bottom,5)
+                .padding(3)
             
             Divider().background(Color.aSeperatorColor)
             
             MasterCenterRowLayout(aTextTitle: "num_divisions".localized(), aTextValue: "15")
-                .padding(.top,5)
-                .padding(.bottom,5)
-            
+                .padding(3)
+
             Divider().background(Color.aSeperatorColor)
             
-            MasterCenterRowLayout(aTextTitle: "num_classes".localized(), aTextValue: "258").padding(.top,5)
-                .padding(.bottom,5)
+            MasterCenterRowLayout(aTextTitle: "num_classes".localized(), aTextValue: "258").padding(3)
+
             
             Divider().background(Color.aSeperatorColor)
 
-            MasterCenterRowLayout(aTextTitle: "num_entries".localized(), aTextValue: "3,496").padding(.top,5)
-                .padding(.bottom,5)
+            MasterCenterRowLayout(aTextTitle: "num_entries".localized(), aTextValue: "3,496").padding(3)
+
 
         }
             .frame(minWidth: 0, maxWidth: .infinity)
@@ -273,7 +280,7 @@ struct MasterCenterLayout: View {
             .cornerRadius(5) /// make the background rounded
             .overlay( /// apply a rounded border
                 RoundedRectangle(cornerRadius: 5)
-                    .stroke(.gray, lineWidth: 1)
+                    .stroke(Color.aSeperatorColor, lineWidth: 0.5)
             )
             .padding(.leading,30)
             .padding(.trailing,30)
@@ -342,6 +349,30 @@ struct SlaveTopLayout: View {
     }
 }
 
+struct SlaveBottomLayout: View {
+    
+    @State private var progress = 0.2
+       
+    var body: some View {
+        VStack{
+            Divider()
+                    .frame(maxWidth: .infinity,maxHeight: 1)
+                    .background(Color.aSeperatorColor)
+            
+            HStack {
+                
+                ProgressView(value: progress) {
+                    Text("Updated on Mon 3 Jul at 5:20 PM").font(.heleveticNeueMedium(size: 12))
+                    //Updated on Mon 3 Jul at 5:20 PM
+                } currentValueLabel: {
+                    Text("Syncing Sheets: 2/10").font(.heleveticNeueMedium(size: 10))
+                }
+                .foregroundColor(Color.black)
+            }.padding(.top,5)
+        }
+//        .progressViewStyle(.circular)
+    }
+}
 
 
 struct SearchBar: View {
