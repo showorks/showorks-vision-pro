@@ -63,14 +63,13 @@ struct HomeView: View {
         }
         .onAppear {
             if mScreenState == .demoMode {
-                
                 aUserName = "demo_mode".localized()
-                
-                loadDataOnScreen()
                 
             }else{
                 aUserName = UserSettings.shared.firstName ?? "demo_mode".localized()
             }
+            
+            loadDataOnScreen()
         }
         
     }
@@ -78,30 +77,22 @@ struct HomeView: View {
     func loadDataOnScreen(){
         
         if viewModel.authenticationResponse == nil {
-            
-            Task {
-                await homeViewModel.loadPlistArrayWithSheetsDetailData(screenType: mScreenState ?? .demoMode)
-            }
-            
-            
-            // User is in demo mode
-            
-//                self.alertItem = AlertItem(type: .dismiss(title: "showorks".localized(), message: "enter_serial_to_continue".localized(), dismissText: "ok".localized(), dismissAction: {
-//                    // Do something here
-//                }))
+                loadPlistData()
         }else{
-            // User is authenticated by server
-//                self.alertItem = AlertItem(type: .dismiss(title: "showorks".localized(), message: "user is already authenticated".localized(), dismissText: "ok".localized(), dismissAction: {
-//                    // Do something here
-//                    // Fetch sheets
-//                }))
+            Task {
+                DataCenter.sharedInstance.setupWithAccessKey(_accessKey: UserSettings.shared.accessKey, andSecretKey: UserSettings.shared.secretKey) { downloadCompleted in
+                    if downloadCompleted {
+                        loadPlistData()
+                    }
+                }
+            }
         }
-//            Task {
-////                await homeViewModel.loadPlistArrayWithSheetsDetailData()
-//                DataCenter.sharedInstance.setupWithAccessKey(_accessKey: UserSettings.shared.accessKey, andSecretKey: UserSettings.shared.secretKey) { downloadCompleted in
-//                    print(downloadCompleted)
-//                }
-//            }
+    }
+    
+    func loadPlistData(){
+        Task {
+            await homeViewModel.loadPlistArrayWithSheetsDetailData(screenType: mScreenState ?? .demoMode)
+        }
     }
 }
 
@@ -145,7 +136,7 @@ struct SlaveLayout : View {
     var body: some View
     {
         VStack {
-            SlaveTopLayout()
+            SlaveTopLayout(aTextValue: Binding.constant(String.init(format: "Sheets (%ld)", slaveValues?.count ?? 0)))
             
             Divider().frame(maxWidth: .infinity,maxHeight: 2)
                 .background(Color.aSeperatorColor)
@@ -334,7 +325,7 @@ struct MasterBottomLayout: View {
 }
 
 struct SlaveTopLayout: View {
-    
+    @Binding var aTextValue: String
     var body: some View {
      
         HStack{
@@ -347,7 +338,7 @@ struct SlaveTopLayout: View {
             })
             .buttonStyle(PlainButtonStyle())
             Spacer()
-            Text("Sheets (10)").foregroundColor(.black).bold()
+            Text(aTextValue).foregroundColor(.black).bold()
             Spacer()
             Button(action: {
                    print("Sort pressed")

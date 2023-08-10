@@ -150,7 +150,7 @@ struct InputSerial: View {
                     // PUSH TO HOME SCREEN WITH STATUS fetchSheetFromLocal
                     mScreenState = AppConstant.AppStartupStatus.fetchSheetFromLocal
                 }else{
-                    if Utilities.sharedInstance.isNetworkStatusAvailable() {
+                    if !Utilities.sharedInstance.isNetworkStatusAvailable() {
                         self.showNoNetworkAlertMessage()
                     }else{
                         UserSettings.shared.isDemoUserEnabled = false
