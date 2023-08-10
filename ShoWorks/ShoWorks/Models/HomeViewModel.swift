@@ -14,6 +14,7 @@ final class HomeViewModel: ObservableObject {
     
     @Published var plistDataArray : NSMutableArray?
     @Published var listItems: [HomeViewData]?
+    @Published var isDataLoaded: Bool?
     
     func loadPlistArrayWithSheetsDetailData(screenType:AppConstant.AppStartupStatus) async {
 
@@ -69,6 +70,8 @@ final class HomeViewModel: ObservableObject {
                 if let departments = sheetObj[AppConstant.sheet_departments] as? NSMutableArray {
                     departmentsCount = departments.count
                 }
+                
+                let createdTime = Utilities.sharedInstance.getTimeAccordingToDateOrMinutesAgoAccordingly(time: created) ?? ""
 
                 let entriesCount = Int(sheetInfoObj[AppConstant.sheet_entries] as? String ?? "0") ?? 0
                 
@@ -76,13 +79,17 @@ final class HomeViewModel: ObservableObject {
                 
                 let classesCount = getClassesCountOfSheet(sheetDic: sheetObj)
                 
-                let homeViewDataObj = HomeViewData(fileName: afileName, createdTime: created, numberOfDepartments: String.init(format: "%ld", departmentsCount), numberOfClasses: String.init(format: "%ld", classesCount), numberOfDivisions: String.init(format: "%ld", divisionsCount), numberOfEntries: String.init(format: "%ld", entriesCount))
+                let homeViewDataObj = HomeViewData(fileName: afileName, createdTime: createdTime, numberOfDepartments: String.init(format: "%ld", departmentsCount), numberOfClasses: String.init(format: "%ld", classesCount), numberOfDivisions: String.init(format: "%ld", divisionsCount), numberOfEntries: String.init(format: "%ld", entriesCount))
                 
                 listItems?.append(homeViewDataObj)
             }
          }
         
-//        print(listItems)
+        if let listItemsArray = listItems {
+            isDataLoaded = true
+        }else{
+            isDataLoaded = false
+        }
     }
     
     func getDivisionsCountOfSheet(sheetDic:NSDictionary) -> Int{

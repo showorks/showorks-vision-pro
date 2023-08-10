@@ -32,7 +32,7 @@ struct HomeView: View {
     @State var mSelectedOption: HomeViewData?
 
     @ObservedObject var homeViewModel = HomeViewModel()
-
+    
     var body: some View {
      
         ZStack{
@@ -46,7 +46,6 @@ struct HomeView: View {
                     
                     SlaveLayout(slaveValues:self.$homeViewModel.listItems,mSelectedOption: $mSelectedOption)
                             .border(Color.aSeperatorColor)
-                                                
                 }
                 detail: {
                     MasterLayout(mSelectedOption: $mSelectedOption)
@@ -160,6 +159,7 @@ struct SlaveLayout : View {
 
             
             }
+            
 //            .listStyle(.plain)
             .padding(.bottom,100)
             .navigationBarHidden(true)

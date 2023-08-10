@@ -75,6 +75,56 @@ class Utilities {
         return false
     }
     
+    func getTimeAccordingToDateOrMinutesAgoAccordingly(time:String!) -> String! {
+        
+        if !Utilities.sharedInstance.checkStringContainsText(text: time)
+        
+        {return "-"}
+
+        let today:Date! = Date()
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "MM/dd/yyyy hh:mm:ss a"
+
+        let timeDate:Date! = dateFormatter.date(from: time)
+
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+
+        let timeDateOnly:String! = dateFormatter.string(from: timeDate)
+
+        let todayDateOnly:String! = dateFormatter.string(from: today)
+
+          if (todayDateOnly == timeDateOnly)
+          {
+              let calender = Calendar(identifier: .gregorian)
+              let units: Set<Calendar.Component> = [.minute]
+              let components = calender.dateComponents(units, from: timeDate, to: today)
+              
+              if components.minute!<=1 {
+                  return "just now"
+              }
+              else if components.minute! < 60
+              {
+                  return String(format:"%i minutes ago",components.minute!)
+              }
+              else
+              {
+                  dateFormatter.dateFormat = "h:mm a"
+                  let timetimeOnly:String! = dateFormatter.string(from: timeDate)
+                  return String(format:"today at %@",timetimeOnly)
+              }
+          }
+          else
+          {
+              dateFormatter.dateFormat = "EEE d MMM"
+              var atime = dateFormatter.string(from: timeDate)
+              dateFormatter.dateFormat = "h:mm a"
+              let onlyTimeWithAMPM:String! = dateFormatter.string(from: timeDate)
+              return String(format:"on %@ at %@",atime,onlyTimeWithAMPM)
+          }
+      }
+    
 }
 
 
