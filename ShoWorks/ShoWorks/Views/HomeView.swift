@@ -39,7 +39,7 @@ struct HomeView: View {
                 NavigationSplitView {
                     
                     
-                        SlaveLayout()
+                    SlaveLayout(slaveValues:self.$homeViewModel.listItems)
                             .border(Color.aSeperatorColor)
                                                 
                 }
@@ -60,8 +60,12 @@ struct HomeView: View {
                 .padding(.top,150)
         }
         .onAppear {
-            if viewModel.authenticationResponse == nil {
+            if mScreenState == .demoMode {
+                
                 aUserName = "demo_mode".localized()
+                
+                loadDataOnScreen()
+                
             }else{
                 aUserName = UserSettings.shared.firstName ?? "demo_mode".localized()
             }
@@ -69,9 +73,14 @@ struct HomeView: View {
         
     }
     
-    func infoMethod(){
+    func loadDataOnScreen(){
         
         if viewModel.authenticationResponse == nil {
+            
+            Task {
+                await homeViewModel.loadPlistArrayWithSheetsDetailData(screenType: mScreenState ?? .demoMode)
+            }
+            
             
             // User is in demo mode
             
@@ -126,10 +135,7 @@ extension Binding {
 
 struct SlaveLayout : View {
     
-    private let slaveValues: [HomeViewData] = [
-        HomeViewData(fileName:"Home and Hobby Judging",createdTime: "Created on Mon 1 Jul at 2:33PM"),
-        HomeViewData(fileName:"Kiosk Check-in",createdTime: "Created on Mon 1 Jul at 2:33PM")
-       ]
+    @Binding var slaveValues: [HomeViewData]?
     
     @State private var mListOption: HomeViewData?
     @State private var searchText: String = ""
@@ -144,7 +150,7 @@ struct SlaveLayout : View {
             
             SearchBar(text: $searchText)
             
-            List(slaveValues, id: \.self, selection: $mListOption) { item in
+            List(slaveValues ?? [], id: \.self, selection: $mListOption) { item in
                 SlaveCellView(fileName: item.fileName, createdTime: item.createdTime)
                     .listRowSeparatorTint(.gray)
                     .listRowBackground(item == mListOption ? Color.aLightGrayColor : Color.white)
@@ -177,9 +183,11 @@ struct SlaveCellView: View {
         VStack(alignment: .leading){
                 Text(fileName)
                     .foregroundColor(.black).font(.heleveticNeueBold(size: 16))
-                Text(createdTime)
+                Spacer().frame(height: 2)
+            
+            Text("created_on".localized() + " " + createdTime)
                     .foregroundColor(.black)
-                    .font(.heleveticNeueLight(size: 13))
+                    .font(.heleveticNeueLight(size: 12))
             
                 Rectangle()
                 .stroke(Color.clear, lineWidth: .infinity).frame(height: 1)
@@ -188,7 +196,7 @@ struct SlaveCellView: View {
             .padding(.leading,10)
             .padding(.top,4)
             .padding(.trailing,10)
-            .frame(minWidth: 0, maxWidth: .infinity,maxHeight: 70)
+            .frame(minWidth: 0, maxWidth: .infinity,maxHeight: 60)
        
     }
 }

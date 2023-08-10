@@ -10,19 +10,20 @@ import SwiftUI
 
 final class HomeViewModel: ObservableObject {
     
-    @Published var firstWord = ""
-    @Published var secondWord = ""
-
+//    @Published var screenType = ""
     
-    func loadPlistArrayWithSheetsDetailData() async {
+    @Published var plistDataArray : NSMutableArray?
+    @Published var listItems: [HomeViewData]?
+    
+    func loadPlistArrayWithSheetsDetailData(screenType:AppConstant.AppStartupStatus) async {
 
-        var pListArray = SharedDelegate.sharedInstance.plistSheetDetailArray
+        let pListArray = SharedDelegate.sharedInstance.plistSheetDetailArray
         
-        if let plistSavedArray = pListArray {
+        if pListArray != nil {
             pListArray!.removeAllObjects()
         }
         
-        if UserSettings.shared.isDemoUserEnabled!
+        if screenType == .demoMode
         {
             SharedDelegate.sharedInstance.plistSheetDetailArray = PlistManager.sharedInstance.getPlistDataForDemoMode()
         }
@@ -31,10 +32,43 @@ final class HomeViewModel: ObservableObject {
             SharedDelegate.sharedInstance.plistSheetDetailArray = PlistManager.sharedInstance.getPlistData()
         }
         
-        var handler = await S3Handler()
+        DispatchQueue.main.sync {
+            plistDataArray = SharedDelegate.sharedInstance.plistSheetDetailArray
+        }
         
+//        var handler = await S3Handler()
+//
 //        let v = SharedDelegate.sharedInstance.plistSheetDetailArray
 //        print(SharedDelegate.sharedInstance.plistSheetDetailArray)
+        
+        DispatchQueue.main.async {
+            self.loadListWithSheetNames()
+        }
+
+    }
+    
+    func loadListWithSheetNames(){
+        let plistSheetDetailArray:NSMutableArray! =  SharedDelegate.sharedInstance.plistSheetDetailArray
+        
+        guard plistSheetDetailArray != nil else {
+            return
+        }
+        
+        listItems = []
+        
+        for sheetDic in plistSheetDetailArray {
+           
+            let sheetObj = sheetDic as! NSDictionary
+            let sheetInfoObj = sheetObj[AppConstant.sheet] as! NSDictionary
+
+            if let afileName = sheetInfoObj[AppConstant.sheet_name] as? String , let created =  sheetInfoObj[AppConstant.sheet_created] as? String {
+                let homeViewDataObj = HomeViewData(fileName: afileName, createdTime: created)
+                
+                listItems?.append(homeViewDataObj)
+            }
+         }
+        
+        print(listItems)
     }
 
 }

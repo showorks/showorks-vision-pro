@@ -57,6 +57,17 @@
     "Created on Mon 1 Jul at 2:33 PM" : {
 
     },
+    "created_on" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Created on"
+          }
+        }
+      }
+    },
     "demo_mode" : {
       "extractionState" : "manual",
       "localizations" : {
