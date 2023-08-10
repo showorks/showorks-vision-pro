@@ -76,6 +76,7 @@ struct HomeView: View {
              aUserName = UserSettings.shared.firstName ?? "demo_mode".localized()
              loadDataOnScreenFromServer()
          }else if mScreenState == .fetchSheetFromLocal {
+             aUserName = UserSettings.shared.firstName ?? "demo_mode".localized()
              loadPlistData()
          }
          
