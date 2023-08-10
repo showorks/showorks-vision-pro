@@ -25,7 +25,13 @@ struct SplashView: View {
                         }
                     }
                     .navigationDestination(isPresented: $pushToNext) {
-                        InputSerial()
+                        
+                        if UserSettings.shared.isDemoUserEnabled == true {
+                            InputSerial()
+                        }else{
+                            HomeView(mScreenState: AppConstant.AppStartupStatus.fetchSheetFromLocal)
+                        }
+                        
                     }.transition(navigationTransition)
                 ShoWorksLogo()
             }

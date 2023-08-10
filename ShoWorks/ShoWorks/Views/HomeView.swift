@@ -62,28 +62,31 @@ struct HomeView: View {
                 .padding(.top,150)
         }
         .onAppear {
-            if mScreenState == .demoMode {
-                aUserName = "demo_mode".localized()
-                
-            }else{
-                aUserName = UserSettings.shared.firstName ?? "demo_mode".localized()
-            }
-            
-            loadDataOnScreen()
+            decideAndLoadDataOnScreenAccordingly()
         }
         
     }
     
-    func loadDataOnScreen(){
+    func decideAndLoadDataOnScreenAccordingly(){
         
-        if viewModel.authenticationResponse == nil {
-                loadPlistData()
-        }else{
-            Task {
-                DataCenter.sharedInstance.setupWithAccessKey(_accessKey: UserSettings.shared.accessKey, andSecretKey: UserSettings.shared.secretKey) { downloadCompleted in
-                    if downloadCompleted {
-                        loadPlistData()
-                    }
+         if mScreenState == .demoMode {
+             aUserName = "demo_mode".localized()
+             loadPlistData()
+         }else if mScreenState == .fetchSheetFromServer {
+             aUserName = UserSettings.shared.firstName ?? "demo_mode".localized()
+             loadDataOnScreenFromServer()
+         }else if mScreenState == .fetchSheetFromLocal {
+             loadPlistData()
+         }
+         
+
+    }
+    
+    func loadDataOnScreenFromServer(){
+        Task {
+            DataCenter.sharedInstance.setupWithAccessKey(_accessKey: UserSettings.shared.accessKey, andSecretKey: UserSettings.shared.secretKey) { downloadCompleted in
+                if downloadCompleted {
+                    loadPlistData()
                 }
             }
         }
