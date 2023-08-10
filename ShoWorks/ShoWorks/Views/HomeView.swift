@@ -14,6 +14,10 @@ struct HomeViewData: Identifiable,Hashable {
     let id = UUID()
     var fileName: String
     var createdTime: String
+    var numberOfDepartments: String
+    var numberOfClasses: String
+    var numberOfDivisions: String
+    var numberOfEntries: String
 }
 
 struct HomeView: View {
@@ -25,6 +29,7 @@ struct HomeView: View {
     @State var aUserName: String = ""
     
     @State var mScreenState: AppConstant.AppStartupStatus?
+    @State var mSelectedOption: HomeViewData?
 
     @ObservedObject var homeViewModel = HomeViewModel()
 
@@ -39,14 +44,12 @@ struct HomeView: View {
                 NavigationSplitView {
                     
                     
-                    SlaveLayout(slaveValues:self.$homeViewModel.listItems)
+                    SlaveLayout(slaveValues:self.$homeViewModel.listItems,mSelectedOption: $mSelectedOption)
                             .border(Color.aSeperatorColor)
                                                 
                 }
                 detail: {
-//                    Text(mListOption?.rawValue ?? "")
-//                        .font(.largeTitle)
-                    MasterLayout()
+                    MasterLayout(mSelectedOption: $mSelectedOption)
                         .navigationBarHidden(true)
                         .border(Color.aSeperatorColor)
                 }.navigationBarHidden(true)
@@ -137,7 +140,7 @@ struct SlaveLayout : View {
     
     @Binding var slaveValues: [HomeViewData]?
     
-    @State private var mListOption: HomeViewData?
+    @Binding var mSelectedOption: HomeViewData?
     @State private var searchText: String = ""
 
     var body: some View
@@ -150,10 +153,10 @@ struct SlaveLayout : View {
             
             SearchBar(text: $searchText)
             
-            List(slaveValues ?? [], id: \.self, selection: $mListOption) { item in
+            List(slaveValues ?? [], id: \.self, selection: $mSelectedOption) { item in
                 SlaveCellView(fileName: item.fileName, createdTime: item.createdTime)
                     .listRowSeparatorTint(.gray)
-                    .listRowBackground(item == mListOption ? Color.aLightGrayColor : Color.white)
+                    .listRowBackground(item == mSelectedOption ? Color.aLightGrayColor : Color.white)
 
             
             }
@@ -185,7 +188,7 @@ struct SlaveCellView: View {
                     .foregroundColor(.black).font(.heleveticNeueBold(size: 16))
                 Spacer().frame(height: 2)
             
-            Text("created_on".localized() + " " + createdTime)
+                Text("created_on".localized() + " " + createdTime)
                     .foregroundColor(.black)
                     .font(.heleveticNeueLight(size: 12))
             
@@ -202,13 +205,15 @@ struct SlaveCellView: View {
 }
 
 struct MasterLayout: View {
-
+    
+    @Binding var mSelectedOption: HomeViewData?
+    
     var body: some View {
             
         VStack {
 
-                MasterTopLayout()
-                MasterCenterLayout()
+                MasterTopLayout(mSelectedOption: $mSelectedOption)
+                MasterCenterLayout(mSelectedOption: $mSelectedOption)
                 HStack(){
                     
                     Text("go_to_sheet".localized())
@@ -232,9 +237,11 @@ struct MasterLayout: View {
 
 struct MasterTopLayout: View {
     
+    @Binding var mSelectedOption: HomeViewData?
+    
     var body: some View {
         VStack(){
-            Text("Home and Hobby Judging").foregroundColor(.black)
+            Text(mSelectedOption?.fileName ?? "").foregroundColor(.black)
                 .font(.heleveticNeueBold(size: 17))
             .padding(.top,10)
         
@@ -260,25 +267,27 @@ struct MasterTopLayout: View {
 }
 
 struct MasterCenterLayout: View {
-    
+
+    @Binding var mSelectedOption: HomeViewData?
+
     var body: some View {
         VStack(){
-            MasterCenterRowLayout(aTextTitle: "num_departments".localized(), aTextValue: "1")
+            MasterCenterRowLayout(aTextTitle: "num_departments".localized(), aTextValue: Binding.constant(self.mSelectedOption?.numberOfDepartments ?? " "))
                 .padding(3)
             
             Divider().background(Color.aSeperatorColor)
             
-            MasterCenterRowLayout(aTextTitle: "num_divisions".localized(), aTextValue: "15")
+            MasterCenterRowLayout(aTextTitle: "num_divisions".localized(), aTextValue: Binding.constant(self.mSelectedOption?.numberOfDivisions ?? " "))
                 .padding(3)
 
             Divider().background(Color.aSeperatorColor)
             
-            MasterCenterRowLayout(aTextTitle: "num_classes".localized(), aTextValue: "258").padding(3)
+            MasterCenterRowLayout(aTextTitle: "num_classes".localized(), aTextValue: Binding.constant(self.mSelectedOption?.numberOfClasses ?? " ")).padding(3)
 
             
             Divider().background(Color.aSeperatorColor)
 
-            MasterCenterRowLayout(aTextTitle: "num_entries".localized(), aTextValue: "3,496").padding(3)
+            MasterCenterRowLayout(aTextTitle: "num_entries".localized(), aTextValue: Binding.constant(self.mSelectedOption?.numberOfEntries ?? " ")).padding(3)
 
 
         }
@@ -298,12 +307,11 @@ struct MasterCenterLayout: View {
 struct MasterCenterRowLayout: View {
     
     @State var aTextTitle: String
-    @State var aTextValue: String
+    @Binding var aTextValue: String
     
     var body: some View {
      
         HStack(){
-            //
             Text(aTextTitle).foregroundColor(.black).font(.heleveticNeueMedium(size: 18))
             Spacer()
             Text(aTextValue).foregroundColor(.aTextGrayColor).font(.heleveticNeueMedium(size: 18))

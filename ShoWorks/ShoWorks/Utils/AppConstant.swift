@@ -19,6 +19,10 @@ struct AppConstant {
     static let sheet_allow_class_change = "allowclasschange" //SHEET_ALLOW_CLASS_CHANGE
     static let sheet_created = "Created" //SHEET_CREATED
     static let sheet_updated = "Updated" //SHEET_UPDATED
+    static let sheet_departments = "Departments" //SHEET_UPDATED
+    static let sheet_entries = "Entries" //SHEET_UPDATED
+    static let sheet_divisions = "Divisions" //SHEET_UPDATED
+    static let sheet_classes = "Classes" //SHEET_UPDATED
 
     
     static let plistManagerDemoFileName = "SheetsData.plist";
