@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class Utilities {
     
@@ -192,5 +193,21 @@ extension String {
             return ""
         }
         return String(lastChar)
+    }
+}
+
+
+// Extension for notification publisher
+extension View {
+    func onReceive(
+        _ name: Notification.Name,
+        center: NotificationCenter = .default,
+        object: AnyObject? = nil,
+        perform action: @escaping (Notification) -> Void
+    ) -> some View {
+        onReceive(
+            center.publisher(for: name, object: object),
+            perform: action
+        )
     }
 }

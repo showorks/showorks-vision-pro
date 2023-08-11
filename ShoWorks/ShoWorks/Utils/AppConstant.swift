@@ -64,3 +64,8 @@ struct AppConstant {
       case demoMode, fetchSheetFromLocal, fetchSheetFromServer
     }
 }
+
+
+extension Notification.Name {
+    static let homeSyncingNotification = Notification.Name(AppConstant.HomeScreenSyncInProcessNotification)
+}

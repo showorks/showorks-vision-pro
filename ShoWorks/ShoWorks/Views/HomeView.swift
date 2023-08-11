@@ -20,6 +20,13 @@ struct HomeViewData: Identifiable,Hashable {
     var numberOfEntries: String
 }
 
+struct UserSyncingInformation: Identifiable,Hashable {
+    let id = UUID()
+    var syncType: String
+    var currentCount: Int
+    var totalCount: Int
+}
+
 struct HomeView: View {
          
     @EnvironmentObject var viewModel: ShoWorksAuthenticationModel
@@ -30,6 +37,8 @@ struct HomeView: View {
     
     @State var mScreenState: AppConstant.AppStartupStatus?
     @State var mSelectedOption: HomeViewData?
+    @State var syncObject: UserSyncingInformation?
+    @State var isSyncingCompleted: Bool?
 
     @ObservedObject var homeViewModel = HomeViewModel()
     
@@ -43,9 +52,10 @@ struct HomeView: View {
                 HomeTitleLayout(aUserName: $aUserName)
                 NavigationSplitView {
                     
-                    
-                    SlaveLayout(slaveValues:self.$homeViewModel.listItems,mSelectedOption: $mSelectedOption)
-                            .border(Color.aSeperatorColor)
+                    SlaveLayout(slaveValues: self.$homeViewModel.listItems, mSelectedOption: $mSelectedOption, syncObject: $syncObject, isSyncingCompleted: $isSyncingCompleted)
+                        .border(Color.aSeperatorColor)
+//                    SlaveLayout(slaveValues:self.$homeViewModel.listItems,mSelectedOption: $mSelectedOption,syncObject: $syncObject,isSyncingCompleted: $isSyncingCompleted)
+                            
                 }
                 detail: {
                     MasterLayout(mSelectedOption: $mSelectedOption)
@@ -61,10 +71,51 @@ struct HomeView: View {
             }
                 .padding(.top,150)
         }
+        .onReceive(.homeSyncingNotification, perform: { info in
+            let sheetSyncNotificationModelObj = (info .object as? SheetSyncNotificationModel) ?? nil
+            
+            if sheetSyncNotificationModelObj == nil {
+                return
+            }
+            
+            self.handleSheetsSyncingInformation(sheetSyncNotificationModelObj: sheetSyncNotificationModelObj)
+            
+        })
         .onAppear {
             decideAndLoadDataOnScreenAccordingly()
         }
         
+    }
+    
+    func handleSheetsSyncingInformation(sheetSyncNotificationModelObj:SheetSyncNotificationModel?){
+                
+        if let object = sheetSyncNotificationModelObj {
+            
+            let currentCount = object.currentCount
+            
+            let totalCount = object.totalCount
+            
+            let syncType = object.syncType
+            
+            var syncTypeString = ""
+            
+            if syncType == AppConstant.SyncType.UPLOAD {
+                syncTypeString = "Sending"
+            }else{
+                syncTypeString = "Receiving"
+            }
+            
+            let syncingInformationObj = UserSyncingInformation(syncType: syncTypeString, currentCount: currentCount, totalCount: totalCount)
+            
+            self.syncObject = syncingInformationObj
+            
+            if totalCount>0 && currentCount>0 && (totalCount / currentCount == 1) {
+                self.isSyncingCompleted = true
+            }else{
+                self.isSyncingCompleted = false
+            }
+            
+        }
     }
     
     func decideAndLoadDataOnScreenAccordingly(){
@@ -135,6 +186,9 @@ struct SlaveLayout : View {
     @Binding var slaveValues: [HomeViewData]?
     
     @Binding var mSelectedOption: HomeViewData?
+    @Binding var syncObject:UserSyncingInformation?
+    @Binding var isSyncingCompleted:Bool?
+
     @State private var searchText: String = ""
 
     var body: some View
@@ -161,7 +215,7 @@ struct SlaveLayout : View {
             .listRowSeparator(.hidden)
             .onAppear { UITableView.appearance().separatorStyle = .none }
 //            Spacer()
-            SlaveBottomLayout()
+            SlaveBottomLayout(syncObject: $syncObject, isSyncingCompleted: $isSyncingCompleted)
                 .padding(30)
                 .offset(y:-120)
         }
@@ -362,7 +416,8 @@ struct SlaveTopLayout: View {
 
 struct SlaveBottomLayout: View {
     
-    @State private var progress = 0.2
+    @Binding var syncObject:UserSyncingInformation?
+    @Binding var isSyncingCompleted:Bool?
        
     var body: some View {
         VStack{
@@ -372,16 +427,23 @@ struct SlaveBottomLayout: View {
             
             HStack {
                 
-                ProgressView(value: progress) {
-                    Text("Updated on Mon 3 Jul at 5:20 PM").font(.heleveticNeueMedium(size: 12))
-                    //Updated on Mon 3 Jul at 5:20 PM
-                } currentValueLabel: {
-                    Text("Syncing Sheets: 2/10").font(.heleveticNeueMedium(size: 10))
+                if let object = syncObject, isSyncingCompleted == false {
+//                    Text("Updated Just Now").font(.heleveticNeueMedium(size: 12)).foregroundColor(Color.black)
+                    ProgressView(value: Float(object.currentCount/object.totalCount)) {
+                        Text(String.init(format: "%@", object.syncType)).font(.heleveticNeueMedium(size: 12))
+                        //Updated on Mon 3 Jul at 5:20 PM
+                    } currentValueLabel: {
+                        Text(String.init(format: "%d of %d", object.currentCount,object.totalCount)).font(.heleveticNeueMedium(size: 10))
+                    }
+                    .progressViewStyle(.linear)
+                    .tint(.blue)
+                    .foregroundColor(Color.black)
+                }else{
+                    Text("Updated Just Now").font(.heleveticNeueMedium(size: 12)).foregroundColor(Color.black)
                 }
-                .foregroundColor(Color.black)
             }.padding(.top,5)
         }
-//        .progressViewStyle(.circular)
+    
     }
 }
 

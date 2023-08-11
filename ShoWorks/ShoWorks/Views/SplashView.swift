@@ -29,7 +29,11 @@ struct SplashView: View {
                         if UserSettings.shared.isDemoUserEnabled == true {
                             InputSerial()
                         }else{
-                            HomeView(mScreenState: AppConstant.AppStartupStatus.fetchSheetFromLocal)
+                            if !Utilities.sharedInstance.checkStringContainsText(text: UserSettings.shared.serialKey) {
+                                InputSerial()
+                            }else{
+                                HomeView(mScreenState: AppConstant.AppStartupStatus.fetchSheetFromLocal)
+                            }
                         }
                         
                     }.transition(navigationTransition)

@@ -185,8 +185,10 @@ class DataCenter : NSObject,SheetParserDelegate {
 
         if (totalFreshSheetsToBeDownloaded != nil) && totalFreshSheetsToBeDownloaded.count > 0
         {
-            let sheetsNotificationModel = self.getSheetSyncModelWithSyncType(syncType: AppConstant.SyncType.DOWNLOAD, currentCount:self.tempCurrentFreshSheetCount!, totalCount:totalFreshSheetsToBeDownloaded.count)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.HomeScreenSyncInProcessNotification), object: sheetsNotificationModel)
+            DispatchQueue.main.async {
+                let sheetsNotificationModel = self.getSheetSyncModelWithSyncType(syncType: AppConstant.SyncType.DOWNLOAD, currentCount:self.tempCurrentFreshSheetCount!, totalCount:totalFreshSheetsToBeDownloaded.count)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.HomeScreenSyncInProcessNotification), object: sheetsNotificationModel)
+            }
         }
 
         if (totalFreshSheetsToBeDownloaded != nil) {
@@ -446,9 +448,11 @@ class DataCenter : NSObject,SheetParserDelegate {
         
         if(totalCompleteSheets > 0) {
 
-            let sheetsNotificationModel = self.getSheetSyncModelWithSyncType(syncType: AppConstant.SyncType.UPLOAD, currentCount:0, totalCount:totalCompleteSheets)
-            
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.HomeScreenSyncInProcessNotification), object: sheetsNotificationModel)
+            DispatchQueue.main.async {
+                let sheetsNotificationModel = self.getSheetSyncModelWithSyncType(syncType: AppConstant.SyncType.UPLOAD, currentCount:0, totalCount:totalCompleteSheets)
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.HomeScreenSyncInProcessNotification), object: sheetsNotificationModel)
+            }
         }
                 
         DispatchQueue.main.async {
@@ -523,8 +527,11 @@ class DataCenter : NSObject,SheetParserDelegate {
 
                                 currentCompleteSheet += 1
                                 
-                                let sheetsNotificationModel = self.getSheetSyncModelWithSyncType(syncType: AppConstant.SyncType.UPLOAD, currentCount:currentCompleteSheet, totalCount:totalCompleteSheets)
-                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.HomeScreenSyncInProcessNotification), object: sheetsNotificationModel)
+                                DispatchQueue.main.async {
+                                    let sheetsNotificationModel = self.getSheetSyncModelWithSyncType(syncType: AppConstant.SyncType.UPLOAD, currentCount:currentCompleteSheet, totalCount:totalCompleteSheets)
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.HomeScreenSyncInProcessNotification), object: sheetsNotificationModel)
+                                }
+
                             }
                         }
                         
