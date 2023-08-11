@@ -83,6 +83,7 @@ struct HomeView: View {
         })
         .onAppear {
             decideAndLoadDataOnScreenAccordingly()
+
         }
         
     }
@@ -109,7 +110,7 @@ struct HomeView: View {
             
             self.syncObject = syncingInformationObj
             
-            if totalCount>0 && currentCount>0 && (totalCount / currentCount == 1) {
+            if totalCount == currentCount {
                 self.isSyncingCompleted = true
             }else{
                 self.isSyncingCompleted = false
@@ -429,12 +430,14 @@ struct SlaveBottomLayout: View {
                 
                 if let object = syncObject, isSyncingCompleted == false {
 //                    Text("Updated Just Now").font(.heleveticNeueMedium(size: 12)).foregroundColor(Color.black)
-                    ProgressView(value: Float(object.currentCount/object.totalCount)) {
-                        Text(String.init(format: "%@", object.syncType)).font(.heleveticNeueMedium(size: 12))
-                        //Updated on Mon 3 Jul at 5:20 PM
-                    } currentValueLabel: {
-                        Text(String.init(format: "%d of %d", object.currentCount,object.totalCount)).font(.heleveticNeueMedium(size: 10))
-                    }
+//                    ProgressView(value: Float(object.currentCount/object.totalCount)) {
+//                        Text(String.init(format: "%@", object.syncType)).font(.heleveticNeueMedium(size: 12))
+//                        //Updated on Mon 3 Jul at 5:20 PM
+//                    } currentValueLabel: {
+//                        Text(String.init(format: "%d of %d", object.currentCount,object.totalCount)).font(.heleveticNeueMedium(size: 10))
+//                    }
+                     ProgressView(String.init(format: "%@ : %d of %d", object.syncType, object.currentCount,object.totalCount), value: Float(object.currentCount), total: Float(object.totalCount))
+                    .font(.heleveticNeueMedium(size: 12))
                     .progressViewStyle(.linear)
                     .tint(.blue)
                     .foregroundColor(Color.black)
