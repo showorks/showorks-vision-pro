@@ -231,6 +231,11 @@ struct SlaveLayout : View {
 
         .background(Color.aHomeBackgroundColor)
         .edgesIgnoringSafeArea(.all)
+        .onChange(of: slaveValues) { oldValue, newValue in
+            if let slavesData = newValue, slavesData.count > 0 {
+                mSelectedOption = slavesData.first
+            }
+        }
     }
 }
 
