@@ -50,12 +50,10 @@ struct HomeView: View {
             
             VStack {
                 HomeTitleLayout(aUserName: $aUserName)
+                
                 NavigationSplitView {
-                    
-                    SlaveLayout(slaveValues: self.$homeViewModel.listItems, mSelectedOption: $mSelectedOption, syncObject: $syncObject, isSyncingCompleted: $isSyncingCompleted)
-                        .border(Color.aSeperatorColor)
-//                    SlaveLayout(slaveValues:self.$homeViewModel.listItems,mSelectedOption: $mSelectedOption,syncObject: $syncObject,isSyncingCompleted: $isSyncingCompleted)
-                            
+                        SlaveLayout(slaveValues: self.$homeViewModel.listItems, mSelectedOption: $mSelectedOption, syncObject: $syncObject, isSyncingCompleted: $isSyncingCompleted)
+                            .border(Color.aSeperatorColor)
                 }
                 detail: {
                     MasterLayout(mSelectedOption: $mSelectedOption)
@@ -83,7 +81,6 @@ struct HomeView: View {
         })
         .onAppear {
             decideAndLoadDataOnScreenAccordingly()
-
         }
         
     }
@@ -202,19 +199,23 @@ struct SlaveLayout : View {
             
             SearchBar(text: $searchText)
             
-            List(slaveValues ?? [], id: \.self, selection: $mSelectedOption) { item in
-                SlaveCellView(fileName: item.fileName, createdTime: item.createdTime)
-                    .listRowSeparatorTint(.gray)
-                    .listRowBackground(item == mSelectedOption ? Color.aLightGrayColor : Color.white)
+            if let slavesData = slaveValues {
+                List(slaveValues ?? [], id: \.self, selection: $mSelectedOption) { item in
+                    SlaveCellView(fileName: item.fileName, createdTime: item.createdTime)
+                        .listRowSeparatorTint(.gray)
+                        .listRowBackground(item == mSelectedOption ? Color.aLightGrayColor : Color.white)
+                }
+                .padding(.bottom,100)
+                .navigationBarHidden(true)
+                .listRowSeparator(.hidden)
+                .onAppear { UITableView.appearance().separatorStyle = .none }
+            }else{
+                SlaveNoSheetsLayout()
+                    .padding(.bottom,100)
+                    .navigationBarHidden(true)
 
-            
             }
             
-//            .listStyle(.plain)
-            .padding(.bottom,100)
-            .navigationBarHidden(true)
-            .listRowSeparator(.hidden)
-            .onAppear { UITableView.appearance().separatorStyle = .none }
 //            Spacer()
             SlaveBottomLayout(syncObject: $syncObject, isSyncingCompleted: $isSyncingCompleted)
                 .padding(30)
@@ -223,6 +224,14 @@ struct SlaveLayout : View {
 
         .background(Color.aHomeBackgroundColor)
         .edgesIgnoringSafeArea(.all)
+    }
+}
+
+struct SlaveNoSheetsLayout: View {
+    var body: some View{
+        Text("no_sheets".localized()).foregroundColor(.aTextGrayColorSheetProperties).font(.heleveticNeueMedium(size: 20))
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+            .background(Color.aHomeBackgroundColor)
     }
 }
 
@@ -261,7 +270,9 @@ struct MasterLayout: View {
     var body: some View {
             
         VStack {
-
+            
+            if let selectedOption = mSelectedOption {
+                
                 MasterTopLayout(mSelectedOption: $mSelectedOption)
                 MasterCenterLayout(mSelectedOption: $mSelectedOption)
                 HStack(){
@@ -278,10 +289,14 @@ struct MasterLayout: View {
                 MasterBottomLayout()
             
                 Spacer()
-               }
-                   .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                   .background(Color.aHomeBackgroundColor)
-                   .edgesIgnoringSafeArea(.all)
+            }else{
+                SlaveNoSheetsLayout()
+            }
+
+           }
+           .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+           .background(Color.aHomeBackgroundColor)
+           .edgesIgnoringSafeArea(.all)
     }
 }
 

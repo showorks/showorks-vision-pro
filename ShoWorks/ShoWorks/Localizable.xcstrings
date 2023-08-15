@@ -145,6 +145,17 @@
         }
       }
     },
+    "no_sheets" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Sheets"
+          }
+        }
+      }
+    },
     "num_classes" : {
       "extractionState" : "manual",
       "localizations" : {
