@@ -21,6 +21,17 @@
         }
       }
     },
+    "check_in_txt" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check-in"
+          }
+        }
+      }
+    },
     "close_btn" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -331,6 +342,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sort"
+          }
+        }
+      }
+    },
+    "tap_here_to" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap here to"
           }
         }
       }

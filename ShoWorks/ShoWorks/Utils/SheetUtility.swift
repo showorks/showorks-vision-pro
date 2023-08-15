@@ -85,4 +85,30 @@ class SheetUtility {
         return keyExists
     }
 
+    
+    /**    @function    :getFairNameOfCurrentSheet
+     @discussion    :It will retuen the fair name from current sheet
+     @param            :-
+     @return        :NSString: current fair name
+     */
+    func getFairNameOfCurrentSheet(sheetDic:NSDictionary!) -> String{
+        
+        if (sheetDic == nil)
+            {return ""}
+        
+        let sheetInfoDic:NSDictionary! = sheetDic.object(forKey: AppConstant.sheet) as! NSDictionary
+        
+        let keyExists = sheetInfoDic[AppConstant.KioskModeFairKey] != nil
+        
+        if keyExists == false {
+            return ""
+        }
+        
+        guard let fairNameString = sheetInfoDic[AppConstant.KioskModeFairKey] as? String else
+        {
+            return ""
+        }
+        
+        return fairNameString
+    }
 }
