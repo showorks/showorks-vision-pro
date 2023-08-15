@@ -42,11 +42,12 @@ struct HomeView: View {
     @State var isPushedToKiosk: Bool = false
 
     @ObservedObject var homeViewModel = HomeViewModel()
+    @State var kioskViewModel = KioskViewModel()
     
     var body: some View {
      
         ZStack{
-            ShoWorksBackground()
+            CustomBackground()
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
@@ -57,13 +58,13 @@ struct HomeView: View {
                             .border(Color.aSeperatorColor)
                 }
                 detail: {
-                    MasterLayout(mSelectedOption: $mSelectedOption,slaveValues: self.$homeViewModel.listItems,isPushedToKiosk: $isPushedToKiosk)
+                    MasterLayout(mSelectedOption: $mSelectedOption,slaveValues: self.$homeViewModel.listItems,isPushedToKiosk: $isPushedToKiosk,kioskViewModel: $kioskViewModel)
                         .navigationBarHidden(true)
                         .border(Color.aSeperatorColor)
                 }.navigationBarHidden(true)
                 .navigationDestination(
                     isPresented: ($isPushedToKiosk)) {
-                         KioskWelcomeView()
+                         KioskWelcomeView().environmentObject(kioskViewModel)
                           Text("")
                               .hidden()
                      }
@@ -298,6 +299,8 @@ struct MasterLayout: View {
     
     @Binding var isPushedToKiosk : Bool
     
+    @Binding var kioskViewModel : KioskViewModel
+    
     var body: some View {
             
         VStack {
@@ -322,6 +325,7 @@ struct MasterLayout: View {
                         
                             if SheetUtility.sharedInstance.isKioskModeEnabledInSheet(sheetDic: sheetObj){
                                 self.isPushedToKiosk = true
+                                kioskViewModel = KioskViewModel(homeViewSelectedData: mSelectedOption, selectedDictionary: sheetObj)
                                 print("go to kiosk")
                             }else{
                                 self.isPushedToKiosk = false

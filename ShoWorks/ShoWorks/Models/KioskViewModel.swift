@@ -10,6 +10,12 @@ import SwiftUI
 
 final class KioskViewModel: ObservableObject {
     
-    @Published var selectedDictionaryItem: HomeViewData?
+    @Published var homeViewSelectedData: HomeViewData?
     
+    @Published var selectedDictionary: NSDictionary?
+    
+    init(homeViewSelectedData: HomeViewData? = nil, selectedDictionary: NSDictionary? = nil) {
+        self.homeViewSelectedData = homeViewSelectedData
+        self.selectedDictionary = selectedDictionary
+    }
 }

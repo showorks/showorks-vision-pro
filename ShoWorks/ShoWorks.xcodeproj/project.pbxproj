@@ -63,6 +63,7 @@
 		CFF166802A8B97C400FD7A25 /* SheetUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF1667F2A8B97C400FD7A25 /* SheetUtility.swift */; };
 		CFF166822A8BA26800FD7A25 /* KioskWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF166812A8BA26800FD7A25 /* KioskWelcomeView.swift */; };
 		CFF166842A8BA28000FD7A25 /* KioskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF166832A8BA28000FD7A25 /* KioskViewModel.swift */; };
+		CFF166862A8BA9F300FD7A25 /* CustomBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF166852A8BA9F300FD7A25 /* CustomBackground.swift */; };
 		CFFE1B1B2A7903B5009F6426 /* SheetParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFE1B1A2A7903B5009F6426 /* SheetParser.m */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +117,7 @@
 		CFF1667F2A8B97C400FD7A25 /* SheetUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetUtility.swift; sourceTree = "<group>"; };
 		CFF166812A8BA26800FD7A25 /* KioskWelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KioskWelcomeView.swift; sourceTree = "<group>"; };
 		CFF166832A8BA28000FD7A25 /* KioskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KioskViewModel.swift; sourceTree = "<group>"; };
+		CFF166852A8BA9F300FD7A25 /* CustomBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackground.swift; sourceTree = "<group>"; };
 		CFFE1B182A7903B4009F6426 /* ShoWorks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShoWorks-Bridging-Header.h"; sourceTree = "<group>"; };
 		CFFE1B192A7903B5009F6426 /* SheetParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SheetParser.h; sourceTree = "<group>"; };
 		CFFE1B1A2A7903B5009F6426 /* SheetParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SheetParser.m; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				CF09E63F2A656A8800C947A3 /* Bundle+Localized.swift */,
 				CF09E6432A656FC200C947A3 /* Alerts.swift */,
 				CF17003A2A6A9544006A7415 /* LazyView.swift */,
+				CFF166852A8BA9F300FD7A25 /* CustomBackground.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				CFFE1B1B2A7903B5009F6426 /* SheetParser.m in Sources */,
 				CF09E6362A6564FD00C947A3 /* Placeholder.swift in Sources */,
 				CF28947B2A7924AD004AE980 /* Reachability.m in Sources */,
+				CFF166862A8BA9F300FD7A25 /* CustomBackground.swift in Sources */,
 				CF1700962A7112F8006A7415 /* AppConstant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

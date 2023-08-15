@@ -145,9 +145,6 @@
         }
       }
     },
-    "Hello, World!" : {
-
-    },
     "InvalidSerialKeyAlertMessage" : {
       "extractionState" : "manual",
       "localizations" : {
