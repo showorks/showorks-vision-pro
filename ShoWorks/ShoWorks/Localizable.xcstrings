@@ -156,6 +156,39 @@
         }
       }
     },
+    "no_sheets_detail_1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No sheets are appearing because they must first be created in the desktop version of ShoWorks and sync'ed to this device."
+          }
+        }
+      }
+    },
+    "no_sheets_detail_2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you have already done so and do not see them listed at the left, tap the “↻” sync icon."
+          }
+        }
+      }
+    },
+    "no_sheets_detail_3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You should also ensure that any sheets created for a specific “channel” match the channel of this device. You can change the channel in the “Settings” menu."
+          }
+        }
+      }
+    },
     "num_classes" : {
       "extractionState" : "manual",
       "localizations" : {

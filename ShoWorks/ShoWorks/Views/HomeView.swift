@@ -200,7 +200,7 @@ struct SlaveLayout : View {
             SearchBar(text: $searchText)
             
             if let slavesData = slaveValues {
-                List(slaveValues ?? [], id: \.self, selection: $mSelectedOption) { item in
+                List(slavesData, id: \.self, selection: $mSelectedOption) { item in
                     SlaveCellView(fileName: item.fileName, createdTime: item.createdTime)
                         .listRowSeparatorTint(.gray)
                         .listRowBackground(item == mSelectedOption ? Color.aLightGrayColor : Color.white)
@@ -216,7 +216,6 @@ struct SlaveLayout : View {
 
             }
             
-//            Spacer()
             SlaveBottomLayout(syncObject: $syncObject, isSyncingCompleted: $isSyncingCompleted)
                 .padding(30)
                 .offset(y:-120)
@@ -232,6 +231,27 @@ struct SlaveNoSheetsLayout: View {
         Text("no_sheets".localized()).foregroundColor(.aTextGrayColorSheetProperties).font(.heleveticNeueMedium(size: 20))
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
             .background(Color.aHomeBackgroundColor)
+    }
+}
+
+
+struct MasterNoSheetsLayout: View {
+    var body: some View{
+        VStack{
+            Text("no_sheets_detail_1".localized() + "\n").foregroundColor(.aTextGrayColorSheetProperties).font(.heleveticNeueLight(size: 18))
+                .multilineTextAlignment(.center)
+                .background(Color.aHomeBackgroundColor)
+            Text("no_sheets_detail_2".localized() + "\n").foregroundColor(.aTextGrayColorSheetProperties).font(.heleveticNeueLight(size: 18))
+                .multilineTextAlignment(.center)
+                .background(Color.aHomeBackgroundColor)
+            Text("no_sheets_detail_3".localized() + "\n").foregroundColor(.aTextGrayColorSheetProperties).font(.heleveticNeueLight(size: 18))
+                .multilineTextAlignment(.center)
+                .background(Color.aHomeBackgroundColor)
+        }
+        .padding(.leading,200)
+        .padding(.trailing,200)
+        .padding(.bottom,100)
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
     }
 }
 
@@ -290,7 +310,7 @@ struct MasterLayout: View {
             
                 Spacer()
             }else{
-                SlaveNoSheetsLayout()
+                MasterNoSheetsLayout()
             }
 
            }
