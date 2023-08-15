@@ -39,6 +39,7 @@ struct HomeView: View {
     @State var mSelectedOption: HomeViewData?
     @State var syncObject: UserSyncingInformation?
     @State var isSyncingCompleted: Bool?
+    @State var isPushedToKiosk: Bool = false
 
     @ObservedObject var homeViewModel = HomeViewModel()
     
@@ -56,10 +57,16 @@ struct HomeView: View {
                             .border(Color.aSeperatorColor)
                 }
                 detail: {
-                    MasterLayout(mSelectedOption: $mSelectedOption,slaveValues: self.$homeViewModel.listItems)
+                    MasterLayout(mSelectedOption: $mSelectedOption,slaveValues: self.$homeViewModel.listItems,isPushedToKiosk: $isPushedToKiosk)
                         .navigationBarHidden(true)
                         .border(Color.aSeperatorColor)
                 }.navigationBarHidden(true)
+                .navigationDestination(
+                    isPresented: ($isPushedToKiosk)) {
+                         KioskWelcomeView()
+                          Text("")
+                              .hidden()
+                     }
 //                .background(Color.white)
                 .navigationSplitViewStyle(.automatic)
                 .alert(item: self.$alertItem, content: { a in
@@ -289,6 +296,8 @@ struct MasterLayout: View {
     
     @Binding var slaveValues: [HomeViewData]?
     
+    @Binding var isPushedToKiosk : Bool
+    
     var body: some View {
             
         VStack {
@@ -307,16 +316,17 @@ struct MasterLayout: View {
                                 return
                             }
                         
-                     
                             let mSelectedIndex = slaveValues!.firstIndex(of: mSelectedOption!)
 
                             let sheetObj = plistSheetDetailArray![mSelectedIndex!] as! NSDictionary
                         
                             if SheetUtility.sharedInstance.isKioskModeEnabledInSheet(sheetDic: sheetObj){
-                                    print("go to kiosk")
-                                }else{
-                                    print("go to other sheet")
-                                }
+                                self.isPushedToKiosk = true
+                                print("go to kiosk")
+                            }else{
+                                self.isPushedToKiosk = false
+                                print("go to other sheet")
+                            }
                        }, label: {
                            Text("go_to_sheet".localized())
                                .font(.system(size: 20))
@@ -328,15 +338,19 @@ struct MasterLayout: View {
                     .buttonStyle(PlainButtonStyle())
                     
                     
+                    
                 }.padding(40)
             
+                
                 MasterBottomLayout()
             
                 Spacer()
             }else{
                 MasterNoSheetsLayout()
             }
-
+            
+            
+            
            }
            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
            .background(Color.aHomeBackgroundColor)

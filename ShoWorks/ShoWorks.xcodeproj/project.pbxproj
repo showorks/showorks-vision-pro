@@ -61,6 +61,8 @@
 		CFE6ED192A5EB57200F6867E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFE6ED182A5EB57200F6867E /* Assets.xcassets */; };
 		CFE6ED1C2A5EB57200F6867E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFE6ED1B2A5EB57200F6867E /* Preview Assets.xcassets */; };
 		CFF166802A8B97C400FD7A25 /* SheetUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF1667F2A8B97C400FD7A25 /* SheetUtility.swift */; };
+		CFF166822A8BA26800FD7A25 /* KioskWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF166812A8BA26800FD7A25 /* KioskWelcomeView.swift */; };
+		CFF166842A8BA28000FD7A25 /* KioskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF166832A8BA28000FD7A25 /* KioskViewModel.swift */; };
 		CFFE1B1B2A7903B5009F6426 /* SheetParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFE1B1A2A7903B5009F6426 /* SheetParser.m */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +114,8 @@
 		CFE6ED182A5EB57200F6867E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFE6ED1B2A5EB57200F6867E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CFF1667F2A8B97C400FD7A25 /* SheetUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetUtility.swift; sourceTree = "<group>"; };
+		CFF166812A8BA26800FD7A25 /* KioskWelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KioskWelcomeView.swift; sourceTree = "<group>"; };
+		CFF166832A8BA28000FD7A25 /* KioskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KioskViewModel.swift; sourceTree = "<group>"; };
 		CFFE1B182A7903B4009F6426 /* ShoWorks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShoWorks-Bridging-Header.h"; sourceTree = "<group>"; };
 		CFFE1B192A7903B5009F6426 /* SheetParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SheetParser.h; sourceTree = "<group>"; };
 		CFFE1B1A2A7903B5009F6426 /* SheetParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SheetParser.m; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 				CF4384542A66B988000A7022 /* ShoWorksAuthenticationAPIResponse.swift */,
 				CFA0930B2A7131460013E6B3 /* HomeViewModel.swift */,
 				CF6C42162A73CCF8005F7D53 /* SheetSyncNotificationModel.swift */,
+				CFF166832A8BA28000FD7A25 /* KioskViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -214,6 +219,7 @@
 				CF6BEDE62A5F026900CE209A /* SplashView.swift */,
 				CF6BEDE82A5F02C400CE209A /* InputSerial.swift */,
 				CFA093062A712A510013E6B3 /* HomeView.swift */,
+				CFF166812A8BA26800FD7A25 /* KioskWelcomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -391,7 +397,9 @@
 				CF6BEDE72A5F026900CE209A /* SplashView.swift in Sources */,
 				CF28947F2A793FC6004AE980 /* XMLGenerator.m in Sources */,
 				CF43844E2A66B835000A7022 /* ShoWorksEndpoint.swift in Sources */,
+				CFF166842A8BA28000FD7A25 /* KioskViewModel.swift in Sources */,
 				CF17008F2A710F98006A7415 /* Utilities.swift in Sources */,
+				CFF166822A8BA26800FD7A25 /* KioskWelcomeView.swift in Sources */,
 				CFA093072A712A510013E6B3 /* HomeView.swift in Sources */,
 				CF09E6342A65601100C947A3 /* Colors.swift in Sources */,
 				CF4384582A672CA6000A7022 /* UserSettings.swift in Sources */,
