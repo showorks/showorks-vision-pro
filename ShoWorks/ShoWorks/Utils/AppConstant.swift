@@ -63,6 +63,26 @@ struct AppConstant {
     enum AppStartupStatus {
       case demoMode, fetchSheetFromLocal, fetchSheetFromServer
     }
+    
+    
+    static let SheetViewColumnHeadingPlace = "Place";
+    static let SheetViewColumnHeadingRibbon = "Ribbon";
+    static let SheetInfoKeyAllowScanning = "allowscanning";
+    static let SheetInfoKeySheetType = "type";
+    static let SheetInfoKeySheetTypeKiosk = "kiosk";
+    static let SheetTemplateKeyAllowEdit = "allowedit";
+    static let SheetTemplateKeyLength = "length";
+    static let SheetTemplateKeyValues = "values";
+    static let SheetHeaderTypeList = "list";
+    static let SheetHeaderTypeListValues = "values";
+    static let SheetTemplateKeyMin = "min";
+    static let SheetTemplateKeyMax = "max";
+    static let SheetCurlAnimationEffect = "pageCurl";
+    static let SheetUnCurlAnimationEffect = "pageUnCurl";
+    static let SheetCurlEffectDirection = "fromRight";
+    static let SheetCurlAnimation = "pageCurlAnimation";
+
+
 }
 
 

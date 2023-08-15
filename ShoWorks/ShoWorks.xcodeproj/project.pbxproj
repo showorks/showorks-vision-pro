@@ -60,6 +60,7 @@
 		CFE6ED152A5EB57100F6867E /* ShoWorksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE6ED142A5EB57100F6867E /* ShoWorksApp.swift */; };
 		CFE6ED192A5EB57200F6867E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFE6ED182A5EB57200F6867E /* Assets.xcassets */; };
 		CFE6ED1C2A5EB57200F6867E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFE6ED1B2A5EB57200F6867E /* Preview Assets.xcassets */; };
+		CFF166802A8B97C400FD7A25 /* SheetUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF1667F2A8B97C400FD7A25 /* SheetUtility.swift */; };
 		CFFE1B1B2A7903B5009F6426 /* SheetParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFE1B1A2A7903B5009F6426 /* SheetParser.m */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +111,7 @@
 		CFE6ED142A5EB57100F6867E /* ShoWorksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksApp.swift; sourceTree = "<group>"; };
 		CFE6ED182A5EB57200F6867E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFE6ED1B2A5EB57200F6867E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CFF1667F2A8B97C400FD7A25 /* SheetUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetUtility.swift; sourceTree = "<group>"; };
 		CFFE1B182A7903B4009F6426 /* ShoWorks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShoWorks-Bridging-Header.h"; sourceTree = "<group>"; };
 		CFFE1B192A7903B5009F6426 /* SheetParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SheetParser.h; sourceTree = "<group>"; };
 		CFFE1B1A2A7903B5009F6426 /* SheetParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SheetParser.m; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				CF1700912A7110A4006A7415 /* SharedDelegate.swift */,
 				CF1700952A7112F8006A7415 /* AppConstant.swift */,
 				CFFE1B182A7903B4009F6426 /* ShoWorks-Bridging-Header.h */,
+				CFF1667F2A8B97C400FD7A25 /* SheetUtility.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				CF17003B2A6A9544006A7415 /* LazyView.swift in Sources */,
 				CF17008E2A710F98006A7415 /* PlistManager.swift in Sources */,
 				CF6BEDE92A5F02C400CE209A /* InputSerial.swift in Sources */,
+				CFF166802A8B97C400FD7A25 /* SheetUtility.swift in Sources */,
 				CF4384502A66B853000A7022 /* APIConstants.swift in Sources */,
 				CF6BEDE72A5F026900CE209A /* SplashView.swift in Sources */,
 				CF28947F2A793FC6004AE980 /* XMLGenerator.m in Sources */,

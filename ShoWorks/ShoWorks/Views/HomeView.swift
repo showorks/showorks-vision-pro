@@ -56,7 +56,7 @@ struct HomeView: View {
                             .border(Color.aSeperatorColor)
                 }
                 detail: {
-                    MasterLayout(mSelectedOption: $mSelectedOption)
+                    MasterLayout(mSelectedOption: $mSelectedOption,slaveValues: self.$homeViewModel.listItems)
                         .navigationBarHidden(true)
                         .border(Color.aSeperatorColor)
                 }.navigationBarHidden(true)
@@ -287,22 +287,46 @@ struct MasterLayout: View {
     
     @Binding var mSelectedOption: HomeViewData?
     
+    @Binding var slaveValues: [HomeViewData]?
+    
     var body: some View {
             
         VStack {
             
-            if let selectedOption = mSelectedOption {
+            if let _ = slaveValues {
                 
                 MasterTopLayout(mSelectedOption: $mSelectedOption)
                 MasterCenterLayout(mSelectedOption: $mSelectedOption)
                 HStack(){
                     
-                    Text("go_to_sheet".localized())
-                        .font(.system(size: 20))
-                        .padding(.init(top: 30, leading: 50, bottom: 30, trailing: 50))
-                        .foregroundColor(Color.white)
-                        .background(Color.aBlueBackgroundColor)
-                        .cornerRadius(5)
+                    Button(action: {
+                          
+                          let plistSheetDetailArray = SharedDelegate.sharedInstance.plistSheetDetailArray
+                        
+                            guard plistSheetDetailArray != nil else {
+                                return
+                            }
+                        
+                     
+                            let mSelectedIndex = slaveValues!.firstIndex(of: mSelectedOption!)
+
+                            let sheetObj = plistSheetDetailArray![mSelectedIndex!] as! NSDictionary
+                        
+                            if SheetUtility.sharedInstance.isKioskModeEnabledInSheet(sheetDic: sheetObj){
+                                    print("go to kiosk")
+                                }else{
+                                    print("go to other sheet")
+                                }
+                       }, label: {
+                           Text("go_to_sheet".localized())
+                               .font(.system(size: 20))
+                               .padding(.init(top: 30, leading: 50, bottom: 30, trailing: 50))
+                               .foregroundColor(Color.white)
+                               .background(Color.aBlueBackgroundColor)
+                               .cornerRadius(5)
+                    })
+                    .buttonStyle(PlainButtonStyle())
+                    
                     
                 }.padding(40)
             
