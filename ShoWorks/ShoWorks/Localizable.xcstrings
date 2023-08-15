@@ -79,6 +79,17 @@
         }
       }
     },
+    "demo_mode_alert" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You are using the app in demo mode. Enter a serial number under the iPad 'Settings' menu for full usage."
+          }
+        }
+      }
+    },
     "enter_a_num" : {
       "extractionState" : "manual",
       "localizations" : {

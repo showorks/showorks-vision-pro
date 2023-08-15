@@ -52,7 +52,7 @@ struct HomeView: View {
                 HomeTitleLayout(aUserName: $aUserName)
                 
                 NavigationSplitView {
-                        SlaveLayout(slaveValues: self.$homeViewModel.listItems, mSelectedOption: $mSelectedOption, syncObject: $syncObject, isSyncingCompleted: $isSyncingCompleted)
+                    SlaveLayout(slaveValues: self.$homeViewModel.listItems, mSelectedOption: $mSelectedOption, syncObject: $syncObject, isSyncingCompleted: $isSyncingCompleted)
                             .border(Color.aSeperatorColor)
                 }
                 detail: {
@@ -454,7 +454,8 @@ struct SlaveBottomLayout: View {
     
     @Binding var syncObject:UserSyncingInformation?
     @Binding var isSyncingCompleted:Bool?
-       
+    @State var alertItem: AlertItem?
+    
     var body: some View {
         VStack{
             Divider()
@@ -462,7 +463,19 @@ struct SlaveBottomLayout: View {
                     .background(Color.aSeperatorColor)
             
             HStack {
-                
+                Button(action: {
+
+                    if UserSettings.shared.isDemoUserEnabled! {
+                        showDemoModeAlertMessage()
+                    }else{
+                        // Logic here to perform syncing again
+                    }
+                }) {
+                    Image(systemName: "goforward")
+                        .foregroundColor(.gray)
+                        .padding(.trailing, 8)
+                }
+                .buttonStyle(PlainButtonStyle())
                 if let object = syncObject, isSyncingCompleted == false {
 //                    Text("Updated Just Now").font(.heleveticNeueMedium(size: 12)).foregroundColor(Color.black)
 //                    ProgressView(value: Float(object.currentCount/object.totalCount)) {
@@ -477,12 +490,25 @@ struct SlaveBottomLayout: View {
                     .tint(.blue)
                     .foregroundColor(Color.black)
                 }else{
-                    Text("Updated Just Now").font(.heleveticNeueMedium(size: 12)).foregroundColor(Color.black)
+                    if isSyncingCompleted == true {
+                        Text("Updated Just Now").font(.heleveticNeueMedium(size: 12)).foregroundColor(Color.black)
+                    }
                 }
             }.padding(.top,5)
+                .alert(item: self.$alertItem, content: { a in
+                    a.asAlert()
+                })
         }
     
     }
+    
+    
+    func showDemoModeAlertMessage(){
+        self.alertItem = AlertItem(type: .dismiss(title: "showorks".localized(), message: "demo_mode_alert".localized(), dismissText: "ok".localized(), dismissAction: {
+            // Do something here
+        }))
+    }
+
 }
 
 
