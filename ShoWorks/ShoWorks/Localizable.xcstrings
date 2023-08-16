@@ -266,6 +266,17 @@
         }
       }
     },
+    "powered_by" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Powered By"
+          }
+        }
+      }
+    },
     "Search ..." : {
 
     },

@@ -48,6 +48,17 @@ struct KioskWelcomeView: View {
                     .cornerRadius(5)
                     .buttonStyle(PlainButtonStyle())
                     
+                    HStack{
+                        Spacer()
+                        VStack(){
+                            Text("powered_by".localized()).font(.heleveticNeueMedium(size: 22))
+                                .foregroundColor(.white)
+                                .padding(.trailing,50)
+                                .multilineTextAlignment(.center)
+                            Image("showorksLogo")
+                                .padding(.trailing,50)
+                        }
+                    }
                 }
             }
         }.navigationBarHidden(true)
