@@ -43,6 +43,8 @@
 		CF6BEDE92A5F02C400CE209A /* InputSerial.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDE82A5F02C400CE209A /* InputSerial.swift */; };
 		CF6BEDEC2A5F02F800CE209A /* ShoWorksBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDEB2A5F02F800CE209A /* ShoWorksBackground.swift */; };
 		CF6C42172A73CCF8005F7D53 /* SheetSyncNotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6C42162A73CCF8005F7D53 /* SheetSyncNotificationModel.swift */; };
+		CF7FBDE52ABE391900458170 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF7FBDE42ABE391900458170 /* CoreBluetooth.framework */; };
+		CF7FBDE72ABE3BAC00458170 /* BLEController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7FBDE62ABE3BAC00458170 /* BLEController.swift */; };
 		CF8E74DD2AA72FF0007ECEC3 /* VisionKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF8E74DC2AA72FF0007ECEC3 /* VisionKit.framework */; };
 		CF8E74DF2AA7358B007ECEC3 /* DocumentCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E74DE2AA7358B007ECEC3 /* DocumentCameraViewController.swift */; };
 		CFA093052A711C670013E6B3 /* SheetsData.plist in Resources */ = {isa = PBXBuildFile; fileRef = CFA093042A711C670013E6B3 /* SheetsData.plist */; };
@@ -108,6 +110,8 @@
 		CF6BEDE82A5F02C400CE209A /* InputSerial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSerial.swift; sourceTree = "<group>"; };
 		CF6BEDEB2A5F02F800CE209A /* ShoWorksBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksBackground.swift; sourceTree = "<group>"; };
 		CF6C42162A73CCF8005F7D53 /* SheetSyncNotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetSyncNotificationModel.swift; sourceTree = "<group>"; };
+		CF7FBDE42ABE391900458170 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		CF7FBDE62ABE3BAC00458170 /* BLEController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEController.swift; sourceTree = "<group>"; };
 		CF8E74DC2AA72FF0007ECEC3 /* VisionKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VisionKit.framework; path = System/Library/Frameworks/VisionKit.framework; sourceTree = SDKROOT; };
 		CF8E74DE2AA7358B007ECEC3 /* DocumentCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCameraViewController.swift; sourceTree = "<group>"; };
 		CFA093042A711C670013E6B3 /* SheetsData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SheetsData.plist; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 				CFA093492A715D730013E6B3 /* AWSS3Control in Frameworks */,
 				CFA093472A715D730013E6B3 /* AWSS3 in Frameworks */,
 				CFA093452A715D730013E6B3 /* AWSPinpoint in Frameworks */,
+				CF7FBDE52ABE391900458170 /* CoreBluetooth.framework in Frameworks */,
 				CFA093392A715D730013E6B3 /* AWSAccount in Frameworks */,
 				CF4384452A66A205000A7022 /* ActivityIndicatorView in Frameworks */,
 				CFA093412A715D730013E6B3 /* AWSIAM in Frameworks */,
@@ -245,6 +250,7 @@
 				CF09E6432A656FC200C947A3 /* Alerts.swift */,
 				CF17003A2A6A9544006A7415 /* LazyView.swift */,
 				CFF166852A8BA9F300FD7A25 /* CustomBackground.swift */,
+				CF7FBDE62ABE3BAC00458170 /* BLEController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -252,6 +258,7 @@
 		CF8E74DB2AA72FF0007ECEC3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CF7FBDE42ABE391900458170 /* CoreBluetooth.framework */,
 				CF8E74DC2AA72FF0007ECEC3 /* VisionKit.framework */,
 			);
 			name = Frameworks;
@@ -412,6 +419,7 @@
 				CF17008E2A710F98006A7415 /* PlistManager.swift in Sources */,
 				CF6BEDE92A5F02C400CE209A /* InputSerial.swift in Sources */,
 				CFF166802A8B97C400FD7A25 /* SheetUtility.swift in Sources */,
+				CF7FBDE72ABE3BAC00458170 /* BLEController.swift in Sources */,
 				CF4384502A66B853000A7022 /* APIConstants.swift in Sources */,
 				CF6BEDE72A5F026900CE209A /* SplashView.swift in Sources */,
 				CF28947F2A793FC6004AE980 /* XMLGenerator.m in Sources */,
@@ -584,6 +592,8 @@
 					"$(PROJECT_DIR)/ShoWorks/Amazon/AWS/third-party",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "The bluetooth is used to make connection with an RFID reader.";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "The bluetooth is used to make connection with a scanner.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -621,6 +631,8 @@
 					"$(PROJECT_DIR)/ShoWorks/Amazon/AWS/third-party",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "The bluetooth is used to make connection with an RFID reader.";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "The bluetooth is used to make connection with a scanner.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

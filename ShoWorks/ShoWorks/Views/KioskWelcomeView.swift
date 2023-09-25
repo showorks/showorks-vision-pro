@@ -16,7 +16,8 @@ struct KioskWelcomeView: View {
     @EnvironmentObject var viewModel: KioskViewModel
     @Environment(\.presentationMode) var presentationMode
     @State var isPresented = false
-
+    @StateObject var bleController = BLEController()
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -53,7 +54,7 @@ struct KioskWelcomeView: View {
                     Button(action: {
                           
                         print("Tap here to check-in")
-                        isPresented = true
+//                        isPresented = true
                        }, label: {
                            VStack{
                                Text("tap_here_to".localized())
@@ -72,7 +73,7 @@ struct KioskWelcomeView: View {
                            .cornerRadius(5)
                     })
                     .sheet(isPresented: $isPresented) {
-                                DocumentCameraViewControllerView()
+//                                DocumentCameraViewControllerView()
 
                     }
                     .buttonStyle(PlainButtonStyle())
@@ -96,6 +97,7 @@ struct KioskWelcomeView: View {
                     }
                 }
             }
+            .environmentObject(bleController)
         }.navigationBarHidden(true)
     }
     
