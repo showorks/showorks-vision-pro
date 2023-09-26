@@ -6,3 +6,6 @@
 #import "Reachability.h"
 #import "XMLGenerator.h"
 #import "Additions.h"
+#import "SearchingUtility.h"
+#import "QRScannedModel.h"
+#import "SearchDataModel.h"

@@ -54,7 +54,7 @@ struct KioskWelcomeView: View {
                     Button(action: {
                           
                         print("Tap here to check-in")
-//                        isPresented = true
+                        isPresented = true
                        }, label: {
                            VStack{
                                Text("tap_here_to".localized())
@@ -72,10 +72,9 @@ struct KioskWelcomeView: View {
                            .padding(.bottom,20)
                            .cornerRadius(5)
                     })
-                    .sheet(isPresented: $isPresented) {
-//                                DocumentCameraViewControllerView()
-
-                    }
+//                    .sheet(isPresented: $isPresented) {
+//                        KioskHomeView()
+//                    }
                     .buttonStyle(PlainButtonStyle())
                     .cornerRadius(25)
                     .foregroundColor(Color.white)
@@ -97,6 +96,12 @@ struct KioskWelcomeView: View {
                     }
                 }
             }
+//            .navigationDestination(
+//                isPresented: ($isPresented)) {
+//                    KioskHomeView()
+//                      Text("")
+//                          .hidden()
+//                 }
             .environmentObject(bleController)
         }.navigationBarHidden(true)
     }

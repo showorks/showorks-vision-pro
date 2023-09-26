@@ -4,7 +4,16 @@
     "" : {
 
     },
+    "%lld km away" : {
+
+    },
+    "Adding cards" : {
+
+    },
     "An error occured %@" : {
+
+    },
+    "Basic" : {
 
     },
     "Cancel" : {
@@ -78,6 +87,12 @@
           }
         }
       }
+    },
+    "Custom configuration" : {
+
+    },
+    "Custom direction" : {
+
     },
     "demo_mode" : {
       "extractionState" : "manual",
@@ -277,6 +292,12 @@
         }
       }
     },
+    "Reload" : {
+
+    },
+    "Reload cards" : {
+
+    },
     "Search ..." : {
 
     },
@@ -368,6 +389,9 @@
         }
       }
     },
+    "Thumbs" : {
+
+    },
     "tip_message" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -398,6 +422,9 @@
           }
         }
       }
+    },
+    "Welcome to Kiosk" : {
+
     },
     "welcome_new" : {
       "extractionState" : "manual",

@@ -64,9 +64,14 @@ struct HomeView: View {
                 }.navigationBarHidden(true)
                 .navigationDestination(
                     isPresented: ($isPushedToKiosk)) {
-                         KioskWelcomeView().environmentObject(kioskViewModel)
+                         KioskHomeView().environmentObject(kioskViewModel)
+                            .background(.red)
+                            .scaledToFill()
+                            .edgesIgnoringSafeArea(.all)
+
                           Text("")
                               .hidden()
+//                              .background(.red)
                      }
 //                .background(Color.white)
                 .navigationSplitViewStyle(.automatic)
@@ -344,9 +349,10 @@ struct MasterLayout: View {
                                .background(Color.aBlueBackgroundColor)
                                .cornerRadius(5)
                     })
+//                    .contentShape(.hoverEffect, RoundedRectangle(cornerRadius: 4, style: .circular))
+//                    .hoverEffect(.highlight)
                     .buttonStyle(PlainButtonStyle())
-                    
-                    
+
                     
                 }.padding(40)
             
