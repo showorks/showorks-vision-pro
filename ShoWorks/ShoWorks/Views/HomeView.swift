@@ -64,10 +64,10 @@ struct HomeView: View {
                 }.navigationBarHidden(true)
                 .navigationDestination(
                     isPresented: ($isPushedToKiosk)) {
-                         KioskHomeView().environmentObject(kioskViewModel)
-                            .background(.red)
-                            .scaledToFill()
-                            .edgesIgnoringSafeArea(.all)
+//                         KioskHomeView().environmentObject(kioskViewModel)
+//                            .background(.black)
+//                            .scaledToFill()
+//                            .edgesIgnoringSafeArea(.all)
 
                           Text("")
                               .hidden()

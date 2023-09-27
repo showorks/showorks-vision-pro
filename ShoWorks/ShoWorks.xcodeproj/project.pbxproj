@@ -29,6 +29,7 @@
 		CF1D8E082AC239E7001ED4F1 /* SearchingUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1D8E072AC239E7001ED4F1 /* SearchingUtility.m */; };
 		CF1D8E0B2AC23A45001ED4F1 /* QRScannedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1D8E092AC23A45001ED4F1 /* QRScannedModel.m */; };
 		CF1D8E0E2AC23AA2001ED4F1 /* SearchDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1D8E0C2AC23AA2001ED4F1 /* SearchDataModel.m */; };
+		CF1D8E132AC4945A001ED4F1 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1D8E122AC4945A001ED4F1 /* CardModel.swift */; };
 		CF28947B2A7924AD004AE980 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2894792A7924AD004AE980 /* Reachability.m */; };
 		CF28947F2A793FC6004AE980 /* XMLGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = CF28947E2A793FC6004AE980 /* XMLGenerator.m */; };
 		CF2894822A793FEC004AE980 /* Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2894812A793FEC004AE980 /* Additions.m */; };
@@ -102,6 +103,7 @@
 		CF1D8E0A2AC23A45001ED4F1 /* QRScannedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRScannedModel.h; sourceTree = "<group>"; };
 		CF1D8E0C2AC23AA2001ED4F1 /* SearchDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDataModel.m; sourceTree = "<group>"; };
 		CF1D8E0D2AC23AA2001ED4F1 /* SearchDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDataModel.h; sourceTree = "<group>"; };
+		CF1D8E122AC4945A001ED4F1 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		CF2894792A7924AD004AE980 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		CF28947A2A7924AD004AE980 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		CF28947D2A793FC6004AE980 /* XMLGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLGenerator.h; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				CF1D8E092AC23A45001ED4F1 /* QRScannedModel.m */,
 				CF1D8E0D2AC23AA2001ED4F1 /* SearchDataModel.h */,
 				CF1D8E0C2AC23AA2001ED4F1 /* SearchDataModel.m */,
+				CF1D8E122AC4945A001ED4F1 /* CardModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				CFF166822A8BA26800FD7A25 /* KioskWelcomeView.swift in Sources */,
 				CF643E752AC20F130063FDA1 /* KioskHomeView.swift in Sources */,
 				CFA093072A712A510013E6B3 /* HomeView.swift in Sources */,
+				CF1D8E132AC4945A001ED4F1 /* CardModel.swift in Sources */,
 				CF1D8E082AC239E7001ED4F1 /* SearchingUtility.m in Sources */,
 				CF09E6342A65601100C947A3 /* Colors.swift in Sources */,
 				CF4384582A672CA6000A7022 /* UserSettings.swift in Sources */,

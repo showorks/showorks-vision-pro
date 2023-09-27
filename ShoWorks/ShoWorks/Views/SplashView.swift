@@ -27,7 +27,12 @@ struct SplashView: View {
                     .navigationDestination(isPresented: $pushToNext) {
                         
                         if UserSettings.shared.isDemoUserEnabled == true {
-                            InputSerial()
+//                            InputSerial()
+                            KioskHomeView()
+                                .navigationBarHidden(true)
+//                                .background(.black).opacity(0.0)
+                               .scaledToFill()
+                               .edgesIgnoringSafeArea(.all)
                         }else{
                             if !Utilities.sharedInstance.checkStringContainsText(text: UserSettings.shared.serialKey) {
                                 InputSerial()
