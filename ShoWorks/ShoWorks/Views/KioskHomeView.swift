@@ -277,6 +277,8 @@ struct KioskHomeView: View {
     @State var isConnected = false
     @State private var alertItem: AlertItem?
     var body: some View {
+        ZStack {
+            ShoWorksBackground()
         VStack{
             HStack{
                 Spacer()
@@ -289,17 +291,17 @@ struct KioskHomeView: View {
                     .scaleEffect(x: -1, y: 1)
                     .onAppear {
                         let baseAnimation = Animation.easeInOut(duration: 2)
-
+                        
                         withAnimation(baseAnimation) {
                             self.isConnected = !self.isConnected
                         }
                     }
                     .onTapGesture {
-//                        if (!self.isConnected) {
-                            showInvalidAlertMessage()
-//                        }
+                        //                        if (!self.isConnected) {
+                        showInvalidAlertMessage()
+                        //                        }
                     }
-
+                
                 Image("gear")
                     .renderingMode(.template)
                     .resizable().aspectRatio(contentMode:
@@ -310,12 +312,14 @@ struct KioskHomeView: View {
             ZStack{
                 ForEach(CardModel.data) { card in
                     CardView(card: card).padding(20)
-                }.frame(width: 400, height: 500)
+                }.frame(width: 400, height: 550)
             }.zIndex(1.0)
                 .padding(.leading,100)
                 .padding(.trailing,100)
                 .padding(.bottom,100)
-            }
+                .padding(.top,-50)
+        }
+    }
         .alert(item: self.$alertItem, content: { a in
             a.asAlert()
         })
@@ -339,21 +343,25 @@ struct CardView: View {
     @State var isPresented = false
     @StateObject var bleController = BLEController()
 
-    let cardGradient = Gradient(colors: [Color.white.opacity(0.5), Color.black.opacity(1)])
+    let cardGradient = Gradient(colors: [Color.white.opacity(0.8), Color.black.opacity(1)])
     var body: some View {
         ZStack(alignment: .topLeading){
-            Image(card.imageName)
-                .resizable()
+            
+            
             LinearGradient(gradient: cardGradient,
                            startPoint: .top, endPoint: .bottom)
-            VStack {
+            VStack(alignment: .leading) {
+                Text(card.exhibitorName).font(.largeTitle).fontWeight(.bold).foregroundColor(.black)
+                    .frame(width: 400)
+                    .frame(alignment: .center)
+
                 Spacer()
                 VStack(alignment: .leading){
                     HStack {
-                        Text(card.name).font(.largeTitle).fontWeight(.bold)
-                        Text(String(card.age)).font(.title)
+                        Text(card.exhibitorName).font(.largeTitle).fontWeight(.bold)
+                        Text(String(card.wenNumber)).font(.title)
                     }
-                    Text(card.bio)
+                    Text(card.clubName)
                 }
             }
             .padding()
@@ -373,7 +381,7 @@ struct CardView: View {
                     .opacity(Double(card.x/10 * -1 - 1))
             }
         }
-        .cornerRadius(8)
+        .cornerRadius(12)
         
         .offset(x: card.x, y: card.y)
         .rotationEffect(.init(degrees: card.degree))

@@ -10,7 +10,7 @@ import SwiftUI
 struct ShoWorksBackground: View {
     var body: some View {
         ZStack() {
-            Image("Background")
+            Image("black_bg")
                 .resizable(resizingMode: .stretch)
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)            
