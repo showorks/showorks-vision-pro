@@ -276,6 +276,8 @@ struct KioskHomeView_Previews: PreviewProvider {
 struct KioskHomeView: View {
     @State var isConnected = false // play sound on connection
     @State private var alertItem: AlertItem?
+    let buttonArray = ["pencil", "folder", "tray"]
+
     @State var showOptionsToChangeMode = false
     var body: some View {
         ZStack {
@@ -329,11 +331,18 @@ struct KioskHomeView: View {
                     CardView(card: card).padding(20)
                     .hoverEffect(.lift)
                 }.frame(width: 400, height: 550)
+                FloatingMenu.init(buttonArray: buttonArray, onClick: { buttonObject in
+                                   print("\(buttonObject) Clicked")
+                   })
+                .padding(.trailing,20)
+                .padding(.bottom,20)
+                .hoverEffect(.lift)
             }.zIndex(1.0)
                 .padding(.leading,100)
                 .padding(.trailing,100)
                 .padding(.bottom,100)
                 .padding(.top,-50)
+            
         }.actionSheet(isPresented: $showOptionsToChangeMode) {
             ActionSheet(title: Text("showorks".localized()), message: Text("Choose one of the three modes, default is search mode.."), buttons: [
                 .default(Text("Search")) { UserSettings.shared.selectedMode = 0 },
@@ -357,6 +366,47 @@ struct KioskHomeView: View {
     
     }
 
+struct FloatingMenu: View {
+    let buttonArray: [String]
+    let onClick: (String)->()
+    @State var showButtons = false
+    var body: some View {
+        HStack {
+            Spacer()
+            VStack {
+                Spacer()
+                if showButtons {
+                    ForEach(buttonArray, id: \.self) { buttonImage in
+                        Button(action: {
+                            onClick(buttonImage)
+                        }, label: {
+                            Image(systemName: buttonImage)
+                                .foregroundColor(.white)
+                                .font(.body)
+                        }).padding(.all, 10)
+                        .background(Color.blue)
+                        .clipShape(Circle())
+                        .padding(.all, 10)
+                        .transition(.move(edge: .trailing))
+                    }
+                }
+                Button(action: {
+                    withAnimation {
+                        showButtons.toggle()
+                    }
+                }, label: {
+                    Image(systemName: showButtons ? "minus" : "plus")
+                        .foregroundColor(.white)
+                        .font(.headline)
+                        .frame(width: 60, height: 60)
+                })
+                .background(Color.blue)
+                .clipShape(Circle())
+                .padding(.all, 10)
+            }
+        }.padding(.all, 10)
+    }
+}
 
 
 struct CardView: View {
