@@ -327,6 +327,7 @@ struct KioskHomeView: View {
             ZStack{
                 ForEach(CardModel.data) { card in
                     CardView(card: card).padding(20)
+                    .hoverEffect(.lift)
                 }.frame(width: 400, height: 550)
             }.zIndex(1.0)
                 .padding(.leading,100)
