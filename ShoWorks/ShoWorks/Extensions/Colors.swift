@@ -35,4 +35,7 @@ extension Color {
     // #BABABD
     static let aSeperatorColor = Color(red: 186.0/255.0, green: 186.0/255.0, blue: 189.0/255.0)
     
+    // ##fffdd0
+    static let aCreamColor = Color(red: 255.0/255.0, green: 253.0/255.0, blue: 208.0/255.0)
+    
 }

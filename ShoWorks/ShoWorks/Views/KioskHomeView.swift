@@ -274,11 +274,12 @@ struct KioskHomeView_Previews: PreviewProvider {
 }
 
 struct KioskHomeView: View {
-    @State var isConnected = false
+    @State var isConnected = false // play sound on connection
     @State private var alertItem: AlertItem?
     var body: some View {
         ZStack {
             ShoWorksBackground()
+            
         VStack{
             HStack{
                 Spacer()
@@ -290,7 +291,7 @@ struct KioskHomeView: View {
                     .padding(.trailing,15)
                     .scaleEffect(x: -1, y: 1)
                     .onAppear {
-                        let baseAnimation = Animation.easeInOut(duration: 2)
+                        let baseAnimation = Animation.easeInOut(duration: 5)
                         
                         withAnimation(baseAnimation) {
                             self.isConnected = !self.isConnected
@@ -306,9 +307,17 @@ struct KioskHomeView: View {
                     .renderingMode(.template)
                     .resizable().aspectRatio(contentMode:
                             .fit).frame(height:50)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .padding(.trailing,15)
-            }
+            }.background(Circle()
+                .trim(from: 0.25, to: 1.0)
+                .rotation(.degrees(-90))
+                .stroke(Color.white ,style: StrokeStyle(lineWidth: 3, lineCap: .square, dash: [5,3], dashPhase: 10))
+                .background(Circle().foregroundColor(Color.aCreamColor))
+                .frame(width: 250, height: 250)
+                .padding(.trailing,-75)
+                .padding(.top,-75)
+                 .frame(maxWidth: .infinity, alignment: .trailing))
             ZStack{
                 ForEach(CardModel.data) { card in
                     CardView(card: card).padding(20)
