@@ -21,6 +21,7 @@ class UserSettings {
         static let selectedChannel = "selectedChannel"
         static let isDemoUserEnabled = "demoUserEnabled"
         static let firstName = "firstName"
+        static let selectedMode = "selectedMode"
     }
     
     var serialKey: String? {
@@ -92,6 +93,18 @@ class UserSettings {
         }
         set {
             UserDefaults.standard.setValue(newValue, forKey: Keys.firstName)
+        }
+    }
+    
+    // 0 being search
+    // 1 being check-in
+    // 2 being judge
+    var selectedMode: Int? {
+        get {
+            UserDefaults.standard.integer(forKey: Keys.selectedMode)
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: Keys.selectedMode)
         }
     }
 

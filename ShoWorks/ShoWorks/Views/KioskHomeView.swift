@@ -276,6 +276,7 @@ struct KioskHomeView_Previews: PreviewProvider {
 struct KioskHomeView: View {
     @State var isConnected = false // play sound on connection
     @State private var alertItem: AlertItem?
+    @State var showOptionsToChangeMode = false
     var body: some View {
         ZStack {
             ShoWorksBackground()
@@ -290,6 +291,7 @@ struct KioskHomeView: View {
                     .foregroundColor(isConnected ? .green : .red)
                     .padding(.trailing,15)
                     .scaleEffect(x: -1, y: 1)
+                    .hoverEffect(.lift)
                     .onAppear {
                         let baseAnimation = Animation.easeInOut(duration: 5)
                         
@@ -309,6 +311,10 @@ struct KioskHomeView: View {
                             .fit).frame(height:50)
                     .foregroundColor(.black)
                     .padding(.trailing,15)
+                    .hoverEffect(.lift)
+                    .onTapGesture {
+                        showOptionsToChangeMode = true
+                    }
             }.background(Circle()
                 .trim(from: 0.25, to: 1.0)
                 .rotation(.degrees(-90))
@@ -327,6 +333,13 @@ struct KioskHomeView: View {
                 .padding(.trailing,100)
                 .padding(.bottom,100)
                 .padding(.top,-50)
+        }.actionSheet(isPresented: $showOptionsToChangeMode) {
+            ActionSheet(title: Text("showorks".localized()), message: Text("Choose one of the three modes, default is search mode.."), buttons: [
+                .default(Text("Search")) { UserSettings.shared.selectedMode = 0 },
+                .default(Text("Check-in")) { UserSettings.shared.selectedMode = 1 },
+                .default(Text("Judge")) { UserSettings.shared.selectedMode = 2 },
+                .cancel()
+            ])
         }
     }
         .alert(item: self.$alertItem, content: { a in

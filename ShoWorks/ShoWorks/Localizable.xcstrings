@@ -32,6 +32,12 @@
         }
       }
     },
+    "Check-in" : {
+
+    },
+    "Choose one of the three modes, default is search mode.." : {
+
+    },
     "close_btn" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -178,6 +184,9 @@
         }
       }
     },
+    "Judge" : {
+
+    },
     "no_sheets" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -287,6 +296,9 @@
           }
         }
       }
+    },
+    "Search" : {
+
     },
     "Search ..." : {
 
