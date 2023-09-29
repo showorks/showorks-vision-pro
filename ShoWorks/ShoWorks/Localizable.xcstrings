@@ -49,6 +49,9 @@
         }
       }
     },
+    "Club" : {
+
+    },
     "connect_laser" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -118,6 +121,9 @@
         }
       }
     },
+    "Department" : {
+
+    },
     "enter_a_num" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -150,6 +156,9 @@
           }
         }
       }
+    },
+    "Entry Number" : {
+
     },
     "for_vision_pro" : {
       "extractionState" : "manual",
@@ -432,6 +441,9 @@
           }
         }
       }
+    },
+    "WEN" : {
+
     }
   },
   "version" : "1.0"

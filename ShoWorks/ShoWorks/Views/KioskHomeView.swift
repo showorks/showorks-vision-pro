@@ -292,6 +292,7 @@ struct KioskHomeView: View {
                             .fit).frame(height:70)
                     .foregroundColor(isConnected ? .green : .red)
                     .padding(.trailing,15)
+                    .padding(.top,-45)
                     .scaleEffect(x: -1, y: 1)
                     .hoverEffect(.lift)
                     .onAppear {
@@ -311,38 +312,39 @@ struct KioskHomeView: View {
                     .renderingMode(.template)
                     .resizable().aspectRatio(contentMode:
                             .fit).frame(height:50)
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
                     .padding(.trailing,15)
+                    .padding(.top,-45)
                     .hoverEffect(.lift)
                     .onTapGesture {
                         showOptionsToChangeMode = true
                     }
-            }.background(Circle()
-                .trim(from: 0.25, to: 1.0)
-                .rotation(.degrees(-90))
-                .stroke(Color.white ,style: StrokeStyle(lineWidth: 3, lineCap: .square, dash: [5,3], dashPhase: 10))
-                .background(Circle().foregroundColor(Color.aCreamColor))
-                .frame(width: 250, height: 250)
-                .padding(.trailing,-75)
-                .padding(.top,-75)
-                 .frame(maxWidth: .infinity, alignment: .trailing))
+            }
+//            .background(Circle()
+//                .trim(from: 0.25, to: 1.0)
+//                .rotation(.degrees(-90))
+//                .stroke(Color.white ,style: StrokeStyle(lineWidth: 3, lineCap: .square, dash: [5,3], dashPhase: 10))
+//                .background(Circle().foregroundColor(Color.aCreamColor))
+//                .frame(width: 250, height: 200)
+//                .padding(.trailing,-35)
+//                .padding(.top,-75)
+//                 .frame(maxWidth: .infinity, alignment: .trailing))
             ZStack{
                 ForEach(CardModel.data) { card in
                     CardView(card: card).padding(20)
                     .hoverEffect(.lift)
-                }.frame(width: 400, height: 550)
-                FloatingMenu.init(buttonArray: buttonArray, onClick: { buttonObject in
-                                   print("\(buttonObject) Clicked")
-                   })
-                .padding(.trailing,20)
-                .padding(.bottom,20)
-                .hoverEffect(.lift)
+                }.frame(width: 600, height: 450)
+//                FloatingMenu.init(buttonArray: buttonArray, onClick: { buttonObject in
+//                                   print("\(buttonObject) Clicked")
+//                   })
+//                .padding(.trailing,20)
+//                .padding(.bottom,20)
             }.zIndex(1.0)
                 .padding(.leading,100)
                 .padding(.trailing,100)
                 .padding(.bottom,100)
                 .padding(.top,-50)
-            
+         
         }.actionSheet(isPresented: $showOptionsToChangeMode) {
             ActionSheet(title: Text("showorks".localized()), message: Text("Choose one of the three modes, default is search mode.."), buttons: [
                 .default(Text("Search")) { UserSettings.shared.selectedMode = 0 },
@@ -416,7 +418,7 @@ struct CardView: View {
     @State var isPresented = false
     @StateObject var bleController = BLEController()
 
-    let cardGradient = Gradient(colors: [Color.white.opacity(0.8), Color.black.opacity(1)])
+    let cardGradient = Gradient(colors: [Color.white.opacity(1), Color.white.opacity(1)])
     var body: some View {
         ZStack(alignment: .topLeading){
             
@@ -424,21 +426,38 @@ struct CardView: View {
             LinearGradient(gradient: cardGradient,
                            startPoint: .top, endPoint: .bottom)
             VStack(alignment: .leading) {
-                Text(card.exhibitorName).font(.largeTitle).fontWeight(.bold).foregroundColor(.black)
-                    .frame(width: 400)
+                Text(card.exhibitorName).foregroundColor(.black).font(.heleveticNeueBold(size: 26))
+                    .frame(width: 700)
                     .frame(alignment: .center)
+                
+                Divider().frame(width: 700).background(.black).frame(alignment: .center)
 
-                Spacer()
                 VStack(alignment: .leading){
                     HStack {
-                        Text(card.exhibitorName).font(.largeTitle).fontWeight(.bold)
-                        Text(String(card.wenNumber)).font(.title)
-                    }
-                    Text(card.clubName)
+                        Text("Department").foregroundColor(.aTextGrayColorSheetProperties).font(.heleveticNeueMedium(size: 20))
+                        Spacer()
+                        Text(card.departmentName).foregroundColor(.black).font(.heleveticNeueBold(size: 20))
+                    }.padding(.bottom,5)
+                    HStack {
+                        Text("Entry Number").foregroundColor(.aTextGrayColorSheetProperties).font(.heleveticNeueMedium(size: 20))
+                        Spacer()
+                        Text(String(card.entryNumber)).foregroundColor(.black).font(.heleveticNeueBold(size: 20))
+                    }.padding(.bottom,5)
+                    HStack {
+                        Text("WEN").foregroundColor(.aTextGrayColorSheetProperties).font(.heleveticNeueMedium(size: 20))
+                        Spacer()
+                        Text(String(card.wenNumber)).foregroundColor(.black).font(.heleveticNeueBold(size: 20))
+                    }.padding(.bottom,5)
+                    HStack {
+                        Text("Club").foregroundColor(.aTextGrayColorSheetProperties).font(.heleveticNeueMedium(size: 20))
+                        Spacer()
+                        Text(String(card.clubName)).foregroundColor(.black).font(.heleveticNeueBold(size: 20))
+                    }.padding(.bottom,5)
+                    
                 }
             }
             .padding()
-            .foregroundColor(.white)
+            .foregroundColor(.black)
             
             HStack {
                 Image("rightswipe")
