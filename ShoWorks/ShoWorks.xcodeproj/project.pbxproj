@@ -43,7 +43,6 @@
 		CF4384552A66B988000A7022 /* ShoWorksAuthenticationAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4384542A66B988000A7022 /* ShoWorksAuthenticationAPIResponse.swift */; };
 		CF4384582A672CA6000A7022 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4384572A672CA6000A7022 /* UserSettings.swift */; };
 		CF5BC6B62A69423100114C32 /* DataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5BC6B52A69423100114C32 /* DataCenter.swift */; };
-		CF643E732AC20EC50063FDA1 /* CardStack in Frameworks */ = {isa = PBXBuildFile; productRef = CF643E722AC20EC50063FDA1 /* CardStack */; };
 		CF643E752AC20F130063FDA1 /* KioskHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF643E742AC20F130063FDA1 /* KioskHomeView.swift */; };
 		CF6BEDE72A5F026900CE209A /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDE62A5F026900CE209A /* SplashView.swift */; };
 		CF6BEDE92A5F02C400CE209A /* InputSerial.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6BEDE82A5F02C400CE209A /* InputSerial.swift */; };
@@ -158,7 +157,6 @@
 				CFA093392A715D730013E6B3 /* AWSAccount in Frameworks */,
 				CF4384452A66A205000A7022 /* ActivityIndicatorView in Frameworks */,
 				CFA093412A715D730013E6B3 /* AWSIAM in Frameworks */,
-				CF643E732AC20EC50063FDA1 /* CardStack in Frameworks */,
 				CFA0933B2A715D730013E6B3 /* AWSAppConfig in Frameworks */,
 				CFA0934B2A715D730013E6B3 /* AWSS3Outposts in Frameworks */,
 				CFA093432A715D730013E6B3 /* AWSMobile in Frameworks */,
@@ -375,7 +373,6 @@
 				CFA093462A715D730013E6B3 /* AWSS3 */,
 				CFA093482A715D730013E6B3 /* AWSS3Control */,
 				CFA0934A2A715D730013E6B3 /* AWSS3Outposts */,
-				CF643E722AC20EC50063FDA1 /* CardStack */,
 			);
 			productName = ShoWorks;
 			productReference = CFE6ED0D2A5EB57100F6867E /* ShoWorks.app */;
@@ -409,7 +406,6 @@
 			packageReferences = (
 				CF4384432A66A205000A7022 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
 				CFA093372A715D720013E6B3 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */,
-				CF643E712AC20EC50063FDA1 /* XCRemoteSwiftPackageReference "SwiftUI-CardStackView" */,
 			);
 			productRefGroup = CFE6ED0E2A5EB57100F6867E /* Products */;
 			projectDirPath = "";
@@ -724,14 +720,6 @@
 				minimumVersion = 1.1.1;
 			};
 		};
-		CF643E712AC20EC50063FDA1 /* XCRemoteSwiftPackageReference "SwiftUI-CardStackView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/dadalar/SwiftUI-CardStackView.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.6;
-			};
-		};
 		CFA093372A715D720013E6B3 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/awslabs/aws-sdk-swift";
@@ -747,11 +735,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CF4384432A66A205000A7022 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
 			productName = ActivityIndicatorView;
-		};
-		CF643E722AC20EC50063FDA1 /* CardStack */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CF643E712AC20EC50063FDA1 /* XCRemoteSwiftPackageReference "SwiftUI-CardStackView" */;
-			productName = CardStack;
 		};
 		CFA093382A715D730013E6B3 /* AWSAccount */ = {
 			isa = XCSwiftPackageProductDependency;

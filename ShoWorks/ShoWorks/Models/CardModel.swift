@@ -21,8 +21,9 @@ struct CardModel: Identifiable {
     static var data: [CardModel] {
         [
             CardModel(departmentName: "Photography", exhibitorName: "Jon", entryNumber: 372, wenNumber: "73D8FE", clubName: "Pass Pioneers"),
-            CardModel(departmentName: "Horses", exhibitorName: "Eliud", entryNumber: 387, wenNumber: "93D8FE", clubName: "Pass Pioneers"),
-            CardModel(departmentName: "Beef", exhibitorName: "Jackson", entryNumber: 387, wenNumber: "NAD8FE", clubName: "Pass Pioneers")
+            CardModel(departmentName: "Horses", exhibitorName: "Eliud", entryNumber: 387, wenNumber: "93D8FE", clubName: "ABC Pioneers"),
+            CardModel(departmentName: "Beef", exhibitorName: "Jackson", entryNumber: 332, wenNumber: "NEF8FE", clubName: "DEF Pioneers"),
+            CardModel(departmentName: "DepartmentTest", exhibitorName: "Duffy", entryNumber: 232, wenNumber: "NKJ8FE", clubName: "DEE Pioneers")
         ]
     }
 }

@@ -285,14 +285,14 @@ struct KioskHomeView: View {
             
         VStack{
             HStack{
-                Spacer()
+                Spacer().frame(height:10)
                 Image("laser")
                     .renderingMode(.template)
                     .resizable().aspectRatio(contentMode:
-                            .fit).frame(height:70)
+                            .fit).frame(height:45)
                     .foregroundColor(isConnected ? .green : .red)
                     .padding(.trailing,15)
-                    .padding(.top,-45)
+                    .padding(.top,-10)
                     .scaleEffect(x: -1, y: 1)
                     .hoverEffect(.lift)
                     .onAppear {
@@ -311,10 +311,10 @@ struct KioskHomeView: View {
                 Image("gear")
                     .renderingMode(.template)
                     .resizable().aspectRatio(contentMode:
-                            .fit).frame(height:50)
+                            .fit).frame(height:25)
                     .foregroundColor(.white)
                     .padding(.trailing,15)
-                    .padding(.top,-45)
+                    .padding(.top,-10)
                     .hoverEffect(.lift)
                     .onTapGesture {
                         showOptionsToChangeMode = true
@@ -333,7 +333,7 @@ struct KioskHomeView: View {
                 ForEach(CardModel.data) { card in
                     CardView(card: card).padding(20)
                     .hoverEffect(.lift)
-                }.frame(width: 600, height: 450)
+                }.frame(width: 400, height: 450)
 //                FloatingMenu.init(buttonArray: buttonArray, onClick: { buttonObject in
 //                                   print("\(buttonObject) Clicked")
 //                   })
@@ -426,33 +426,43 @@ struct CardView: View {
             LinearGradient(gradient: cardGradient,
                            startPoint: .top, endPoint: .bottom)
             VStack(alignment: .leading) {
-                Text(card.exhibitorName).foregroundColor(.black).font(.heleveticNeueBold(size: 26))
-                    .frame(width: 700)
+                Text(card.exhibitorName).foregroundColor(.black).font(.heleveticNeueBold(size: 38))
+                    .frame(width: 500)
                     .frame(alignment: .center)
+                    .hoverEffect(.lift)
                 
-                Divider().frame(width: 700).background(.black).frame(alignment: .center)
+                Divider().frame(width: 500).background(.black).frame(alignment: .center)
 
                 VStack(alignment: .leading){
                     HStack {
-                        Text("Department").foregroundColor(.aTextGrayColorSheetProperties).font(.heleveticNeueMedium(size: 20))
+                        Text("Department").foregroundColor(.aTextGrayColorSheetProperties).font(.heleveticNeueMedium(size: 24))
+                            .hoverEffect(.lift)
                         Spacer()
-                        Text(card.departmentName).foregroundColor(.black).font(.heleveticNeueBold(size: 20))
-                    }.padding(.bottom,5)
+                        Text(card.departmentName).foregroundColor(.black).font(.heleveticNeueBold(size: 22))
+                            .hoverEffect(.lift)
+                    }.padding(.top,25)
+                    .padding(.bottom,25)
                     HStack {
-                        Text("Entry Number").foregroundColor(.aTextGrayColorSheetProperties).font(.heleveticNeueMedium(size: 20))
+                        Text("Entry Number").foregroundColor(.aTextGrayColorSheetProperties).font(.heleveticNeueMedium(size: 24))
+                            .hoverEffect(.lift)
                         Spacer()
-                        Text(String(card.entryNumber)).foregroundColor(.black).font(.heleveticNeueBold(size: 20))
-                    }.padding(.bottom,5)
+                        Text(String(card.entryNumber)).foregroundColor(.black).font(.heleveticNeueBold(size: 22))
+                            .hoverEffect(.lift)
+                    }.padding(.bottom,25)
                     HStack {
-                        Text("WEN").foregroundColor(.aTextGrayColorSheetProperties).font(.heleveticNeueMedium(size: 20))
+                        Text("WEN").foregroundColor(.aTextGrayColorSheetProperties).font(.heleveticNeueMedium(size: 24))
+                            .hoverEffect(.lift)
                         Spacer()
-                        Text(String(card.wenNumber)).foregroundColor(.black).font(.heleveticNeueBold(size: 20))
-                    }.padding(.bottom,5)
+                        Text(String(card.wenNumber)).foregroundColor(.black).font(.heleveticNeueBold(size: 22))
+                            .hoverEffect(.lift)
+                    }.padding(.bottom,25)
                     HStack {
-                        Text("Club").foregroundColor(.aTextGrayColorSheetProperties).font(.heleveticNeueMedium(size: 20))
+                        Text("Club").foregroundColor(.aTextGrayColorSheetProperties).font(.heleveticNeueMedium(size: 24))
+                            .hoverEffect(.lift)
                         Spacer()
-                        Text(String(card.clubName)).foregroundColor(.black).font(.heleveticNeueBold(size: 20))
-                    }.padding(.bottom,5)
+                        Text(String(card.clubName)).foregroundColor(.black).font(.heleveticNeueBold(size: 22))
+                            .hoverEffect(.lift)
+                    }
                     
                 }
             }
