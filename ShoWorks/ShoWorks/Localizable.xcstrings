@@ -4,6 +4,15 @@
     "" : {
 
     },
+    "%lld" : {
+
+    },
+    "7th" : {
+
+    },
+    "9" : {
+
+    },
     "An error occured %@" : {
 
     },
@@ -21,6 +30,9 @@
         }
       }
     },
+    "Check In" : {
+
+    },
     "check_in_txt" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -36,6 +48,9 @@
 
     },
     "Choose one of the three modes, default is search mode.." : {
+
+    },
+    "Class Name" : {
 
     },
     "close_btn" : {
@@ -124,6 +139,9 @@
     "Department" : {
 
     },
+    "Diksha Khemlami" : {
+
+    },
     "enter_a_num" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -194,6 +212,9 @@
       }
     },
     "Judge" : {
+
+    },
+    "Next" : {
 
     },
     "no_sheets" : {
@@ -306,6 +327,9 @@
         }
       }
     },
+    "Previous" : {
+
+    },
     "Search" : {
 
     },
@@ -410,6 +434,9 @@
           }
         }
       }
+    },
+    "Undo" : {
+
     },
     "Updated Just Now" : {
 

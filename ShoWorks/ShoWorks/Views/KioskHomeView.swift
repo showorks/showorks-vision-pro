@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CardStack
+//import CardStack
 import SwiftUI
 //
 //struct Person: Identifiable {

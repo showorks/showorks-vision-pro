@@ -28,7 +28,7 @@ struct SplashView: View {
                         
                         if UserSettings.shared.isDemoUserEnabled == true {
 //                            InputSerial()
-                            KioskHomeView()
+                            KioskWelcomeNewView()
                                 .navigationBarHidden(true)
 //                                .background(.black).opacity(0.0)
                                .scaledToFill()
