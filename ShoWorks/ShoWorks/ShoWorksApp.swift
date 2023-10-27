@@ -22,7 +22,7 @@ struct ShoWorksApp: App {
         
         UserSettings.shared.roundRobinBackgroundImageIndex = UserSettings.shared.roundRobinBackgroundImageIndex! + 1
         
-        if UserSettings.shared.roundRobinBackgroundImageIndex! == 2 {
+        if UserSettings.shared.roundRobinBackgroundImageIndex! == 3 {
             UserSettings.shared.roundRobinBackgroundImageIndex = 0
         }
         

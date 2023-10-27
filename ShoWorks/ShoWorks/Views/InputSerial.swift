@@ -15,7 +15,7 @@ struct InputSerial: View {
     @State private var moveToNextScreen = false
     @State private var isSerialNumberTextFieldHidden = true
     @State private var aSerialNumberButtonTitle = "enter_a_num".localized()
-    @State private var aContinueButtonTitle = "continue_in_demo_mode".localized()
+    @State private var aContinueButtonTitle = "continue".localized()
     @State private var aSerialNumberString: String = "" // testing 395605390285163174
     @State private var alertItem: AlertItem?
     @ObservedObject var authenticationViewModel: ShoWorksAuthenticationModel = ShoWorksAuthenticationModel()
@@ -42,10 +42,37 @@ struct InputSerial: View {
                 
                 InputLayout(userInputtedSerialKey: $aSerialNumberString,isLoaderSpinning: $authenticationViewModel.isLoading)
 
+                Text(self.aContinueButtonTitle)
+                    .font(.sfProRegular(size: 15))
+                    .padding(10)
+                    .frame(width: 300)
+                    .background(Image("continue_btn"))
+                    .foregroundColor(Color.white)
+                    .cornerRadius(15)
+                    .onTapGesture {
+                        continueButtonTapped()
+                    }
+                
+                Text("or_text".localized()).font(.sfProLight(size: 10))
+                    .foregroundColor(.white).padding(.top,5).padding(.bottom,5)
+                
+                Text("explore_demo".localized())
+                    .font(.sfProRegular(size: 15))
+                    .padding(10)
+                    .frame(width: 300)
+                    .cornerRadius(15)
+                    .overlay(
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(.white, lineWidth: 1)
+                        )
+                    .foregroundColor(Color.white)
+                    .onTapGesture {
+                        continueButtonTapped()
+                    }
                 
             })
             .padding(50)
-            .background( VisualEffectBlur(blurStyle: .systemThinMaterial)
+            .background( VisualEffectBlur(blurStyle: .extraLight)
                 .ignoresSafeArea())
             .cornerRadius(20)
 
@@ -76,36 +103,14 @@ struct InputSerial: View {
 //                                "continue".localized()
 //                            }
 //                        
-//                        Text(self.aContinueButtonTitle)
-//                            .font(.system(size: 15))
-//                            .padding(10)
-//                            .padding(.leading,20)
-//                            .padding(.trailing,20)
-//                            .background(Color.aBlueBackgroundColor)
-//                            .foregroundColor(Color.white)
-//                            .cornerRadius(5)
-//                            .onTapGesture {
-//                                continueButtonTapped()
-//                            }
+
 //                        
 //                        ActivityIndicatorView(isVisible: $authenticationViewModel.isLoading, type: .flickeringDots(count: 10))
 //                                 .frame(width: 50.0, height: 50.0)
 //                                 .foregroundColor(.white)
 //
 //                    }.padding(.top,10)
-//                    
-//                    InputLayout(userInputtedSerialKey: $aSerialNumberString,isLoaderSpinning: $authenticationViewModel.isLoading)
-//                        .onAppear(){
-//                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//                                self.isCompleteLayoutHidden = false
-//                            }
-//                    }
-//                    .isHidden(self.isSerialNumberTextFieldHidden)
-//                    .frame(alignment: .center)
-//                    .padding(.top,10)
-//                    .padding(.leading,300)
-//                    .padding(.trailing,300)
-//                    
+//
 //                    
 //                    .navigationDestination(
 //                         isPresented: $authenticationViewModel.isUserAuthenticated) {

@@ -178,6 +178,17 @@
     "Entry Number" : {
 
     },
+    "explore_demo" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Explore in DEMO MODE"
+          }
+        }
+      }
+    },
     "for_vision_pro" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -315,6 +326,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "OK"
+          }
+        }
+      }
+    },
+    "or_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OR"
           }
         }
       }
