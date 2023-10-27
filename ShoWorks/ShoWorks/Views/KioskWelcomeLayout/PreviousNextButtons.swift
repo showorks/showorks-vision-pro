@@ -23,6 +23,7 @@ extension KioskWelcomeNewView{
                         Text("Previous")
                     }
                 }
+                .buttonStyle(PlainButtonStyle())
                 
                 Button {
                     print("next")
@@ -33,6 +34,7 @@ extension KioskWelcomeNewView{
                         Text("Next")
                     }
                 }
+                .buttonStyle(PlainButtonStyle())
             }
             .frame(width: deviceWidth * 0.56)
             .font(.system(size: 16))

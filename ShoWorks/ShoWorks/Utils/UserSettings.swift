@@ -22,6 +22,7 @@ class UserSettings {
         static let isDemoUserEnabled = "demoUserEnabled"
         static let firstName = "firstName"
         static let selectedMode = "selectedMode"
+        static let roundRobinBackgroundImage = "roundRobinBackgroundImage"
     }
     
     var serialKey: String? {
@@ -105,6 +106,18 @@ class UserSettings {
         }
         set {
             UserDefaults.standard.setValue(newValue, forKey: Keys.selectedMode)
+        }
+    }
+
+    // 0 = background_new_1
+    // 1 = background_new_2
+    // 2 = background_new_3
+    var roundRobinBackgroundImageIndex: Int? {
+        get {
+            UserDefaults.standard.integer(forKey: Keys.roundRobinBackgroundImage)
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: Keys.roundRobinBackgroundImage)
         }
     }
 

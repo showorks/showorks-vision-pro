@@ -12,7 +12,7 @@ extension KioskWelcomeNewView{
         @ViewBuilder
         var centerCard: some View{
             ZStack{
-                Rectangle().fill(.white.opacity(0.92))
+                Rectangle().fill(.white.opacity(0.50))
                     .frame(width: deviceWidth * 0.56, height: 380)
                     .cornerRadius(30)
                 VStack{
@@ -25,6 +25,7 @@ extension KioskWelcomeNewView{
                             Text("Class Name")
                                 .font(.system(size: 37))
                                 .fontWeight(.bold)
+                                .foregroundColor(.black)
                             
                             ZStack{
                                 Capsule().fill(.yellow).frame(width: 50, height: 33)
@@ -47,6 +48,7 @@ extension KioskWelcomeNewView{
                                         .foregroundColor(.black)
                                 }
                             }
+                            .buttonStyle(PlainButtonStyle())
                             
                             Button {
                                 print("undo tap")
@@ -58,6 +60,7 @@ extension KioskWelcomeNewView{
                                         .foregroundColor(.black)
                                 }
                             }
+                            .buttonStyle(PlainButtonStyle())
                             
                         }
                         .font(.system(size: 16))
@@ -75,6 +78,7 @@ extension KioskWelcomeNewView{
                         Text("Diksha Khemlami")
                             .font(.system(size: 25))
                             .fontWeight(.semibold)
+                            .foregroundColor(.black)
                         Spacer()
                     }.padding(.leading, 30)
                         .padding(.bottom, 15)
@@ -130,6 +134,7 @@ extension KioskWelcomeNewView{
                             .font(.system(size: 10))
                         Text(value)
                             .font(.system(size: 17))
+                            .foregroundColor(.black)
                             .fontWeight(.semibold)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)

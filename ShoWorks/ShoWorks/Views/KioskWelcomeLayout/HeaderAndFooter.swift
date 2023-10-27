@@ -24,6 +24,7 @@ extension KioskWelcomeNewView{
                     }
                     
                 }
+                .buttonStyle(PlainButtonStyle())
                 Spacer()
                 
                 HStack(spacing: 20){
@@ -35,6 +36,7 @@ extension KioskWelcomeNewView{
                             .fontWeight(.bold)
                             .font(.system(size: 35))
                     }
+                    .buttonStyle(PlainButtonStyle())
                     
                     Button {
                         print("header button 3 tap")
@@ -44,6 +46,7 @@ extension KioskWelcomeNewView{
                             .fontWeight(.bold)
                             .foregroundColor(.black)
                     }
+                    .buttonStyle(PlainButtonStyle())
                     
                     Button {
                         print("header button 4 tap")
@@ -53,7 +56,7 @@ extension KioskWelcomeNewView{
                             .font(.system(size: 35))
                             .fontWeight(.bold)
                     }
-
+                    .buttonStyle(PlainButtonStyle())
 
                     
                     
