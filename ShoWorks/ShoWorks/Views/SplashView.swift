@@ -25,27 +25,21 @@ struct SplashView: View {
                             self.pushToNext = true
                         }
                     }
-//                    .navigationDestination(isPresented: $pushToNext) {
-//                        
-//                        if UserSettings.shared.isDemoUserEnabled == true {
-//                            InputSerial()
-//                        }else{
-//                            if !Utilities.sharedInstance.checkStringContainsText(text: UserSettings.shared.serialKey) {
-//                                InputSerial()
-//                            }else{
-//                                HomeView(mScreenState: AppConstant.AppStartupStatus.fetchSheetFromLocal)
-//                            }
-//                        }
-//                        
-//                    }.transition(navigationTransition)
+                    .navigationDestination(isPresented: $pushToNext) {
+                        
+                        if UserSettings.shared.isDemoUserEnabled == true {
+                            InputSerial()
+                        }else{
+                            if !Utilities.sharedInstance.checkStringContainsText(text: UserSettings.shared.serialKey) {
+                                InputSerial()
+                            }else{
+                                HomeView(mScreenState: AppConstant.AppStartupStatus.fetchSheetFromLocal)
+                            }
+                        }
+                        
+                    }.transition(navigationTransition)
                 ShoWorksLogo()            
 
-            }
-            .onAppear {
-                UserSettings.shared.roundRobinBackgroundImageIndex = UserSettings.shared.roundRobinBackgroundImageIndex! + 1
-                if UserSettings.shared.roundRobinBackgroundImageIndex! == 2 {
-                    UserSettings.shared.roundRobinBackgroundImageIndex = 0
-                }
             }
         }
         .navigationViewStyle(.automatic)

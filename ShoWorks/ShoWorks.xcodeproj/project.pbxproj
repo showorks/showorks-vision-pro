@@ -57,6 +57,7 @@
 		CF80ACA82AE032E3007E8DB6 /* CapsuleLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF80ACA72AE032E3007E8DB6 /* CapsuleLayout.swift */; };
 		CF8E74DD2AA72FF0007ECEC3 /* VisionKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF8E74DC2AA72FF0007ECEC3 /* VisionKit.framework */; };
 		CF8E74DF2AA7358B007ECEC3 /* DocumentCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8E74DE2AA7358B007ECEC3 /* DocumentCameraViewController.swift */; };
+		CF9FA6A02AEB971900D0356D /* VisualEffectBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9FA69F2AEB971900D0356D /* VisualEffectBlur.swift */; };
 		CFA093052A711C670013E6B3 /* SheetsData.plist in Resources */ = {isa = PBXBuildFile; fileRef = CFA093042A711C670013E6B3 /* SheetsData.plist */; };
 		CFA093072A712A510013E6B3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA093062A712A510013E6B3 /* HomeView.swift */; };
 		CFA0930C2A7131460013E6B3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA0930B2A7131460013E6B3 /* HomeViewModel.swift */; };
@@ -137,6 +138,7 @@
 		CF80ACA72AE032E3007E8DB6 /* CapsuleLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapsuleLayout.swift; sourceTree = "<group>"; };
 		CF8E74DC2AA72FF0007ECEC3 /* VisionKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VisionKit.framework; path = System/Library/Frameworks/VisionKit.framework; sourceTree = SDKROOT; };
 		CF8E74DE2AA7358B007ECEC3 /* DocumentCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCameraViewController.swift; sourceTree = "<group>"; };
+		CF9FA69F2AEB971900D0356D /* VisualEffectBlur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectBlur.swift; sourceTree = "<group>"; };
 		CFA093042A711C670013E6B3 /* SheetsData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SheetsData.plist; sourceTree = "<group>"; };
 		CFA093062A712A510013E6B3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CFA0930B2A7131460013E6B3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				CF17003A2A6A9544006A7415 /* LazyView.swift */,
 				CFF166852A8BA9F300FD7A25 /* CustomBackground.swift */,
 				CF7FBDE62ABE3BAC00458170 /* BLEController.swift */,
+				CF9FA69F2AEB971900D0356D /* VisualEffectBlur.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				CF09E6402A656A8800C947A3 /* Bundle+Localized.swift in Sources */,
 				CF43844C2A66B7EA000A7022 /* ShoWorksService.swift in Sources */,
 				CF4384482A66B765000A7022 /* ShoWorksAPIService.swift in Sources */,
+				CF9FA6A02AEB971900D0356D /* VisualEffectBlur.swift in Sources */,
 				CF6BEDEC2A5F02F800CE209A /* ShoWorksBackground.swift in Sources */,
 				CF6C42172A73CCF8005F7D53 /* SheetSyncNotificationModel.swift in Sources */,
 				CF4384552A66B988000A7022 /* ShoWorksAuthenticationAPIResponse.swift in Sources */,

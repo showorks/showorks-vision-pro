@@ -18,11 +18,20 @@ struct ShoWorksApp: App {
 //                 print("font:", font)
 //             }
 //         }
+        
+        
+        UserSettings.shared.roundRobinBackgroundImageIndex = UserSettings.shared.roundRobinBackgroundImageIndex! + 1
+        
+        if UserSettings.shared.roundRobinBackgroundImageIndex! == 2 {
+            UserSettings.shared.roundRobinBackgroundImageIndex = 0
+        }
+        
+        
     }
     var body: some Scene {
-        WindowGroup {
+        WindowGroup {            
             SplashView()
-        } 
+        }
 //        .defaultSize(width: 1, height: 0.6, depth: 0.0, in: .meters)
     }
 }

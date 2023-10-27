@@ -148,7 +148,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enter a Serial Number"
+            "value" : "XXXX-XXXX-XXXX-1234"
           }
         }
       }
@@ -159,7 +159,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enter your ShoWorks serial number for full use or continue in DEMO MODE."
+            "value" : "Enter your ShoWorks serial number for full access."
           }
         }
       }
@@ -199,6 +199,9 @@
           }
         }
       }
+    },
+    "Hello World!" : {
+
     },
     "InvalidSerialKeyAlertMessage" : {
       "extractionState" : "manual",
@@ -447,17 +450,6 @@
     "Visit www.fairsoftware.com/samples to print out sample entry tags and receipts which have QR Codes (barcodes) on them, allowing you to see how the scanner works which makes locating entries even faster." : {
 
     },
-    "welcome" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Welcome to"
-          }
-        }
-      }
-    },
     "welcome_new" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -465,6 +457,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Welcome"
+          }
+        }
+      }
+    },
+    "welcome_old" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to"
           }
         }
       }

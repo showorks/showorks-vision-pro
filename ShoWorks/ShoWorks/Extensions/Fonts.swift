@@ -28,4 +28,16 @@ extension Font {
     static func heleveticNeueMedium(size: CGFloat) -> Font {
         Font.custom("HelveticaNeue-Medium", size: size)
     }
+    
+    static func sfProRegular(size: CGFloat) -> Font {
+         .custom("SF-Pro-Display-Regular", size: size)
+     }
+     
+     static func sfProLight(size: CGFloat) -> Font {
+         .custom("SF-Pro-Display-Light", size: size)
+     }
+     
+     static func sfProMedium(size: CGFloat) -> Font {
+         .custom("SF-Pro-Display-Medium", size: size)
+     }
 }

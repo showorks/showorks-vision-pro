@@ -26,79 +26,99 @@ struct InputSerial: View {
             
             ShoWorksBackground()
             
-            ShoWorksLogo()
-                .onAppear { }
-                .offset(x: CGFloat(self.moveLogoBy))
-         
             VStack(alignment: .center, content: {
-               TopLayout()
-                Text("enter_serial_text".localized()).font(.heleveticNeueThin(size: 18))
-                    .foregroundColor(.white)
-                VStack(){
-                    HStack(){
-                       
-                        Text(self.aSerialNumberButtonTitle)
-                            .font(.system(size: 15))
-                            .padding(10)
-                            .padding(.leading,20)
-                            .padding(.trailing,20)
-                            .background(Color.aLightGrayColor)
-                            .foregroundColor(Color.aTextGrayColor)
-                            .cornerRadius(5)
-                            .onTapGesture {
-                                if(self.authenticationViewModel.isLoading){
-                                    return
-                                }
-                                self.isSerialNumberTextFieldHidden = !self.isSerialNumberTextFieldHidden
-                                self.aSerialNumberButtonTitle = self.isSerialNumberTextFieldHidden ? "enter_a_num".localized() :
-                                "cancel_btn".localized()
-                                self.aContinueButtonTitle = self.isSerialNumberTextFieldHidden ? "continue_in_demo_mode".localized() :
-                                "continue".localized()
-                            }
-                        
-                        Text(self.aContinueButtonTitle)
-                            .font(.system(size: 15))
-                            .padding(10)
-                            .padding(.leading,20)
-                            .padding(.trailing,20)
-                            .background(Color.aBlueBackgroundColor)
-                            .foregroundColor(Color.white)
-                            .cornerRadius(5)
-                            .onTapGesture {
-                                continueButtonTapped()
-                            }
-                        
-                        ActivityIndicatorView(isVisible: $authenticationViewModel.isLoading, type: .flickeringDots(count: 10))
-                                 .frame(width: 50.0, height: 50.0)
-                                 .foregroundColor(.white)
-
-                    }.padding(.top,10)
-                    
-                    InputLayout(userInputtedSerialKey: $aSerialNumberString,isLoaderSpinning: $authenticationViewModel.isLoading)
-                        .onAppear(){
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                self.isCompleteLayoutHidden = false
-                            }
-                    }
-                    .isHidden(self.isSerialNumberTextFieldHidden)
+                Text("welcome_old".localized())
+                    .font(.sfProRegular(size: 26))
+                
+                
+                Image("showorks_logo_new")
+                    .resizable()
+                    .frame(width: 100,height: 100)
                     .frame(alignment: .center)
-                    .padding(.top,10)
-                    .padding(.leading,300)
-                    .padding(.trailing,300)
-                    
-                    
-                    .navigationDestination(
-                         isPresented: $authenticationViewModel.isUserAuthenticated) {
-                             HomeView(mScreenState: mScreenState).environmentObject(authenticationViewModel)
-                              Text("")
-                                  .hidden()
-                         }
-                }
+                
+                Text("enter_serial_text".localized()).font(.sfProRegular(size: 10))
+                    .foregroundColor(.white).padding(.top,10)
+                
+                
+                InputLayout(userInputtedSerialKey: $aSerialNumberString,isLoaderSpinning: $authenticationViewModel.isLoading)
 
                 
             })
-            .padding(.leading,200)
-            .isHidden(self.isCompleteLayoutHidden)
+            .padding(50)
+            .background( VisualEffectBlur(blurStyle: .systemThinMaterial)
+                .ignoresSafeArea())
+            .cornerRadius(20)
+
+             
+//            VStack(alignment: .center, content: {
+//               TopLayout()
+//                Text("enter_serial_text".localized()).font(.heleveticNeueThin(size: 18))
+//                    .foregroundColor(.white)
+//                VStack(){
+//                    HStack(){
+//                       
+//                        Text(self.aSerialNumberButtonTitle)
+//                            .font(.system(size: 15))
+//                            .padding(10)
+//                            .padding(.leading,20)
+//                            .padding(.trailing,20)
+//                            .background(Color.aLightGrayColor)
+//                            .foregroundColor(Color.aTextGrayColor)
+//                            .cornerRadius(5)
+//                            .onTapGesture {
+//                                if(self.authenticationViewModel.isLoading){
+//                                    return
+//                                }
+//                                self.isSerialNumberTextFieldHidden = !self.isSerialNumberTextFieldHidden
+//                                self.aSerialNumberButtonTitle = self.isSerialNumberTextFieldHidden ? "enter_a_num".localized() :
+//                                "cancel_btn".localized()
+//                                self.aContinueButtonTitle = self.isSerialNumberTextFieldHidden ? "continue_in_demo_mode".localized() :
+//                                "continue".localized()
+//                            }
+//                        
+//                        Text(self.aContinueButtonTitle)
+//                            .font(.system(size: 15))
+//                            .padding(10)
+//                            .padding(.leading,20)
+//                            .padding(.trailing,20)
+//                            .background(Color.aBlueBackgroundColor)
+//                            .foregroundColor(Color.white)
+//                            .cornerRadius(5)
+//                            .onTapGesture {
+//                                continueButtonTapped()
+//                            }
+//                        
+//                        ActivityIndicatorView(isVisible: $authenticationViewModel.isLoading, type: .flickeringDots(count: 10))
+//                                 .frame(width: 50.0, height: 50.0)
+//                                 .foregroundColor(.white)
+//
+//                    }.padding(.top,10)
+//                    
+//                    InputLayout(userInputtedSerialKey: $aSerialNumberString,isLoaderSpinning: $authenticationViewModel.isLoading)
+//                        .onAppear(){
+//                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//                                self.isCompleteLayoutHidden = false
+//                            }
+//                    }
+//                    .isHidden(self.isSerialNumberTextFieldHidden)
+//                    .frame(alignment: .center)
+//                    .padding(.top,10)
+//                    .padding(.leading,300)
+//                    .padding(.trailing,300)
+//                    
+//                    
+//                    .navigationDestination(
+//                         isPresented: $authenticationViewModel.isUserAuthenticated) {
+//                             HomeView(mScreenState: mScreenState).environmentObject(authenticationViewModel)
+//                              Text("")
+//                                  .hidden()
+//                         }
+//                }
+//
+//                
+//            })
+//            .padding(.leading,200)
+//            .isHidden(self.isCompleteLayoutHidden)
                         
         }
         .navigationBarHidden(true)
@@ -205,17 +225,18 @@ struct InputLayout: View {
             
             TextField("", text: $userInputtedSerialKey)
                 .placeholder(when: self.userInputtedSerialKey.isEmpty) {
-                    Text("serial_num_or_cancel_demo".localized()).foregroundColor(.gray)
-                        .multilineTextAlignment(.center)
-                        .padding(.leading,50)
+                    Text("enter_a_num".localized()).foregroundColor(.white)
+                                           .multilineTextAlignment(.center)
+                                           .font(.sfProLight(size: 14))
+                                           .frame(width: 300)
                 }.disabled(isLoaderSpinning)
-                .font(.system(size: 14))
-                .padding(10)
-                .padding(.leading,20)
-                .padding(.trailing,20)
+                .keyboardType(.numberPad)
+                .font(.sfProLight(size: 14))
+                .padding()
+                .frame(width: 300)
+                .textFieldStyle(.roundedBorder)
                 .multilineTextAlignment(.center)
-                .background(Color.white)
-                .foregroundColor(Color.black)
+                .foregroundColor(Color.white)
                 .cornerRadius(2)
         
     }
