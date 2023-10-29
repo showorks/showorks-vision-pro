@@ -233,19 +233,3 @@ struct InputLayout: View {
         }
     }
 }
-
-
-struct TopLayout: View {
-    @State private var userInputtedSerialKey: String = ""
-    var body: some View {
-            
-        HStack(){
-            Text("welcome".localized()) .font(.heleveticNeueThin(size: 42))
-                .foregroundColor(.white)
-            Image("showorksLogo")
-            Text("for_vision_pro".localized()).font(.heleveticNeueThin(size: 42))
-                .foregroundColor(.white)
-        }
-        
-    }
-}
