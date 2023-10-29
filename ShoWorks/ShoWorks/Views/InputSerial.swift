@@ -11,7 +11,7 @@ import ActivityIndicatorView
 struct InputSerial: View {
     
     @State private var moveLogoBy = 0.0
-    @State private var isCompleteLayoutHidden = true
+    @State private var isContinueDisabled = true
     @State private var moveToNextScreen = false
     @State private var isSerialNumberTextFieldHidden = true
     @State private var aSerialNumberButtonTitle = "enter_a_num".localized()
@@ -40,18 +40,23 @@ struct InputSerial: View {
                     .foregroundColor(.white).padding(.top,10)
                 
                 
-                InputLayout(userInputtedSerialKey: $aSerialNumberString,isLoaderSpinning: $authenticationViewModel.isLoading)
+                InputLayout(userInputtedSerialKey: $aSerialNumberString,isLoaderSpinning: $authenticationViewModel.isLoading,isContinueDisabled: $isContinueDisabled)
 
                 Text(self.aContinueButtonTitle)
                     .font(.sfProRegular(size: 15))
                     .padding(10)
                     .frame(width: 300)
-                    .background(Image("continue_btn"))
+                    .background(Image("continue_btn")).opacity(self.isContinueDisabled ? 0.5 : 1.0)
+                    .disabled(self.isContinueDisabled)
                     .foregroundColor(Color.white)
                     .cornerRadius(15)
                     .onTapGesture {
+                        if(self.authenticationViewModel.isLoading){
+                            return
+                        }
                         continueButtonTapped()
                     }
+                    
                 
                 Text("or_text".localized()).font(.sfProLight(size: 10))
                     .foregroundColor(.white).padding(.top,5).padding(.bottom,5)
@@ -70,60 +75,23 @@ struct InputSerial: View {
                         continueButtonTapped()
                     }
                 
+                
+
+                ActivityIndicatorView(isVisible: $authenticationViewModel.isLoading, type: .flickeringDots(count: 10))
+                         .frame(width: 50.0, height: 50.0)
+                         .foregroundColor(.white)
+                
             })
+            .navigationDestination(
+                 isPresented: $authenticationViewModel.isUserAuthenticated) {
+                     HomeView(mScreenState: mScreenState).environmentObject(authenticationViewModel)
+                      Text("")
+                          .hidden()
+                 }
             .padding(50)
             .background( VisualEffectBlur(blurStyle: .extraLight)
                 .ignoresSafeArea())
             .cornerRadius(20)
-
-             
-//            VStack(alignment: .center, content: {
-//               TopLayout()
-//                Text("enter_serial_text".localized()).font(.heleveticNeueThin(size: 18))
-//                    .foregroundColor(.white)
-//                VStack(){
-//                    HStack(){
-//                       
-//                        Text(self.aSerialNumberButtonTitle)
-//                            .font(.system(size: 15))
-//                            .padding(10)
-//                            .padding(.leading,20)
-//                            .padding(.trailing,20)
-//                            .background(Color.aLightGrayColor)
-//                            .foregroundColor(Color.aTextGrayColor)
-//                            .cornerRadius(5)
-//                            .onTapGesture {
-//                                if(self.authenticationViewModel.isLoading){
-//                                    return
-//                                }
-//                                self.isSerialNumberTextFieldHidden = !self.isSerialNumberTextFieldHidden
-//                                self.aSerialNumberButtonTitle = self.isSerialNumberTextFieldHidden ? "enter_a_num".localized() :
-//                                "cancel_btn".localized()
-//                                self.aContinueButtonTitle = self.isSerialNumberTextFieldHidden ? "continue_in_demo_mode".localized() :
-//                                "continue".localized()
-//                            }
-//                        
-
-//                        
-//                        ActivityIndicatorView(isVisible: $authenticationViewModel.isLoading, type: .flickeringDots(count: 10))
-//                                 .frame(width: 50.0, height: 50.0)
-//                                 .foregroundColor(.white)
-//
-//                    }.padding(.top,10)
-//
-//                    
-//                    .navigationDestination(
-//                         isPresented: $authenticationViewModel.isUserAuthenticated) {
-//                             HomeView(mScreenState: mScreenState).environmentObject(authenticationViewModel)
-//                              Text("")
-//                                  .hidden()
-//                         }
-//                }
-//
-//                
-//            })
-//            .padding(.leading,200)
-//            .isHidden(self.isCompleteLayoutHidden)
                         
         }
         .navigationBarHidden(true)
@@ -226,6 +194,7 @@ struct InputSerial: View {
 struct InputLayout: View {
     @Binding var userInputtedSerialKey: String
     @Binding var isLoaderSpinning: Bool
+    @Binding var isContinueDisabled: Bool
     var body: some View {
             
             TextField("", text: $userInputtedSerialKey)
@@ -234,7 +203,11 @@ struct InputLayout: View {
                                            .multilineTextAlignment(.center)
                                            .font(.sfProLight(size: 14))
                                            .frame(width: 300)
-                }.disabled(isLoaderSpinning)
+                }
+                .onChange(of: userInputtedSerialKey, {
+                    isContinueDisabled = validateSerialNumber(serialKey: userInputtedSerialKey)
+                })
+                .disabled(isLoaderSpinning)
                 .keyboardType(.numberPad)
                 .font(.sfProLight(size: 14))
                 .padding()
@@ -244,6 +217,20 @@ struct InputLayout: View {
                 .foregroundColor(Color.white)
                 .cornerRadius(2)
         
+    }
+    
+    func validateSerialNumber(serialKey:String) -> Bool{
+
+        if Utilities.sharedInstance.checkStringContainsText(text: serialKey){
+            
+            if(serialKey.count >= AppConstant.SerialNumberMinLength && serialKey.count <= AppConstant.SerialNumberMaxLength) {
+                return false
+            }else{
+                return true
+            }
+        }else{
+            return true
+        }
     }
 }
 
