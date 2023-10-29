@@ -33,7 +33,7 @@ struct SplashView: View {
                             if !Utilities.sharedInstance.checkStringContainsText(text: UserSettings.shared.serialKey) {
                                 InputSerial()
                             }else{
-                                HomeView(mScreenState: AppConstant.AppStartupStatus.fetchSheetFromLocal)
+                                ConnectSearchView(mScreenState: AppConstant.AppStartupStatus.fetchSheetFromLocal)
                             }
                         }
                         

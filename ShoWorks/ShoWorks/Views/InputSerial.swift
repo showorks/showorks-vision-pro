@@ -84,7 +84,7 @@ struct InputSerial: View {
             })
             .navigationDestination(
                  isPresented: $authenticationViewModel.isUserAuthenticated) {
-                     HomeView(mScreenState: mScreenState).environmentObject(authenticationViewModel)
+                     ConnectSearchView(mScreenState: mScreenState).environmentObject(authenticationViewModel)
                       Text("")
                           .hidden()
                  }

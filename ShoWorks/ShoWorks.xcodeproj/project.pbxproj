@@ -71,6 +71,7 @@
 		CFA093472A715D730013E6B3 /* AWSS3 in Frameworks */ = {isa = PBXBuildFile; productRef = CFA093462A715D730013E6B3 /* AWSS3 */; };
 		CFA093492A715D730013E6B3 /* AWSS3Control in Frameworks */ = {isa = PBXBuildFile; productRef = CFA093482A715D730013E6B3 /* AWSS3Control */; };
 		CFA0934B2A715D730013E6B3 /* AWSS3Outposts in Frameworks */ = {isa = PBXBuildFile; productRef = CFA0934A2A715D730013E6B3 /* AWSS3Outposts */; };
+		CFBD7D1E2AEE70F700876FB3 /* ConnectSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBD7D1D2AEE70F700876FB3 /* ConnectSearchView.swift */; };
 		CFE6ED132A5EB57100F6867E /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = CFE6ED122A5EB57100F6867E /* RealityKitContent */; };
 		CFE6ED152A5EB57100F6867E /* ShoWorksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE6ED142A5EB57100F6867E /* ShoWorksApp.swift */; };
 		CFE6ED192A5EB57200F6867E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFE6ED182A5EB57200F6867E /* Assets.xcassets */; };
@@ -142,6 +143,7 @@
 		CFA093042A711C670013E6B3 /* SheetsData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SheetsData.plist; sourceTree = "<group>"; };
 		CFA093062A712A510013E6B3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CFA0930B2A7131460013E6B3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		CFBD7D1D2AEE70F700876FB3 /* ConnectSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectSearchView.swift; sourceTree = "<group>"; };
 		CFE6ED0D2A5EB57100F6867E /* ShoWorks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoWorks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFE6ED112A5EB57100F6867E /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		CFE6ED142A5EB57100F6867E /* ShoWorksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksApp.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				CFA093062A712A510013E6B3 /* HomeView.swift */,
 				CFF166812A8BA26800FD7A25 /* KioskWelcomeView.swift */,
 				CF8E74DE2AA7358B007ECEC3 /* DocumentCameraViewController.swift */,
+				CFBD7D1D2AEE70F700876FB3 /* ConnectSearchView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				CF2894822A793FEC004AE980 /* Additions.m in Sources */,
 				CFA0930C2A7131460013E6B3 /* HomeViewModel.swift in Sources */,
 				CF43844A2A66B7C4000A7022 /* ShoWorksAPISession.swift in Sources */,
+				CFBD7D1E2AEE70F700876FB3 /* ConnectSearchView.swift in Sources */,
 				CF80ACA62AE0320E007E8DB6 /* PreviousNextButtons.swift in Sources */,
 				CF09E63A2A65699F00C947A3 /* String+Localized.swift in Sources */,
 				CF5BC6B62A69423100114C32 /* DataCenter.swift in Sources */,
