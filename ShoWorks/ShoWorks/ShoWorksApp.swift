@@ -31,7 +31,7 @@ struct ShoWorksApp: App {
     var body: some Scene {
         WindowGroup {            
             SplashView()
-        }
+        }.defaultSize(width: 1366, height: 824)
 //        .defaultSize(width: 1, height: 0.6, depth: 0.0, in: .meters)
     }
 }

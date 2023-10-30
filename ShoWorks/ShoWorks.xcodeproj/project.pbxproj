@@ -72,6 +72,15 @@
 		CFA093492A715D730013E6B3 /* AWSS3Control in Frameworks */ = {isa = PBXBuildFile; productRef = CFA093482A715D730013E6B3 /* AWSS3Control */; };
 		CFA0934B2A715D730013E6B3 /* AWSS3Outposts in Frameworks */ = {isa = PBXBuildFile; productRef = CFA0934A2A715D730013E6B3 /* AWSS3Outposts */; };
 		CFBD7D1E2AEE70F700876FB3 /* ConnectSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBD7D1D2AEE70F700876FB3 /* ConnectSearchView.swift */; };
+		CFC2C4BA2AEFB02200E8AC20 /* HomeTabLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C4B02AEFB02200E8AC20 /* HomeTabLayout.swift */; };
+		CFC2C4BB2AEFB02200E8AC20 /* HomeBottomCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C4B12AEFB02200E8AC20 /* HomeBottomCapsule.swift */; };
+		CFC2C4BC2AEFB02200E8AC20 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C4B22AEFB02200E8AC20 /* CustomTabView.swift */; };
+		CFC2C4BD2AEFB02200E8AC20 /* DropDowns.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C4B32AEFB02200E8AC20 /* DropDowns.swift */; };
+		CFC2C4BE2AEFB02200E8AC20 /* HomeContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C4B42AEFB02200E8AC20 /* HomeContentView.swift */; };
+		CFC2C4BF2AEFB02200E8AC20 /* ToggleViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C4B52AEFB02200E8AC20 /* ToggleViews.swift */; };
+		CFC2C4C12AEFB02200E8AC20 /* SpeechRecognitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C4B72AEFB02200E8AC20 /* SpeechRecognitionDelegate.swift */; };
+		CFC2C4C22AEFB02200E8AC20 /* ScreenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C4B82AEFB02200E8AC20 /* ScreenData.swift */; };
+		CFC2C4C32AEFB02200E8AC20 /* SearchBarCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C4B92AEFB02200E8AC20 /* SearchBarCapsule.swift */; };
 		CFE6ED132A5EB57100F6867E /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = CFE6ED122A5EB57100F6867E /* RealityKitContent */; };
 		CFE6ED152A5EB57100F6867E /* ShoWorksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE6ED142A5EB57100F6867E /* ShoWorksApp.swift */; };
 		CFE6ED192A5EB57200F6867E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFE6ED182A5EB57200F6867E /* Assets.xcassets */; };
@@ -144,6 +153,15 @@
 		CFA093062A712A510013E6B3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CFA0930B2A7131460013E6B3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CFBD7D1D2AEE70F700876FB3 /* ConnectSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectSearchView.swift; sourceTree = "<group>"; };
+		CFC2C4B02AEFB02200E8AC20 /* HomeTabLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabLayout.swift; sourceTree = "<group>"; };
+		CFC2C4B12AEFB02200E8AC20 /* HomeBottomCapsule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeBottomCapsule.swift; sourceTree = "<group>"; };
+		CFC2C4B22AEFB02200E8AC20 /* CustomTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
+		CFC2C4B32AEFB02200E8AC20 /* DropDowns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDowns.swift; sourceTree = "<group>"; };
+		CFC2C4B42AEFB02200E8AC20 /* HomeContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeContentView.swift; sourceTree = "<group>"; };
+		CFC2C4B52AEFB02200E8AC20 /* ToggleViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleViews.swift; sourceTree = "<group>"; };
+		CFC2C4B72AEFB02200E8AC20 /* SpeechRecognitionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionDelegate.swift; sourceTree = "<group>"; };
+		CFC2C4B82AEFB02200E8AC20 /* ScreenData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenData.swift; sourceTree = "<group>"; };
+		CFC2C4B92AEFB02200E8AC20 /* SearchBarCapsule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarCapsule.swift; sourceTree = "<group>"; };
 		CFE6ED0D2A5EB57100F6867E /* ShoWorks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoWorks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFE6ED112A5EB57100F6867E /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		CFE6ED142A5EB57100F6867E /* ShoWorksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksApp.swift; sourceTree = "<group>"; };
@@ -270,6 +288,7 @@
 		CF6BEDE52A5F026900CE209A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CFC2C4AF2AEFB02200E8AC20 /* HomeTabModule */,
 				CF80AC9E2AE0320E007E8DB6 /* KioskWelcomeLayout */,
 				CF6BEDE62A5F026900CE209A /* SplashView.swift */,
 				CF643E742AC20F130063FDA1 /* KioskHomeView.swift */,
@@ -320,6 +339,22 @@
 				CF8E74DC2AA72FF0007ECEC3 /* VisionKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CFC2C4AF2AEFB02200E8AC20 /* HomeTabModule */ = {
+			isa = PBXGroup;
+			children = (
+				CFC2C4B02AEFB02200E8AC20 /* HomeTabLayout.swift */,
+				CFC2C4B12AEFB02200E8AC20 /* HomeBottomCapsule.swift */,
+				CFC2C4B22AEFB02200E8AC20 /* CustomTabView.swift */,
+				CFC2C4B32AEFB02200E8AC20 /* DropDowns.swift */,
+				CFC2C4B42AEFB02200E8AC20 /* HomeContentView.swift */,
+				CFC2C4B52AEFB02200E8AC20 /* ToggleViews.swift */,
+				CFC2C4B72AEFB02200E8AC20 /* SpeechRecognitionDelegate.swift */,
+				CFC2C4B82AEFB02200E8AC20 /* ScreenData.swift */,
+				CFC2C4B92AEFB02200E8AC20 /* SearchBarCapsule.swift */,
+			);
+			path = HomeTabModule;
 			sourceTree = "<group>";
 		};
 		CFE6ED042A5EB57100F6867E = {
@@ -472,6 +507,7 @@
 				CFBD7D1E2AEE70F700876FB3 /* ConnectSearchView.swift in Sources */,
 				CF80ACA62AE0320E007E8DB6 /* PreviousNextButtons.swift in Sources */,
 				CF09E63A2A65699F00C947A3 /* String+Localized.swift in Sources */,
+				CFC2C4BC2AEFB02200E8AC20 /* CustomTabView.swift in Sources */,
 				CF5BC6B62A69423100114C32 /* DataCenter.swift in Sources */,
 				CF80ACA42AE0320E007E8DB6 /* KioskWelcomeNewView.swift in Sources */,
 				CF4384532A66B918000A7022 /* ShoWorksAuthenticationModel.swift in Sources */,
@@ -482,17 +518,21 @@
 				CFF166802A8B97C400FD7A25 /* SheetUtility.swift in Sources */,
 				CF1D8E0E2AC23AA2001ED4F1 /* SearchDataModel.m in Sources */,
 				CF7FBDE72ABE3BAC00458170 /* BLEController.swift in Sources */,
+				CFC2C4BA2AEFB02200E8AC20 /* HomeTabLayout.swift in Sources */,
 				CF4384502A66B853000A7022 /* APIConstants.swift in Sources */,
 				CF6BEDE72A5F026900CE209A /* SplashView.swift in Sources */,
 				CF28947F2A793FC6004AE980 /* XMLGenerator.m in Sources */,
 				CF43844E2A66B835000A7022 /* ShoWorksEndpoint.swift in Sources */,
+				CFC2C4BF2AEFB02200E8AC20 /* ToggleViews.swift in Sources */,
 				CFF166842A8BA28000FD7A25 /* KioskViewModel.swift in Sources */,
 				CF17008F2A710F98006A7415 /* Utilities.swift in Sources */,
+				CFC2C4C32AEFB02200E8AC20 /* SearchBarCapsule.swift in Sources */,
 				CF80ACA32AE0320E007E8DB6 /* HeaderAndFooter.swift in Sources */,
 				CFF166822A8BA26800FD7A25 /* KioskWelcomeView.swift in Sources */,
 				CF643E752AC20F130063FDA1 /* KioskHomeView.swift in Sources */,
 				CFA093072A712A510013E6B3 /* HomeView.swift in Sources */,
 				CF1D8E132AC4945A001ED4F1 /* CardModel.swift in Sources */,
+				CFC2C4BE2AEFB02200E8AC20 /* HomeContentView.swift in Sources */,
 				CF1D8E082AC239E7001ED4F1 /* SearchingUtility.m in Sources */,
 				CF09E6342A65601100C947A3 /* Colors.swift in Sources */,
 				CF4384582A672CA6000A7022 /* UserSettings.swift in Sources */,
@@ -502,11 +542,15 @@
 				CF4384482A66B765000A7022 /* ShoWorksAPIService.swift in Sources */,
 				CF9FA6A02AEB971900D0356D /* VisualEffectBlur.swift in Sources */,
 				CF6BEDEC2A5F02F800CE209A /* ShoWorksBackground.swift in Sources */,
+				CFC2C4BB2AEFB02200E8AC20 /* HomeBottomCapsule.swift in Sources */,
 				CF6C42172A73CCF8005F7D53 /* SheetSyncNotificationModel.swift in Sources */,
 				CF4384552A66B988000A7022 /* ShoWorksAuthenticationAPIResponse.swift in Sources */,
+				CFC2C4C12AEFB02200E8AC20 /* SpeechRecognitionDelegate.swift in Sources */,
+				CFC2C4C22AEFB02200E8AC20 /* ScreenData.swift in Sources */,
 				CF09E6322A655B5200C947A3 /* Fonts.swift in Sources */,
 				CF08F3632A69BACD000933B1 /* LoaderView.swift in Sources */,
 				CF1700352A6A8BBA006A7415 /* KeyboardAdaptive.swift in Sources */,
+				CFC2C4BD2AEFB02200E8AC20 /* DropDowns.swift in Sources */,
 				CF1700332A6A898F006A7415 /* UIKit+Extensions.swift in Sources */,
 				CF19158A2A5F3BB300D53DA5 /* ShoWorksLogo.swift in Sources */,
 				CF09E6442A656FC200C947A3 /* Alerts.swift in Sources */,

@@ -84,9 +84,10 @@ struct InputSerial: View {
             })
             .navigationDestination(
                  isPresented: $authenticationViewModel.isUserAuthenticated) {
-                     ConnectSearchView(mScreenState: mScreenState).environmentObject(authenticationViewModel)
-                      Text("")
-                          .hidden()
+//                     ConnectSearchView(mScreenState: mScreenState).environmentObject(authenticationViewModel)
+//                      Text("")
+//                          .hidden()
+                     HomeContentView()
                  }
             .padding(50)
             .background( VisualEffectBlur(blurStyle: .extraLight)
