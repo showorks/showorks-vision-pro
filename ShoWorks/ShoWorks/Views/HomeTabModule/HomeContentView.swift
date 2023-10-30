@@ -52,7 +52,7 @@ struct HomeContentView: View {
     @State var selectedTab: Tabs = .tab1
     @State private var offsetY: CGFloat = 0
     @State private var isDragging = false
-    @State private var isDeviceConnected = false
+    @State var isDeviceConnected = false
     var body: some View {
         
         ZStack{
