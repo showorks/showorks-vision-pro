@@ -89,52 +89,16 @@ struct HomeContentView: View {
                             .frame(width: 960, height: 540)
                             .glassBackgroundEffect()
                         
-//                        Text("place tab 2 here")
-                        
-                        VStack{
-                            ScrollView(.vertical){
-                                ForEach(0..<12, id: \.self){num in
-                                    Text("\(num)")
-                                }
-                            }
-                            .frame(width: 200, height: 300)
-                        }
-                        
-                        
+                        QRScanTabView()
                     }
                 }else{
-                    VStack(spacing: 10) {
-                        ForEach(1...50, id: \.self) { index in
-                            Text("Entry \(index)")
-                                .frame(width: 200, height: 50)
-                                .background(Color.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                                .opacity(isDragging ? 0.5 : 1.0)
-                        }
+                    ZStack{
+                        Color.white.opacity(0.3)
+                            .frame(width: 960, height: 540)
+                            .glassBackgroundEffect()
+                        
+                        Text("Place tab 3 here")
                     }
-                    .frame(height: 350)
-                    .offset(y: offsetY)
-                    .gesture(
-                        DragGesture()
-                            .onChanged { value in
-                                isDragging = true
-                                offsetY += value.translation.height / 10
-                            }
-                            .onEnded { _ in
-                                isDragging = false
-                                withAnimation {
-                                    offsetY = 0
-                                }
-                            }
-                    )
-//                    struct HomeContentView: View {
-//
-//
-//                        var body: some View {
-//                            
-//                        }
-//                    }
                 }
                 
                 
@@ -146,4 +110,24 @@ struct HomeContentView: View {
 #Preview(windowStyle: .automatic) {
     HomeContentView()
         
+}
+
+
+struct QRScanTabView: View {
+    
+    var body: some View {
+        ZStack(){
+            
+            VStack(alignment: .center, content: {
+                
+                Image("connected_state")
+              
+                Text("Device is connected and ready to scan")
+                    .foregroundColor(.white)
+               
+                
+            })
+                        
+        }
+    }
 }

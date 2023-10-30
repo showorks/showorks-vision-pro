@@ -4,7 +4,13 @@
     "" : {
 
     },
+    "   %@" : {
+
+    },
     "%lld" : {
+
+    },
+    "2/5" : {
 
     },
     "7th" : {
@@ -29,6 +35,9 @@
           }
         }
       }
+    },
+    "Check in" : {
+
     },
     "Check In" : {
 
@@ -65,6 +74,9 @@
       }
     },
     "Club" : {
+
+    },
+    "Confirm Entry" : {
 
     },
     "connect_laser" : {
@@ -139,6 +151,9 @@
     "Department" : {
 
     },
+    "Device is connected and ready to scan" : {
+
+    },
     "Diksha Khemlami" : {
 
     },
@@ -189,6 +204,9 @@
         }
       }
     },
+    "For Sale" : {
+
+    },
     "for_vision_pro" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -229,6 +247,9 @@
 
     },
     "Manual Search" : {
+
+    },
+    "Mode" : {
 
     },
     "Next" : {
@@ -344,6 +365,9 @@
         }
       }
     },
+    "Place tab 3 here" : {
+
+    },
     "powered_by" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -358,10 +382,16 @@
     "Previous" : {
 
     },
+    "Return to Summary" : {
+
+    },
     "Search" : {
 
     },
     "Search ..." : {
+
+    },
+    "Search by name/tag/entryNumber" : {
 
     },
     "serial_num_or_cancel_demo" : {
@@ -430,6 +460,9 @@
         }
       }
     },
+    "Skip" : {
+
+    },
     "sort_btn" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -440,6 +473,9 @@
           }
         }
       }
+    },
+    "Tap any text below to make changes" : {
+
     },
     "tap_here_to" : {
       "extractionState" : "manual",
