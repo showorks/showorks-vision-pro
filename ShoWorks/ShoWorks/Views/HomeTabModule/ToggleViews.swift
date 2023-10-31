@@ -13,6 +13,7 @@ extension HomeTabLayout{
         HStack{
             HStack(spacing: 20){
                 Text("Mode")
+                    .font(.sfProRegular(size: 14))
                 customToggleView
             }
             
@@ -38,9 +39,9 @@ extension HomeTabLayout{
                 
             
             HStack{
-                Text("Check in")
+                Text("Check-in").font(.sfProRegular(size: 14))
                 Spacer()
-                Text("Judge")
+                Text("Judge").font(.sfProRegular(size: 14))
             }
             .padding(.leading, 20)
             .padding(.trailing, 30)

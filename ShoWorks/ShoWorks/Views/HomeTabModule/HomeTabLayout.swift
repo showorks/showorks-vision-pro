@@ -44,7 +44,9 @@ struct HomeTabLayout: View {
             }
             
             dropDowns
-        }
+        }.onAppear(perform: {
+            isCheckIn = UserSettings.shared.selectedMode ?? false
+        })
         .frame(width: 960, height: 540)
         .glassBackgroundEffect()
         

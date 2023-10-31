@@ -23,6 +23,7 @@ extension HomeContentView{
                         .resizable()
                         .scaledToFit()
                         .frame(width: 18)
+                    
                     Image(DataCenter.sharedInstance.isDeviceConnected ? "green_dot" : "red_dot")
                         .resizable()
                         .scaledToFit()

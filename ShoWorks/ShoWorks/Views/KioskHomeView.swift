@@ -345,14 +345,15 @@ struct KioskHomeView: View {
                 .padding(.bottom,100)
                 .padding(.top,-50)
          
-        }.actionSheet(isPresented: $showOptionsToChangeMode) {
-            ActionSheet(title: Text("showorks".localized()), message: Text("Choose one of the three modes, default is search mode.."), buttons: [
-                .default(Text("Search")) { UserSettings.shared.selectedMode = 0 },
-                .default(Text("Check-in")) { UserSettings.shared.selectedMode = 1 },
-                .default(Text("Judge")) { UserSettings.shared.selectedMode = 2 },
-                .cancel()
-            ])
         }
+//        .actionSheet(isPresented: $showOptionsToChangeMode) {
+//            ActionSheet(title: Text("showorks".localized()), message: Text("Choose one of the three modes, default is search mode.."), buttons: [
+//                .default(Text("Search")) { UserSettings.shared.selectedMode = 0 },
+//                .default(Text("Check-in")) { UserSettings.shared.selectedMode = 1 },
+//                .default(Text("Judge")) { UserSettings.shared.selectedMode = 2 },
+//                .cancel()
+//            ])
+//        }
     }
         .alert(item: self.$alertItem, content: { a in
             a.asAlert()

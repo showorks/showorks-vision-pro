@@ -63,7 +63,7 @@ struct SettingsLayout: View {
                         
 
                     }
-                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading)
                     
                     
@@ -99,6 +99,9 @@ struct SettingsLayout: View {
             .frame(width: 840,alignment: .leading)
             
         }
+        .onAppear(perform: {
+            isCheckIn = UserSettings.shared.selectedMode ?? false
+        })
         .frame(width: 940, height: 570)
     }
 }
@@ -138,9 +141,9 @@ extension SettingsLayout{
                 
             
             HStack{
-                Text("Check in")
+                Text("Check-in").font(.sfProRegular(size: 14))
                 Spacer()
-                Text("Judge")
+                Text("Judge").font(.sfProRegular(size: 14))
             }
             .padding(.leading, 20)
             .padding(.trailing, 30)
@@ -148,10 +151,11 @@ extension SettingsLayout{
         }
         .frame(width: 210, height: 49)
         .onTapGesture {
+            
             withAnimation(.easeInOut(duration: 0.2)) {
                 isCheckIn.toggle()
             }
-            
+            UserSettings.shared.selectedMode = isCheckIn
         }
     }
 }

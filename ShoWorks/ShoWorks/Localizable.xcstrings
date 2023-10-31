@@ -48,9 +48,6 @@
         }
       }
     },
-    "Check in" : {
-
-    },
     "Check In" : {
 
     },
@@ -66,9 +63,6 @@
       }
     },
     "Check-in" : {
-
-    },
-    "Choose one of the three modes, default is search mode.." : {
 
     },
     "Class Name" : {
@@ -401,9 +395,6 @@
       }
     },
     "Previous" : {
-
-    },
-    "Search" : {
 
     },
     "Search ..." : {

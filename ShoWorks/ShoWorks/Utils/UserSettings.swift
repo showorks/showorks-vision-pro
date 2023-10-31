@@ -97,11 +97,11 @@ class UserSettings {
         }
     }
     
-    // 1 being check-in
-    // 2 being judge
-    var selectedMode: Int? {
+    // false being check-in
+    // true being judge
+    var selectedMode: Bool? {
         get {
-            UserDefaults.standard.integer(forKey: Keys.selectedMode)
+            UserDefaults.standard.bool(forKey: Keys.selectedMode)
         }
         set {
             UserDefaults.standard.setValue(newValue, forKey: Keys.selectedMode)
