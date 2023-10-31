@@ -182,7 +182,7 @@ struct QRScanDisconnectedTabView: View {
                 
                
                 ScrollView(){
-                    Image("connected_state")
+                    Image("not_connected")
                         .padding(.top,60)
                   
                     Divider()
