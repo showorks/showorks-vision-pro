@@ -125,15 +125,7 @@ struct HomeContentView: View {
                             .frame(width: 960, height: 540)
                             .glassBackgroundEffect()
                         
-                        VStack{
-                            ScrollView {
-                                HStack{}.frame(height: 6)
-                                
-                                
-                            }
-                            .scrollIndicators(.never)
-                            .padding(.vertical, 6)
-                        }
+                        SettingsLayout()
                     }
                 }
                 

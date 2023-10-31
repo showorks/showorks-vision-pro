@@ -85,6 +85,7 @@
 		CFE6ED152A5EB57100F6867E /* ShoWorksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE6ED142A5EB57100F6867E /* ShoWorksApp.swift */; };
 		CFE6ED192A5EB57200F6867E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFE6ED182A5EB57200F6867E /* Assets.xcassets */; };
 		CFE6ED1C2A5EB57200F6867E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFE6ED1B2A5EB57200F6867E /* Preview Assets.xcassets */; };
+		CFF036052AF0FD140068D0AD /* SettingsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF036042AF0FD140068D0AD /* SettingsLayout.swift */; };
 		CFF166802A8B97C400FD7A25 /* SheetUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF1667F2A8B97C400FD7A25 /* SheetUtility.swift */; };
 		CFF166822A8BA26800FD7A25 /* KioskWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF166812A8BA26800FD7A25 /* KioskWelcomeView.swift */; };
 		CFF166842A8BA28000FD7A25 /* KioskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF166832A8BA28000FD7A25 /* KioskViewModel.swift */; };
@@ -167,6 +168,7 @@
 		CFE6ED142A5EB57100F6867E /* ShoWorksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksApp.swift; sourceTree = "<group>"; };
 		CFE6ED182A5EB57200F6867E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFE6ED1B2A5EB57200F6867E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CFF036042AF0FD140068D0AD /* SettingsLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLayout.swift; sourceTree = "<group>"; };
 		CFF1667F2A8B97C400FD7A25 /* SheetUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetUtility.swift; sourceTree = "<group>"; };
 		CFF166812A8BA26800FD7A25 /* KioskWelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KioskWelcomeView.swift; sourceTree = "<group>"; };
 		CFF166832A8BA28000FD7A25 /* KioskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KioskViewModel.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				CFF166812A8BA26800FD7A25 /* KioskWelcomeView.swift */,
 				CF8E74DE2AA7358B007ECEC3 /* DocumentCameraViewController.swift */,
 				CFBD7D1D2AEE70F700876FB3 /* ConnectSearchView.swift */,
+				CFF036042AF0FD140068D0AD /* SettingsLayout.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				CF1700902A710F98006A7415 /* S3Handler.swift in Sources */,
 				CF09E6402A656A8800C947A3 /* Bundle+Localized.swift in Sources */,
 				CF43844C2A66B7EA000A7022 /* ShoWorksService.swift in Sources */,
+				CFF036052AF0FD140068D0AD /* SettingsLayout.swift in Sources */,
 				CF4384482A66B765000A7022 /* ShoWorksAPIService.swift in Sources */,
 				CF9FA6A02AEB971900D0356D /* VisualEffectBlur.swift in Sources */,
 				CF6BEDEC2A5F02F800CE209A /* ShoWorksBackground.swift in Sources */,

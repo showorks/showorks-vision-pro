@@ -138,6 +138,9 @@
         }
       }
     },
+    "Default mode for scans:" : {
+
+    },
     "demo_mode" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -259,6 +262,12 @@
       }
     },
     "Judge" : {
+
+    },
+    "Login" : {
+
+    },
+    "Logout" : {
 
     },
     "Manual Search" : {
@@ -469,6 +478,9 @@
         }
       }
     },
+    "ShoWorks Vision Pro v1.0" : {
+
+    },
     "Skip" : {
 
     },
@@ -515,6 +527,9 @@
 
     },
     "Updated on Mon 30 Sept at 3.52 PM" : {
+
+    },
+    "User Settings" : {
 
     },
     "Visit www.fairsoftware.com/samples to print out sample entry tags and receipts which have QR Codes (barcodes) on them, allowing you to see how the scanner works which makes locating entries even faster." : {

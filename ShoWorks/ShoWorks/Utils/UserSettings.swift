@@ -97,7 +97,6 @@ class UserSettings {
         }
     }
     
-    // 0 being search
     // 1 being check-in
     // 2 being judge
     var selectedMode: Int? {
