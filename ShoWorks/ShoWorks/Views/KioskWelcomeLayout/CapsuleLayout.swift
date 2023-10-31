@@ -2,7 +2,7 @@
 //  CapsuleLayout.swift
 //  iPadSingleScreen
 //
-//  Created by Anubhav Rawat on 17/10/23.
+//  Created by Lokesh Rawat on 17/10/23.
 //
 
 import SwiftUI

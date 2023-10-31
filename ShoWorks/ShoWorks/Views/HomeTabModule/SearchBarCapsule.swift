@@ -48,7 +48,7 @@ struct SearchBarCapsule: View {
                     
                     HStack{
                         Image(systemName: "mic")
-                            .font(.system(size: 12))
+                            .font(.system(size: 14))
                             .foregroundStyle(isRecording ? .blue : .white)
                             .padding(.leading, 10)
                             .onTapGesture {
@@ -60,7 +60,8 @@ struct SearchBarCapsule: View {
                                 
                                 isRecording.toggle()
                             }
-                        TextField("Search by name/tag/entryNumber", text: $speechRecogniser.transcript)
+                        TextField("Search by exhibitor name or entry number..", text: $speechRecogniser.transcript)
+                            .font(.system(size: 12))
                     }
                 }
                 .frame(width: 530)

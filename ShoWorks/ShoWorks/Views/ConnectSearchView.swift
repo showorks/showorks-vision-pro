@@ -15,8 +15,6 @@ struct ConnectSearchView: View {
     var body: some View {
         ZStack(){
             
-            ShoWorksBackground()
-            
             VStack(alignment: .center, content: {
               
                 Image("scanner_gun")
@@ -48,9 +46,9 @@ struct ConnectSearchView: View {
                     }
                 
             }).padding(50)
-                .background( VisualEffectBlur(blurStyle: .extraLight)
-                    .ignoresSafeArea())
-                .cornerRadius(20)
+//                .background( VisualEffectBlur(blurStyle: .extraLight)
+//                    .ignoresSafeArea())
+//                .cornerRadius(20)
                         
         }
     }

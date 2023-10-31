@@ -69,16 +69,29 @@ struct HomeContentView: View {
                     ZStack{
                         VStack(spacing: 20){
                             SearchBarCapsule()
-                            HomeTabLayout()
-                                .glassBackgroundEffect()
-                                .padding(.bottom, 40)
-                                
-                        }
-                        VStack{
-                            Spacer()
                             
-                            HomeBottomCapsule()
-                                .padding(.bottom, 90)
+                            if DataCenter.sharedInstance.searchedRecords.count == 0 {
+                                
+                                ConnectSearchView()
+                                    .frame(width: 960, height: 540)
+                                    .glassBackgroundEffect()
+                                    .padding(.bottom, 40)
+
+                            }else{
+                                
+                                HomeTabLayout()
+                                    .glassBackgroundEffect()
+                                    .padding(.bottom, 40)
+                                
+                                
+                                VStack{
+                                    Spacer()
+                                    
+                                    HomeBottomCapsule()
+                                        .padding(.bottom, 90)
+                                }
+                            }
+                                
                         }
                         
                             

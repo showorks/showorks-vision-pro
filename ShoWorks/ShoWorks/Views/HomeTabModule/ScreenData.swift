@@ -78,16 +78,16 @@ extension HomeTabLayout{
     var leftView: some View{
         VStack(spacing: 15){
             
-            LeftViewBox(width: 500, height: 100, text: entries[0].exhibitor, heading: "Exhibitor")
+            LeftViewBox(width: 500, height: 100, text: DataCenter.sharedInstance.searchedRecords[0].exhibitor, heading: "Exhibitor")
             HStack(spacing: 20){
                 
-                LeftViewBox(width: 240, height: 140, text: entries[0].department, heading: "Department")
-                LeftViewBox(width: 240, height: 140, text: entries[0].club, heading: "Club")
+                LeftViewBox(width: 240, height: 140, text: DataCenter.sharedInstance.searchedRecords[0].department, heading: "Department")
+                LeftViewBox(width: 240, height: 140, text: DataCenter.sharedInstance.searchedRecords[0].club, heading: "Club")
             }
             
             HStack(spacing: 20){
-                LeftViewBox(width: 240, height: 140, text: entries[0].entryNumber, heading: "Entry Number")
-                LeftViewBox(width: 240, height: 140, text: entries[0].wen, heading: "WEN")
+                LeftViewBox(width: 240, height: 140, text: DataCenter.sharedInstance.searchedRecords[0].entryNumber, heading: "Entry Number")
+                LeftViewBox(width: 240, height: 140, text: DataCenter.sharedInstance.searchedRecords[0].wen, heading: "WEN")
             }
             
         }
@@ -105,12 +105,12 @@ extension HomeTabLayout{
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.system(size: 12))
                     .fontWeight(.light)
-                RightViewBox(isCheckIn: $isCheckIn, text1: "Divion", text2: entries[0].division)
-                RightViewBox(isCheckIn: $isCheckIn, text1: "Class", text2: entries[0].Class)
-                RightViewBox(isCheckIn: $isCheckIn, text1: "Description", text2: entries[0].description)
-                RightViewBox(isCheckIn: $isCheckIn, text1: "Validation Number", text2: entries[0].validationNumber)
-                RightViewBox(isCheckIn: $isCheckIn, text1: "Entry Validation Date", text2: entries[0].entryValidationDate)
-                RightViewBox(isCheckIn: $isCheckIn, text1: "State Fair", text2: entries[0].stateFair)
+                RightViewBox(isCheckIn: $isCheckIn, text1: "Divion", text2: DataCenter.sharedInstance.searchedRecords[0].division)
+                RightViewBox(isCheckIn: $isCheckIn, text1: "Class", text2: DataCenter.sharedInstance.searchedRecords[0].Class)
+                RightViewBox(isCheckIn: $isCheckIn, text1: "Description", text2: DataCenter.sharedInstance.searchedRecords[0].description)
+                RightViewBox(isCheckIn: $isCheckIn, text1: "Validation Number", text2: DataCenter.sharedInstance.searchedRecords[0].validationNumber)
+                RightViewBox(isCheckIn: $isCheckIn, text1: "Entry Validation Date", text2: DataCenter.sharedInstance.searchedRecords[0].entryValidationDate)
+                RightViewBox(isCheckIn: $isCheckIn, text1: "State Fair", text2: DataCenter.sharedInstance.searchedRecords[0].stateFair)
                 
                 HStack{
                     Text("For Sale")
@@ -122,7 +122,7 @@ extension HomeTabLayout{
                         .frame(height: 30)
                 }
                 
-                RightViewBox(isCheckIn: $isCheckIn, text1: "Sale Price ($)", text2: entries[0].salePrice)
+                RightViewBox(isCheckIn: $isCheckIn, text1: "Sale Price ($)", text2: DataCenter.sharedInstance.searchedRecords[0].salePrice)
             }
             .frame(width: 340)
             

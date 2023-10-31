@@ -22,7 +22,7 @@ struct ShoWorksApp: App {
         
         UserSettings.shared.roundRobinBackgroundImageIndex = UserSettings.shared.roundRobinBackgroundImageIndex! + 1
         
-        if UserSettings.shared.roundRobinBackgroundImageIndex! == 3 {
+        if UserSettings.shared.roundRobinBackgroundImageIndex! == 7 {
             UserSettings.shared.roundRobinBackgroundImageIndex = 0
         }
         
@@ -30,7 +30,7 @@ struct ShoWorksApp: App {
     }
     var body: some Scene {
         WindowGroup {            
-            SplashView()
+            HomeContentView()
         }.defaultSize(width: 1366, height: 824)
 //        .defaultSize(width: 1, height: 0.6, depth: 0.0, in: .meters)
     }

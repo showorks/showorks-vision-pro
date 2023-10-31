@@ -112,6 +112,10 @@ class UserSettings {
     // 0 = background_new_1
     // 1 = background_new_2
     // 2 = background_new_3
+    // 3 = background_new_4
+    // 4 = background_new_5
+    // 5 = background_new_6
+    // 6 = background_new_7
     var roundRobinBackgroundImageIndex: Int? {
         get {
             UserDefaults.standard.integer(forKey: Keys.roundRobinBackgroundImage)
