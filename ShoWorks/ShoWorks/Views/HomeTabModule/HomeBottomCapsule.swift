@@ -13,33 +13,34 @@ struct HomeBottomCapsule: View {
             Capsule()
                 .fill(.clear)
                 .glassBackgroundEffect()
-                .frame(width: 680, height: 60)
+                .frame(width: 350, height: 60)
             Capsule()
                 .stroke(.white.opacity(0.6), lineWidth: 0.5)
-                .frame(width: 680, height: 60)
+                .frame(width: 350, height: 60)
             
             
             HStack{
-                ZStack{
-                    Capsule().fill(.white.opacity(0.2))
-                        .frame(width: 160, height: 45)
-                    
-                    Text("Return to Summary")
-                        .font(.system(size: 15))
-                }
-                .onTapGesture {
-                    print("summary pressed")
-                }
-                ZStack{
-                    Capsule().fill(.black.opacity(0.4))
-                        .frame(width: 160, height: 45)
-                    
-                    Text("Previous")
-                        .font(.system(size: 15))
-                }
-                .onTapGesture {
-                    print("previous pressed")
-                }
+//                ZStack{
+//                    Capsule().fill(.white.opacity(0.2))
+//                        .frame(width: 160, height: 45)
+//                    
+//                    Text("Return to Summary")
+//                        .font(.system(size: 15))
+//                }
+//                .onTapGesture {
+//                    print("summary pressed")
+//                }
+                
+//                ZStack{
+//                    Capsule().fill(.black.opacity(0.4))
+//                        .frame(width: 160, height: 45)
+//                    
+//                    Text("Previous")
+//                        .font(.system(size: 15))
+//                }
+//                .onTapGesture {
+//                    print("previous pressed")
+//                }
                 ZStack{
                     Capsule().fill(.black.opacity(0.4))
                         .frame(width: 160, height: 45)

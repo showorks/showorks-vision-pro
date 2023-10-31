@@ -59,6 +59,7 @@ struct AppConstant {
     static let SettingsSlaveLoadUserModeNotification = "SettingsSlaveLoadUserModeNotification"
     static let SettingsSlaveLoadDemoModeNotification = "SettingsSlaveLoadDemoModeNotification"
     static let PlistSyncedWithServerFailure = "PlistSyncedWithServerFailure"
+    static let NotificationWhenSearchedRecordChanges = "NotificationWhenSearchedRecordChanges"
     
     enum AppStartupStatus {
       case demoMode, fetchSheetFromLocal, fetchSheetFromServer
@@ -88,4 +89,5 @@ struct AppConstant {
 
 extension Notification.Name {
     static let homeSyncingNotification = Notification.Name(AppConstant.HomeScreenSyncInProcessNotification)
+    static let searchRecordChangesNotification = Notification.Name(AppConstant.NotificationWhenSearchedRecordChanges)
 }

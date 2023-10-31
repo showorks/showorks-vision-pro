@@ -37,11 +37,15 @@ class DataCenter : NSObject,SheetParserDelegate {
 
     var sheetsData: NSMutableArray?
         
-    var searchedRecords: [Entry] = [
+    @Published var searchedRecords: [Entry] = [
 //        .init(exhibitor: "Coulter Michaels", department: "Home & Hobby", club: "French Valley 4H", entryNumber: "5948", wen: "C2FB04", division: "203 - Drawing", Class: "04 - Oil - Representational", description: "Mary's Orchids", validationNumber: "671858728", entryValidationDate: "09/28/2012", stateFair: "I will take to state fair", salePrice: "218.99")
     ]
     
-    var isDeviceConnected = false
+    @Published var isDeviceConnected = false
+    
+    @Published var searchedSelectedIndex = 0
+    
+    @Published var focusKeyboard = false
     
     /// Default initializer
     private override init() {
@@ -762,4 +766,19 @@ class DataCenter : NSObject,SheetParserDelegate {
 //        self.present(alertController, animated: true)
     }
     
+    func searchTextAndFindModels(){
+    searchedRecords  = [
+        .init(exhibitor: "Coulter Michaels", department: "Home & Hobby", club: "French Valley 4H", entryNumber: "5948", wen: "C2FB04", division: "203 - Drawing", Class: "04 - Oil - Representational", description: "Mary's Orchids", validationNumber: "671858728", entryValidationDate: "09/28/2012", stateFair: "I will take to state fair", salePrice: "218.99")
+    ]
+        
+        var isSearchedRecordsContainsData = false
+        
+        if searchedRecords.count == 0 {
+            isSearchedRecordsContainsData = false
+        }else{
+            isSearchedRecordsContainsData = true
+        }
+                
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.NotificationWhenSearchedRecordChanges), object: isSearchedRecordsContainsData)
+    }
 }

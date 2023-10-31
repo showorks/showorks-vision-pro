@@ -52,6 +52,8 @@ struct HomeContentView: View {
     @State var selectedTab: Tabs = .tab1
     @State private var offsetY: CGFloat = 0
     @State private var isDragging = false
+    @State var isDeviceConnected = false
+    @State var searchRecordContainsData = false
     var body: some View {
         
         ZStack{
@@ -67,39 +69,44 @@ struct HomeContentView: View {
                 if selectedTab == .tab1{
                     ZStack{
                         VStack(spacing: 20){
-                            SearchBarCapsule()
-                            
-                            if DataCenter.sharedInstance.searchedRecords.count == 0 {
+                           
+                            if searchRecordContainsData {
+                                
+                                SearchBarCapsule()
+                                    .padding(.top, 100)
+                                
+                                HomeTabLayout()
+                                    .frame(width: 960, height: 540)
+                                    .glassBackgroundEffect()
+                                    .padding(.bottom, 40)
+                                
+                                    HomeBottomCapsule()
+                                        .offset(y:-88)
+
+                            }else{
+                                SearchBarCapsule()
                                 
                                 if DataCenter.sharedInstance.isDeviceConnected {
                                     QRScanTabView().frame(width: 960, height: 540)
                                         .glassBackgroundEffect()
                                         .padding(.bottom, 40)
                                 }else{
-                                    
+
                                     ConnectSearchView()
                                         .frame(width: 960, height: 540)
                                         .glassBackgroundEffect()
                                         .padding(.bottom, 40)
                                 }
-                                
-
-                            }else{
-                                
-                                HomeTabLayout()
-                                    .glassBackgroundEffect()
-                                    .padding(.bottom, 40)
-                                
-                                
-                                VStack{
-                                    Spacer()
-                                    
-                                    HomeBottomCapsule()
-                                        .padding(.bottom, 90)
-                                }
+                             
                             }
                                 
                         }
+//                        VStack{
+//                            Spacer()
+//                            
+//                            HomeBottomCapsule()
+//                                .padding(.bottom, 90)
+//                        }
                         
                             
                     }
@@ -109,11 +116,8 @@ struct HomeContentView: View {
                             .frame(width: 960, height: 540)
                             .glassBackgroundEffect()
                         
-//                        if DataCenter.sharedInstance.isDeviceConnected {
-//                            QRScanTabView()
-//                        }else{
                             QRScanDisconnectedTabView()
-//                        }
+                        
                     }
                 }else{
                     ZStack{
@@ -135,7 +139,16 @@ struct HomeContentView: View {
                 
                 
             }
-        }.navigationBarHidden(true)
+        }
+        .onReceive(.searchRecordChangesNotification) { info in
+
+                        let searchRecordHasData = (info.object as? Bool) ?? false
+
+                        self.searchRecordContainsData = searchRecordHasData
+
+        }
+        .navigationBarHidden(true)
+        
     }
 }
 
@@ -160,20 +173,6 @@ struct QRScanTabView: View {
                     .font(.system(size: 30))
                     .padding(.top,40)
                
-                
-                Text("or_text".localized()).font(.sfProLight(size: 15))
-                    .foregroundColor(.white).padding(.top,25).padding(.bottom,25)
-                
-                Text("Manual Search")
-                    .font(.sfProRegular(size: 14))
-                    .padding(10)
-                    .frame(width: 200)
-                    .background(Image("manual_search"))
-                    .foregroundColor(Color.white)
-                    .cornerRadius(25)
-                    .onTapGesture {
-                       
-                    }
                 
             })
                         

@@ -19,9 +19,6 @@
     "1. Go to the Bluetooth Connection Instruction Manual. \n2. Press scanner's button to power on the scanner. \n3. Bluetooth HID mode is usually set by default on new devices. ShoWorks uses the newer BLE mode for more efficient and reliable data communications and you must change your device to this mode by scanning the code below or found in your instruction manual. \n4. Make sure the device is configured to use Bluetooth mode instead of USB. Please scan the following barcode to allow the device to work with Bluetooth mode." : {
 
     },
-    "2/5" : {
-
-    },
     "5. BLE Mode Serial Port Profile- For iOS Devices By scanning below barcode scanner will enter BLE Mode for ShoWorks iPad app." : {
 
     },
@@ -395,9 +392,6 @@
       }
     },
     "Previous" : {
-
-    },
-    "Return to Summary" : {
 
     },
     "Search" : {

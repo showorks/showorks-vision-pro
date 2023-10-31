@@ -22,29 +22,47 @@ struct SearchBarCapsule: View {
                 .glassBackgroundEffect()
             
             HStack(spacing: 25){
-                HStack{
-                    ZStack{
-                        Circle().fill(.white.opacity(0.2)).frame(width: 38)
-                        Image(systemName: "chevron.left")
-                            .font(.system(size: 12))
-                    }
-                    Text("2/5")
-                        .font(.system(size: 15))
-                    ZStack{
-                        Circle().fill(.white.opacity(0.2)).frame(width: 38)
+                
+                
+                if DataCenter.sharedInstance.searchedRecords.count > 0 {
+                    
+                    HStack{
+                        ZStack{
+                            Circle().fill(.white.opacity(0.2)).frame(width: 38)
+                            Image(systemName: "chevron.left")
+                                .font(.system(size: 12))
+                        }
                         
-                        Image(systemName: "chevron.right")
-                            .font(.system(size: 12))
+                        Text("\(DataCenter.sharedInstance.searchedSelectedIndex + 1) /" + "\( DataCenter.sharedInstance.searchedRecords.count)")
+                            .font(.system(size: 15))
+                        
+                        ZStack{
+                            Circle().fill(.white.opacity(0.2)).frame(width: 38)
+                            
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 12))
+                        }
                     }
                 }
+                
+                
                 
 //                Spacer()
                 
                 ZStack{
-                    Capsule()
-                        .fill(.clear)
-                        .glassBackgroundEffect()
-                        .frame(width: 530, height: 35)
+                    if DataCenter.sharedInstance.searchedRecords.count > 0 {
+                        Capsule()
+                            .fill(.clear)
+                            .glassBackgroundEffect()
+                            .frame(width: 530, height: 35)
+                        
+                    }else{
+                        Capsule()
+                            .fill(.clear)
+                            .glassBackgroundEffect()
+                            .frame(width: 690, height: 45)
+                    }
+                    
                     
                     HStack{
                         Image(systemName: "mic")
@@ -62,6 +80,12 @@ struct SearchBarCapsule: View {
                             }
                         TextField("Search by exhibitor name or entry number..", text: $speechRecogniser.transcript)
                             .font(.system(size: 12))
+                            .onSubmit {
+                               
+                                if Utilities.sharedInstance.checkStringContainsText(text: speechRecogniser.transcript){
+                                    DataCenter.sharedInstance.searchTextAndFindModels()
+                                }
+                            }
                     }
                 }
                 .frame(width: 530)
