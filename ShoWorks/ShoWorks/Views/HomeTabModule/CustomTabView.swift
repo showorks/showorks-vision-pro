@@ -23,6 +23,11 @@ extension HomeContentView{
                         .resizable()
                         .scaledToFit()
                         .frame(width: 18)
+                    Image(DataCenter.sharedInstance.isDeviceConnected ? "green_dot" : "red_dot")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 8)
+                        .offset(x:8, y: 8)
                         
                 }
                 .onTapGesture {
@@ -36,12 +41,6 @@ extension HomeContentView{
                         .resizable()
                         .scaledToFit()
                         .frame(width: 18)
-                    Image(isDeviceConnected ? "green_dot" : "red_dot")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 8)
-                        .offset(x:8, y: 8)
-                        
                 }
                 .onTapGesture {
                     selectedTab = .tab2
