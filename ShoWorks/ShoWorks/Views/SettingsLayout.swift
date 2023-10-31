@@ -35,13 +35,13 @@ struct SettingsLayout: View {
                 if let serialKey = UserSettings.shared.serialKey {
                     if serialKey.count > 0 {
                         let last4 = String(serialKey.suffix(4))
-                        SettingsViewBox(width: 820, height: 70, text: "XXXX-XXXX-XXXX-"+last4, heading: "Serial Number")
+                        SettingsViewBox(width: 820, height: 70, text: "XXXX-XXXX-XXXX-"+last4, heading: "Serial Number:")
                     }else{
-                        SettingsViewBox(width: 820, height: 70, text: "XXXX-XXXX-XXXX-1234", heading: "Serial Number")
+                        SettingsViewBox(width: 820, height: 70, text: "XXXX-XXXX-XXXX-1234", heading: "Serial Number:")
                     }
                     
                 }else{
-                    SettingsViewBox(width: 820, height: 70, text: "XXXX-XXXX-XXXX-1234", heading: "Serial Number")
+                    SettingsViewBox(width: 820, height: 70, text: "XXXX-XXXX-XXXX-1234", heading: "Serial Number:")
                 }
                 
                    

@@ -51,6 +51,7 @@ extension HomeTabLayout{
         .onTapGesture {
             withAnimation(.easeInOut(duration: 0.2)) {
                 isCheckIn.toggle()
+                UserSettings.shared.selectedMode = isCheckIn
             }
             
         }
