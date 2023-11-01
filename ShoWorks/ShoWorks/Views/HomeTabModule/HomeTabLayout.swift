@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeTabLayout: View {
   
     @State var isCheckIn: Bool = true
-    @State var forSaleToggle: Bool = false
+    @State var forSaleToggle: Bool = true
     @State var dropDownType: DropDownType = .none
     @State var selectedPlace: String = "1st Place"
     @State var selectedRibbon: String = "Gray Ribbon"

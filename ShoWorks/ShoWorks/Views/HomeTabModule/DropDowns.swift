@@ -58,7 +58,7 @@ struct DropDown: View {
                 
             }
             .foregroundStyle( isCheckIn ? .white.opacity(0.5) : .black)
-        }
+        }.isHidden(isCheckIn)
         
         
     }
