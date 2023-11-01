@@ -54,6 +54,7 @@ struct HomeContentView: View {
     @State private var isDragging = false
     @State var isDeviceConnected = false
     @State var searchRecordContainsData = false
+    @State var isCheckIn: Bool = true
     var body: some View {
         
         ZStack{
@@ -75,12 +76,12 @@ struct HomeContentView: View {
                                 SearchBarCapsule()
                                     .padding(.top, 100)
                                 
-                                HomeTabLayout()
+                                HomeTabLayout(isCheckIn: $isCheckIn)
                                     .frame(width: 960, height: 540)
                                     .glassBackgroundEffect()
                                     .padding(.bottom, 40)
                                 
-                                    HomeBottomCapsule()
+                                    HomeBottomCapsule(isCheckIn: $isCheckIn)
                                         .offset(y:-88)
 
                             }else{

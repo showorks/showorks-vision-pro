@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeTabLayout: View {
   
-    @State var isCheckIn: Bool = true
+    @Binding var isCheckIn:Bool
     @State var forSaleToggle: Bool = true
     @State var dropDownType: DropDownType = .none
     @State var selectedPlace: String = "1st Place"
@@ -53,6 +53,6 @@ struct HomeTabLayout: View {
     }
 }
 
-#Preview {
-    HomeTabLayout()
-}
+//#Preview {
+//    HomeTabLayout()
+//}

@@ -16,8 +16,8 @@ struct SettingsLayout: View {
         ZStack{
             VStack(spacing: 15){
                 Text("User Settings")
-                    .font(.largeTitle)
-                    .padding(.top,20)
+                    .font(.heleveticNeueBold(size: 22))
+                    .padding(.top,40)
                 
                 if UserSettings.shared.isDemoUserEnabled! {
                     
@@ -81,14 +81,14 @@ struct SettingsLayout: View {
                     
                     if UserSettings.shared.isDemoUserEnabled! {
                         Capsule().fill(.green)
-                            .frame(width: 160, height: 45)
+                            .frame(width: 120, height: 35)
                         Text("Login")
-                            .font(.system(size: 15))
+                            .font(.system(size: 12))
                     }else{
                         Capsule().fill(.red)
-                            .frame(width: 160, height: 45)
+                            .frame(width: 120, height: 35)
                         Text("Logout")
-                            .font(.system(size: 15))
+                            .font(.system(size: 12))
                     }
                 }
                 .padding(.bottom, 40)
@@ -181,8 +181,7 @@ struct SettingsViewBox: View {
                         .fontWeight(.light)
                     Spacer()
                     Text("   \(text)")
-                        .font(.system(size: 24))
-                        .fontWeight(.bold)
+                        .font(.heleveticNeueBold(size: 24))
                         .padding(.trailing,20)
                 }
                 

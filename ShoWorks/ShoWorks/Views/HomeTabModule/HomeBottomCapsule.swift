@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct HomeBottomCapsule: View {
+    @Binding var isCheckIn:Bool
+    
     var body: some View {
         ZStack{
             Capsule()
                 .fill(.clear)
                 .glassBackgroundEffect()
-                .frame(width: 350, height: 60)
+                .frame(width: isCheckIn ? 350 : 150, height: 60)
             Capsule()
                 .stroke(.white.opacity(0.6), lineWidth: 0.5)
-                .frame(width: 350, height: 60)
+                .frame(width: isCheckIn ? 350 : 150, height: 60)
             
             
             HStack{
@@ -41,26 +43,43 @@ struct HomeBottomCapsule: View {
 //                .onTapGesture {
 //                    print("previous pressed")
 //                }
-                ZStack{
-                    Capsule().fill(.black.opacity(0.4))
-                        .frame(width: 160, height: 45)
+                
+                if isCheckIn == false {
                     
-                    Text("Skip")
-                        .font(.system(size: 15))
-                }
-                .onTapGesture {
-                    print("skip pressed")
-                }
-                ZStack{
-                    Capsule().fill(.green)
-                        .frame(width: 160, height: 45)
+                    ZStack{
+                        Capsule().fill(.green)
+                            .frame(width: 130, height: 40)
+                        
+                        Text("Submit")
+                            .font(.heleveticNeueMedium(size: 14))
+                    }
+                    .onTapGesture {
+                        print("confirm pressed")
+                    }
+                }else{
                     
-                    Text("Confirm Entry")
-                        .font(.system(size: 15))
+                    ZStack{
+                        Capsule().fill(.black.opacity(0.4))
+                            .frame(width: 160, height: 45)
+                        
+                        Text("Skip")
+                            .font(.system(size: 15))
+                    }
+                    .onTapGesture {
+                        print("skip pressed")
+                    }
+                    ZStack{
+                        Capsule().fill(.green)
+                            .frame(width: 160, height: 45)
+                        
+                        Text("Confirm Entry")
+                            .font(.system(size: 15))
+                    }
+                    .onTapGesture {
+                        print("confirm pressed")
+                    }
                 }
-                .onTapGesture {
-                    print("confirm pressed")
-                }
+                
                 
             }
         }
@@ -82,7 +101,7 @@ struct BottomCapsuleButton: View {
         }
     }
 }
-
-#Preview {
-    HomeBottomCapsule()
-}
+//
+//#Preview {
+//    HomeBottomCapsule()
+//}
