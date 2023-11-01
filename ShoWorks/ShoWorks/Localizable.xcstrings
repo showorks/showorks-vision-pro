@@ -7,7 +7,13 @@
     "\n\n From your Vision Pro..." : {
 
     },
-    "\n1. Go to the Settings app on the Vision Pro \n2. Tap Bluetooth \n3. Make sure to turn it on. If you do not see your handheld scanner in the list, make sure that the Bluetooth is turned on and also you have turned on the scanning device. \n4. Go to the ShoWorks Vision Pro app" : {
+    "\n\n5. BLE Mode Serial Port Profile- For iOS Devices By scanning below barcode scanner will enter BLE Mode for ShoWorks Vision Pro app." : {
+
+    },
+    "\n\n6. Once the above barcode has been scanned with the Bluetooth scanner, it will automatically connect with the ShoWorks Vision app each time you start the app, however this initial setup requires that you force close (\"kill\") the app after the configuration has been made for the first time. There is a small dot appearing below the ShoWorks Vision Pro app screen, you can tap on it force close the app. \n\n7. If the Bluetooth scanner has been successfully paired with the Vision Pro prior and is active, a beep sound and brief visual message will occur when the ShoWorks Vision Pro App is launched, indicating that the two devices are now properly communicating. \n\nTROUBLESHOOTING: If the two devices do not seem to be communicating, try the following: \n\n - Force close the ShoWorks Vision Pro App and relaunch (See Vision OS documentation on how to force close apps). \n - Perform a hard reset on the Bluetooth scanner. The barcode below will hard reset your scanner. Once a hard reset has been made, you must again scan the two other barcodes with the scanner to \"Work with Bluetooth\" and \"BLE Mode\" (AT+MODE=3). After this has been done, you must force close the ShoWorks Vision Pro App and relaunch." : {
+
+    },
+    "\n1. Go to the Settings app on the Vision Pro. \n\n2. Tap Bluetooth option from the list. \n\n3. Make sure to turn it on. If you do not see your handheld scanner in the list, make sure that the Bluetooth is turned on and also you have turned on the scanning device. \n\n4. Go to the ShoWorks Vision Pro app and start using your scanner with Vision Pro app.\n\n\n\n" : {
 
     },
     "   %@" : {
@@ -16,13 +22,7 @@
     "%lld" : {
 
     },
-    "1. Go to the Bluetooth Connection Instruction Manual. \n2. Press scanner's button to power on the scanner. \n3. Bluetooth HID mode is usually set by default on new devices. ShoWorks uses the newer BLE mode for more efficient and reliable data communications and you must change your device to this mode by scanning the code below or found in your instruction manual. \n4. Make sure the device is configured to use Bluetooth mode instead of USB. Please scan the following barcode to allow the device to work with Bluetooth mode." : {
-
-    },
-    "5. BLE Mode Serial Port Profile- For iOS Devices By scanning below barcode scanner will enter BLE Mode for ShoWorks iPad app." : {
-
-    },
-    "6. Once the above barcode has been scanned with the Bluetooth scanner, it will automatically connect with the ShoWorks iPad app each time you start the app, however this initial setup requires that you force close (\"kill\") the app after the configuration has been made for the first time. See iPad/iOS documentation on how to force close apps. \n7. If the Bluetooth scanner has been successfully paired with the iPad prior and is active, a beep sound and brief visual message will occur when the ShoWorks app is launched, indicating that the two devices are now properly communicating. \n\nTROUBLESHOOTING: If the two devices do not seem to be communicating, try the following: \n\n - Force close the ShoWorks app and relaunch (See iPad/iOS documentation on how to force close apps). \n - Perform a hard reset on the Bluetooth scanner. The barcode below will hard reset your scanner. Once a hard reset has been made, you must again scan the two other barcodes with the scanner to \"Work with Bluetooth\" and \"BLE Mode\" (AT+MODE=3). After this has been done, you must force close the ShoWorks app and relaunch." : {
+    "1. Go to the Bluetooth Connection Instruction Manual. \n\n2. Press scanner's button to power on the scanner. \n\n3. Bluetooth HID mode is usually set by default on new devices. ShoWorks uses the newer BLE mode for more efficient and reliable data communications and you must charge your device to this mode by scanning the code below or found in your instruction manual. \n\n4. Make sure the device is configured to use Bluetooth mode instead of USB. Please scan the following barcode to allow the device to work with Bluetooth mode." : {
 
     },
     "7th" : {
