@@ -87,7 +87,7 @@ struct InputSerial: View {
 //                     ConnectSearchView(mScreenState: mScreenState).environmentObject(authenticationViewModel)
 //                      Text("")
 //                          .hidden()
-                     HomeContentView()
+                     HomeContentView(mScreenState: mScreenState).environmentObject(authenticationViewModel)
                  }
             .padding(50)
             .background( VisualEffectBlur(blurStyle: .extraLight)

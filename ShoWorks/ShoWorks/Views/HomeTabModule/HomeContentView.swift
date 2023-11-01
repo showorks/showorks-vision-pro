@@ -55,6 +55,10 @@ struct HomeContentView: View {
     @State var isDeviceConnected = false
     @State var searchRecordContainsData = false
     @State var isCheckIn: Bool = true
+    @State var kioskViewModel = KioskViewModel()
+    @ObservedObject var homeViewModel = HomeViewModel()
+    @EnvironmentObject var viewModel: ShoWorksAuthenticationModel
+    @State var mScreenState: AppConstant.AppStartupStatus?
     var body: some View {
         
         ZStack{
@@ -73,7 +77,7 @@ struct HomeContentView: View {
                            
                             if searchRecordContainsData {
                                 
-                                SearchBarCapsule()
+                                SearchBarCapsule(kioskViewModel: $kioskViewModel)
                                     .padding(.top, 100)
                                 
                                 HomeTabLayout(isCheckIn: $isCheckIn)
@@ -81,11 +85,11 @@ struct HomeContentView: View {
                                     .glassBackgroundEffect()
                                     .padding(.bottom, 40)
                                 
-                                    HomeBottomCapsule(isCheckIn: $isCheckIn)
+                                HomeBottomCapsule(isCheckIn: $isCheckIn)
                                         .offset(y:-88)
 
                             }else{
-                                SearchBarCapsule()
+                                SearchBarCapsule(kioskViewModel: $kioskViewModel)
                                 
                                 if DataCenter.sharedInstance.isDeviceConnected {
                                     QRScanTabView().frame(width: 960, height: 540)
@@ -133,6 +137,9 @@ struct HomeContentView: View {
                 
             }
         }
+        .onAppear {
+            decideAndLoadDataOnScreenAccordingly()
+        }
         .onReceive(.searchRecordChangesNotification) { info in
 
                         let searchRecordHasData = (info.object as? Bool) ?? false
@@ -141,6 +148,57 @@ struct HomeContentView: View {
 
         }
         .navigationBarHidden(true)
+        
+    }
+    
+    func decideAndLoadDataOnScreenAccordingly(){
+        
+         if mScreenState == .demoMode {
+             loadPlistData()
+         }else if mScreenState == .fetchSheetFromServer {
+             loadDataOnScreenFromServer()
+         }else if mScreenState == .fetchSheetFromLocal {
+             loadPlistData()
+         }
+         
+
+    }
+    
+    func loadDataOnScreenFromServer(){
+        Task {
+            DataCenter.sharedInstance.setupWithAccessKey(_accessKey: UserSettings.shared.accessKey, andSecretKey: UserSettings.shared.secretKey) { downloadCompleted in
+                if downloadCompleted {
+                    loadPlistData()
+                }
+            }
+        }
+    }
+    
+    func loadPlistData(){
+        Task {
+            await homeViewModel.loadPlistArrayWithSheetsDetailData(screenType: mScreenState ?? .demoMode)
+            loadKioskModeSheet()
+        }
+    }
+    
+    func loadKioskModeSheet(){
+        let plistSheetDetailArray:NSMutableArray! = SharedDelegate.sharedInstance.plistSheetDetailArray
+      
+        guard let plistArray = plistSheetDetailArray else {
+            return
+        }
+        
+        for sheetDic in plistArray {
+           
+            let sheetObj = sheetDic as! NSDictionary
+
+            if SheetUtility.sharedInstance.isKioskModeEnabledInSheet(sheetDic: sheetObj){
+                kioskViewModel = KioskViewModel(selectedDictionary: sheetObj)
+                print("Found kiosk")
+            }else{
+                print("Other sheet")
+            }
+         }
         
     }
 }

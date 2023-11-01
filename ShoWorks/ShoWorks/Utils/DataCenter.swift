@@ -19,7 +19,7 @@ typealias AWSS3ListObjectsFetchingCallback = (_ objects: [String]) -> Void
 typealias AWSS3ListFileNamesFetchingCallback = (_ handler: S3Handler, _ objects: [String]) -> Void
 typealias AWSS3DownloadCompletionCallback = (_ downloadCompleted: Bool) -> Void
 
-class DataCenter : NSObject,SheetParserDelegate {
+class DataCenter : NSObject,SheetParserDelegate,ObservableObject {
     
     static let sharedInstance = DataCenter()
         
@@ -766,10 +766,78 @@ class DataCenter : NSObject,SheetParserDelegate {
 //        self.present(alertController, animated: true)
     }
     
-    func searchTextAndFindModels(){
-    searchedRecords  = [
-        .init(exhibitor: "Coulter Michaels", department: "Home & Hobby", club: "French Valley 4H", entryNumber: "5948", wen: "C2FB04", division: "203 - Drawing", Class: "04 - Oil - Representational", description: "Mary's Orchids", validationNumber: "671858728", entryValidationDate: "09/28/2012", stateFair: "I will take to state fair", salePrice: "218.99")
-    ]
+    func searchTextAndFindModels(aSearchedText:String,kioskViewModel:KioskViewModel){
+        
+        searchedRecords = []
+        
+        if Utilities.sharedInstance.checkStringContainsText(text: aSearchedText){
+
+            if let dictionary = kioskViewModel.selectedDictionary {
+              
+                if let array = SearchingUtility.searchManualEntry(aSearchedText, inSheetDic: dictionary as! NSMutableDictionary){
+                
+                    for model in array {
+                    
+                        let customSearchModel = model as! SearchDataModel
+                        
+                        if customSearchModel.searchedEntryIdArray.count > 0 {
+
+                            let searchedEntryID:String = customSearchModel.searchedEntryIdArray[0] as! String
+
+                            let dictionary = customSearchModel.classDetailDic as NSDictionary
+
+                            if let array:NSMutableArray = dictionary.object(forKey: AppConstant.sheet_entries) as? NSMutableArray {
+                               
+                                for object in array {
+                                    let rowDictionary = object as! NSDictionary
+                                    
+                                    if let attributeDictionary = rowDictionary[AppConstant.sheet_attributes] as? NSDictionary {
+                                        
+                                        let entryID:String = attributeDictionary.value(forKey: AppConstant.sheet_entry_id) as! String
+                                        
+                                        if Int(searchedEntryID) == Int(entryID) {
+                                            
+                                            let exhibitorName:String = attributeDictionary.value(forKey: AppConstant.sheet_exhibitor) as! String
+                                            
+                                            let wenNumber:String = attributeDictionary.value(forKey: AppConstant.sheet_wen) as! String
+                                                                                        
+                                            var entry = Entry(exhibitor: exhibitorName, department: "Beef", club: "French Valley 4H", entryNumber: entryID, wen: wenNumber, division: "203 Drawing", Class: "04 Oil - representational", description: "Marys Orchids", validationNumber: "671858728", entryValidationDate: "09/28/2013", stateFair: "I will take to State Fair", salePrice: "200")
+                                            
+                                            searchedRecords.append(entry)
+                                            break
+                                        }
+                                        
+                                    }
+                                }
+
+                            }
+                            
+                            
+                        }
+//                        print("==================")
+//                        print(customSearchModel.classDetailDic)
+//                        print("<><><><><><><><>")
+//                        print(customSearchModel.searchedEntryIdArray)
+//                        print("*****************")
+//                        var entry = Entry(exhibitor: customSearchModel., department: <#T##String#>, club: <#T##String#>, entryNumber: <#T##String#>, wen: <#T##String#>, division: <#T##String#>, Class: <#T##String#>, description: <#T##String#>, validationNumber: <#T##String#>, entryValidationDate: <#T##String#>, stateFair: <#T##String#>, salePrice: <#T##String#>)
+                    }
+                }
+            }
+            
+        }
+        
+        
+        
+        
+        /*
+         for Demo mode - hardcoded model for testing
+         
+         
+            searchedRecords  = [
+                .init(exhibitor: "Coulter Michaels", department: "Home & Hobby", club: "French Valley 4H", entryNumber: "5948", wen: "C2FB04", division: "203 - Drawing", Class: "04 - Oil - Representational", description: "Mary's Orchids", validationNumber: "671858728", entryValidationDate: "09/28/2012", stateFair: "I will take to state fair", salePrice: "218.99")
+            ]
+         
+         */
         
         var isSearchedRecordsContainsData = false
         

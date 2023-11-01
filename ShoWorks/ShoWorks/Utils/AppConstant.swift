@@ -23,6 +23,9 @@ struct AppConstant {
     static let sheet_entries = "Entries" //SHEET_UPDATED
     static let sheet_divisions = "Divisions" //SHEET_UPDATED
     static let sheet_classes = "Classes" //SHEET_UPDATED
+    static let sheet_entry_id = "ID" //ID
+    static let sheet_exhibitor = "Exhibitor" //ID
+    static let sheet_wen = "WEN" //ID
 
     
     static let plistManagerDemoFileName = "SheetsData.plist";

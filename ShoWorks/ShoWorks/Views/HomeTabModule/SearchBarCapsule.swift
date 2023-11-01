@@ -12,7 +12,7 @@ struct SearchBarCapsule: View {
 //    @State var typedText: String = ""
     @StateObject var speechRecogniser = SpeechRecognizer()
     @State var isRecording: Bool = false
-    
+    @Binding var kioskViewModel: KioskViewModel
     
     var body: some View {
         ZStack{
@@ -31,6 +31,13 @@ struct SearchBarCapsule: View {
                             Circle().fill(.white.opacity(0.2)).frame(width: 38)
                             Image(systemName: "chevron.left")
                                 .font(.system(size: 12))
+                                .onTapGesture {
+                                    let currentIndex = DataCenter.sharedInstance.searchedSelectedIndex - 1
+                                    
+                                    if currentIndex - 1 > 0 {
+                                        DataCenter.sharedInstance.searchedSelectedIndex = currentIndex - 1
+                                    }
+                                }
                         }
                         
                         Text("\(DataCenter.sharedInstance.searchedSelectedIndex + 1) /" + "\( DataCenter.sharedInstance.searchedRecords.count)")
@@ -41,6 +48,14 @@ struct SearchBarCapsule: View {
                             
                             Image(systemName: "chevron.right")
                                 .font(.system(size: 12))
+                                .onTapGesture {
+                                    let currentIndex = DataCenter.sharedInstance.searchedSelectedIndex + 1
+                                    let totalValues = DataCenter.sharedInstance.searchedRecords.count
+                                    
+                                    if currentIndex + 1 <= totalValues {
+                                        DataCenter.sharedInstance.searchedSelectedIndex = currentIndex + 1
+                                    }
+                                }
                         }
                     }
                 }
@@ -83,7 +98,7 @@ struct SearchBarCapsule: View {
                             .onSubmit {
                                
                                 if Utilities.sharedInstance.checkStringContainsText(text: speechRecogniser.transcript){
-                                    DataCenter.sharedInstance.searchTextAndFindModels()
+                                    DataCenter.sharedInstance.searchTextAndFindModels(aSearchedText: speechRecogniser.transcript,kioskViewModel: kioskViewModel)
                                 }
                             }
                     }
@@ -98,6 +113,6 @@ struct SearchBarCapsule: View {
     }
 }
 
-#Preview {
-    SearchBarCapsule()
-}
+//#Preview {
+//    SearchBarCapsule()
+//}
