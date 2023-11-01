@@ -116,6 +116,11 @@ struct SearchBarCapsule: View {
             
         }
         .frame(width: 700)
+        .onReceive(.flushSearchBarTextNotification) { info in
+
+            speechRecogniser.transcript = ""
+
+        }
     }
 }
 

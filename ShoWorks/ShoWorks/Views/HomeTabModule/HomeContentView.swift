@@ -60,6 +60,7 @@ struct HomeContentView: View {
     @EnvironmentObject var viewModel: ShoWorksAuthenticationModel
     @State var mScreenState: AppConstant.AppStartupStatus?
     @State var currentSearchCount = 0
+    @State private var alertItem: AlertItem?
     var body: some View {
         
         ZStack{
@@ -146,10 +147,27 @@ struct HomeContentView: View {
                         let searchRecordHasData = (info.object as? Bool) ?? false
 
                         self.searchRecordContainsData = searchRecordHasData
+            
+                        if searchRecordHasData == false {
+                            
+                            showNoEntriesFoundAlert()
+                            
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.NotificationWhenItIsNeededToFlushSearchBar), object: nil)
+                        }
 
         }
+        .alert(item: self.$alertItem, content: { a in
+            a.asAlert()
+        })
         .navigationBarHidden(true)
         
+    }
+    
+    
+    func showNoEntriesFoundAlert(){
+        self.alertItem = AlertItem(type: .dismiss(title: "showorks".localized(), message: "No records found", dismissText: "ok".localized(), dismissAction: {
+            // Do something here
+        }))
     }
     
     func decideAndLoadDataOnScreenAccordingly(){
