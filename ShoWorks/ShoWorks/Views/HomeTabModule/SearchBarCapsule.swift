@@ -14,6 +14,8 @@ struct SearchBarCapsule: View {
     @State var isRecording: Bool = false
     @Binding var kioskViewModel: KioskViewModel
     
+    @Binding var currentSearchCount:Int
+    
     var body: some View {
         ZStack{
             Capsule()
@@ -31,16 +33,18 @@ struct SearchBarCapsule: View {
                             Circle().fill(.white.opacity(0.2)).frame(width: 38)
                             Image(systemName: "chevron.left")
                                 .font(.system(size: 12))
-                                .onTapGesture {
-                                    let currentIndex = DataCenter.sharedInstance.searchedSelectedIndex - 1
-                                    
-                                    if currentIndex - 1 > 0 {
-                                        DataCenter.sharedInstance.searchedSelectedIndex = currentIndex - 1
-                                    }
-                                }
+                               
+                        }.hoverEffect(.lift)
+                        .onTapGesture {
+                            let currentIndex = DataCenter.sharedInstance.searchedSelectedIndex - 1
+                            
+                            if currentIndex - 1 > 0 {
+                                DataCenter.sharedInstance.searchedSelectedIndex = currentIndex
+                                currentSearchCount = DataCenter.sharedInstance.searchedSelectedIndex
+                            }
                         }
                         
-                        Text("\(DataCenter.sharedInstance.searchedSelectedIndex + 1) /" + "\( DataCenter.sharedInstance.searchedRecords.count)")
+                        Text("\(currentSearchCount + 1) /" + "\( DataCenter.sharedInstance.searchedRecords.count)")
                             .font(.system(size: 15))
                         
                         ZStack{
@@ -48,14 +52,16 @@ struct SearchBarCapsule: View {
                             
                             Image(systemName: "chevron.right")
                                 .font(.system(size: 12))
-                                .onTapGesture {
-                                    let currentIndex = DataCenter.sharedInstance.searchedSelectedIndex + 1
-                                    let totalValues = DataCenter.sharedInstance.searchedRecords.count
-                                    
-                                    if currentIndex + 1 <= totalValues {
-                                        DataCenter.sharedInstance.searchedSelectedIndex = currentIndex + 1
-                                    }
-                                }
+                               
+                        }.hoverEffect(.lift)
+                        .onTapGesture {
+                            let currentIndex = DataCenter.sharedInstance.searchedSelectedIndex + 1
+                            let totalValues = DataCenter.sharedInstance.searchedRecords.count
+                            
+                            if currentIndex + 1 <= totalValues {
+                                DataCenter.sharedInstance.searchedSelectedIndex = currentIndex
+                                currentSearchCount = DataCenter.sharedInstance.searchedSelectedIndex
+                            }
                         }
                     }
                 }

@@ -14,7 +14,7 @@ struct HomeTabLayout: View {
     @State var dropDownType: DropDownType = .none
     @State var selectedPlace: String = "1st Place"
     @State var selectedRibbon: String = "Gray Ribbon"
-    
+    @Binding var currentSearchCount:Int
     var ribbonArray: [String] = ["Blue Ribbon", "Red Ribbon", "Yellow Ribbon", "White Ribbon", "Pink Ribbon","Green Ribbon","Purple Ribbon","Brown Ribbon","Gray Ribbon","Aqua Ribbon","Black Ribbon"]
     var placesArray: [String] = ["1st Place", "2nd Place", "3rd Place", "4th Place", "5th Place", "6th Place", "7th Place", "8th Place", "9th Place", "10th Place"]
     

@@ -78,16 +78,16 @@ extension HomeTabLayout{
     var leftView: some View{
         VStack(spacing: 15){
             
-            LeftViewBox(width: 500, height: 100, text: DataCenter.sharedInstance.searchedRecords[DataCenter.sharedInstance.searchedSelectedIndex].exhibitor, heading: "Exhibitor")
+            LeftViewBox(width: 500, height: 100, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].exhibitor, heading: "Exhibitor")
             HStack(spacing: 20){
                 
-                LeftViewBox(width: 240, height: 140, text: DataCenter.sharedInstance.searchedRecords[DataCenter.sharedInstance.searchedSelectedIndex].department, heading: "Department")
-                LeftViewBox(width: 240, height: 140, text: DataCenter.sharedInstance.searchedRecords[DataCenter.sharedInstance.searchedSelectedIndex].club, heading: "Club")
+                LeftViewBox(width: 240, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].department, heading: "Department")
+                LeftViewBox(width: 240, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].club, heading: "Club")
             }
             
             HStack(spacing: 20){
-                LeftViewBox(width: 240, height: 140, text: DataCenter.sharedInstance.searchedRecords[DataCenter.sharedInstance.searchedSelectedIndex].entryNumber, heading: "Entry Number")
-                LeftViewBox(width: 240, height: 140, text: DataCenter.sharedInstance.searchedRecords[DataCenter.sharedInstance.searchedSelectedIndex].wen, heading: "WEN")
+                LeftViewBox(width: 240, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].entryNumber, heading: "Entry Number")
+                LeftViewBox(width: 240, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].wen, heading: "WEN")
             }
             
         }
@@ -105,12 +105,12 @@ extension HomeTabLayout{
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.system(size: 12))
                     .fontWeight(.light)
-                RightViewBox(isCheckIn: $isCheckIn, text1: "Divion", text2: DataCenter.sharedInstance.searchedRecords[DataCenter.sharedInstance.searchedSelectedIndex].division)
-                RightViewBox(isCheckIn: $isCheckIn, text1: "Class", text2: DataCenter.sharedInstance.searchedRecords[DataCenter.sharedInstance.searchedSelectedIndex].Class)
-                RightViewBox(isCheckIn: $isCheckIn, text1: "Description", text2: DataCenter.sharedInstance.searchedRecords[DataCenter.sharedInstance.searchedSelectedIndex].description)
-                RightViewBox(isCheckIn: $isCheckIn, text1: "Validation Number", text2: DataCenter.sharedInstance.searchedRecords[DataCenter.sharedInstance.searchedSelectedIndex].validationNumber)
-                RightViewBox(isCheckIn: $isCheckIn, text1: "Entry Validation Date", text2: DataCenter.sharedInstance.searchedRecords[DataCenter.sharedInstance.searchedSelectedIndex].entryValidationDate)
-                RightViewBox(isCheckIn: $isCheckIn, text1: "State Fair", text2: DataCenter.sharedInstance.searchedRecords[DataCenter.sharedInstance.searchedSelectedIndex].stateFair)
+                RightViewBox(isCheckIn: $isCheckIn, text1: "Divion", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].division)
+                RightViewBox(isCheckIn: $isCheckIn, text1: "Class", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].Class)
+                RightViewBox(isCheckIn: $isCheckIn, text1: "Description", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].description)
+                RightViewBox(isCheckIn: $isCheckIn, text1: "Validation Number", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].validationNumber)
+                RightViewBox(isCheckIn: $isCheckIn, text1: "Entry Validation Date", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].entryValidationDate)
+                RightViewBox(isCheckIn: $isCheckIn, text1: "State Fair", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].stateFair)
                 
                 HStack{
                     Text("For Sale")
@@ -122,7 +122,7 @@ extension HomeTabLayout{
                         .frame(height: 30)
                 }
                 
-                RightViewBox(isCheckIn: $isCheckIn, text1: "Sale Price ($)", text2: DataCenter.sharedInstance.searchedRecords[DataCenter.sharedInstance.searchedSelectedIndex].salePrice)
+                RightViewBox(isCheckIn: $isCheckIn, text1: "Sale Price ($)", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].salePrice)
             }
             .frame(width: 340)
             

@@ -59,6 +59,7 @@ struct HomeContentView: View {
     @ObservedObject var homeViewModel = HomeViewModel()
     @EnvironmentObject var viewModel: ShoWorksAuthenticationModel
     @State var mScreenState: AppConstant.AppStartupStatus?
+    @State var currentSearchCount = 0
     var body: some View {
         
         ZStack{
@@ -77,10 +78,10 @@ struct HomeContentView: View {
                            
                             if searchRecordContainsData {
                                 
-                                SearchBarCapsule(kioskViewModel: $kioskViewModel)
+                                SearchBarCapsule(kioskViewModel: $kioskViewModel, currentSearchCount: $currentSearchCount)
                                     .padding(.top, 100)
                                 
-                                HomeTabLayout(isCheckIn: $isCheckIn)
+                                HomeTabLayout(isCheckIn: $isCheckIn, currentSearchCount: $currentSearchCount)
                                     .frame(width: 960, height: 540)
                                     .glassBackgroundEffect()
                                     .padding(.bottom, 40)
@@ -89,7 +90,7 @@ struct HomeContentView: View {
                                         .offset(y:-88)
 
                             }else{
-                                SearchBarCapsule(kioskViewModel: $kioskViewModel)
+                                SearchBarCapsule(kioskViewModel: $kioskViewModel, currentSearchCount: $currentSearchCount)
                                 
                                 if DataCenter.sharedInstance.isDeviceConnected {
                                     QRScanTabView().frame(width: 960, height: 540)
