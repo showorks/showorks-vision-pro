@@ -26,7 +26,7 @@ struct RightViewBox: View {
                     .font(.system(size: 12))
                     .foregroundStyle(.white.opacity( isCheckIn ? 0.4  : 0.9))
                     .fontWeight(.light)
-                Text(text2)
+                Text(text2.count == 0 ? "-" : text2)
                     .font(.system(size: 15))
                     .foregroundStyle(.white.opacity(isCheckIn ? 0.6 : 1))
             }
@@ -52,17 +52,21 @@ struct LeftViewBox: View {
                 .frame(width: width, height: height)
             
             VStack(alignment: .leading, spacing: 5){
-                Spacer()
+
                 HStack{
                     Circle().fill(.white).frame(width: 10)
                     Text(heading)
                         .fontWeight(.light)
                 }
                 
-                Text("   \(text)")
+                Text(text.count == 0 ? "-" : "\(text)")
                     .font(.system(size: 24))
                     .fontWeight(.bold)
-                    .padding(.bottom)
+                    .lineLimit(2)
+                    .allowsTightening(true)
+                    .scaledToFit()
+                    .padding(.leading,15)
+                    .padding(.bottom,10)
             }
             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
             .padding(.leading)
@@ -82,7 +86,7 @@ extension HomeTabLayout{
             HStack(spacing: 20){
                 
                 LeftViewBox(width: 240, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].department, heading: "Department")
-                LeftViewBox(width: 240, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].club, heading: "Club")
+                LeftViewBox(width: 240, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].validationNumber, heading: "Validation Number")
             }
             
             HStack(spacing: 20){
@@ -108,7 +112,7 @@ extension HomeTabLayout{
                 RightViewBox(isCheckIn: $isCheckIn, text1: "Divion", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].division)
                 RightViewBox(isCheckIn: $isCheckIn, text1: "Class", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].Class)
                 RightViewBox(isCheckIn: $isCheckIn, text1: "Description", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].description)
-                RightViewBox(isCheckIn: $isCheckIn, text1: "Validation Number", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].validationNumber)
+                RightViewBox(isCheckIn: $isCheckIn, text1: "Club", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].club)
                 RightViewBox(isCheckIn: $isCheckIn, text1: "Entry Validation Date", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].entryValidationDate)
                 RightViewBox(isCheckIn: $isCheckIn, text1: "State Fair", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].stateFair)
                 

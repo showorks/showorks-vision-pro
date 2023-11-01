@@ -38,7 +38,7 @@ class DataCenter : NSObject,SheetParserDelegate,ObservableObject {
     var sheetsData: NSMutableArray?
         
     @Published var searchedRecords: [Entry] = [
-//        .init(exhibitor: "Coulter Michaels", department: "Home & Hobby", club: "French Valley 4H", entryNumber: "5948", wen: "C2FB04", division: "203 - Drawing", Class: "04 - Oil - Representational", description: "Mary's Orchids", validationNumber: "671858728", entryValidationDate: "09/28/2012", stateFair: "I will take to state fair", salePrice: "218.99")
+//        .init(exhibitor: "Coulter Michaels", department: "Home & Hobby", club: "French Valley 4H", entryNumber: "5948", wen: "C2FB04", division: "203 - Drawing", Class: "04 - Oil - Representational", description: "Mary's Orchids", validationNumber: "671858728", entryValidationDate: "09/28/2012", stateFair: "I will take to state fair", salePrice: "218.99",isAllowedForSale: true)
     ]
     
     @Published var isDeviceConnected = false
@@ -799,11 +799,19 @@ class DataCenter : NSObject,SheetParserDelegate,ObservableObject {
                                             
                                             let exhibitorName:String = attributeDictionary.value(forKey: AppConstant.sheet_exhibitor) as! String
                                             
-                                            let wenNumber:String = attributeDictionary.value(forKey: AppConstant.sheet_wen) as! String
-                                                                                        
-                                            var entry = Entry(exhibitor: exhibitorName, department: "Beef", club: "French Valley 4H", entryNumber: entryID, wen: wenNumber, division: "203 Drawing", Class: "04 Oil - representational", description: "Marys Orchids", validationNumber: "671858728", entryValidationDate: "09/28/2013", stateFair: "I will take to State Fair", salePrice: "200")
+                                            let columnsArray:NSMutableArray = rowDictionary[AppConstant.sheet_columns] as! NSMutableArray
                                             
-                                            searchedRecords.append(entry)
+                                            let wenNumber:String = attributeDictionary.value(forKey: AppConstant.sheet_wen) as! String
+                                            
+                                            if columnsArray.count == 8 {
+                                                
+                                                let allowed = columnsArray[6] as! String
+                                                
+                                                var entry = Entry(exhibitor: exhibitorName, department: customSearchModel.departmentName, club: columnsArray[2] as! String, entryNumber: entryID, wen: wenNumber, division: customSearchModel.divisionName, Class: customSearchModel.className, description: columnsArray[1] as! String, validationNumber: columnsArray[3] as! String, entryValidationDate: columnsArray[4] as! String, stateFair: columnsArray[5] as! String, salePrice: columnsArray[7] as! String,isAllowedForSale: (allowed == "No" ? true : false))
+                                                
+                                                searchedRecords.append(entry)
+                                                
+                                            }
                                             break
                                         }
                                         
@@ -834,7 +842,7 @@ class DataCenter : NSObject,SheetParserDelegate,ObservableObject {
          
          
             searchedRecords  = [
-                .init(exhibitor: "Coulter Michaels", department: "Home & Hobby", club: "French Valley 4H", entryNumber: "5948", wen: "C2FB04", division: "203 - Drawing", Class: "04 - Oil - Representational", description: "Mary's Orchids", validationNumber: "671858728", entryValidationDate: "09/28/2012", stateFair: "I will take to state fair", salePrice: "218.99")
+                .init(exhibitor: "Coulter Michaels", department: "Home & Hobby", club: "French Valley 4H", entryNumber: "5948", wen: "C2FB04", division: "203 - Drawing", Class: "04 - Oil - Representational", description: "Mary's Orchids", validationNumber: "671858728", entryValidationDate: "09/28/2012", stateFair: "I will take to state fair", salePrice: "218.99",isAllowedForSale: true)
             ]
          
          */

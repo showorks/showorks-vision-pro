@@ -23,8 +23,9 @@ class Entry: Identifiable{
     var entryValidationDate: String
     var stateFair: String
     var salePrice: String
+    var isAllowedForSale: Bool
     
-    init(exhibitor: String, department: String, club: String, entryNumber: String, wen: String, division: String, Class: String, description: String, validationNumber: String, entryValidationDate: String, stateFair: String, salePrice: String) {
+    init(exhibitor: String, department: String, club: String, entryNumber: String, wen: String, division: String, Class: String, description: String, validationNumber: String, entryValidationDate: String, stateFair: String, salePrice: String,isAllowedForSale: Bool) {
         self.id = UUID()
         self.exhibitor = exhibitor
         self.department = department
@@ -38,6 +39,7 @@ class Entry: Identifiable{
         self.entryValidationDate = entryValidationDate
         self.stateFair = stateFair
         self.salePrice = salePrice
+        self.isAllowedForSale = isAllowedForSale
     }
 }
 

@@ -38,7 +38,7 @@ struct SearchBarCapsule: View {
                         .onTapGesture {
                             let currentIndex = DataCenter.sharedInstance.searchedSelectedIndex - 1
                             
-                            if currentIndex - 1 > 0 {
+                            if currentIndex >= 0 {
                                 DataCenter.sharedInstance.searchedSelectedIndex = currentIndex
                                 currentSearchCount = DataCenter.sharedInstance.searchedSelectedIndex
                             }
