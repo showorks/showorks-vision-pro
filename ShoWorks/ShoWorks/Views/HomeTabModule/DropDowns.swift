@@ -237,7 +237,7 @@ extension HomeTabLayout{
                 Spacer()
             }
             .padding(.trailing, 20)
-            .padding(.top, 11)
+            .padding(.top, 15)
             
             if dropDownType != .none{
                 Color.white.opacity(0.01)

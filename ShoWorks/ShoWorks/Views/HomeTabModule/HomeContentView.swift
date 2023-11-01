@@ -212,13 +212,18 @@ struct HomeContentView: View {
         for sheetDic in plistArray {
            
             let sheetObj = sheetDic as! NSDictionary
+            
+            // intentionally pulling first sheet for now..
+            kioskViewModel = KioskViewModel(selectedDictionary: sheetObj)
+            
+            break;
 
-            if SheetUtility.sharedInstance.isKioskModeEnabledInSheet(sheetDic: sheetObj){
-                kioskViewModel = KioskViewModel(selectedDictionary: sheetObj)
-                print("Found kiosk")
-            }else{
-                print("Other sheet")
-            }
+//            if SheetUtility.sharedInstance.isKioskModeEnabledInSheet(sheetDic: sheetObj){
+//                kioskViewModel = KioskViewModel(selectedDictionary: sheetObj)
+//                print("Found kiosk")
+//            }else{
+//                print("Other sheet")
+//            }
          }
         
     }

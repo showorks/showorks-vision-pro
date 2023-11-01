@@ -72,7 +72,7 @@ struct HomeBottomCapsule: View {
                         Capsule().fill(.green)
                             .frame(width: 160, height: 45)
                         
-                        Text("Confirm Entry")
+                        Text("Check-in")
                             .font(.system(size: 15))
                     }
                     .onTapGesture {

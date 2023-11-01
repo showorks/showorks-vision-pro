@@ -773,10 +773,14 @@ class DataCenter : NSObject,SheetParserDelegate,ObservableObject {
         if Utilities.sharedInstance.checkStringContainsText(text: aSearchedText){
 
             if let dictionary = kioskViewModel.selectedDictionary {
-              
-                if let array = SearchingUtility.searchManualEntry(aSearchedText, inSheetDic: dictionary as! NSMutableDictionary){
                 
-                    for model in array {
+                var searchDataModelArray = NSMutableArray()
+                
+                SearchingUtility.getSearchModels(fromSearchText: aSearchedText, inSheetDic: kioskViewModel.selectedDictionary as! NSMutableDictionary, inSearchModelArray: searchDataModelArray)
+                
+                if searchDataModelArray != nil && searchDataModelArray.count > 0{
+                
+                    for model in searchDataModelArray {
                     
                         let customSearchModel = model as! SearchDataModel
                         
@@ -797,17 +801,17 @@ class DataCenter : NSObject,SheetParserDelegate,ObservableObject {
                                         
                                         if Int(searchedEntryID) == Int(entryID) {
                                             
-                                            let exhibitorName:String = attributeDictionary.value(forKey: AppConstant.sheet_exhibitor) as! String
-                                            
                                             let columnsArray:NSMutableArray = rowDictionary[AppConstant.sheet_columns] as! NSMutableArray
                                             
                                             let wenNumber:String = attributeDictionary.value(forKey: AppConstant.sheet_wen) as! String
                                             
-                                            if columnsArray.count == 8 {
+                                            if columnsArray.count == 7 {
                                                 
-                                                let allowed = columnsArray[6] as! String
-                                                
-                                                var entry = Entry(exhibitor: exhibitorName, department: customSearchModel.departmentName, club: columnsArray[2] as! String, entryNumber: entryID, wen: wenNumber, division: customSearchModel.divisionName, Class: customSearchModel.className, description: columnsArray[1] as! String, validationNumber: columnsArray[3] as! String, entryValidationDate: columnsArray[4] as! String, stateFair: columnsArray[5] as! String, salePrice: columnsArray[7] as! String,isAllowedForSale: (allowed == "No" ? true : false))
+//                                                let allowed = columnsArray[6] as! String
+//                                                
+//                                                let exhibitorName:String = attributeDictionary.value(forKey: AppConstant.sheet_exhibitor) as! String
+//                                                
+                                                let entry = Entry(exhibitor: columnsArray[1] as! String, department: customSearchModel.departmentName, club: columnsArray[3] as! String, entryNumber: entryID, wen: wenNumber, division: customSearchModel.divisionName, Class: customSearchModel.className, description: columnsArray[4] as! String, validationNumber: "", entryValidationDate: "", stateFair: "", salePrice: "",isAllowedForSale: false)
                                                 
                                                 searchedRecords.append(entry)
                                                 

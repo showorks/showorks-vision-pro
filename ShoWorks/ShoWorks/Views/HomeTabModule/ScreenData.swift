@@ -109,7 +109,7 @@ extension HomeTabLayout{
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.system(size: 12))
                     .fontWeight(.light)
-                RightViewBox(isCheckIn: $isCheckIn, text1: "Divion", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].division)
+                RightViewBox(isCheckIn: $isCheckIn, text1: "Division", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].division)
                 RightViewBox(isCheckIn: $isCheckIn, text1: "Class", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].Class)
                 RightViewBox(isCheckIn: $isCheckIn, text1: "Description", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].description)
                 RightViewBox(isCheckIn: $isCheckIn, text1: "Club", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].club)
