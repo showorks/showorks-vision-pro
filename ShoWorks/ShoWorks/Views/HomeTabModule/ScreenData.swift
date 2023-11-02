@@ -44,6 +44,7 @@ struct RightViewDescriptionBox: View {
     @Binding var isCheckIn: Bool
 
     var userInputtedDescription: String
+    var userInputtedTitle: String
     
     var body: some View {
         
@@ -53,7 +54,7 @@ struct RightViewDescriptionBox: View {
                 .frame(width: 340, height: 45)
          
             VStack(alignment: .leading){
-                Text("Description")
+                Text(userInputtedTitle)
                     .font(.system(size: 12))
                     .foregroundStyle(userInputtedDescription.isEmpty ? .red : .white)
                     .fontWeight(userInputtedDescription.isEmpty ? .bold : .light)
@@ -68,7 +69,8 @@ struct RightViewDescriptionBox: View {
                         Spacer()
                         
                         Image(systemName: "pencil.circle.fill")
-                            .font(.system(size: 15))
+                            .font(.system(size: 18))
+                            .hoverEffect(.lift)
                             .foregroundStyle(.white).padding(.trailing,10)
                     }
                 }
@@ -193,9 +195,10 @@ extension HomeTabLayout{
                 RightViewBox(isCheckIn: $isCheckIn, text1: "Division", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].division,allowEditing: testingCheckinMode ? true : false)
                 RightViewBox(isCheckIn: $isCheckIn, text1: "Class", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].Class,allowEditing: testingCheckinMode ? true : false)
 //                RightViewBox(isCheckIn: $isCheckIn, text1: "Description", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].descriptionInfo,allowEditing: testingCheckinMode ? true : false)
-                RightViewDescriptionBox(isCheckIn: $isCheckIn, userInputtedDescription: DataCenter.sharedInstance.searchedRecords[currentSearchCount].descriptionInfo)
+                RightViewDescriptionBox(isCheckIn: $isCheckIn, userInputtedDescription: DataCenter.sharedInstance.searchedRecords[currentSearchCount].descriptionInfo,userInputtedTitle: "Description")
                 
-                RightViewBox(isCheckIn: $isCheckIn, text1: "Validation Number", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].validationNumber,allowEditing: testingCheckinMode ? true : false)
+                RightViewDescriptionBox(isCheckIn: $isCheckIn, userInputtedDescription: DataCenter.sharedInstance.searchedRecords[currentSearchCount].validationNumber,userInputtedTitle: "Validation Number")
+                
                 RightViewBox(isCheckIn: $isCheckIn, text1: "Entry Validation Date", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].entryValidationDate,allowEditing: testingCheckinMode ? true : false)
                 RightViewBox(isCheckIn: $isCheckIn, text1: "State Fair", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].stateFair,allowEditing: testingCheckinMode ? true : false)
                 

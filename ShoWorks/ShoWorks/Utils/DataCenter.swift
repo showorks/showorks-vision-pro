@@ -770,6 +770,10 @@ class DataCenter : NSObject,SheetParserDelegate,ObservableObject {
         
         searchedRecords = []
         
+        // refreshing the array
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.NotificationRefreshLayoutOnSearch), object: false)
+        
         // This logic is entirely for Kiosk
         
         if Utilities.sharedInstance.checkStringContainsText(text: aSearchedText){

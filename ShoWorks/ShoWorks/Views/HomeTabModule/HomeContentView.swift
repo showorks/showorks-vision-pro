@@ -158,6 +158,15 @@ struct HomeContentView: View {
                         }
 
         }
+        .onReceive(.refereshChangesNotification) { info in
+        
+                    let searchRecordHasData = (info.object as? Bool) ?? false
+
+                    self.searchRecordContainsData = searchRecordHasData
+
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.NotificationWhenItIsNeededToFlushSearchBar), object: nil)
+
+        }
         .alert(item: self.$alertItem, content: { a in
             a.asAlert()
         })
