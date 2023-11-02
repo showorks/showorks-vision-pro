@@ -18,7 +18,7 @@ class Entry: Identifiable{
     var wen: String
     var division: String
     var Class: String
-    var description: String
+    var descriptionInfo: String
     var validationNumber: String
     var entryValidationDate: String
     var stateFair: String
@@ -34,7 +34,7 @@ class Entry: Identifiable{
         self.wen = wen
         self.division = division
         self.Class = Class
-        self.description = description
+        self.descriptionInfo = description
         self.validationNumber = validationNumber
         self.entryValidationDate = entryValidationDate
         self.stateFair = stateFair
@@ -212,18 +212,17 @@ struct HomeContentView: View {
         for sheetDic in plistArray {
            
             let sheetObj = sheetDic as! NSDictionary
-            
-            // intentionally pulling first sheet for now..
-            kioskViewModel = KioskViewModel(selectedDictionary: sheetObj)
-            
-            break;
 
-//            if SheetUtility.sharedInstance.isKioskModeEnabledInSheet(sheetDic: sheetObj){
-//                kioskViewModel = KioskViewModel(selectedDictionary: sheetObj)
-//                print("Found kiosk")
-//            }else{
-//                print("Other sheet")
-//            }
+            if SheetUtility.sharedInstance.isKioskModeEnabledInSheet(sheetDic: sheetObj){
+                kioskViewModel = KioskViewModel(selectedDictionary: sheetObj)
+                print("Found kiosk")
+            }else{
+                print("Other sheet")
+            }
+            
+            // intentionally pulling first sheet in case of home and hobby..
+//            kioskViewModel = KioskViewModel(selectedDictionary: sheetObj)
+            
          }
         
     }

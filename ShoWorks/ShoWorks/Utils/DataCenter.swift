@@ -770,17 +770,15 @@ class DataCenter : NSObject,SheetParserDelegate,ObservableObject {
         
         searchedRecords = []
         
+        // This logic is entirely for Kiosk
+        
         if Utilities.sharedInstance.checkStringContainsText(text: aSearchedText){
 
             if let dictionary = kioskViewModel.selectedDictionary {
+              
+                if let array = SearchingUtility.searchManualEntry(aSearchedText, inSheetDic: dictionary as! NSMutableDictionary){
                 
-                var searchDataModelArray = NSMutableArray()
-                
-                SearchingUtility.getSearchModels(fromSearchText: aSearchedText, inSheetDic: kioskViewModel.selectedDictionary as! NSMutableDictionary, inSearchModelArray: searchDataModelArray)
-                
-                if searchDataModelArray != nil && searchDataModelArray.count > 0{
-                
-                    for model in searchDataModelArray {
+                    for model in array {
                     
                         let customSearchModel = model as! SearchDataModel
                         
@@ -801,17 +799,17 @@ class DataCenter : NSObject,SheetParserDelegate,ObservableObject {
                                         
                                         if Int(searchedEntryID) == Int(entryID) {
                                             
+                                            let exhibitorName:String = attributeDictionary.value(forKey: AppConstant.sheet_exhibitor) as! String
+                                            
                                             let columnsArray:NSMutableArray = rowDictionary[AppConstant.sheet_columns] as! NSMutableArray
                                             
                                             let wenNumber:String = attributeDictionary.value(forKey: AppConstant.sheet_wen) as! String
                                             
-                                            if columnsArray.count == 7 {
+                                            if columnsArray.count == 8 {
                                                 
-//                                                let allowed = columnsArray[6] as! String
-//                                                
-//                                                let exhibitorName:String = attributeDictionary.value(forKey: AppConstant.sheet_exhibitor) as! String
-//                                                
-                                                let entry = Entry(exhibitor: columnsArray[1] as! String, department: customSearchModel.departmentName, club: columnsArray[3] as! String, entryNumber: entryID, wen: wenNumber, division: customSearchModel.divisionName, Class: customSearchModel.className, description: columnsArray[4] as! String, validationNumber: "", entryValidationDate: "", stateFair: "", salePrice: "",isAllowedForSale: false)
+                                                let allowed = columnsArray[6] as! String
+                                                
+                                                let entry = Entry(exhibitor: exhibitorName, department: customSearchModel.departmentName, club: columnsArray[2] as! String, entryNumber: entryID, wen: wenNumber, division: customSearchModel.divisionName, Class: customSearchModel.className, description: columnsArray[1] as! String, validationNumber: columnsArray[3] as! String, entryValidationDate: columnsArray[4] as! String, stateFair: columnsArray[5] as! String, salePrice: columnsArray[7] as! String,isAllowedForSale: (allowed == "No" ? true : false))
                                                 
                                                 searchedRecords.append(entry)
                                                 
@@ -837,7 +835,79 @@ class DataCenter : NSObject,SheetParserDelegate,ObservableObject {
             }
             
         }
-        
+//        
+//        
+//        //// This Logic is entirely for Non-Kiosk (Home and Hobby sort of )
+//        ///
+//    
+//        if Utilities.sharedInstance.checkStringContainsText(text: aSearchedText){
+//
+//            if let dictionary = kioskViewModel.selectedDictionary {
+//                
+//                var searchDataModelArray = NSMutableArray()
+//                
+//                SearchingUtility.getSearchModels(fromSearchText: aSearchedText, inSheetDic: kioskViewModel.selectedDictionary as! NSMutableDictionary, inSearchModelArray: searchDataModelArray)
+//                
+//                if searchDataModelArray != nil && searchDataModelArray.count > 0{
+//                
+//                    for model in searchDataModelArray {
+//                    
+//                        let customSearchModel = model as! SearchDataModel
+//                        
+//                        if customSearchModel.searchedEntryIdArray.count > 0 {
+//
+//                            let searchedEntryID:String = customSearchModel.searchedEntryIdArray[0] as! String
+//
+//                            let dictionary = customSearchModel.classDetailDic as NSDictionary
+//
+//                            if let array:NSMutableArray = dictionary.object(forKey: AppConstant.sheet_entries) as? NSMutableArray {
+//                               
+//                                for object in array {
+//                                    let rowDictionary = object as! NSDictionary
+//                                    
+//                                    if let attributeDictionary = rowDictionary[AppConstant.sheet_attributes] as? NSDictionary {
+//                                        
+//                                        let entryID:String = attributeDictionary.value(forKey: AppConstant.sheet_entry_id) as! String
+//                                        
+//                                        if Int(searchedEntryID) == Int(entryID) {
+//                                            
+//                                            let columnsArray:NSMutableArray = rowDictionary[AppConstant.sheet_columns] as! NSMutableArray
+//                                            
+//                                            let wenNumber:String = attributeDictionary.value(forKey: AppConstant.sheet_wen) as! String
+//                                            
+//                                            if columnsArray.count == 7 {
+//                                                
+////                                                let allowed = columnsArray[6] as! String
+////
+////                                                let exhibitorName:String = attributeDictionary.value(forKey: AppConstant.sheet_exhibitor) as! String
+////
+//                                                let entry = Entry(exhibitor: columnsArray[1] as! String, department: customSearchModel.departmentName, club: columnsArray[3] as! String, entryNumber: entryID, wen: wenNumber, division: customSearchModel.divisionName, Class: customSearchModel.className, description: columnsArray[4] as! String, validationNumber: "", entryValidationDate: "", stateFair: "", salePrice: "",isAllowedForSale: false)
+//                                                
+//                                                searchedRecords.append(entry)
+//                                                
+//                                            }
+//                                            break
+//                                        }
+//                                        
+//                                    }
+//                                }
+//
+//                            }
+//                            
+//                            
+//                        }
+////                        print("==================")
+////                        print(customSearchModel.classDetailDic)
+////                        print("<><><><><><><><>")
+////                        print(customSearchModel.searchedEntryIdArray)
+////                        print("*****************")
+////                        var entry = Entry(exhibitor: customSearchModel., department: <#T##String#>, club: <#T##String#>, entryNumber: <#T##String#>, wen: <#T##String#>, division: <#T##String#>, Class: <#T##String#>, description: <#T##String#>, validationNumber: <#T##String#>, entryValidationDate: <#T##String#>, stateFair: <#T##String#>, salePrice: <#T##String#>)
+//                    }
+//                }
+//            }
+//            
+//        }
+//        
         
         
         

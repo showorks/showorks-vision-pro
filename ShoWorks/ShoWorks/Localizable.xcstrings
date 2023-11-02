@@ -163,6 +163,9 @@
     "Department" : {
 
     },
+    "Description" : {
+
+    },
     "Device is connected and ready to scan" : {
 
     },
@@ -492,7 +495,7 @@
     "Submit" : {
 
     },
-    "Tap any text below to make changes" : {
+    "Tap unlocked cell below to make any changes" : {
 
     },
     "tap_here_to" : {
