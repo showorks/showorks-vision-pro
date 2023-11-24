@@ -73,6 +73,7 @@ class SpeechRecognizer: ObservableObject {
                 }
                 
                 do {
+                    let defaultText = transcript
                     let (audioEngine, request) = try Self.prepareEngine()
                     self.audioEngine = audioEngine
                     self.request = request
@@ -87,7 +88,8 @@ class SpeechRecognizer: ObservableObject {
                         }
                         
                         if let result = result {
-                            self.speak(result.bestTranscription.formattedString)
+                            let resultedText = defaultText + " " + (result.bestTranscription.formattedString)
+                            self.speak(resultedText)
                         }
                     }
                 } catch {
