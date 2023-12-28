@@ -85,7 +85,7 @@ struct HomeContentView: View {
                                     .padding(.top, 100)
                                 
                                 HomeTabLayout(isCheckIn: $isCheckIn, currentSearchCount: $currentSearchCount)
-                                    .frame(width: 960, height: 540)
+                                    .frame(width: 1160, height: 540)
                                     .glassBackgroundEffect()
                                     .padding(.bottom, 40)
                                 
@@ -96,13 +96,13 @@ struct HomeContentView: View {
                                 SearchBarCapsule(kioskViewModel: $kioskViewModel, currentSearchCount: $currentSearchCount)
                                 
                                 if DataCenter.sharedInstance.isDeviceConnected {
-                                    QRScanTabView().frame(width: 960, height: 540)
+                                    QRScanTabView().frame(width: 1160, height: 540)
                                         .glassBackgroundEffect()
                                         .padding(.bottom, 40)
                                 }else{
 
                                     ConnectSearchView()
-                                        .frame(width: 960, height: 540)
+                                        .frame(width: 1160, height: 540)
                                         .glassBackgroundEffect()
                                         .padding(.bottom, 40)
                                 }
@@ -122,7 +122,7 @@ struct HomeContentView: View {
                 }else if selectedTab == .tab2{
                     ZStack{
                         Color.white.opacity(0.3)
-                            .frame(width: 960, height: 540)
+                            .frame(width: 1160, height: 540)
                             .glassBackgroundEffect()
                         
                             QRScanDisconnectedTabView()
@@ -131,7 +131,7 @@ struct HomeContentView: View {
                 }else{
                     ZStack{
                         Color.white.opacity(0.3)
-                            .frame(width: 960, height: 540)
+                            .frame(width: 1160, height: 540)
                             .glassBackgroundEffect()
                         
                         SettingsLayout()
@@ -280,7 +280,7 @@ struct QRScanDisconnectedTabView: View {
                   
                     Divider()
                         .background(Color.white)
-                        .frame(width: 960)
+                        .frame(width: 1160)
                         .padding(.top,20)
                    
                     Text("How to connect your scanner device via Bluetooth ?")
@@ -317,7 +317,7 @@ struct QRScanDisconnectedTabView: View {
                         .frame(width: 860)
                         .frame(alignment: .leading)
                 }
-                .frame(width: 960,height: 530)
+                .frame(width: 1160,height: 530)
            
             })
                         

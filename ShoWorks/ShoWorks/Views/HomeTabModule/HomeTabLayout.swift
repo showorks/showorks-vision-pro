@@ -47,7 +47,7 @@ struct HomeTabLayout: View {
         }.onAppear(perform: {
             isCheckIn = UserSettings.shared.selectedMode ?? false
         })
-        .frame(width: 960, height: 540)
+        .frame(width: 1160, height: 540)
         .glassBackgroundEffect()
         
     }

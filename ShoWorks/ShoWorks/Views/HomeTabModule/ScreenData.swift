@@ -164,20 +164,20 @@ extension HomeTabLayout{
     var leftView: some View{
         VStack(spacing: 15){
             
-            LeftViewBox(width: 500, height: 100, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].exhibitor, heading: "Exhibitor")
+            LeftViewBox(width: 700, height: 100, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].exhibitor, heading: "Exhibitor")
             HStack(spacing: 20){
                 
-                LeftViewBox(width: 240, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].department, heading: "Department")
-                LeftViewBox(width: 240, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].club, heading: "Club")
+                LeftViewBox(width: 340, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].department, heading: "Department")
+                LeftViewBox(width: 340, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].club, heading: "Club")
             }
             
             HStack(spacing: 20){
-                LeftViewBox(width: 240, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].entryNumber, heading: "Entry Number")
-                LeftViewBox(width: 240, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].wen, heading: "WEN")
+                LeftViewBox(width: 340, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].entryNumber, heading: "Entry Number")
+                LeftViewBox(width: 340, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].wen, heading: "WEN")
             }
             
         }
-        .frame(width: 570)
+        .frame(width: 770)
     }
     
     @ViewBuilder
