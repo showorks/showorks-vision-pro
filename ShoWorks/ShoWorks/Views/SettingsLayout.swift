@@ -15,7 +15,7 @@ struct SettingsLayout: View {
         
         ZStack{
             VStack(spacing: 15){
-                Text("User Settings")
+                Text("Settings")
                     .font(.heleveticNeueBold(size: 22))
                     .padding(.top,40)
                 
@@ -181,7 +181,7 @@ struct SettingsViewBox: View {
                         .fontWeight(.light)
                     Spacer()
                     Text("   \(text)")
-                        .font(.heleveticNeueBold(size: 24))
+                        .fontWeight(.light)
                         .padding(.trailing,20)
                 }
                 
