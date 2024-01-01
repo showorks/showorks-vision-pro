@@ -42,8 +42,9 @@ struct HomeTabLayout: View {
                 
                     
             }
-            
-            dropDowns
+            if !isCheckIn {
+                dropDowns
+            }
         }.onAppear(perform: {
             isCheckIn = UserSettings.shared.selectedMode ?? false
         })

@@ -129,31 +129,32 @@ struct LeftViewBox: View {
     var heading: String
     
     var body: some View {
-        ZStack{
-            RoundedRectangle(cornerRadius: 20).fill(.white.opacity(0.2))
-                .frame(width: width, height: height)
-            
-            VStack(alignment: .leading, spacing: 5){
-
-                HStack{
-                    Circle().fill(.white).frame(width: 10)
-                    Text(heading)
-                        .fontWeight(.light)
-                }
+        VStack{
+            Text(heading)
+                .font(.sfProLight(size: 16))
+                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
+            ZStack{
+                RoundedRectangle(cornerRadius: 16).fill(.white.opacity(0.2))
+                    .frame(width: width, height: height)
                 
-                Text(text.count == 0 ? "-" : "\(text)")
-                    .font(.system(size: 24))
-                    .fontWeight(.bold)
-                    .lineLimit(2)
-                    .allowsTightening(true)
-                    .scaledToFit()
-                    .padding(.leading,15)
-                    .padding(.bottom,10)
+                VStack(alignment: .leading, spacing: 5){
+
+    //                HStack{
+    ////                    Circle().fill(.white).frame(width: 10)
+    //                    Text(heading)
+    //                        .font(.sfProLight(size: 14))
+    //                }
+                    
+                    Text(text.count == 0 ? "-" : "\(text)")
+                        .font(.sfProRegular(size: 26))
+                        .padding(10)
+                        .lineLimit(2)
+                }
+                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
+                .padding(.leading)
+                
+                
             }
-            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
-            .padding(.leading)
-            
-            
         }
         .frame(width: width, height: height)
     }
@@ -164,17 +165,36 @@ extension HomeTabLayout{
     var leftView: some View{
         VStack(spacing: 15){
             
-            LeftViewBox(width: 700, height: 100, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].exhibitor, heading: "Exhibitor")
-            HStack(spacing: 20){
+            if isCheckIn {
                 
-                LeftViewBox(width: 340, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].department, heading: "Department")
-                LeftViewBox(width: 340, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].club, heading: "Club")
+                LeftViewBox(width: 700, height: 60, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].exhibitor, heading: "Exhibitor")
+                Spacer().frame(maxHeight: 20)
+                HStack(spacing: 20){
+                    
+                    LeftViewBox(width: 340, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].department, heading: "Department")
+                    LeftViewBox(width: 340, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].division, heading: "Division")
+                }
+                Spacer().frame(maxHeight: 20)
+                HStack(spacing: 20){
+                    LeftViewBox(width: 340, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].Class, heading: "Class")
+                    LeftViewBox(width: 340, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].entryNumber, heading: "Entry Number")
+                }
+            }
+            else{
+                
+                LeftViewBox(width: 700, height: 100, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].exhibitor, heading: "Exhibitor")
+                HStack(spacing: 20){
+                    
+                    LeftViewBox(width: 340, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].department, heading: "Department")
+                    LeftViewBox(width: 340, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].club, heading: "Club")
+                }
+                
+                HStack(spacing: 20){
+                    LeftViewBox(width: 340, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].entryNumber, heading: "Entry Number")
+                    LeftViewBox(width: 340, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].wen, heading: "WEN")
+                }
             }
             
-            HStack(spacing: 20){
-                LeftViewBox(width: 340, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].entryNumber, heading: "Entry Number")
-                LeftViewBox(width: 340, height: 140, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].wen, heading: "WEN")
-            }
             
         }
         .frame(width: 770)
