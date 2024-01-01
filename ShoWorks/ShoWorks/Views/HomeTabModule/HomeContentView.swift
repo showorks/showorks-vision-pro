@@ -81,16 +81,7 @@ struct HomeContentView: View {
                            
                             if searchRecordContainsData {
                                 
-                                SearchBarCapsule(kioskViewModel: $kioskViewModel, currentSearchCount: $currentSearchCount)
-                                    .padding(.top, 100)
-                                
-                                HomeTabLayout(isCheckIn: $isCheckIn, currentSearchCount: $currentSearchCount)
-                                    .frame(width: 1160, height: 540)
-                                    .glassBackgroundEffect()
-                                    .padding(.bottom, 40)
-                                
-                                HomeBottomCapsule(isCheckIn: $isCheckIn)
-                                        .offset(y:-88)
+                                HomeListView(isCheckIn: isCheckIn, currentSearchCount: currentSearchCount, kioskViewModel: kioskViewModel)
 
                             }else{
                                 SearchBarCapsule(kioskViewModel: $kioskViewModel, currentSearchCount: $currentSearchCount)
@@ -321,6 +312,29 @@ struct QRScanDisconnectedTabView: View {
            
             })
                         
+        }
+    }
+}
+
+struct HomeListView : View {
+    @State var isCheckIn: Bool = true
+    @State var currentSearchCount = 0
+    @State var kioskViewModel:KioskViewModel
+    var body: some View{
+        ZStack{
+            VStack(spacing: 20){
+                
+                SearchBarCapsule(kioskViewModel: $kioskViewModel, currentSearchCount: $currentSearchCount)
+                    .padding(.top, 100)
+                
+                HomeTabLayout(isCheckIn: $isCheckIn, currentSearchCount: $currentSearchCount)
+                    .frame(width: 1160, height: 540)
+                    .glassBackgroundEffect()
+                    .padding(.bottom, 40)
+                
+                HomeBottomCapsule(isCheckIn: $isCheckIn)
+                    .offset(y:-88)
+            }
         }
     }
 }

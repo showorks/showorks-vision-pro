@@ -23,6 +23,7 @@ class UserSettings {
         static let firstName = "firstName"
         static let selectedMode = "selectedMode"
         static let roundRobinBackgroundImage = "roundRobinBackgroundImage"
+        static let showListAfterSearch = "showListAfterSearch"
     }
     
     var serialKey: String? {
@@ -85,6 +86,15 @@ class UserSettings {
         }
         set {
             UserDefaults.standard.setValue(newValue, forKey: Keys.isDemoUserEnabled)
+        }
+    }
+        
+    var showListAfterSearch: Bool? {
+        get {
+            UserDefaults.standard.bool(forKey: Keys.showListAfterSearch)
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: Keys.showListAfterSearch)
         }
     }
     

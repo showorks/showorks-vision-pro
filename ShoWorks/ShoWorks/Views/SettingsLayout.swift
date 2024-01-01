@@ -10,6 +10,7 @@ import SwiftUI
 struct SettingsLayout: View {
     
     @State var isCheckIn: Bool = true
+    @State var displayListAfterScan: Bool = false
     
     var body: some View {
         
@@ -53,7 +54,7 @@ struct SettingsLayout: View {
                     
                     VStack(alignment: .leading, spacing: 5){
                         HStack{
-                            Circle().fill(.white).frame(width: 10)
+//                            Circle().fill(.white).frame(width: 10)
                             Text("Default mode for scans:")
                                 .fontWeight(.light)
                             Spacer().frame(width:340)
@@ -69,10 +70,34 @@ struct SettingsLayout: View {
                     
                 }
                 .frame(width: 820, height: 70)
+
+                ZStack{
+                    RoundedRectangle(cornerRadius: 20).fill(.white.opacity(0.2))
+                        .frame(width: 820, height: 70)
+                    
+                    VStack(alignment: .leading, spacing: 5){
+                        HStack{
+                            Toggle("Display list view after scan:", isOn: $displayListAfterScan)
+                                .onChange(of: displayListAfterScan, initial: displayListAfterScan, { oldValue, newValue in
+                                    UserSettings.shared.showListAfterSearch = newValue
+                                })
+                                .padding(.trailing,20)
+                            
+                        }
+                        
+                        
+
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading)
+                    
+                    
+                }
+                .frame(width: 820, height: 70)
                 
                 
                 Spacer()
-                    .frame(height: 50)
+                    .frame(height: 20)
                 
                 Text("ShoWorks Vision Pro v1.0")
                     .font(.subheadline)
@@ -101,6 +126,7 @@ struct SettingsLayout: View {
         }
         .onAppear(perform: {
             isCheckIn = UserSettings.shared.selectedMode ?? false
+            displayListAfterScan = UserSettings.shared.showListAfterSearch ?? false
         })
         .frame(width: 940, height: 570)
     }
@@ -176,7 +202,7 @@ struct SettingsViewBox: View {
             VStack(alignment: .leading, spacing: 5){
                 
                 HStack{
-                    Circle().fill(.white).frame(width: 10)
+//                    Circle().fill(.white).frame(width: 10)
                     Text(heading)
                         .fontWeight(.light)
                     Spacer()
