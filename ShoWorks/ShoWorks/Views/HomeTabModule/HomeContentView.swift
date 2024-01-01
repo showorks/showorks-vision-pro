@@ -328,21 +328,95 @@ struct HomeListView : View {
     @State var isCheckIn: Bool = true
     @State var currentSearchCount = 0
     @State var kioskViewModel:KioskViewModel
+    @State var isListRequired = true
     var body: some View{
         ZStack{
             VStack(spacing: 20){
                 
-                SearchBarCapsule(kioskViewModel: $kioskViewModel, currentSearchCount: $currentSearchCount)
-                    .padding(.top, 100)
-                
-                HomeTabLayout(isCheckIn: $isCheckIn, currentSearchCount: $currentSearchCount)
+                if isListRequired {
+                    
+                    SearchBarCapsule(isSearchedListOption: true, kioskViewModel: $kioskViewModel, currentSearchCount: $currentSearchCount)
+//                            .padding(.top, 100)
+                    
+                    VStack{
+                        
+                        Text("Searched Results for \(DataCenter.sharedInstance.searchedRecords[0].exhibitor)...")
+                            .padding(.top,50).font(.sfProRegular(size: 32))
+                            .padding(.bottom,30)
+                        
+                        List(DataCenter.sharedInstance.searchedRecords) { record in
+                            HStack(alignment: .center) {
+                                Text("\(record.entryNumber)")
+                                .font(.sfProRegular(size: 18))
+                                .frame(maxWidth: 70, alignment: .leading)
+                                .hoverEffect(.lift)
+                                
+                                Spacer().frame(maxWidth: 30)
+                                Divider().frame(width: 2).background(Color.white)
+                                Spacer().frame(maxWidth: 30)
+                                
+                                Text("\(record.department)")
+                                    .multilineTextAlignment(.leading)
+                                    .font(.sfProRegular(size: 18))
+                                    .frame(maxWidth: 150, alignment: .leading).hoverEffect(.lift)
+                                
+                                Spacer().frame(maxWidth: 30)
+                                Divider().frame(width: 2).background(Color.white)
+                                Spacer().frame(maxWidth: 30)
+                                
+                                Text("\(record.division)")
+                                    .multilineTextAlignment(.leading)
+                                    .font(.sfProRegular(size: 18))
+                                    .frame(maxWidth: 250, alignment: .leading).hoverEffect(.lift)
+                                
+                                Spacer().frame(maxWidth: 30)
+                                Divider().frame(width: 2).background(Color.white)
+                                Spacer().frame(maxWidth: 30)
+                                
+                                Text("\(record.Class)")
+                                    .multilineTextAlignment(.leading)
+                                    .font(.sfProRegular(size: 18))
+                                    .frame(maxWidth: 350, alignment: .leading).hoverEffect(.lift)
+                            }.hoverEffect(.lift)
+                            .onTapGesture {
+
+                                var actualIndex = 0
+                                
+                                for recordObj in DataCenter.sharedInstance.searchedRecords {
+                                    if recordObj.entryNumber == record.entryNumber{
+                                        break
+                                    }
+                                    actualIndex += 1
+                                }
+                                
+                                DataCenter.sharedInstance.searchedSelectedIndex = actualIndex
+                                self.isListRequired = false
+                            }
+                            
+                        }
+                    }
                     .frame(width: 1160, height: 540)
-                    .glassBackgroundEffect()
-                    .padding(.bottom, 40)
+                        .glassBackgroundEffect()
+                        .padding(.bottom, 40)
+                    
+                }else{
+                    SearchBarCapsule(kioskViewModel: $kioskViewModel, currentSearchCount: $currentSearchCount)
+                        .padding(.top, 100)
+                    
+                    HomeTabLayout(isCheckIn: $isCheckIn, currentSearchCount: $currentSearchCount)
+                        .frame(width: 1160, height: 540)
+                        .glassBackgroundEffect()
+                        .padding(.bottom, 40)
+                    
+                    HomeBottomCapsule(isCheckIn: $isCheckIn)
+                        .offset(y:-88)
+                }
                 
-                HomeBottomCapsule(isCheckIn: $isCheckIn)
-                    .offset(y:-88)
+                
             }
+        }
+        .onAppear {
+            isListRequired = UserSettings.shared.showListAfterSearch ?? true
         }
     }
 }

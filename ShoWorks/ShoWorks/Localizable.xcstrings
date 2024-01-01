@@ -409,6 +409,9 @@
     "Search by exhibitor name or entry number.." : {
 
     },
+    "Searched Results for %@..." : {
+
+    },
     "serial_num_or_cancel_demo" : {
       "extractionState" : "manual",
       "localizations" : {

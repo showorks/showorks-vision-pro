@@ -146,7 +146,7 @@ struct LeftViewBox: View {
     //                }
                     
                     Text(text.count == 0 ? "-" : "\(text)")
-                        .font(.sfProRegular(size: 26))
+                        .font(.heleveticNeueBold(size: 24))
                         .padding(10)
                         .lineLimit(2)
                 }

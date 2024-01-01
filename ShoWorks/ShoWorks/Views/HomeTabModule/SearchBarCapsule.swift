@@ -12,6 +12,7 @@ struct SearchBarCapsule: View {
 //    @State var typedText: String = ""
     @StateObject var speechRecogniser = SpeechRecognizer()
     @State var isRecording: Bool = false
+    @State var isSearchedListOption: Bool = false
     @Binding var kioskViewModel: KioskViewModel
     
     @Binding var currentSearchCount:Int
@@ -26,7 +27,7 @@ struct SearchBarCapsule: View {
             HStack(spacing: 25){
                 
                 
-                if DataCenter.sharedInstance.searchedRecords.count > 0 {
+                if DataCenter.sharedInstance.searchedRecords.count > 0 && isSearchedListOption==false{
                     
                     HStack{
                         ZStack{
@@ -71,7 +72,7 @@ struct SearchBarCapsule: View {
 //                Spacer()
                 
                 ZStack{
-                    if DataCenter.sharedInstance.searchedRecords.count > 0 {
+                    if DataCenter.sharedInstance.searchedRecords.count > 0 && isSearchedListOption==false{
                         Capsule()
                             .fill(.clear)
                             .glassBackgroundEffect()
