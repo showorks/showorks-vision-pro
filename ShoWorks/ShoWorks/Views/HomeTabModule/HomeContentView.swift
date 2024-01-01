@@ -393,7 +393,7 @@ struct HomeListView : View {
                                 self.isListRequired = false
                             }
                             
-                        }
+                        }.padding(.bottom,40)
                     }
                     .frame(width: 1160, height: 540)
                         .glassBackgroundEffect()
