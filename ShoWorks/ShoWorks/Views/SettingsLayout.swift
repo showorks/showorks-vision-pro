@@ -81,6 +81,7 @@ struct SettingsLayout: View {
                                 .onChange(of: displayListAfterScan, initial: displayListAfterScan, { oldValue, newValue in
                                     UserSettings.shared.showListAfterSearch = newValue
                                 })
+                                .fontWeight(.light)
                                 .padding(.trailing,20)
                             
                         }

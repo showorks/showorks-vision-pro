@@ -112,20 +112,28 @@ struct HomeContentView: View {
                     }
                 }else if selectedTab == .tab2{
                     ZStack{
-                        Color.white.opacity(0.3)
-                            .frame(width: 1160, height: 540)
-                            .glassBackgroundEffect()
-                        
-                            QRScanDisconnectedTabView()
+//                        Color.white.opacity(0.3)
+                            
+                        VStack{
+                            Spacer().frame(maxHeight: 35)
+                                QRScanDisconnectedTabView()
+                                .frame(width: 1160, height: 540)
+                                .glassBackgroundEffect()
+                        }
                         
                     }
                 }else{
                     ZStack{
-                        Color.white.opacity(0.3)
-                            .frame(width: 1160, height: 540)
-                            .glassBackgroundEffect()
+//                        Color.white.opacity(0.3)
+//                            .frame(width: 1160, height: 540)
+//                            .glassBackgroundEffect()
+                        VStack{
+                            Spacer().frame(maxHeight: 35)
+                            SettingsLayout()
+                                .frame(width: 1160, height: 540)
+                                .glassBackgroundEffect()
+                        }
                         
-                        SettingsLayout()
                     }
                 }
                 
