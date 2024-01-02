@@ -16,9 +16,36 @@ final class SheetsViewModel: ObservableObject {
     
     @Published var arrayOfSheets : NSMutableArray?
     
+    @Published var currentSelectedIndex : Int?
+    
+    @Published var mSelectedSheetName : String = ""
+    
+    @Published var mSheetNamesArray : Array = []
+    
     init(homeViewSelectedData: HomeViewData? = nil, selectedDictionary: NSDictionary? = nil, arrayOfSheets : NSMutableArray? = nil) {
         self.homeViewSelectedData = homeViewSelectedData
         self.selectedDictionary = selectedDictionary
         self.arrayOfSheets = arrayOfSheets
+        
+        if let sheets = arrayOfSheets, sheets.count > 0 {
+            currentSelectedIndex = 0
+            
+            mSheetNamesArray = []
+            
+            for dictionary in sheets  {
+                    let sheetObj = dictionary as! NSDictionary
+                    let downloadedSheetName:String! = (sheetObj.object(forKey: AppConstant.sheet) as! NSDictionary).value(forKey: AppConstant.sheet_name) as? String
+                    if downloadedSheetName.count > 0 {
+                        mSheetNamesArray.append(downloadedSheetName ?? "")
+                    }
+            }
+                    
+            
+            if mSheetNamesArray.count > 0 {
+                mSelectedSheetName = mSheetNamesArray.last as! String
+            }
+                   
+            
+        }
     }
 }

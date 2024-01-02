@@ -85,7 +85,7 @@ struct HomeContentView: View {
 
                             }else{
                                 HStack(spacing: 20) {
-                                    SelectedSheetCapsule()
+                                    SelectedSheetCapsule(sheetViewModel: $sheetsViewModel)
                                     SearchBarCapsule(sheetsViewModel: $sheetsViewModel, currentSearchCount: $currentSearchCount)
                                         .padding(.top, 100)
                                 }
@@ -345,7 +345,7 @@ struct HomeListView : View {
                 if isListRequired {
                     
                     HStack(spacing: 20) {
-                        SelectedSheetCapsule()
+                        SelectedSheetCapsule(sheetViewModel: $sheetsViewModel)
                         SearchBarCapsule(isSearchedListOption: true, sheetsViewModel: $sheetsViewModel, currentSearchCount: $currentSearchCount)
                     }
                     
@@ -413,7 +413,7 @@ struct HomeListView : View {
                 }else{
                     
                     HStack(spacing: 20) {
-                        SelectedSheetCapsule()
+                        SelectedSheetCapsule(sheetViewModel: $sheetsViewModel)
                         SearchBarCapsule(sheetsViewModel: $sheetsViewModel, currentSearchCount: $currentSearchCount)
                             .padding(.top, 100)
                     }
@@ -441,7 +441,9 @@ struct HomeListView : View {
 struct SelectedSheetCapsule: View {
     
 
-    @State var sheetName: String = ""
+    @Binding var sheetViewModel: SheetsViewModel
+    @State private var displayBottomSheet = false
+    @State var mSelectedSheet: String = ""
 
     var body: some View {
         ZStack{
@@ -453,10 +455,30 @@ struct SelectedSheetCapsule: View {
             
             HStack(spacing: 6){
                
-                Text("Home and Hobby Judging").font(.sfProRegular(size: 14))
+                Text(sheetViewModel.mSelectedSheetName).font(.sfProRegular(size: 14))
                       
                 Image(systemName: "chevron.down")
                     .font(.system(size: 12))
+            }
+            .onTapGesture {
+                displayBottomSheet.toggle()
+            }
+            .sheet(isPresented: $displayBottomSheet) {
+                List(0...sheetViewModel.mSheetNamesArray.count-1, id: \.self) { index in
+                    if let sheetName = sheetViewModel.mSheetNamesArray[index] as? String{
+                        Text(sheetName)
+                    }
+                }
+                .padding(20)
+                .frame(width: 450,height: 450)
+                .onTapGesture {
+                    displayBottomSheet.toggle()
+                    DataCenter.sharedInstance.refreshViewWithEmptyLayout()
+                }
+                    .presentationDetents([ .medium, .large])
+                             .presentationBackground(.thinMaterial)
+                             .presentationCornerRadius(50)
+                             .presentationBackgroundInteraction(.enabled)
             }
             .padding(.horizontal, 5)
             .frame(width: 250)

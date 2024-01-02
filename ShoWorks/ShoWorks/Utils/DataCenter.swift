@@ -947,4 +947,14 @@ class DataCenter : NSObject,SheetParserDelegate,ObservableObject {
                 
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.NotificationWhenSearchedRecordChanges), object: isSearchedRecordsContainsData)
     }
+    
+    // Loading the layout with empty data
+    func refreshViewWithEmptyLayout(){
+      
+        searchedRecords = []
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.NotificationRefreshLayoutOnSearch), object: false)
+                
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.NotificationWhenSearchedRecordChanges), object: false)
+    }
 }
