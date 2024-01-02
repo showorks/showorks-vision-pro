@@ -276,9 +276,6 @@
     "Manual Search" : {
 
     },
-    "Mode" : {
-
-    },
     "Next" : {
 
     },
@@ -392,6 +389,9 @@
         }
       }
     },
+    "Photography Judging" : {
+
+    },
     "powered_by" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -504,7 +504,7 @@
     "Submit" : {
 
     },
-    "Tap unlocked cell below to make any changes" : {
+    "Tap any cell below to make any changes" : {
 
     },
     "tap_here_to" : {

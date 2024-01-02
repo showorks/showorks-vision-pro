@@ -42,7 +42,7 @@ struct HomeView: View {
     @State var isPushedToKiosk: Bool = false
 
     @ObservedObject var homeViewModel = HomeViewModel()
-    @State var kioskViewModel = KioskViewModel()
+    @State var kioskViewModel = SheetsViewModel()
     
     var body: some View {
      
@@ -309,7 +309,7 @@ struct MasterLayout: View {
     
     @Binding var isPushedToKiosk : Bool
     
-    @Binding var kioskViewModel : KioskViewModel
+    @Binding var kioskViewModel : SheetsViewModel
     
     var body: some View {
             
@@ -335,7 +335,7 @@ struct MasterLayout: View {
                         
                             if SheetUtility.sharedInstance.isKioskModeEnabledInSheet(sheetDic: sheetObj){
                                 self.isPushedToKiosk = true
-                                kioskViewModel = KioskViewModel(homeViewSelectedData: mSelectedOption, selectedDictionary: sheetObj)
+                                kioskViewModel = SheetsViewModel(homeViewSelectedData: mSelectedOption, selectedDictionary: sheetObj)
                                 print("go to kiosk")
                             }else{
                                 self.isPushedToKiosk = false

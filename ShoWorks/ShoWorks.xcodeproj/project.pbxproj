@@ -332,6 +332,7 @@
 		CFC2C4C12AEFB02200E8AC20 /* SpeechRecognitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C4B72AEFB02200E8AC20 /* SpeechRecognitionDelegate.swift */; };
 		CFC2C4C22AEFB02200E8AC20 /* ScreenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C4B82AEFB02200E8AC20 /* ScreenData.swift */; };
 		CFC2C4C32AEFB02200E8AC20 /* SearchBarCapsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC2C4B92AEFB02200E8AC20 /* SearchBarCapsule.swift */; };
+		CFD0C9212B442088003D2EBB /* SheetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD0C9202B442088003D2EBB /* SheetsViewModel.swift */; };
 		CFE6ED132A5EB57100F6867E /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = CFE6ED122A5EB57100F6867E /* RealityKitContent */; };
 		CFE6ED152A5EB57100F6867E /* ShoWorksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE6ED142A5EB57100F6867E /* ShoWorksApp.swift */; };
 		CFE6ED192A5EB57200F6867E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFE6ED182A5EB57200F6867E /* Assets.xcassets */; };
@@ -339,7 +340,6 @@
 		CFF036052AF0FD140068D0AD /* SettingsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF036042AF0FD140068D0AD /* SettingsLayout.swift */; };
 		CFF166802A8B97C400FD7A25 /* SheetUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF1667F2A8B97C400FD7A25 /* SheetUtility.swift */; };
 		CFF166822A8BA26800FD7A25 /* KioskWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF166812A8BA26800FD7A25 /* KioskWelcomeView.swift */; };
-		CFF166842A8BA28000FD7A25 /* KioskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF166832A8BA28000FD7A25 /* KioskViewModel.swift */; };
 		CFF166862A8BA9F300FD7A25 /* CustomBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF166852A8BA9F300FD7A25 /* CustomBackground.swift */; };
 		CFFE1B1B2A7903B5009F6426 /* SheetParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFE1B1A2A7903B5009F6426 /* SheetParser.m */; };
 /* End PBXBuildFile section */
@@ -414,6 +414,7 @@
 		CFC2C4B72AEFB02200E8AC20 /* SpeechRecognitionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionDelegate.swift; sourceTree = "<group>"; };
 		CFC2C4B82AEFB02200E8AC20 /* ScreenData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenData.swift; sourceTree = "<group>"; };
 		CFC2C4B92AEFB02200E8AC20 /* SearchBarCapsule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarCapsule.swift; sourceTree = "<group>"; };
+		CFD0C9202B442088003D2EBB /* SheetsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetsViewModel.swift; sourceTree = "<group>"; };
 		CFE6ED0D2A5EB57100F6867E /* ShoWorks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoWorks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFE6ED112A5EB57100F6867E /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		CFE6ED142A5EB57100F6867E /* ShoWorksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoWorksApp.swift; sourceTree = "<group>"; };
@@ -422,7 +423,6 @@
 		CFF036042AF0FD140068D0AD /* SettingsLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLayout.swift; sourceTree = "<group>"; };
 		CFF1667F2A8B97C400FD7A25 /* SheetUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetUtility.swift; sourceTree = "<group>"; };
 		CFF166812A8BA26800FD7A25 /* KioskWelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KioskWelcomeView.swift; sourceTree = "<group>"; };
-		CFF166832A8BA28000FD7A25 /* KioskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KioskViewModel.swift; sourceTree = "<group>"; };
 		CFF166852A8BA9F300FD7A25 /* CustomBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackground.swift; sourceTree = "<group>"; };
 		CFFE1B182A7903B4009F6426 /* ShoWorks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShoWorks-Bridging-Header.h"; sourceTree = "<group>"; };
 		CFFE1B192A7903B5009F6426 /* SheetParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SheetParser.h; sourceTree = "<group>"; };
@@ -752,8 +752,8 @@
 				CF4384522A66B918000A7022 /* ShoWorksAuthenticationModel.swift */,
 				CF4384542A66B988000A7022 /* ShoWorksAuthenticationAPIResponse.swift */,
 				CFA0930B2A7131460013E6B3 /* HomeViewModel.swift */,
+				CFD0C9202B442088003D2EBB /* SheetsViewModel.swift */,
 				CF6C42162A73CCF8005F7D53 /* SheetSyncNotificationModel.swift */,
-				CFF166832A8BA28000FD7A25 /* KioskViewModel.swift */,
 				CF1D8E0A2AC23A45001ED4F1 /* QRScannedModel.h */,
 				CF1D8E092AC23A45001ED4F1 /* QRScannedModel.m */,
 				CF1D8E0D2AC23AA2001ED4F1 /* SearchDataModel.h */,
@@ -1280,7 +1280,6 @@
 				CF28947F2A793FC6004AE980 /* XMLGenerator.m in Sources */,
 				CF43844E2A66B835000A7022 /* ShoWorksEndpoint.swift in Sources */,
 				CFC2C4BF2AEFB02200E8AC20 /* ToggleViews.swift in Sources */,
-				CFF166842A8BA28000FD7A25 /* KioskViewModel.swift in Sources */,
 				CF17008F2A710F98006A7415 /* Utilities.swift in Sources */,
 				CFC2C4C32AEFB02200E8AC20 /* SearchBarCapsule.swift in Sources */,
 				CF80ACA32AE0320E007E8DB6 /* HeaderAndFooter.swift in Sources */,
@@ -1292,6 +1291,7 @@
 				CF1D8E082AC239E7001ED4F1 /* SearchingUtility.m in Sources */,
 				CF09E6342A65601100C947A3 /* Colors.swift in Sources */,
 				CF4384582A672CA6000A7022 /* UserSettings.swift in Sources */,
+				CFD0C9212B442088003D2EBB /* SheetsViewModel.swift in Sources */,
 				CF1700902A710F98006A7415 /* S3Handler.swift in Sources */,
 				CF09E6402A656A8800C947A3 /* Bundle+Localized.swift in Sources */,
 				CF43844C2A66B7EA000A7022 /* ShoWorksService.swift in Sources */,

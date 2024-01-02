@@ -57,7 +57,7 @@ struct HomeContentView: View {
     @State var isDeviceConnected = false
     @State var searchRecordContainsData = false
     @State var isCheckIn: Bool = true
-    @State var kioskViewModel = KioskViewModel()
+    @State var sheetsViewModel = SheetsViewModel()
     @ObservedObject var homeViewModel = HomeViewModel()
     @EnvironmentObject var viewModel: ShoWorksAuthenticationModel
     @State var mScreenState: AppConstant.AppStartupStatus?
@@ -81,10 +81,10 @@ struct HomeContentView: View {
                            
                             if searchRecordContainsData {
                                 
-                                HomeListView(isCheckIn: isCheckIn, currentSearchCount: currentSearchCount, kioskViewModel: kioskViewModel)
+                                HomeListView(isCheckIn: isCheckIn, currentSearchCount: currentSearchCount, sheetsViewModel: sheetsViewModel)
 
                             }else{
-                                SearchBarCapsule(kioskViewModel: $kioskViewModel, currentSearchCount: $currentSearchCount)
+                                SearchBarCapsule(sheetsViewModel: $sheetsViewModel, currentSearchCount: $currentSearchCount)
                                 
                                 if DataCenter.sharedInstance.isDeviceConnected {
                                     QRScanTabView().frame(width: 1160, height: 540)
@@ -206,11 +206,11 @@ struct HomeContentView: View {
     func loadPlistData(){
         Task {
             await homeViewModel.loadPlistArrayWithSheetsDetailData(screenType: mScreenState ?? .demoMode)
-            loadKioskModeSheet()
+            loadAllSheetsDefaultToKiosk()
         }
     }
     
-    func loadKioskModeSheet(){
+    func loadAllSheetsDefaultToKiosk(){
         let plistSheetDetailArray:NSMutableArray! = SharedDelegate.sharedInstance.plistSheetDetailArray
       
         guard let plistArray = plistSheetDetailArray else {
@@ -221,15 +221,17 @@ struct HomeContentView: View {
            
             let sheetObj = sheetDic as! NSDictionary
 
-            if SheetUtility.sharedInstance.isKioskModeEnabledInSheet(sheetDic: sheetObj){
-                kioskViewModel = KioskViewModel(selectedDictionary: sheetObj)
-                print("Found kiosk")
-            }else{
-                print("Other sheet")
-            }
+//            if SheetUtility.sharedInstance.isKioskModeEnabledInSheet(sheetDic: sheetObj){
+//                print("Found kiosk")
+//            }else{
+//                print("Other sheet")
+//            }
             
-            // intentionally pulling first sheet in case of home and hobby..
-//            kioskViewModel = KioskViewModel(selectedDictionary: sheetObj)
+            // default first sheet selected
+
+            sheetsViewModel = SheetsViewModel(selectedDictionary: sheetObj,arrayOfSheets: plistArray)
+            
+            break
             
          }
         
@@ -327,7 +329,7 @@ struct QRScanDisconnectedTabView: View {
 struct HomeListView : View {
     @State var isCheckIn: Bool = true
     @State var currentSearchCount = 0
-    @State var kioskViewModel:KioskViewModel
+    @State var sheetsViewModel:SheetsViewModel
     @State var isListRequired = true
 
     var body: some View{
@@ -336,7 +338,7 @@ struct HomeListView : View {
                 
                 if isListRequired {
                     
-                    SearchBarCapsule(isSearchedListOption: true, kioskViewModel: $kioskViewModel, currentSearchCount: $currentSearchCount)
+                    SearchBarCapsule(isSearchedListOption: true, sheetsViewModel: $sheetsViewModel, currentSearchCount: $currentSearchCount)
 //                            .padding(.top, 100)
                     
                     VStack{
@@ -401,7 +403,8 @@ struct HomeListView : View {
                         .padding(.bottom, 40)                       
                     
                 }else{
-                    SearchBarCapsule(kioskViewModel: $kioskViewModel, currentSearchCount: $currentSearchCount)
+                    
+                    SearchBarCapsule(sheetsViewModel: $sheetsViewModel, currentSearchCount: $currentSearchCount)
                         .padding(.top, 100)
                     
                     HomeTabLayout(isCheckIn: $isCheckIn, currentSearchCount: $currentSearchCount)

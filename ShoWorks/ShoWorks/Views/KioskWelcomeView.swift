@@ -13,7 +13,7 @@ import UIKit
 
 struct KioskWelcomeView: View {
 
-    @EnvironmentObject var viewModel: KioskViewModel
+    @EnvironmentObject var viewModel: SheetsViewModel
     @Environment(\.presentationMode) var presentationMode
     @State var isPresented = false
     @StateObject var bleController = BLEController()

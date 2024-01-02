@@ -766,7 +766,7 @@ class DataCenter : NSObject,SheetParserDelegate,ObservableObject {
 //        self.present(alertController, animated: true)
     }
     
-    func searchTextAndFindModels(aSearchedText:String,kioskViewModel:KioskViewModel){
+    func searchTextAndFindModels(aSearchedText:String,sheetsViewModel:SheetsViewModel){
         
         searchedRecords = []
         
@@ -778,7 +778,7 @@ class DataCenter : NSObject,SheetParserDelegate,ObservableObject {
         
         if Utilities.sharedInstance.checkStringContainsText(text: aSearchedText){
 
-            if let dictionary = kioskViewModel.selectedDictionary {
+            if let dictionary = sheetsViewModel.selectedDictionary {
               
                 if let array = SearchingUtility.searchManualEntry(aSearchedText, inSheetDic: dictionary as! NSMutableDictionary){
                 

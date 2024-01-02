@@ -1,5 +1,5 @@
 //
-//  KioskViewModel.swift
+//  SheetsViewModel.swift
 //  ShoWorks
 //
 //  Created by Lokesh on 15/08/23.
@@ -8,14 +8,17 @@
 import Foundation
 import SwiftUI
 
-final class KioskViewModel: ObservableObject {
+final class SheetsViewModel: ObservableObject {
     
     @Published var homeViewSelectedData: HomeViewData?
     
     @Published var selectedDictionary: NSDictionary?
     
-    init(homeViewSelectedData: HomeViewData? = nil, selectedDictionary: NSDictionary? = nil) {
+    @Published var arrayOfSheets : NSMutableArray?
+    
+    init(homeViewSelectedData: HomeViewData? = nil, selectedDictionary: NSDictionary? = nil, arrayOfSheets : NSMutableArray? = nil) {
         self.homeViewSelectedData = homeViewSelectedData
         self.selectedDictionary = selectedDictionary
+        self.arrayOfSheets = arrayOfSheets
     }
 }

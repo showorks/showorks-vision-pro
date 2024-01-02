@@ -414,7 +414,7 @@ struct FloatingMenu: View {
 
 struct CardView: View {
     @State var card: CardModel
-    @EnvironmentObject var viewModel: KioskViewModel
+    @EnvironmentObject var viewModel: SheetsViewModel
     @Environment(\.presentationMode) var presentationMode
     @State var isPresented = false
     @StateObject var bleController = BLEController()

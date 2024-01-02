@@ -13,7 +13,7 @@ struct SearchBarCapsule: View {
     @StateObject var speechRecogniser = SpeechRecognizer()
     @State var isRecording: Bool = false
     @State var isSearchedListOption: Bool = false
-    @Binding var kioskViewModel: KioskViewModel
+    @Binding var sheetsViewModel: SheetsViewModel
     
     @Binding var currentSearchCount:Int
     
@@ -105,7 +105,7 @@ struct SearchBarCapsule: View {
                             .onSubmit {
                                
                                 if Utilities.sharedInstance.checkStringContainsText(text: speechRecogniser.transcript){
-                                    DataCenter.sharedInstance.searchTextAndFindModels(aSearchedText: speechRecogniser.transcript,kioskViewModel: kioskViewModel)
+                                    DataCenter.sharedInstance.searchTextAndFindModels(aSearchedText: speechRecogniser.transcript,sheetsViewModel: sheetsViewModel)
                                 }
                             }
                     }

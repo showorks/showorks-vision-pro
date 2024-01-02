@@ -211,13 +211,14 @@ extension HomeTabLayout{
                 Spacer().frame(maxHeight: 20)
                 HStack(spacing: 20){
                     
-                    LeftViewBox(width: 340, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].department, heading: "Department")
                     LeftViewBox(width: 340, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].division, heading: "Division")
+                    LeftViewBox(width: 340, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].Class, heading: "Class")
+                    
                 }
                 Spacer().frame(maxHeight: 20)
                 HStack(spacing: 20){
-                    LeftViewBox(width: 340, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].Class, heading: "Class")
-                    LeftViewBox(width: 340, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].entryNumber, heading: "Entry Number")
+                    LeftViewBox(width: 340, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].department, heading: "Department")
+                    LeftViewBox(width: 340, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].division, heading: "Sheet Name")
                 }
             }
             

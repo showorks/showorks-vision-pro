@@ -12,15 +12,17 @@ extension HomeTabLayout{
     var modeAndToggle: some View{
         HStack{
             HStack(spacing: 20){
-                Text("Mode")
-                    .font(.sfProRegular(size: 14))
-                customToggleView
+                Text("Photography Judging")
+                    .font(.sfProRegular(size: 24))
+//                customToggleView
             }
             
             Spacer()
         }
         .padding(.trailing, 20)
         .padding(.leading, 40)
+        .padding(.top, 20)
+        .padding(.bottom, 20)
         
     }
     
