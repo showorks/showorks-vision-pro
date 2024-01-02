@@ -448,10 +448,10 @@ struct SelectedSheetCapsule: View {
             
             Capsule()
             .fill(.white.opacity(0.1))
-            .frame(width: 220, height: 55)
+            .frame(width: 250, height: 55)
             .glassBackgroundEffect()
             
-            HStack(spacing: 10){
+            HStack(spacing: 6){
                
                 Text("Home and Hobby Judging").font(.sfProRegular(size: 14))
                       
@@ -459,10 +459,10 @@ struct SelectedSheetCapsule: View {
                     .font(.system(size: 12))
             }
             .padding(.horizontal, 5)
-            .frame(width: 220)
+            .frame(width: 250)
             
         }
-        .frame(width: 220)
+        .frame(width: 250)
         .padding(.top, 100)
 
         
