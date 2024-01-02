@@ -84,7 +84,11 @@ struct HomeContentView: View {
                                 HomeListView(isCheckIn: isCheckIn, currentSearchCount: currentSearchCount, sheetsViewModel: sheetsViewModel)
 
                             }else{
-                                SearchBarCapsule(sheetsViewModel: $sheetsViewModel, currentSearchCount: $currentSearchCount)
+                                HStack(spacing: 20) {
+                                    SelectedSheetCapsule()
+                                    SearchBarCapsule(sheetsViewModel: $sheetsViewModel, currentSearchCount: $currentSearchCount)
+                                        .padding(.top, 100)
+                                }
                                 
                                 if DataCenter.sharedInstance.isDeviceConnected {
                                     QRScanTabView().frame(width: 1160, height: 540)
@@ -217,23 +221,25 @@ struct HomeContentView: View {
             return
         }
         
-        for sheetDic in plistArray {
-           
-            let sheetObj = sheetDic as! NSDictionary
-
+        sheetsViewModel = SheetsViewModel(arrayOfSheets: plistArray)
+//
+//        for sheetDic in plistArray {
+//           
+//            let sheetObj = sheetDic as! NSDictionary
+//
 //            if SheetUtility.sharedInstance.isKioskModeEnabledInSheet(sheetDic: sheetObj){
 //                print("Found kiosk")
 //            }else{
 //                print("Other sheet")
 //            }
             
-            // default first sheet selected
-
-            sheetsViewModel = SheetsViewModel(selectedDictionary: sheetObj,arrayOfSheets: plistArray)
-            
-            break
-            
-         }
+//            // default first sheet selected
+//
+//            sheetsViewModel = SheetsViewModel(selectedDictionary: sheetObj,arrayOfSheets: plistArray)
+//            
+//            break
+//            
+//         }
         
     }
 }
@@ -338,8 +344,10 @@ struct HomeListView : View {
                 
                 if isListRequired {
                     
-                    SearchBarCapsule(isSearchedListOption: true, sheetsViewModel: $sheetsViewModel, currentSearchCount: $currentSearchCount)
-//                            .padding(.top, 100)
+                    HStack(spacing: 20) {
+                        SelectedSheetCapsule()
+                        SearchBarCapsule(isSearchedListOption: true, sheetsViewModel: $sheetsViewModel, currentSearchCount: $currentSearchCount)
+                    }
                     
                     VStack{
                         
@@ -404,8 +412,11 @@ struct HomeListView : View {
                     
                 }else{
                     
-                    SearchBarCapsule(sheetsViewModel: $sheetsViewModel, currentSearchCount: $currentSearchCount)
-                        .padding(.top, 100)
+                    HStack(spacing: 20) {
+                        SelectedSheetCapsule()
+                        SearchBarCapsule(sheetsViewModel: $sheetsViewModel, currentSearchCount: $currentSearchCount)
+                            .padding(.top, 100)
+                    }
                     
                     HomeTabLayout(isCheckIn: $isCheckIn, currentSearchCount: $currentSearchCount)
                         .frame(width: 1160, height: 540)
@@ -422,5 +433,38 @@ struct HomeListView : View {
         .onAppear {
             isListRequired = UserSettings.shared.showListAfterSearch ?? true
         }
+    }
+}
+
+
+
+struct SelectedSheetCapsule: View {
+    
+
+    @State var sheetName: String = ""
+
+    var body: some View {
+        ZStack{
+            
+            Capsule()
+            .fill(.white.opacity(0.1))
+            .frame(width: 220, height: 55)
+            .glassBackgroundEffect()
+            
+            HStack(spacing: 10){
+               
+                Text("Home and Hobby Judging").font(.sfProRegular(size: 14))
+                      
+                Image(systemName: "chevron.down")
+                    .font(.system(size: 12))
+            }
+            .padding(.horizontal, 5)
+            .frame(width: 220)
+            
+        }
+        .frame(width: 220)
+        .padding(.top, 100)
+
+        
     }
 }

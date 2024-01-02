@@ -247,6 +247,9 @@
     "Hello World!" : {
 
     },
+    "Home and Hobby Judging" : {
+
+    },
     "How to connect your scanner device via Bluetooth ?" : {
 
     },
@@ -274,6 +277,9 @@
 
     },
     "Manual Search" : {
+
+    },
+    "Mode" : {
 
     },
     "Next" : {
@@ -388,9 +394,6 @@
           }
         }
       }
-    },
-    "Photography Judging" : {
-
     },
     "powered_by" : {
       "extractionState" : "manual",
