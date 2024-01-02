@@ -127,6 +127,7 @@ struct LeftViewBox: View {
     
     var text: String
     var heading: String
+    @State private var displayBottomSheet = false
     
     var body: some View {
         VStack{
@@ -155,6 +156,30 @@ struct LeftViewBox: View {
                 
                 
             }
+            .onTapGesture {                
+                if heading == "Department" {
+                    displayBottomSheet.toggle()
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.NotificationDepartmentTapped), object: nil)
+                }else if heading == "Division" {
+                    displayBottomSheet.toggle()
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.NotificationDivisionTapped), object: nil)
+                }else if heading == "Class" {
+                    displayBottomSheet.toggle()
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.NotificationClassTapped), object: nil)
+                }
+            }
+            .sheet(isPresented: $displayBottomSheet) {
+                        List(1...20, id: \.self) { index in
+                               Text("Item \(index)")
+                           }
+                        .onTapGesture {
+                            displayBottomSheet.toggle()
+                        }
+                            .presentationDetents([ .medium, .large])
+                                     .presentationBackground(.thinMaterial)
+                                     .presentationCornerRadius(50)
+                                     .presentationBackgroundInteraction(.enabled)
+                    }
         }
         .frame(width: width, height: height)
     }
@@ -209,32 +234,36 @@ extension HomeTabLayout{
             
             VStack(spacing: 8){
                 
-                Text("Tap unlocked cell below to make any changes")
+                Spacer().frame(maxHeight: 40)
+                
+                Text("Tap any cell below to make any changes")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.system(size: 12))
                     .fontWeight(.light)
-                RightViewBox(isCheckIn: $isCheckIn, text1: "Division", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].division,allowEditing: testingCheckinMode ? true : false)
-                RightViewBox(isCheckIn: $isCheckIn, text1: "Class", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].Class,allowEditing: testingCheckinMode ? true : false)
-//                RightViewBox(isCheckIn: $isCheckIn, text1: "Description", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].descriptionInfo,allowEditing: testingCheckinMode ? true : false)
-                RightViewDescriptionBox(isCheckIn: $isCheckIn, userInputtedDescription: DataCenter.sharedInstance.searchedRecords[currentSearchCount].descriptionInfo,userInputtedTitle: "Description")
-                
-                RightViewDescriptionBox(isCheckIn: $isCheckIn, userInputtedDescription: DataCenter.sharedInstance.searchedRecords[currentSearchCount].validationNumber,userInputtedTitle: "Validation Number")
-                
-                RightViewBox(isCheckIn: $isCheckIn, text1: "Entry Validation Date", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].entryValidationDate,allowEditing: testingCheckinMode ? true : false)
-                RightViewBox(isCheckIn: $isCheckIn, text1: "State Fair", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].stateFair,allowEditing: testingCheckinMode ? true : false)
-                
-                HStack{
-                    Text("For Sale")
-                        .font(.system(size: 12))
-                        .fontWeight(.light)
-                    Spacer()
-                    Toggle("", isOn: $forSaleToggle)
-                        .disabled(isCheckIn ? false : true)
-                        .isHidden(isCheckIn ? false : true)
-                        .frame(height: 30)
-                }
-                
-                RightViewBox(isCheckIn: $isCheckIn, text1: "Sale Price ($)", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].salePrice,allowEditing: testingCheckinMode ? true : false)
+                    
+                if isCheckIn {
+                        RightViewDescriptionBox(isCheckIn: $isCheckIn, userInputtedDescription: DataCenter.sharedInstance.searchedRecords[currentSearchCount].descriptionInfo,userInputtedTitle: "Description")
+                        
+                        RightViewDescriptionBox(isCheckIn: $isCheckIn, userInputtedDescription: DataCenter.sharedInstance.searchedRecords[currentSearchCount].validationNumber,userInputtedTitle: "Validation Number")
+                        
+                        RightViewBox(isCheckIn: $isCheckIn, text1: "Entry Validation Date", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].entryValidationDate,allowEditing: testingCheckinMode ? true : false)
+                        RightViewBox(isCheckIn: $isCheckIn, text1: "State Fair", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].stateFair,allowEditing: testingCheckinMode ? true : false)
+                        
+                        HStack{
+                            Text("For Sale")
+                                .font(.system(size: 12))
+                                .fontWeight(.light)
+                            Spacer()
+                            Toggle("", isOn: $forSaleToggle)
+                                .disabled(isCheckIn ? false : true)
+                                .isHidden(isCheckIn ? false : true)
+                                .frame(height: 30)
+                        }
+                        
+                        RightViewBox(isCheckIn: $isCheckIn, text1: "Sale Price ($)", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].salePrice,allowEditing: testingCheckinMode ? true : false)
+                        
+                        Spacer()
+                    }
             }
             .frame(width: 340)
             

@@ -329,6 +329,7 @@ struct HomeListView : View {
     @State var currentSearchCount = 0
     @State var kioskViewModel:KioskViewModel
     @State var isListRequired = true
+
     var body: some View{
         ZStack{
             VStack(spacing: 20){
@@ -390,14 +391,14 @@ struct HomeListView : View {
                                 }
                                 
                                 DataCenter.sharedInstance.searchedSelectedIndex = actualIndex
-                                self.isListRequired = false
+                                self.isListRequired = false                                
                             }
                             
                         }.padding(.bottom,40)
                     }
                     .frame(width: 1160, height: 540)
                         .glassBackgroundEffect()
-                        .padding(.bottom, 40)
+                        .padding(.bottom, 40)                       
                     
                 }else{
                     SearchBarCapsule(kioskViewModel: $kioskViewModel, currentSearchCount: $currentSearchCount)

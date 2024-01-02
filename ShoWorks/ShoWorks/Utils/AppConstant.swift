@@ -66,6 +66,9 @@ struct AppConstant {
     static let NotificationWhenSearchedRecordChanges = "NotificationWhenSearchedRecordChanges"
     static let NotificationWhenItIsNeededToFlushSearchBar = "NotificationWhenItIsNeededToFlushSearchBar"
     static let NotificationRefreshLayoutOnSearch = "NotificationRefreshLayoutOnSearch"
+    static let NotificationDepartmentTapped = "NotificationDepartmentTapped"
+    static let NotificationDivisionTapped = "NotificationDivisionTapped"
+    static let NotificationClassTapped = "NotificationClassTapped"
     
     enum AppStartupStatus {
       case demoMode, fetchSheetFromLocal, fetchSheetFromServer
@@ -98,4 +101,7 @@ extension Notification.Name {
     static let searchRecordChangesNotification = Notification.Name(AppConstant.NotificationWhenSearchedRecordChanges)
     static let refereshChangesNotification = Notification.Name(AppConstant.NotificationRefreshLayoutOnSearch)
     static let flushSearchBarTextNotification = Notification.Name(AppConstant.NotificationWhenItIsNeededToFlushSearchBar)
+    static let departmentTappedNotification = Notification.Name(AppConstant.NotificationDepartmentTapped)
+    static let classTappedNotification = Notification.Name(AppConstant.NotificationClassTapped)
+    static let divisionTappedNotification = Notification.Name(AppConstant.NotificationDivisionTapped)
 }
