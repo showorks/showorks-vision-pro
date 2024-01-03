@@ -955,6 +955,6 @@ class DataCenter : NSObject,SheetParserDelegate,ObservableObject {
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.NotificationRefreshLayoutOnSearch), object: false)
                 
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.NotificationWhenSearchedRecordChanges), object: false)
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.NotificationWhenSearchedRecordChanges), object: false)
     }
 }

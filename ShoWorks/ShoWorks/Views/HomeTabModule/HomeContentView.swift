@@ -85,7 +85,9 @@ struct HomeContentView: View {
 
                             }else{
                                 HStack(spacing: 20) {
-                                    SelectedSheetCapsule(sheetViewModel: $sheetsViewModel)
+
+                                    SelectedSheetCapsule(sheetViewModel: $sheetsViewModel,mSelectedSheet: sheetsViewModel.mSelectedSheetName)
+                                    
                                     SearchBarCapsule(sheetsViewModel: $sheetsViewModel, currentSearchCount: $currentSearchCount)
                                         .padding(.top, 100)
                                 }
@@ -345,8 +347,11 @@ struct HomeListView : View {
                 if isListRequired {
                     
                     HStack(spacing: 20) {
-                        SelectedSheetCapsule(sheetViewModel: $sheetsViewModel)
+
+                        SelectedSheetCapsule(sheetViewModel: $sheetsViewModel,mSelectedSheet: sheetsViewModel.mSelectedSheetName)
+                        
                         SearchBarCapsule(isSearchedListOption: true, sheetsViewModel: $sheetsViewModel, currentSearchCount: $currentSearchCount)
+                            .padding(.top, 100)
                     }
                     
                     VStack{
@@ -413,7 +418,9 @@ struct HomeListView : View {
                 }else{
                     
                     HStack(spacing: 20) {
-                        SelectedSheetCapsule(sheetViewModel: $sheetsViewModel)
+                        
+                        SelectedSheetCapsule(sheetViewModel: $sheetsViewModel,mSelectedSheet: sheetsViewModel.mSelectedSheetName)
+                        
                         SearchBarCapsule(sheetsViewModel: $sheetsViewModel, currentSearchCount: $currentSearchCount)
                             .padding(.top, 100)
                     }
@@ -442,8 +449,7 @@ struct SelectedSheetCapsule: View {
     
 
     @Binding var sheetViewModel: SheetsViewModel
-    @State private var displayBottomSheet = false
-    @State var mSelectedSheet: String = ""
+    @State var mSelectedSheet: String?
 
     var body: some View {
         ZStack{
@@ -453,37 +459,47 @@ struct SelectedSheetCapsule: View {
             .frame(width: 250, height: 55)
             .glassBackgroundEffect()
             
-            HStack(spacing: 6){
-               
-                Text(sheetViewModel.mSelectedSheetName).font(.sfProRegular(size: 14))
-                      
-                Image(systemName: "chevron.down")
-                    .font(.system(size: 12))
-            }
-            .onTapGesture {
-                displayBottomSheet.toggle()
-            }
-            .sheet(isPresented: $displayBottomSheet) {
-                List(0...sheetViewModel.mSheetNamesArray.count-1, id: \.self) { index in
-                    if let sheetName = sheetViewModel.mSheetNamesArray[index] as? String{
-                        Text(sheetName)
+            
+                
+                if sheetViewModel.mSheetNamesArray.count > 0 {
+                    
+                     Menu{
+                         
+                         ForEach(0...sheetViewModel.mSheetNamesArray.count-1, id: \.self) { index in
+                             if let sheetName = sheetViewModel.mSheetNamesArray[index] as? String{
+                                 Button {
+                                     sheetViewModel.mSelectedSheetName = sheetName
+                                     sheetViewModel.currentSelectedIndex = index
+                                     sheetViewModel.updateCurrentSheetDetails()
+                                     DataCenter.sharedInstance.refreshViewWithEmptyLayout()
+                                     mSelectedSheet = sheetName                                    
+                                 } label: {
+                                     Text(sheetName).font(.system(size: 18))
+                                 }
+                                 
+                             }
+                         } .frame(width: 235)
+                        
+                     } label: {
+                         HStack(spacing: 6){
+                             Text(mSelectedSheet ?? "").font(.sfProRegular(size: 14))
+                             Image(systemName: "chevron.down")
+                                 .font(.system(size: 12))
+                         }.frame(width: 235)
                     }
-                }
-                .padding(20)
-                .frame(width: 450,height: 450)
-                .onTapGesture {
-                    displayBottomSheet.toggle()
-                    DataCenter.sharedInstance.refreshViewWithEmptyLayout()
-                }
-                    .presentationDetents([ .medium, .large])
-                             .presentationBackground(.thinMaterial)
-                             .presentationCornerRadius(50)
-                             .presentationBackgroundInteraction(.enabled)
+                     .frame(width: 230)
+//                }
+               
             }
-            .padding(.horizontal, 5)
-            .frame(width: 250)
             
         }
+         .onReceive(.refreshNameSelectionOfSheetNotification) { info in
+
+             let selectedSheetName = (info.object as? String) ?? ""
+             self.mSelectedSheet = selectedSheetName
+
+
+         }
         .frame(width: 250)
         .padding(.top, 100)
 

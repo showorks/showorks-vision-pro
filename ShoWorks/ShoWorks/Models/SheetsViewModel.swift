@@ -18,7 +18,7 @@ final class SheetsViewModel: ObservableObject {
     
     @Published var currentSelectedIndex : Int?
     
-    @Published var mSelectedSheetName : String = ""
+    @Published var mSelectedSheetName : String?
     
     @Published var mSheetNamesArray : Array = []
     
@@ -42,10 +42,34 @@ final class SheetsViewModel: ObservableObject {
                     
             
             if mSheetNamesArray.count > 0 {
-                mSelectedSheetName = mSheetNamesArray.last as! String
+                self.mSelectedSheetName = mSheetNamesArray.last as? String
+               
+                if let sheetName = self.mSelectedSheetName {
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.NotificationRefreshLayoutWhenSheetIsSelected), object: sheetName)
+                }
+                
             }
                    
             
         }
+    }
+    
+    func updateCurrentSheetDetails(){
+        
+        if let sheets = arrayOfSheets, sheets.count > 0 {
+            
+            currentSelectedIndex = 0
+            
+            self.selectedDictionary = sheets[currentSelectedIndex!] as? NSDictionary
+            
+            let downloadedSheetName:String! = (self.selectedDictionary!.object(forKey: AppConstant.sheet) as! NSDictionary).value(forKey: AppConstant.sheet_name) as? String
+            
+            self.mSelectedSheetName = downloadedSheetName
+            
+            if let sheetName = self.mSelectedSheetName {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.NotificationRefreshLayoutWhenSheetIsSelected), object: sheetName)
+            }
+        }
+        
     }
 }
