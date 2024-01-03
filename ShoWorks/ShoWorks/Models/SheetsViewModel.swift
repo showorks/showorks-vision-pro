@@ -48,6 +48,7 @@ final class SheetsViewModel: ObservableObject {
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.NotificationRefreshLayoutWhenSheetIsSelected), object: sheetName)
                 }
                 
+                self.selectedDictionary = sheets.object(at: mSheetNamesArray.count - 1) as? NSDictionary
             }
                    
             
@@ -57,8 +58,6 @@ final class SheetsViewModel: ObservableObject {
     func updateCurrentSheetDetails(){
         
         if let sheets = arrayOfSheets, sheets.count > 0 {
-            
-            currentSelectedIndex = 0
             
             self.selectedDictionary = sheets[currentSelectedIndex!] as? NSDictionary
             

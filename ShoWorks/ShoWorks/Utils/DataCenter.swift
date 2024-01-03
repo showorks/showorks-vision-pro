@@ -778,11 +778,11 @@ class DataCenter : NSObject,SheetParserDelegate,ObservableObject {
         
         if Utilities.sharedInstance.checkStringContainsText(text: aSearchedText){
             
-            if let arrayOfSheets = sheetsViewModel.arrayOfSheets {
+//            if let arrayOfSheets = sheetsViewModel.arrayOfSheets {
                 
-                for sheetsDictionary in arrayOfSheets {
+//                for sheetsDictionary in arrayOfSheets {
                     
-                    sheetsViewModel.selectedDictionary = sheetsDictionary as? NSDictionary
+//                    sheetsViewModel.selectedDictionary = sheetsDictionary as? NSDictionary
                                         
                     if let dictionary = sheetsViewModel.selectedDictionary {
                       
@@ -846,8 +846,8 @@ class DataCenter : NSObject,SheetParserDelegate,ObservableObject {
                     
                     
                     
-                }
-            }
+//                }
+//            }
             
             
         }

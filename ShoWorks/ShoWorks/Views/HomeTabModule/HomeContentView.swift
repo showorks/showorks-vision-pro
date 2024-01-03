@@ -487,7 +487,7 @@ struct SelectedSheetCapsule: View {
                                  .font(.system(size: 12))
                          }.frame(width: 235)
                     }
-                     .frame(width: 230)
+                     .frame(width: 240)
 //                }
                
             }
