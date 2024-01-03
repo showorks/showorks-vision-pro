@@ -51,7 +51,6 @@ enum Tabs: String{
 //1024
 struct HomeContentView: View {
     
-    var colors: [Color] = [.white, .orange, .red, .green, .indigo, .yellow, .cyan, .purple, .white, .orange, .red, .green, .indigo, .yellow, .cyan, .purple]
     @State var selectedTab: Tabs = .tab1
     @State private var offsetY: CGFloat = 0
     @State private var isDragging = false
@@ -64,6 +63,9 @@ struct HomeContentView: View {
     @State var mScreenState: AppConstant.AppStartupStatus?
     @State var currentSearchCount = 0
     @State private var alertItem: AlertItem?
+    var ribbonArray: [String] = ["Blue Ribbon", "Red Ribbon", "Yellow Ribbon", "White Ribbon", "Pink Ribbon","Green Ribbon","Purple Ribbon","Brown Ribbon","Gray Ribbon","Aqua Ribbon","Black Ribbon"]
+    @State var selectedRibbon: String = "Gray Ribbon"
+
     var body: some View {
         
         ZStack{
@@ -94,32 +96,41 @@ struct HomeContentView: View {
                                 }
                                 
                                 if DataCenter.sharedInstance.isDeviceConnected {
-                                    QRScanTabView().frame(width: 1160, height: 540)
+                                    QRScanTabView().frame(width: 1060, height: 540)
                                         .glassBackgroundEffect()
                                         .padding(.bottom, 40)
                                 }else{
 
                                     ConnectSearchView()
-                                        .frame(width: 1160, height: 540)
+                                        .frame(width: 1060, height: 540)
                                         .glassBackgroundEffect()
-                                        .padding(.bottom, 40)
+                                        .padding(.bottom, 10)
+                                    
+                                    ZStack{
+                                        Capsule()
+                                            .fill(.white.opacity(0.3))
+                                            .frame(width: 920, height: 65)
+                                            .glassBackgroundEffect()
+                                            .padding(.bottom, 20)
+                                        
+                                        ScrollView(.horizontal) {
+                                            LazyHStack(spacing: 50) {
+                                                ForEach(ribbonArray, id: \.self){imageName in
+                                                    Image(imageName)
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                        .frame(width: 25)
+                                                }
+                                            }
+                                        }.frame(width: 920, height: 65)
+                                            .padding(.leading,120)
+                                            .scrollIndicators(.never)
+                                            .padding(.bottom, 20)
+                                    }
                                 }
                              
                             }
                             
-//                            ShoWorksSideBarLayout(isNumberStack: false) {
-//                                HStack{
-//                                    ForEach(0..<colors.count){ind in
-//                                        ZStack{
-//                                            Circle().fill(colors[ind]).frame(width: 50)
-//
-//                                            Image(systemName: "bolt.heart.fill")
-//                                                .font(.system(size: 19))
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                            .offset(y:-28)
                         }
 //                        VStack{
 //                            Spacer()
@@ -137,7 +148,7 @@ struct HomeContentView: View {
                         VStack{
                             Spacer().frame(maxHeight: 35)
                                 QRScanDisconnectedTabView()
-                                .frame(width: 1160, height: 540)
+                                .frame(width: 1060, height: 540)
                                 .glassBackgroundEffect()
                         }
                         
@@ -145,12 +156,12 @@ struct HomeContentView: View {
                 }else{
                     ZStack{
 //                        Color.white.opacity(0.3)
-//                            .frame(width: 1160, height: 540)
+//                            .frame(width: 1060, height: 540)
 //                            .glassBackgroundEffect()
                         VStack{
                             Spacer().frame(maxHeight: 35)
                             SettingsLayout()
-                                .frame(width: 1160, height: 540)
+                                .frame(width: 1060, height: 540)
                                 .glassBackgroundEffect()
                         }
                         
@@ -303,7 +314,7 @@ struct QRScanDisconnectedTabView: View {
                   
                     Divider()
                         .background(Color.white)
-                        .frame(width: 1160)
+                        .frame(width: 1060)
                         .padding(.top,20)
                    
                     Text("How to connect your scanner device via Bluetooth ?")
@@ -340,7 +351,7 @@ struct QRScanDisconnectedTabView: View {
                         .frame(width: 860)
                         .frame(alignment: .leading)
                 }
-                .frame(width: 1160,height: 530)
+                .frame(width: 1060,height: 530)
            
             })
                         
@@ -425,7 +436,7 @@ struct HomeListView : View {
                             
                         }.padding(.bottom,40)
                     }
-                    .frame(width: 1160, height: 540)
+                    .frame(width: 1060, height: 540)
                         .glassBackgroundEffect()
                         .padding(.bottom, 40)                       
                     
@@ -440,7 +451,7 @@ struct HomeListView : View {
                     }
                     
                     HomeTabLayout(isCheckIn: $isCheckIn, currentSearchCount: $currentSearchCount)
-                        .frame(width: 1160, height: 540)
+                        .frame(width: 1060, height: 540)
                         .glassBackgroundEffect()
                         .padding(.bottom, 40)
                     

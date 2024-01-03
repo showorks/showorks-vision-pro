@@ -169,7 +169,7 @@
     "Diksha Khemlami" : {
 
     },
-    "Display list view after scan:" : {
+    "Display list after search/scan:" : {
 
     },
     "enter_a_num" : {
@@ -448,9 +448,6 @@
         }
       }
     },
-    "Settings" : {
-
-    },
     "settings_btn" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -484,7 +481,7 @@
         }
       }
     },
-    "ShoWorks Vision Pro v1.0" : {
+    "ShoWorks Vision Pro Beta v0.1" : {
 
     },
     "Skip" : {
@@ -536,6 +533,9 @@
 
     },
     "Updated on Mon 30 Sept at 3.52 PM" : {
+
+    },
+    "User Settings" : {
 
     },
     "Visit www.fairsoftware.com/samples to print out sample entry tags and receipts which have QR Codes (barcodes) on them, allowing you to see how the scanner works which makes locating entries even faster." : {
