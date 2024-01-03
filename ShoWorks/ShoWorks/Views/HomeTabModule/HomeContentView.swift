@@ -487,6 +487,7 @@ struct SelectedSheetCapsule: View {
                                  .font(.system(size: 12))
                          }.frame(width: 235)
                     }
+                      .menuStyle(.borderlessButton)
                      .frame(width: 240)
 //                }
                
