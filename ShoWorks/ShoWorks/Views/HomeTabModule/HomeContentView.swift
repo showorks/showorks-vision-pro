@@ -106,27 +106,6 @@ struct HomeContentView: View {
                                         .glassBackgroundEffect()
                                         .padding(.bottom, 10)
                                     
-                                    ZStack{
-                                        Capsule()
-                                            .fill(.white.opacity(0.3))
-                                            .frame(width: 920, height: 65)
-                                            .glassBackgroundEffect()
-                                            .padding(.bottom, 20)
-                                        
-                                        ScrollView(.horizontal) {
-                                            LazyHStack(spacing: 50) {
-                                                ForEach(ribbonArray, id: \.self){imageName in
-                                                    Image(imageName)
-                                                        .resizable()
-                                                        .scaledToFit()
-                                                        .frame(width: 25)
-                                                }
-                                            }
-                                        }.frame(width: 920, height: 65)
-                                            .padding(.leading,120)
-                                            .scrollIndicators(.never)
-                                            .padding(.bottom, 20)
-                                    }
                                 }
                              
                             }
@@ -141,6 +120,32 @@ struct HomeContentView: View {
                         
                             
                     }
+                    
+                    if !isCheckIn {
+                        
+                        ZStack{
+                            Capsule()
+                                .fill(.white.opacity(0.3))
+                                .frame(width: 65, height: 550)
+                                .glassBackgroundEffect()
+                                .padding(.top,70)
+                            
+                            ScrollView(.vertical) {
+                                LazyVStack(spacing: 20) {
+                                    ForEach(ribbonArray, id: \.self){imageName in
+                                        Image(imageName)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 25)
+                                    }
+                                }
+                            }.frame(width: 65, height: 650)
+                                .padding(.top,100)
+                                .scrollIndicators(.never)
+    //                            .padding(.trailing, 20)
+                        }
+                    }
+                    
                 }else if selectedTab == .tab2{
                     ZStack{
 //                        Color.white.opacity(0.3)
@@ -457,6 +462,35 @@ struct HomeListView : View {
                     
                     HomeBottomCapsule(isCheckIn: $isCheckIn)
                         .offset(y:-88)
+                    
+                    if !isCheckIn {
+                        ZStack{
+                            Capsule()
+                                .fill(.white.opacity(0.3))
+                                .frame(width: 760, height: 55)
+                                .glassBackgroundEffect()
+                            
+                                ScrollView(.horizontal) {
+                                    LazyHStack(spacing: 5) {
+                                        ForEach(1...99, id: \.self) { index in
+                                            Text(String(index))
+                                                .frame(width: 25, height: 25, alignment: .center)
+                                                .padding()
+                                                .overlay(
+                                                    Circle()
+                                                    .stroke(Color.white, lineWidth: 2)
+                                                    .padding(10)
+                                                )
+                                                
+                                        }
+                                    }
+                                    .padding(.leading,20)
+                                }.frame(width: 760, height: 55)
+                            .scrollIndicators(.never)
+
+                        }
+                        .offset(y:-68)
+                    }
                 }
                 
                 

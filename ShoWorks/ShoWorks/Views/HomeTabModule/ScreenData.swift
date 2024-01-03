@@ -192,39 +192,39 @@ extension HomeTabLayout{
             
             if isCheckIn {
                 
-                LeftViewBox(width: 700, height: 60, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].exhibitor, heading: "Exhibitor")
+                LeftViewBox(width: 620, height: 60, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].exhibitor, heading: "Exhibitor")
                 Spacer().frame(maxHeight: 20)
                 HStack(spacing: 20){
                     
-                    LeftViewBox(width: 340, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].department, heading: "Department")
-                    LeftViewBox(width: 340, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].division, heading: "Division")
+                    LeftViewBox(width: 300, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].department, heading: "Department")
+                    LeftViewBox(width: 300, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].division, heading: "Division")
                 }
                 Spacer().frame(maxHeight: 20)
                 HStack(spacing: 20){
-                    LeftViewBox(width: 340, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].Class, heading: "Class")
-                    LeftViewBox(width: 340, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].entryNumber, heading: "Entry Number")
+                    LeftViewBox(width: 300, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].Class, heading: "Class")
+                    LeftViewBox(width: 300, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].entryNumber, heading: "Entry Number")
                 }
             }
             else{
                 
-                LeftViewBox(width: 700, height: 60, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].exhibitor, heading: "Exhibitor")
+                LeftViewBox(width: 620, height: 60, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].exhibitor, heading: "Exhibitor")
                 Spacer().frame(maxHeight: 20)
                 HStack(spacing: 20){
                     
-                    LeftViewBox(width: 340, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].division, heading: "Division")
-                    LeftViewBox(width: 340, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].Class, heading: "Class")
+                    LeftViewBox(width: 300, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].division, heading: "Division")
+                    LeftViewBox(width: 300, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].Class, heading: "Class")
                     
                 }
                 Spacer().frame(maxHeight: 20)
                 HStack(spacing: 20){
-                    LeftViewBox(width: 340, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].department, heading: "Department")
-                    LeftViewBox(width: 340, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].division, heading: "Sheet Name")
+                    LeftViewBox(width: 300, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].department, heading: "Department")
+                    LeftViewBox(width: 300, height: 120, text: DataCenter.sharedInstance.searchedRecords[currentSearchCount].division, heading: "Sheet Name")
                 }
             }
             
             
         }
-        .frame(width: 770)
+        .frame(width: 670)
     }
     
     @ViewBuilder

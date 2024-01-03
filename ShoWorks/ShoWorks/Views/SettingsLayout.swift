@@ -18,35 +18,35 @@ struct SettingsLayout: View {
                 Text("User Settings")
                     .font(.sfProRegular(size: 22))
                     .padding(.top,40)
-                
-                ZStack{
-                    Capsule()
-                        .fill(.white.opacity(0.3))
-                        .frame(width: 820, height: 55)
-                        .glassBackgroundEffect()
-                    
-                        ScrollView(.horizontal) {
-                            LazyHStack(spacing: 5) {
-                                ForEach(1...99, id: \.self) { index in
-                                    Text(String(index))
-                                        .frame(width: 25, height: 25, alignment: .center)
-                                        .padding()
-                                        .overlay(
-                                            Circle()
-                                            .stroke(Color.white, lineWidth: 2)
-                                            .padding(10)
-                                        )
-                                        
-                                }
-                            }
-                            .padding(.leading,20)
-                        }.frame(width: 800, height: 55)
-                    .scrollIndicators(.never)
-                   
-                        
-
-                     
-                }
+//                
+//                ZStack{
+//                    Capsule()
+//                        .fill(.white.opacity(0.3))
+//                        .frame(width: 820, height: 55)
+//                        .glassBackgroundEffect()
+//                    
+//                        ScrollView(.horizontal) {
+//                            LazyHStack(spacing: 5) {
+//                                ForEach(1...99, id: \.self) { index in
+//                                    Text(String(index))
+//                                        .frame(width: 25, height: 25, alignment: .center)
+//                                        .padding()
+//                                        .overlay(
+//                                            Circle()
+//                                            .stroke(Color.white, lineWidth: 2)
+//                                            .padding(10)
+//                                        )
+//                                        
+//                                }
+//                            }
+//                            .padding(.leading,20)
+//                        }.frame(width: 800, height: 55)
+//                    .scrollIndicators(.never)
+//                   
+//                        
+//
+//                     
+//                }
                 
                 if UserSettings.shared.isDemoUserEnabled! {
                     
