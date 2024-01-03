@@ -51,6 +51,7 @@ enum Tabs: String{
 //1024
 struct HomeContentView: View {
     
+    var colors: [Color] = [.white, .orange, .red, .green, .indigo, .yellow, .cyan, .purple, .white, .orange, .red, .green, .indigo, .yellow, .cyan, .purple]
     @State var selectedTab: Tabs = .tab1
     @State private var offsetY: CGFloat = 0
     @State private var isDragging = false
@@ -105,7 +106,20 @@ struct HomeContentView: View {
                                 }
                              
                             }
-                                
+                            
+//                            ShoWorksSideBarLayout(isNumberStack: false) {
+//                                HStack{
+//                                    ForEach(0..<colors.count){ind in
+//                                        ZStack{
+//                                            Circle().fill(colors[ind]).frame(width: 50)
+//
+//                                            Image(systemName: "bolt.heart.fill")
+//                                                .font(.system(size: 19))
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                            .offset(y:-28)
                         }
 //                        VStack{
 //                            Spacer()
@@ -505,5 +519,108 @@ struct SelectedSheetCapsule: View {
         .padding(.top, 100)
 
         
+    }
+}
+
+
+
+struct ShoWorksSideBarLayout < T: View >: View {
+    
+    var extendedView: () -> T
+    var isNumber: Bool
+    @State var showCapsuleElements: Bool = false
+    @State var capsuleWidth: CGFloat = 110
+    
+    @State var maxCapsuleWidth: CGFloat = 1355 * 0.56
+    
+    init( isNumberStack: Bool , @ViewBuilder extendedView: @escaping () -> T){
+        self.extendedView = extendedView
+        isNumber = isNumberStack
+    }
+    
+    var body: some View {
+        ZStack{
+            
+            HStack{
+                Capsule().fill(.white.opacity(0.92))
+                    .frame(width: capsuleWidth, height: 70)
+                Spacer()
+            }
+            
+                
+            
+            if showCapsuleElements{
+                HStack{
+                    ScrollView(.horizontal, showsIndicators: false){
+                        
+//                        hstack below are the items when extended.
+                        extendedView()
+                        
+                        
+                        
+                    }
+                    .frame(width: capsuleWidth - 50)
+                    
+                    Image(systemName: "chevron.left")
+                        .font(.system(size: 18))
+                        .foregroundColor(.black)
+                        .padding(.horizontal, 10)
+                        .onTapGesture {
+                            withAnimation(.easeInOut(duration: 0.5)){
+                                capsuleWidth = 110
+                            }
+
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3){
+                                showCapsuleElements = false
+                            }
+                        }
+                }
+            }else{
+//                collapsed stack
+                HStack{
+//                    collapsedView()
+                    if isNumber{
+                        ZStack{
+                            Circle().stroke(.black, lineWidth: 3).frame(width: 50)
+
+                            Text("9")
+                                .font(.system(size: 19))
+                        }
+                        
+                    }else{
+                        ZStack{
+                            Circle().fill(.white).frame(width: 50)
+
+                            Image(systemName: "bolt.heart.fill")
+                                .font(.system(size: 19))
+                        }
+                    }
+//                    UIDevice.current.userInterfaceIdiom == .
+                    
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 16))
+                        .foregroundColor(.black)
+                    
+                    Spacer()
+                    
+                    
+                }
+                .padding(.leading)
+                .onTapGesture {
+                    if !showCapsuleElements{
+                        withAnimation(.easeInOut(duration: 0.5)){
+                            capsuleWidth = maxCapsuleWidth
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3){
+                            showCapsuleElements = true
+                        }
+                    }
+                }
+                
+            }
+            
+            
+        }
+        .frame(width: maxCapsuleWidth)
     }
 }

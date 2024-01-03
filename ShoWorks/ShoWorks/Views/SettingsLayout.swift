@@ -22,11 +22,11 @@ struct SettingsLayout: View {
                 
                 if UserSettings.shared.isDemoUserEnabled! {
                     
-                    SettingsViewBox(width: 820, height: 70, text: "Demo User", heading: "Logged in as:")
+                    SettingsViewBox(width: 820, height: 50, text: "Demo User", heading: "Logged in as:")
                         .padding(.top,20)
                 }else{
                     
-                    SettingsViewBox(width: 820, height: 70, text: UserSettings.shared.firstName ?? "", heading: "Logged in as:")
+                    SettingsViewBox(width: 820, height: 50, text: UserSettings.shared.firstName ?? "", heading: "Logged in as:")
                         .padding(.top,20)
                 }
                 
@@ -36,13 +36,13 @@ struct SettingsLayout: View {
                 if let serialKey = UserSettings.shared.serialKey {
                     if serialKey.count > 0 {
                         let last4 = String(serialKey.suffix(4))
-                        SettingsViewBox(width: 820, height: 70, text: "XXXX-XXXX-XXXX-"+last4, heading: "Serial Number:")
+                        SettingsViewBox(width: 820, height: 50, text: "XXXX-XXXX-XXXX-"+last4, heading: "Serial Number:")
                     }else{
-                        SettingsViewBox(width: 820, height: 70, text: "XXXX-XXXX-XXXX-1234", heading: "Serial Number:")
+                        SettingsViewBox(width: 820, height: 50, text: "XXXX-XXXX-XXXX-1234", heading: "Serial Number:")
                     }
                     
                 }else{
-                    SettingsViewBox(width: 820, height: 70, text: "XXXX-XXXX-XXXX-1234", heading: "Serial Number:")
+                    SettingsViewBox(width: 820, height: 50, text: "XXXX-XXXX-XXXX-1234", heading: "Serial Number:")
                 }
                 
                    
@@ -50,9 +50,9 @@ struct SettingsLayout: View {
                 
                 ZStack{
                     RoundedRectangle(cornerRadius: 20).fill(.white.opacity(0.2))
-                        .frame(width: 820, height: 70)
+                        .frame(width: 820, height: 50)
                     
-                    VStack(alignment: .leading, spacing: 5){
+                    VStack(alignment: .leading, spacing: 20){
                         HStack{
 //                            Circle().fill(.white).frame(width: 10)
                             Text("Default mode for scans:")
@@ -69,15 +69,15 @@ struct SettingsLayout: View {
                     
                     
                 }
-                .frame(width: 820, height: 70)
+                .frame(width: 820, height: 50)
 
                 ZStack{
                     RoundedRectangle(cornerRadius: 20).fill(.white.opacity(0.2))
-                        .frame(width: 820, height: 70)
+                        .frame(width: 820, height: 50)
                     
                     VStack(alignment: .leading, spacing: 5){
                         HStack{
-                            Toggle("Display list view after scan:", isOn: $displayListAfterScan)
+                            Toggle("Display list after search/scan:", isOn: $displayListAfterScan)
                                 .onChange(of: displayListAfterScan, initial: displayListAfterScan, { oldValue, newValue in
                                     UserSettings.shared.showListAfterSearch = newValue
                                 })
@@ -94,14 +94,11 @@ struct SettingsLayout: View {
                     
                     
                 }
-                .frame(width: 820, height: 70)
+                .frame(width: 820, height: 50)
                 
                 
                 Spacer()
                     .frame(height: 20)
-                
-                Text("ShoWorks Vision Pro v1.0")
-                    .font(.subheadline)
                 
                 ZStack{
                     
@@ -117,10 +114,15 @@ struct SettingsLayout: View {
                             .font(.system(size: 12))
                     }
                 }
-                .padding(.bottom, 40)
                 .onTapGesture {
                     print("button pressed")
                 }
+                
+                Text("ShoWorks Vision Pro Beta v0.1")
+                    .font(.system(size: 10))
+                    .padding(.bottom, 40)
+
+                
             }
             .frame(width: 840,alignment: .leading)
             
