@@ -16,8 +16,8 @@ struct SettingsLayout: View {
         
         ZStack{
             VStack(spacing: 15){
-                Text("Settings")
-                    .font(.heleveticNeueBold(size: 22))
+                Text("User Settings")
+                    .font(.sfProRegular(size: 22))
                     .padding(.top,40)
                 
                 if UserSettings.shared.isDemoUserEnabled! {
