@@ -64,7 +64,7 @@ struct RightViewDescriptionBox: View {
                         .font(.system(size: 15))
                         .foregroundStyle(.white)
                     
-                    if userInputtedDescription.isEmpty {
+//                    if userInputtedDescription.isEmpty {
                         
                         Spacer()
                         
@@ -72,7 +72,7 @@ struct RightViewDescriptionBox: View {
                             .font(.system(size: 18))
                             .hoverEffect(.lift)
                             .foregroundStyle(.white).padding(.trailing,10)
-                    }
+//                    }
                 }
                 
                 
@@ -264,7 +264,46 @@ extension HomeTabLayout{
                         RightViewBox(isCheckIn: $isCheckIn, text1: "Sale Price ($)", text2: DataCenter.sharedInstance.searchedRecords[currentSearchCount].salePrice,allowEditing: testingCheckinMode ? true : false)
                         
                         Spacer()
-                    }
+                }else{
+                  
+                            RightViewDescriptionBox(isCheckIn: $isCheckIn, userInputtedDescription: "Best of Show",userInputtedTitle: "Special PI")
+                    
+                            RightViewDescriptionBox(isCheckIn: $isCheckIn, userInputtedDescription: "Champion",userInputtedTitle: "Division PI")
+                                        
+                            RightViewBox(isCheckIn: $isCheckIn, text1: "Animal", text2: "British",allowEditing: false)
+                    
+                            RightViewBox(isCheckIn: $isCheckIn, text1: "B/W/H", text2: String(Int.random(in: 1100..<1200)),allowEditing: false)
+                    
+                            RightViewBox(isCheckIn: $isCheckIn, text1: "Tag", text2: String(Int.random(in: 1..<900)),allowEditing: false)
+                    
+                    
+                            HStack(spacing: 5) {
+                                
+                                
+                                Text(String("6"))
+                                    .frame(width: 60, height: 60, alignment: .center)
+                                    .padding()
+                                    .overlay(
+                                        Circle()
+                                        .stroke(Color.white, lineWidth: 2)
+                                        .padding(10)
+                                    )
+                                
+                                
+                                
+                                Image("Green Ribbon")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 50)
+                                
+                            }
+                            .padding(.top,15)
+                            .frame(width: 340, height: 120)
+                            
+                    
+                            Spacer()
+                     
+                }
             }
             .frame(width: 340)
             

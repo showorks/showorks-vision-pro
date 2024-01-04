@@ -785,63 +785,122 @@ class DataCenter : NSObject,SheetParserDelegate,ObservableObject {
 //                    sheetsViewModel.selectedDictionary = sheetsDictionary as? NSDictionary
                                         
                     if let dictionary = sheetsViewModel.selectedDictionary {
-                      
-                        if let array = SearchingUtility.searchManualEntry(aSearchedText, inSheetDic: dictionary as! NSMutableDictionary){
                         
-                            for model in array {
-                            
-                                let customSearchModel = model as! SearchDataModel
-                                
-                                if customSearchModel.searchedEntryIdArray.count > 0 {
+                        var isKiosk = false
 
-                                    let searchedEntryID:String = customSearchModel.searchedEntryIdArray[0] as! String
-
-                                    let dictionary = customSearchModel.classDetailDic as NSDictionary
-
-                                    if let array:NSMutableArray = dictionary.object(forKey: AppConstant.sheet_entries) as? NSMutableArray {
-                                       
-                                        for object in array {
-                                            let rowDictionary = object as! NSDictionary
-                                            
-                                            if let attributeDictionary = rowDictionary[AppConstant.sheet_attributes] as? NSDictionary {
-                                                
-                                                let entryID:String = attributeDictionary.value(forKey: AppConstant.sheet_entry_id) as! String
-                                                
-                                                if Int(searchedEntryID) == Int(entryID) {
-                                                    
-                                                    let exhibitorName:String = attributeDictionary.value(forKey: AppConstant.sheet_exhibitor) as! String
-                                                    
-                                                    let columnsArray:NSMutableArray = rowDictionary[AppConstant.sheet_columns] as! NSMutableArray
-                                                    
-                                                    let wenNumber:String = attributeDictionary.value(forKey: AppConstant.sheet_wen) as! String
-                                                    
-                                                    if columnsArray.count == 8 {
-                                                        
-                                                        let allowed = columnsArray[6] as! String
-                                                        
-                                                        let entry = Entry(exhibitor: exhibitorName, department: customSearchModel.departmentName, club: columnsArray[2] as! String, entryNumber: entryID, wen: wenNumber, division: customSearchModel.divisionName, Class: customSearchModel.className, description: columnsArray[1] as! String, validationNumber: columnsArray[3] as! String, entryValidationDate: columnsArray[4] as! String, stateFair: columnsArray[5] as! String, salePrice: columnsArray[7] as! String,isAllowedForSale: (allowed == "No" ? true : false))
-                                                        
-                                                        searchedRecords.append(entry)
-                                                        
-                                                    }
-                                                    break
-                                                }
-                                                
-                                            }
-                                        }
-
-                                    }
-                                    
-                                    
-                                }
-        //                        print("==================")
-        //                        print(customSearchModel.classDetailDic)
-        //                        print("<><><><><><><><>")
-        //                        print(customSearchModel.searchedEntryIdArray)
-        //                        print("*****************")
-        //                        var entry = Entry(exhibitor: customSearchModel., department: <#T##String#>, club: <#T##String#>, entryNumber: <#T##String#>, wen: <#T##String#>, division: <#T##String#>, Class: <#T##String#>, description: <#T##String#>, validationNumber: <#T##String#>, entryValidationDate: <#T##String#>, stateFair: <#T##String#>, salePrice: <#T##String#>)
-                            }
+                        if SheetUtility.sharedInstance.isKioskModeEnabledInSheet(sheetDic: dictionary){
+                            isKiosk = true
+                        }else{
+                            isKiosk = false
                         }
+                        
+                        if isKiosk {
+                            
+                              if let array = SearchingUtility.searchManualEntry(aSearchedText, inSheetDic: dictionary as! NSMutableDictionary){
+                              
+                                  for model in array {
+                                  
+                                      let customSearchModel = model as! SearchDataModel
+                                      
+                                      if customSearchModel.searchedEntryIdArray.count > 0 {
+
+                                          let searchedEntryID:String = customSearchModel.searchedEntryIdArray[0] as! String
+
+                                          let dictionary = customSearchModel.classDetailDic as NSDictionary
+
+                                          if let array:NSMutableArray = dictionary.object(forKey: AppConstant.sheet_entries) as? NSMutableArray {
+                                             
+                                              for object in array {
+                                                  let rowDictionary = object as! NSDictionary
+                                                  
+                                                  if let attributeDictionary = rowDictionary[AppConstant.sheet_attributes] as? NSDictionary {
+                                                      
+                                                      let entryID:String = attributeDictionary.value(forKey: AppConstant.sheet_entry_id) as! String
+                                                      
+                                                      if Int(searchedEntryID) == Int(entryID) {
+                                                          
+                                                          let exhibitorName:String = attributeDictionary.value(forKey: AppConstant.sheet_exhibitor) as! String
+                                                          
+                                                          let columnsArray:NSMutableArray = rowDictionary[AppConstant.sheet_columns] as! NSMutableArray
+                                                          
+                                                          let wenNumber:String = attributeDictionary.value(forKey: AppConstant.sheet_wen) as! String
+                                                          
+                                                          if columnsArray.count == 8 {
+                                                              
+                                                              let allowed = columnsArray[6] as! String
+                                                              
+                                                              let entry = Entry(exhibitor: exhibitorName, department: customSearchModel.departmentName, club: columnsArray[2] as! String, entryNumber: entryID, wen: wenNumber, division: customSearchModel.divisionName, Class: customSearchModel.className, description: columnsArray[1] as! String, validationNumber: columnsArray[3] as! String, entryValidationDate: columnsArray[4] as! String, stateFair: columnsArray[5] as! String, salePrice: columnsArray[7] as! String,isAllowedForSale: (allowed == "No" ? true : false))
+                                                              
+                                                              searchedRecords.append(entry)
+                                                              
+                                                          }
+                                                          break
+                                                      }
+                                                      
+                                                  }
+                                              }
+
+                                          }
+                                          
+                                          
+                                      }
+                                  }
+                              }
+                        }else{
+                            
+                                  var loadSearchModelsArray = NSMutableArray()
+                                
+                                  SearchingUtility.getSearchModels(fromSearchText: aSearchedText, inSheetDic: dictionary as! NSMutableDictionary, inSearchModelArray: loadSearchModelsArray)
+                            
+                                  for model in loadSearchModelsArray {
+                                  
+                                      let customSearchModel = model as! SearchDataModel
+                                      
+                                      if customSearchModel.searchedEntryIdArray.count > 0 {
+
+                                          let searchedEntryID:String = customSearchModel.searchedEntryIdArray[0] as! String
+
+                                          let dictionary = customSearchModel.classDetailDic as NSDictionary
+
+                                          if let array:NSMutableArray = dictionary.object(forKey: AppConstant.sheet_entries) as? NSMutableArray {
+                                             
+                                              for object in array {
+                                                  let rowDictionary = object as! NSDictionary
+                                                  
+                                                  if let attributeDictionary = rowDictionary[AppConstant.sheet_attributes] as? NSDictionary {
+                                                      
+                                                      let entryID:String = attributeDictionary.value(forKey: AppConstant.sheet_entry_id) as! String
+                                                      
+                                                      if Int(searchedEntryID) == Int(entryID) {
+                                                          
+//                                                          let exhibitorName:String = attributeDictionary.value(forKey: AppConstant.sheet_exhibitor) as! String
+//                                                          
+//                                                          let columnsArray:NSMutableArray = rowDictionary[AppConstant.sheet_columns] as! NSMutableArray
+//                                                          
+//                                                          let wenNumber:String = attributeDictionary.value(forKey: AppConstant.sheet_wen) as! String
+                                                          
+//                                                          if columnsArray.count == 8 {
+                                                              
+//                                                              let allowed = columnsArray[6] as! String
+//                                                              
+//                                                              let entry = Entry(exhibitor: "John Doe|Calvert, TX", department: customSearchModel.departmentName, club: "S.B. Ms Cadence 54J26|Brangus|KRINSKY CLUB LAMBS 10-15", entryNumber: entryID, wen: "609A7A", division: customSearchModel.divisionName, Class: customSearchModel.className, description: "Test", validationNumber: "23829389723", entryValidationDate: "12/23/2011", stateFair: columnsArray[5] as! String, salePrice: columnsArray[7] as! String,isAllowedForSale: (allowed == "No" ? true : false))
+//                                                              
+//                                                              searchedRecords.append(entry)
+                                                              
+//                                                          }
+                                                          break
+                                                      }
+                                                      
+                                                  }
+                                              }
+
+                                          }
+                                          
+                                          
+                                      }
+                                  }
+                        }
+                      
                     }
                     
                     
