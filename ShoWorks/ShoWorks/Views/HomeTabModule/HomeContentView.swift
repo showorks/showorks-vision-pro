@@ -468,7 +468,7 @@ struct HomeListView : View {
                         ZStack{
                             Capsule()
                                 .fill(.white.opacity(0.3))
-                                .frame(width: 760, height: 55)
+                                .frame(width: 770, height: 55)
                                 .glassBackgroundEffect()
                             
                                 ScrollView(.horizontal) {
