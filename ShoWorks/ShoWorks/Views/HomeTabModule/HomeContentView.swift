@@ -54,7 +54,7 @@ struct HomeContentView: View {
     @State var selectedTab: Tabs = .tab1
     @State private var offsetY: CGFloat = 0
     @State private var isDragging = false
-    @State var isDeviceConnected = false
+    @State var isDeviceConnected = true
     @State var searchRecordContainsData = false
     @State var isCheckIn: Bool = true
     @State var sheetsViewModel = SheetsViewModel()
@@ -97,7 +97,7 @@ struct HomeContentView: View {
                                 }
                                 
                                 if DataCenter.sharedInstance.isDeviceConnected {
-                                    QRScanTabView().frame(width: 1060, height: 540)
+                                    QRScanTabView().frame(width: 1060, height: 570)
                                         .glassBackgroundEffect()
                                         .padding(.bottom, 40)
                                 }else{
