@@ -50,7 +50,7 @@ struct HomeBottomCapsule: View {
                         Capsule().fill(.green)
                             .frame(width: 130, height: 40)
                         
-                        Text("Submit")
+                        Text("Save")
                             .font(.heleveticNeueMedium(size: 14))
                     }
                     .onTapGesture {

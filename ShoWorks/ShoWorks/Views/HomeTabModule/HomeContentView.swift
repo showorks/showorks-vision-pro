@@ -484,7 +484,7 @@ struct HomeListView : View {
                             
                                 ScrollView(.horizontal) {
                                     LazyHStack(spacing: 5) {
-                                        ForEach(1...99, id: \.self) { index in
+                                        ForEach(1...10, id: \.self) { index in
                                             Text(String(index))
                                                 .frame(width: 25, height: 25, alignment: .center)
                                                 .padding()
@@ -495,6 +495,14 @@ struct HomeListView : View {
                                                 )
                                                 
                                         }
+                                        Text(String("10-99"))
+                                            .frame(width: 45, height: 25, alignment: .center)
+                                            .padding()
+                                            .overlay(
+                                                Circle()
+                                                .stroke(Color.white, lineWidth: 2)
+                                                .padding(10)
+                                            )
                                     }
                                     .padding(.leading,20)
                                 }.frame(width: 720, height: 55)
