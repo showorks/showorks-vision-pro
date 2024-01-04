@@ -327,24 +327,32 @@ struct QRScanDisconnectedTabView: View {
                         .fontWeight(.bold)
                         .frame(alignment: .leading)
                     
-                    Text("1. Go to the Bluetooth Connection Instruction Manual. \n\n2. Press scanner's button to power on the scanner. \n\n3. Bluetooth HID mode is usually set by default on new devices. ShoWorks uses the newer BLE mode for more efficient and reliable data communications and you must charge your device to this mode by scanning the code below or found in your instruction manual. \n\n4. Make sure the device is configured to use Bluetooth mode instead of USB. Please scan the following barcode to allow the device to work with Bluetooth mode.")
+                    Text("1. Go to the Bluetooth Connection Instruction Manual. \n\n2. Press scanner's button to power on the scanner. \n\n3. Bluetooth HID mode is usually set by default on new devices. ShoWorks uses the newer BLE mode for more efficient and reliable data communications and you must charge your device to this mode by scanning the code below or found in your instruction manual. \n\n4. Make sure the device is configured to use Bluetooth mode instead of USB.\n\n5. For ShoWorks Vision Pro app, Make sure BLE Mode = (AT+MODE = 3) is active on the scanner.") //Please scan the following barcode to allow the device to work with Bluetooth mode.
                         .padding(.top,20).font(.system(size: 15))
                         .frame(width: 860)
                         .frame(alignment: .leading)
                     
-                    Image("netum_bluetooth")
-                        .padding(.top,20)
-                    Text("\n\n5. BLE Mode Serial Port Profile- For iOS Devices By scanning below barcode scanner will enter BLE Mode for ShoWorks Vision Pro app.")
+//                    Image("netum_bluetooth")
+//                        .padding(.top,20)
+//                    Text("\n\n5. BLE Mode Serial Port Profile- For iOS Devices By scanning below barcode scanner will enter BLE Mode for ShoWorks Vision Pro app.")
+//                        .padding(.top,20).font(.system(size: 15))
+//                        .frame(width: 860)
+//                        .frame(alignment: .leading)
+//                    
+//                    Image("netum_scan")
+                    
+                    Text("\n\n6. Once the barcode has been scanned with the Bluetooth scanner, it will automatically connect with the ShoWorks Vision app each time you start the app, however this initial setup requires that you force close (\"kill\") the app after the configuration has been made for the first time. There is a small dot appearing below the ShoWorks Vision Pro app screen, you can tap on it force close the app. \n\n7. If the Bluetooth scanner has been successfully paired with the Vision Pro prior and is active, a beep sound and brief visual message will occur when the ShoWorks Vision Pro App is launched, indicating that the two devices are now properly communicating. \n\nTROUBLESHOOTING: If the two devices do not seem to be communicating, try the following: \n\n - Force close the ShoWorks Vision Pro App and relaunch (See Vision OS documentation on how to force close apps). \n - Perform a hard reset on the Bluetooth scanner. The barcode below will hard reset your scanner. Once a hard reset has been made, you must again scan the two other barcodes with the scanner to \"Work with Bluetooth\" and \"BLE Mode\" (AT+MODE=3). After this has been done, you must force close the ShoWorks Vision Pro App and relaunch.")
                         .padding(.top,20).font(.system(size: 15))
                         .frame(width: 860)
                         .frame(alignment: .leading)
                     
-                    Image("netum_scan")
-                    
-                    Text("\n\n6. Once the above barcode has been scanned with the Bluetooth scanner, it will automatically connect with the ShoWorks Vision app each time you start the app, however this initial setup requires that you force close (\"kill\") the app after the configuration has been made for the first time. There is a small dot appearing below the ShoWorks Vision Pro app screen, you can tap on it force close the app. \n\n7. If the Bluetooth scanner has been successfully paired with the Vision Pro prior and is active, a beep sound and brief visual message will occur when the ShoWorks Vision Pro App is launched, indicating that the two devices are now properly communicating. \n\nTROUBLESHOOTING: If the two devices do not seem to be communicating, try the following: \n\n - Force close the ShoWorks Vision Pro App and relaunch (See Vision OS documentation on how to force close apps). \n - Perform a hard reset on the Bluetooth scanner. The barcode below will hard reset your scanner. Once a hard reset has been made, you must again scan the two other barcodes with the scanner to \"Work with Bluetooth\" and \"BLE Mode\" (AT+MODE=3). After this has been done, you must force close the ShoWorks Vision Pro App and relaunch.")
-                        .padding(.top,20).font(.system(size: 15))
-                        .frame(width: 860)
-                        .frame(alignment: .leading)
+                    HStack{
+                        Text("\n\n\n Once the device is connected, you should see a connected status with a ") + Text(Image("green_dot")) + Text(" green dot in front of home tab.")
+                    }
+                    .fontWeight(.bold)
+                    .padding(.top,20).font(.system(size: 18))
+                    .frame(width: 860)
+                    .frame(alignment: .leading)
                     
                     Text("\n\n From your Vision Pro...")
                         .padding(.top,20).font(.system(size: 20))
