@@ -141,7 +141,7 @@ struct HomeContentView: View {
                                     }
                                 }
                             }.frame(width: 65, height: 640)
-                                .padding(.top,100)
+                                .padding(.top,105)
                                 .scrollIndicators(.never)
                                 .padding(.leading, 10)
                         }
