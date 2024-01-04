@@ -409,6 +409,9 @@
     "Previous" : {
 
     },
+    "Save" : {
+
+    },
     "Search ..." : {
 
     },
@@ -484,7 +487,7 @@
         }
       }
     },
-    "ShoWorks Vision Pro Beta v0.1" : {
+    "ShoWorks Vision Pro\n© Gladstone Inc. All rights reserved. \nBeta Version 0.1.0" : {
 
     },
     "Skip" : {
@@ -500,9 +503,6 @@
           }
         }
       }
-    },
-    "Submit" : {
-
     },
     "Tap any cell below to make any changes" : {
 

@@ -50,12 +50,12 @@ struct SettingsLayout: View {
                 
                 if UserSettings.shared.isDemoUserEnabled! {
                     
-                    SettingsViewBox(width: 820, height: 50, text: "Demo User", heading: "Logged in as:")
-                        .padding(.top,20)
+                    SettingsViewBox(width: 820, height: 45, text: "Demo User", heading: "Logged in as:")
+                        .padding(.top,10)
                 }else{
                     
-                    SettingsViewBox(width: 820, height: 50, text: UserSettings.shared.firstName ?? "", heading: "Logged in as:")
-                        .padding(.top,20)
+                    SettingsViewBox(width: 820, height: 45, text: UserSettings.shared.firstName ?? "", heading: "Logged in as:")
+                        .padding(.top,10)
                 }
                 
                 
@@ -64,13 +64,13 @@ struct SettingsLayout: View {
                 if let serialKey = UserSettings.shared.serialKey {
                     if serialKey.count > 0 {
                         let last4 = String(serialKey.suffix(4))
-                        SettingsViewBox(width: 820, height: 50, text: "XXXX-XXXX-XXXX-"+last4, heading: "Serial Number:")
+                        SettingsViewBox(width: 820, height: 45, text: "XXXX-XXXX-XXXX-"+last4, heading: "Serial Number:")
                     }else{
-                        SettingsViewBox(width: 820, height: 50, text: "XXXX-XXXX-XXXX-1234", heading: "Serial Number:")
+                        SettingsViewBox(width: 820, height: 45, text: "XXXX-XXXX-XXXX-1234", heading: "Serial Number:")
                     }
                     
                 }else{
-                    SettingsViewBox(width: 820, height: 50, text: "XXXX-XXXX-XXXX-1234", heading: "Serial Number:")
+                    SettingsViewBox(width: 820, height: 45, text: "XXXX-XXXX-XXXX-1234", heading: "Serial Number:")
                 }
                 
                    
@@ -78,7 +78,7 @@ struct SettingsLayout: View {
                 
                 ZStack{
                     RoundedRectangle(cornerRadius: 20).fill(.white.opacity(0.2))
-                        .frame(width: 820, height: 50)
+                        .frame(width: 820, height: 48)
                     
                     VStack(alignment: .leading, spacing: 20){
                         HStack{
@@ -97,11 +97,11 @@ struct SettingsLayout: View {
                     
                     
                 }
-                .frame(width: 820, height: 50)
+                .frame(width: 820, height: 45)
 
                 ZStack{
                     RoundedRectangle(cornerRadius: 20).fill(.white.opacity(0.2))
-                        .frame(width: 820, height: 50)
+                        .frame(width: 820, height: 45)
                     
                     VStack(alignment: .leading, spacing: 5){
                         HStack{
@@ -122,8 +122,11 @@ struct SettingsLayout: View {
                     
                     
                 }
-                .frame(width: 820, height: 50)
+                .frame(width: 820, height: 45)
                 
+                SettingsViewBox(width: 820, height: 45, text: "", heading: "Other Settings")
+                
+                SettingsViewBox(width: 820, height: 45, text: "Random", heading: "Background/Theme Settings")
                 
                 Spacer()
                     .frame(height: 20)
@@ -146,9 +149,13 @@ struct SettingsLayout: View {
                     print("button pressed")
                 }
                 
-                Text("ShoWorks Vision Pro Beta v0.1")
+                Text("ShoWorks Vision Pro\n© Gladstone Inc. All rights reserved. \nBeta Version 0.1.0")
+                    .multilineTextAlignment(.center)
+                    .lineLimit(3)
+                    .foregroundStyle(.white)
                     .font(.system(size: 10))
-                    .padding(.bottom, 40)
+                    .padding(.bottom, 5)
+                    .padding(.top, 10)
 
                 
             }
