@@ -126,12 +126,13 @@ struct HomeContentView: View {
                         ZStack{
                             Capsule()
                                 .fill(.white.opacity(0.3))
-                                .frame(width: 65, height: 550)
+                                .frame(width: 65, height: 580)
                                 .glassBackgroundEffect()
-                                .padding(.top,70)
+                                .padding(.top,20)
+                                .padding(.leading, 10)
                             
                             ScrollView(.vertical) {
-                                LazyVStack(spacing: 20) {
+                                LazyVStack(spacing: 10) {
                                     ForEach(ribbonArray, id: \.self){imageName in
                                         Image(imageName)
                                             .resizable()
@@ -139,10 +140,10 @@ struct HomeContentView: View {
                                             .frame(width: 25)
                                     }
                                 }
-                            }.frame(width: 65, height: 650)
+                            }.frame(width: 65, height: 640)
                                 .padding(.top,100)
                                 .scrollIndicators(.never)
-    //                            .padding(.trailing, 20)
+                                .padding(.leading, 10)
                         }
                     }
                     
@@ -178,6 +179,11 @@ struct HomeContentView: View {
         }
         .onAppear {
             decideAndLoadDataOnScreenAccordingly()
+        }
+        .onReceive(.checkInJudgeModeNotification) { info in
+
+            self.isCheckIn = UserSettings.shared.selectedMode!
+
         }
         .onReceive(.searchRecordChangesNotification) { info in
 
@@ -347,7 +353,7 @@ struct QRScanDisconnectedTabView: View {
                         .frame(alignment: .leading)
                     
                     HStack{
-                        Text("\n\n\n Once the device is connected, you should see a connected status with a ") + Text(Image("green_dot")) + Text(" green dot in front of home tab.")
+                        Text("\n\n\nOnce the device is connected, you should see a connected status with a ") + Text(Image("green_dot")) + Text(" green dot in front of home tab.")
                     }
                     .fontWeight(.bold)
                     .padding(.top,20).font(.system(size: 18))

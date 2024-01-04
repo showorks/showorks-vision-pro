@@ -51,6 +51,7 @@ extension HomeTabLayout{
             withAnimation(.easeInOut(duration: 0.2)) {
                 isCheckIn.toggle()
                 UserSettings.shared.selectedMode = isCheckIn
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.NotificationCheckInOrJudgeModeChanged), object: nil)
             }
             
         }

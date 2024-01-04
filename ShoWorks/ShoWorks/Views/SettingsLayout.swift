@@ -213,6 +213,8 @@ extension SettingsLayout{
                 isCheckIn.toggle()
             }
             UserSettings.shared.selectedMode = isCheckIn
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: AppConstant.NotificationCheckInOrJudgeModeChanged), object: nil)
         }
     }
 }

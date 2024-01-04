@@ -70,6 +70,7 @@ struct AppConstant {
     static let NotificationDivisionTapped = "NotificationDivisionTapped"
     static let NotificationClassTapped = "NotificationClassTapped"
     static let NotificationRefreshLayoutWhenSheetIsSelected = "NotificationRefreshLayoutWhenSheetIsSelected"
+    static let NotificationCheckInOrJudgeModeChanged = "NotificationCheckInOrJudgeModeChanged"
     
     enum AppStartupStatus {
       case demoMode, fetchSheetFromLocal, fetchSheetFromServer
@@ -106,4 +107,5 @@ extension Notification.Name {
     static let classTappedNotification = Notification.Name(AppConstant.NotificationClassTapped)
     static let divisionTappedNotification = Notification.Name(AppConstant.NotificationDivisionTapped)
     static let refreshNameSelectionOfSheetNotification = Notification.Name(AppConstant.NotificationRefreshLayoutWhenSheetIsSelected)
+    static let checkInJudgeModeNotification = Notification.Name(AppConstant.NotificationCheckInOrJudgeModeChanged)
 }
