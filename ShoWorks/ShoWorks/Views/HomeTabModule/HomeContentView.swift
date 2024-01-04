@@ -348,9 +348,10 @@ struct QRScanDisconnectedTabView: View {
 //                    Image("netum_scan")
                     
                     Text("\n\n6. Once the barcode has been scanned with the Bluetooth scanner, it will automatically connect with the ShoWorks Vision app each time you start the app, however this initial setup requires that you force close (\"kill\") the app after the configuration has been made for the first time. There is a small dot appearing below the ShoWorks Vision Pro app screen, you can tap on it force close the app. \n\n7. If the Bluetooth scanner has been successfully paired with the Vision Pro prior and is active, a beep sound and brief visual message will occur when the ShoWorks Vision Pro App is launched, indicating that the two devices are now properly communicating. \n\nTROUBLESHOOTING: If the two devices do not seem to be communicating, try the following: \n\n - Force close the ShoWorks Vision Pro App and relaunch (See Vision OS documentation on how to force close apps). \n - Perform a hard reset on the Bluetooth scanner. The barcode below will hard reset your scanner. Once a hard reset has been made, you must again scan the two other barcodes with the scanner to \"Work with Bluetooth\" and \"BLE Mode\" (AT+MODE=3). After this has been done, you must force close the ShoWorks Vision Pro App and relaunch.")
-                        .padding(.top,20).font(.system(size: 15))
+                        .font(.system(size: 15))
                         .frame(width: 860)
                         .frame(alignment: .leading)
+                        .padding(.leading,12)
                     
                     HStack{
                         Text("\n\n\nOnce the device is connected, you should see a connected status with a ") + Text(Image("green_dot")) + Text(" green dot in front of home tab.")
@@ -484,8 +485,9 @@ struct HomeListView : View {
                             
                                 ScrollView(.horizontal) {
                                     LazyHStack(spacing: 5) {
-                                        ForEach(1...10, id: \.self) { index in
+                                        ForEach(1...9, id: \.self) { index in
                                             Text(String(index))
+                                                .font(.system(size: 12))
                                                 .frame(width: 25, height: 25, alignment: .center)
                                                 .padding()
                                                 .overlay(
@@ -496,6 +498,7 @@ struct HomeListView : View {
                                                 
                                         }
                                         Text(String("10-99"))
+                                            .font(.system(size: 10))
                                             .frame(width: 45, height: 25, alignment: .center)
                                             .padding()
                                             .overlay(

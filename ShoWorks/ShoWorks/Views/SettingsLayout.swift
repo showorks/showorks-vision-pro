@@ -17,8 +17,8 @@ struct SettingsLayout: View {
             VStack(spacing: 15){
                 Text("User Settings")
                     .font(.sfProRegular(size: 22))
-                    .padding(.top,40)
-//                
+                    .padding(.top,30)
+//
 //                ZStack{
 //                    Capsule()
 //                        .fill(.white.opacity(0.3))
@@ -129,7 +129,7 @@ struct SettingsLayout: View {
                 SettingsViewBox(width: 820, height: 45, text: "Random", heading: "Background/Theme Settings")
                 
                 Spacer()
-                    .frame(height: 20)
+                    .frame(height: 10)
                 
                 ZStack{
                     
@@ -155,7 +155,6 @@ struct SettingsLayout: View {
                     .foregroundStyle(.white)
                     .font(.system(size: 10))
                     .padding(.bottom, 5)
-                    .padding(.top, 10)
 
                 
             }
