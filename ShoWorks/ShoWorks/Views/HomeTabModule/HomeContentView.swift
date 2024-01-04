@@ -44,14 +44,14 @@ class Entry: Identifiable{
 }
 
 enum Tabs: String{
-    case tab1, tab2, tab3
+    case home, instructions, settings
 }
 
 
 //1024
 struct HomeContentView: View {
     
-    @State var selectedTab: Tabs = .tab1
+    @State var selectedTab: Tabs = .home
     @State private var offsetY: CGFloat = 0
     @State private var isDragging = false
     @State var isDeviceConnected = true
@@ -79,21 +79,20 @@ struct HomeContentView: View {
                 customTab
                     .padding(.trailing,20)
                 
-                if selectedTab == .tab1{
+                if selectedTab == .home{
                     ZStack{
                         VStack(spacing: 20){
                            
                             if searchRecordContainsData {
                                 
                                 HomeListView(isCheckIn: isCheckIn, currentSearchCount: currentSearchCount, sheetsViewModel: sheetsViewModel)
-
+                                 
                             }else{
                                 HStack(spacing: 20) {
 
                                     SelectedSheetCapsule(sheetViewModel: $sheetsViewModel,mSelectedSheet: sheetsViewModel.mSelectedSheetName)
                                     
                                     SearchBarCapsule(sheetsViewModel: $sheetsViewModel, currentSearchCount: $currentSearchCount)
-                                        .padding(.top, 100)
                                 }
                                 
                                 if DataCenter.sharedInstance.isDeviceConnected {
@@ -147,7 +146,7 @@ struct HomeContentView: View {
                         }
                     }
                     
-                }else if selectedTab == .tab2{
+                }else if selectedTab == .instructions{
                     ZStack{
 //                        Color.white.opacity(0.3)
                             
@@ -382,7 +381,6 @@ struct HomeListView : View {
                         SelectedSheetCapsule(sheetViewModel: $sheetsViewModel,mSelectedSheet: sheetsViewModel.mSelectedSheetName)
                         
                         SearchBarCapsule(isSearchedListOption: true, sheetsViewModel: $sheetsViewModel, currentSearchCount: $currentSearchCount)
-                            .padding(.top, 100)
                     }
                     
                     VStack{
@@ -453,7 +451,6 @@ struct HomeListView : View {
                         SelectedSheetCapsule(sheetViewModel: $sheetsViewModel,mSelectedSheet: sheetsViewModel.mSelectedSheetName)
                         
                         SearchBarCapsule(sheetsViewModel: $sheetsViewModel, currentSearchCount: $currentSearchCount)
-                            .padding(.top, 100)
                     }
                     
                     HomeTabLayout(isCheckIn: $isCheckIn, currentSearchCount: $currentSearchCount)
@@ -495,7 +492,7 @@ struct HomeListView : View {
                 }
                 
                 
-            }
+            }.padding(.top,!isListRequired ? 100 : 0)
         }
         .onAppear {
             isListRequired = UserSettings.shared.showListAfterSearch ?? true
@@ -562,7 +559,6 @@ struct SelectedSheetCapsule: View {
 
          }
         .frame(width: 250)
-        .padding(.top, 100)
 
         
     }

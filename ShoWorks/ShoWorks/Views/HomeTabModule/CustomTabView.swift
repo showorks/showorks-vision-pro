@@ -17,7 +17,7 @@ extension HomeContentView{
             VStack(spacing: 6){
                 
                 ZStack{
-                    Circle().fill(selectedTab == .tab1 ? .blue : .clear)
+                    Circle().fill(selectedTab == .home ? .blue : .clear)
                         .frame(width: 38)
                     Image("TabImage1")
                         .resizable()
@@ -32,11 +32,11 @@ extension HomeContentView{
                         
                 }
                 .onTapGesture {
-                    selectedTab = .tab1
+                    selectedTab = .home
                 }
                 
                 ZStack{
-                    Circle().fill(selectedTab == .tab2 ? .blue : .clear)
+                    Circle().fill(selectedTab == .instructions ? .blue : .clear)
                         .frame(width: 38)
                     Image("TabImage2")
                         .resizable()
@@ -44,11 +44,11 @@ extension HomeContentView{
                         .frame(width: 18)
                 }
                 .onTapGesture {
-                    selectedTab = .tab2
+                    selectedTab = .instructions
                 }
                 
                 ZStack{
-                    Circle().fill(selectedTab == .tab3 ? .blue : .clear)
+                    Circle().fill(selectedTab == .settings ? .blue : .clear)
                         .frame(width: 38)
                     Image("TabImage3")
                         .resizable()
@@ -57,7 +57,7 @@ extension HomeContentView{
                         
                 }
                 .onTapGesture {
-                    selectedTab = .tab3
+                    selectedTab = .settings
                 }
             }
             .font(.system(size: 18))
