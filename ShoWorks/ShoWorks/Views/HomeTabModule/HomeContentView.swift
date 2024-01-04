@@ -74,9 +74,10 @@ struct HomeContentView: View {
 //                .frame(width: 1366, height: 824)
             
             
-            HStack(spacing: 20){
+            HStack{
                 
                 customTab
+                    .padding(.trailing,20)
                 
                 if selectedTab == .tab1{
                     ZStack{
@@ -153,7 +154,7 @@ struct HomeContentView: View {
                         VStack{
                             Spacer().frame(maxHeight: 35)
                                 QRScanDisconnectedTabView()
-                                .frame(width: 1060, height: 540)
+                                .frame(width: 1060, height: 670)
                                 .glassBackgroundEffect()
                         }
                         
@@ -166,7 +167,7 @@ struct HomeContentView: View {
                         VStack{
                             Spacer().frame(maxHeight: 35)
                             SettingsLayout()
-                                .frame(width: 1060, height: 540)
+                                .frame(width: 1060, height: 670)
                                 .glassBackgroundEffect()
                         }
                         
@@ -174,7 +175,7 @@ struct HomeContentView: View {
                 }
                 
                 
-            }
+            }.offset(x:-40)
         }
         .onAppear {
             decideAndLoadDataOnScreenAccordingly()
@@ -485,7 +486,7 @@ struct HomeListView : View {
                                         }
                                     }
                                     .padding(.leading,20)
-                                }.frame(width: 760, height: 55)
+                                }.frame(width: 720, height: 55)
                             .scrollIndicators(.never)
 
                         }
